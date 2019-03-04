@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         options: [.alert, .sound, .badge]){
             (granted, _) in
             if granted{
-                UNUserNotificationCenter.current().delegate = self as! UNUserNotificationCenterDelegate
+                UNUserNotificationCenter.current().delegate = self as UNUserNotificationCenterDelegate
             }
         }
         
@@ -59,7 +59,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate{
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         // アプリ起動中でもアラートと音で通知
-        completionHandler([.alert, .sound])
+        completionHandler([.alert, .sound, .badge])
         
     }
     

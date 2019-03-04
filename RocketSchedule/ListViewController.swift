@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import UserNotifications
 
 class ListViewController: UITableViewController {
     
@@ -19,13 +20,21 @@ class ListViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView,
                             numberOfRowsInSection section: Int) -> Int {
+        print("tableView numberOfRowsInSection start")
+
         print("count:\(count)")
+        
+        print("tableView numberOfRowsInSection end")
+
         return count
     }
     
     override func tableView(_ tableView: UITableView,
                             cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 //        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+
+        print("tableView cellForRowAt start")
+
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! CustomTableViewCell
         
         print("launches.name\(self.jsonLaunches.launches[indexPath.row].name)")
@@ -72,44 +81,55 @@ class ListViewController: UITableViewController {
         cell.labelRocketName?.numberOfLines = 0
         cell.labelRocketName?.text = "\(self.jsonLaunches.launches[indexPath.row].name)"
         
+        print("tableView cellForRowAt end")
+
         return cell
     }
     
     
 
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//
-//        launchJsonDownload()
-//
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        print("viewDidLoad start")
+
+        launchJsonDownload()
+
+        print("launchJsonDownload in viewDidLoad:\(self.jsonLaunches)")
+
+        print("viewDidLoad end")
+
 //        self.tableView.reloadData()
-//    }
+    }
 
     override func viewDidAppear(_ animated: Bool){
         super.viewDidAppear(animated)
 
-        launchJsonDownload()
+//        launchJsonDownload()
         
+        print("viewDidAppear start")
+        
+        print("launchJsonDownload in viewDidAppear:\(self.jsonLaunches)")
         //タイムゾーン（地域）の取得
-        print("regioncode:\(TimeZone.current.localizedName(for: .standard, locale: .current) ?? "")")
-        print("Timezone:\(TimeZone.current)")
-        print("TimezoneAutoupdatingCurrent:\(TimeZone.autoupdatingCurrent)")
-        
-        //日付の加算テスト
-        let now = Date() // Dec 27, 2015, 8:24 PM
-        print("now:\(now)")
-        // 60秒*60分*24時間*7日 = 1週間後の日付
-        let date1 = Date(timeInterval: 60*60*9*1, since: now) // Jan 3, 2016, 8:24 PM
-        print("date1:\(date1)")
-        
-        
-        // styleを使う
-        let formatter = DateFormatter()
-        formatter.dateStyle = .medium
-        formatter.timeStyle = .medium
-        let localizedString = formatter.string(from: date1)
-        
-        print("localizedString:\(localizedString)")
+//        print("regioncode:\(TimeZone.current.localizedName(for: .standard, locale: .current) ?? "")")
+//        print("Timezone:\(TimeZone.current)")
+//        print("TimezoneAutoupdatingCurrent:\(TimeZone.autoupdatingCurrent)")
+//
+//        //日付の加算テスト
+//        let now = Date() // Dec 27, 2015, 8:24 PM
+//        print("now:\(now)")
+//        // 60秒*60分*24時間*7日 = 1週間後の日付
+//        let date1 = Date(timeInterval: 60*60*9*1, since: now) // Jan 3, 2016, 8:24 PM
+//        print("date1:\(date1)")
+//
+//
+//        // styleを使う
+//        let formatter = DateFormatter()
+//        formatter.dateStyle = .medium
+//        formatter.timeStyle = .medium
+//        let localizedString = formatter.string(from: date1)
+//
+//        print("localizedString:\(localizedString)")
         
         
 //        // calendarを日付文字列だ使ってるcalendarに設定
@@ -126,18 +146,52 @@ class ListViewController: UITableViewController {
 //        }else{
 //            print("dateString is nil")
 //        }
+        
+        // ローカル通知のの内容
+//        let content = UNMutableNotificationContent()
+//        content.sound = UNNotificationSound.default
+//        content.title = "まもなくロケット打ち上げ"
+//        content.subtitle = "日時指定"
+////        print("viewDidAppear:\(self.jsonLaunches.launches[0].name)")
+////        content.body = "\(self.jsonLaunches.launches[0].name)"
+//
+//        // ローカル通知実行日時をセット（5分後)
+//        let date = Date()
+//        let newDate = Date(timeInterval: 1*60, since: date)
+//        let component = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: newDate)
+//
+//        // ローカル通知リクエストを作成
+//        let trigger = UNCalendarNotificationTrigger(dateMatching: component, repeats: false)
+//        // ユニークなIDを作る
+//        let identifier = NSUUID().uuidString
+//        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+//
+//        // ローカル通知リクエストを登録
+//        UNUserNotificationCenter.current().add(request){ (error : Error?) in
+//            if let error = error {
+//                print(error.localizedDescription)
+//            }
+//        }
 
+        print("viewDidAppear end")
 
     }
 
 
     func launchJsonDownload(){
         
+        print("launchJsonDownload start")
+        
         if let url = URL(
             string: "https://launchlibrary.net/1.4/launch"){
             
+            print("launchJsonDownload start inside URL")
+
             let task = URLSession.shared.dataTask(with: url, completionHandler: {(data, response, error) in
                 if let data = data, let response = response {
+
+                    print("launchJsonDownload start inside URLSession")
+                    
                     print(response)
                     
                     let testdata = String(data: data, encoding: .utf8)!
@@ -157,16 +211,50 @@ class ListViewController: UITableViewController {
                         self.tableView.reloadData()
                     }
                     
+                    //直近のロケットの打ち上げ予定を通知する
+                    self.notificationRocket()
+                    
+                    print("launchJsonDownload end inside")
+
                 } else {
                     print(error ?? "Error")
                 }
             })
             
-
             task.resume()
 
             }
 
+        print("launchJsonDownload end")
+    }
+    
+    func notificationRocket(){
+        
+        // ローカル通知のの内容
+        let content = UNMutableNotificationContent()
+        content.sound = UNNotificationSound.default
+        content.title = "まもなくロケット打ち上げ"
+//        content.subtitle = "ロケット名"
+        content.body = "\(self.jsonLaunches.launches[0].name)"
+        
+        // ローカル通知実行日時をセット（5分後)
+        let date = Date()
+        let newDate = Date(timeInterval: 1*60, since: date)
+        let component = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: newDate)
+        
+        // ローカル通知リクエストを作成
+        let trigger = UNCalendarNotificationTrigger(dateMatching: component, repeats: false)
+        // ユニークなIDを作る
+        let identifier = NSUUID().uuidString
+        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+        
+        // ローカル通知リクエストを登録
+        UNUserNotificationCenter.current().add(request){ (error : Error?) in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+        }
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
