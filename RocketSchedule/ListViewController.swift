@@ -16,8 +16,8 @@ class ListViewController: UITableViewController {
     var item:Launch?
     var count: Int = 0
     var jsonLaunches: Launch!
-    
-    
+    var addedDate:Date!
+
     override func tableView(_ tableView: UITableView,
                             numberOfRowsInSection section: Int) -> Int {
         print("tableView numberOfRowsInSection start")
@@ -64,7 +64,8 @@ class ListViewController: UITableViewController {
             formatterString.timeStyle = .medium
 
             //UTC + 9(Japan)
-            let addedDate = Date(timeInterval: 60*60*9*1, since: dateString)
+//            let addedDate = Date(timeInterval: 60*60*9*1, since: dateString)
+            addedDate = Date(timeInterval: 60*60*9*1, since: dateString)
             print("addedDate:\(addedDate)")
             
             print("formatterString:\(formatterString.string(from: addedDate)))")
@@ -95,12 +96,26 @@ class ListViewController: UITableViewController {
 
         launchJsonDownload()
 
-        print("launchJsonDownload in viewDidLoad:\(self.jsonLaunches)")
-
         print("viewDidLoad end")
-
+        
+        //テーブルビューの pull-to-refresh
+        refreshControl = UIRefreshControl()
+        refreshControl?.addTarget(self, action: #selector(refresh(sender:)), for: .valueChanged)
+        
 //        self.tableView.reloadData()
+        
     }
+    
+    
+    //リフレッシュ処理
+    @objc func refresh(sender: UIRefreshControl) {
+        //Json再取得
+        launchJsonDownload()
+        
+        sender.endRefreshing()
+        
+    }
+    
 
     override func viewDidAppear(_ animated: Bool){
         super.viewDidAppear(animated)
@@ -109,7 +124,6 @@ class ListViewController: UITableViewController {
         
         print("viewDidAppear start")
         
-        print("launchJsonDownload in viewDidAppear:\(self.jsonLaunches)")
         //タイムゾーン（地域）の取得
 //        print("regioncode:\(TimeZone.current.localizedName(for: .standard, locale: .current) ?? "")")
 //        print("Timezone:\(TimeZone.current)")
@@ -147,31 +161,6 @@ class ListViewController: UITableViewController {
 //            print("dateString is nil")
 //        }
         
-        // ローカル通知のの内容
-//        let content = UNMutableNotificationContent()
-//        content.sound = UNNotificationSound.default
-//        content.title = "まもなくロケット打ち上げ"
-//        content.subtitle = "日時指定"
-////        print("viewDidAppear:\(self.jsonLaunches.launches[0].name)")
-////        content.body = "\(self.jsonLaunches.launches[0].name)"
-//
-//        // ローカル通知実行日時をセット（5分後)
-//        let date = Date()
-//        let newDate = Date(timeInterval: 1*60, since: date)
-//        let component = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: newDate)
-//
-//        // ローカル通知リクエストを作成
-//        let trigger = UNCalendarNotificationTrigger(dateMatching: component, repeats: false)
-//        // ユニークなIDを作る
-//        let identifier = NSUUID().uuidString
-//        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
-//
-//        // ローカル通知リクエストを登録
-//        UNUserNotificationCenter.current().add(request){ (error : Error?) in
-//            if let error = error {
-//                print(error.localizedDescription)
-//            }
-//        }
 
         print("viewDidAppear end")
 
@@ -183,7 +172,7 @@ class ListViewController: UITableViewController {
         print("launchJsonDownload start")
         
         if let url = URL(
-            string: "https://launchlibrary.net/1.4/launch"){
+            string: "https://launchlibrary.net/1.4/launch?next=999999"){
             
             print("launchJsonDownload start inside URL")
 

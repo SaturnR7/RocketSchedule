@@ -77,13 +77,11 @@ class ResultListViewController: UITableViewController {
     
     
     
-    //    override func viewDidLoad() {
-    //        super.viewDidLoad()
-    //
-    //        launchJsonDownload()
-    //
-    //        self.tableView.reloadData()
-    //    }
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+
+    }
     
     override func viewDidAppear(_ animated: Bool){
         super.viewDidAppear(animated)
@@ -134,7 +132,7 @@ class ResultListViewController: UITableViewController {
     func launchJsonDownload(){
         
         if let url = URL(
-            string: "https://launchlibrary.net/1.4/launch?startdate=2014-08-20&enddate=2015-09-20"){
+            string: "https://launchlibrary.net/1.4/launch?startdate=1907-01-12&enddate=2019-09-20&limit=999999"){
             
             let task = URLSession.shared.dataTask(with: url, completionHandler: {(data, response, error) in
                 if let data = data, let response = response {
