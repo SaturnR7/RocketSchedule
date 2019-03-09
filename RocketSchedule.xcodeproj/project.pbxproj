@@ -17,6 +17,7 @@
 		B6427C5921EDFA3E00999575 /* Launch.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6427C5821EDFA3E00999575 /* Launch.swift */; };
 		B6527D8321F874F300D40241 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6527D8221F874F300D40241 /* CustomTableViewCell.swift */; };
 		B6686E4C222E54C100B6CC75 /* SearchRoketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6686E4B222E54C100B6CC75 /* SearchRoketViewController.swift */; };
+		B6686E4E222F896100B6CC75 /* SearchLaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6686E4D222F896100B6CC75 /* SearchLaunch.swift */; };
 		B6D8BC292229F61D000B590E /* ResultListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D8BC282229F61D000B590E /* ResultListViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +34,7 @@
 		B6427C5821EDFA3E00999575 /* Launch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Launch.swift; sourceTree = "<group>"; };
 		B6527D8221F874F300D40241 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		B6686E4B222E54C100B6CC75 /* SearchRoketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRoketViewController.swift; sourceTree = "<group>"; };
+		B6686E4D222F896100B6CC75 /* SearchLaunch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLaunch.swift; sourceTree = "<group>"; };
 		B6D8BC282229F61D000B590E /* ResultListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultListViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -72,6 +74,7 @@
 				B6686E4B222E54C100B6CC75 /* SearchRoketViewController.swift */,
 				B60B3B1A2201C97000ADC711 /* DetailViewController.swift */,
 				B6427C5821EDFA3E00999575 /* Launch.swift */,
+				B6686E4D222F896100B6CC75 /* SearchLaunch.swift */,
 				B6527D8221F874F300D40241 /* CustomTableViewCell.swift */,
 				B60B3B1E22045EDC00ADC711 /* CustomTableViewCellDetail.swift */,
 				B6427C4421EAD5B800999575 /* Main.storyboard */,
@@ -158,6 +161,7 @@
 				B60B3B1B2201C97000ADC711 /* DetailViewController.swift in Sources */,
 				B60B3B1F22045EDC00ADC711 /* CustomTableViewCellDetail.swift in Sources */,
 				B6686E4C222E54C100B6CC75 /* SearchRoketViewController.swift in Sources */,
+				B6686E4E222F896100B6CC75 /* SearchLaunch.swift in Sources */,
 				B6527D8321F874F300D40241 /* CustomTableViewCell.swift in Sources */,
 				B6D8BC292229F61D000B590E /* ResultListViewController.swift in Sources */,
 				B6427C4121EAD5B800999575 /* AppDelegate.swift in Sources */,

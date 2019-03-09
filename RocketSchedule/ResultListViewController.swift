@@ -16,7 +16,21 @@ class ResultListViewController: UITableViewController {
     var count: Int = 0
     var jsonLaunches: Launch!
     
-    var searchStartLaunch:String!
+    // Usage of URL "https://launchlibrary.net/1.4/launch?startdate=1907-01-12&enddate=1969-09-20&limit=999999"
+    let urlStringOf1: String = "https://launchlibrary.net/1.4/launch"
+    let urlStringOf2: String = "?startdate="
+    let urlStringOfDefaultStartDate: String = "1907-01-12"
+    var urlStringOfSearchStartDate: String = "1907-01-12"
+    let urlStringOf3: String = "&enddate="
+    let urlStringOfDefaultEndDate: String = "1969-09-20"
+    var urlStringOfSearchEndDate: String = "1969-09-20"
+    let urlStringOf4: String = "&limit=999999"
+    
+    
+    
+    //search of Rocket
+    var searchStartLaunch: String?
+    var searchEndLaunch: String?
     
     @IBAction func searchRocket(_ sender: Any) {
         
@@ -101,6 +115,18 @@ class ResultListViewController: UITableViewController {
     override func viewDidAppear(_ animated: Bool){
         super.viewDidAppear(animated)
         
+        //test
+        if let searchStartLaunch = searchStartLaunch{
+            print("searchStartLaunch : \(searchStartLaunch)")
+            urlStringOfSearchStartDate = searchStartLaunch
+        }
+        if let searchEndLaunch = searchEndLaunch{
+            print("searchEndLaunch : \(searchEndLaunch)")
+            urlStringOfSearchEndDate = searchEndLaunch
+        }
+        print("testURL: \(urlStringOf1)\(urlStringOf2)\(urlStringOfSearchStartDate)\(urlStringOf3)\(urlStringOfSearchEndDate)\(urlStringOf4)")
+        
+        
         launchJsonDownload()
         
         //タイムゾーン（地域）の取得
@@ -147,8 +173,9 @@ class ResultListViewController: UITableViewController {
     func launchJsonDownload(){
         
         if let url = URL(
-            string: "https://launchlibrary.net/1.4/launch?startdate=1907-01-12&enddate=1969-09-20&limit=999999"){
-            
+//            string: "https://launchlibrary.net/1.4/launch?startdate=1907-01-12&enddate=1969-09-20&limit=999999"){
+            string: "\(urlStringOf1)\(urlStringOf2)\(urlStringOfSearchStartDate)\(urlStringOf3)\(urlStringOfSearchEndDate)\(urlStringOf4)"){
+
             let task = URLSession.shared.dataTask(with: url, completionHandler: {(data, response, error) in
                 if let data = data, let response = response {
                     print(response)

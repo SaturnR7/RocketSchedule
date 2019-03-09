@@ -359,23 +359,42 @@
                                     <segue destination="R1v-KO-Y7w" kind="unwind" unwindAction="unwindToTopWithSegue:" id="pKS-bF-ILi"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="〜" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pmm-Ls-iHG">
+                                <rect key="frame" x="55" y="168" width="45" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rTW-lr-kop">
+                                <rect key="frame" x="83" y="215" width="311" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Fgq-Zq-1pd" firstAttribute="top" secondItem="0qA-jH-f7h" secondAttribute="bottom" constant="22" id="0dA-kC-ige"/>
                             <constraint firstItem="b0X-nm-kd2" firstAttribute="centerX" secondItem="1Ja-Vp-ags" secondAttribute="centerX" id="0on-QI-us5"/>
                             <constraint firstItem="cBj-7Q-JqH" firstAttribute="top" secondItem="qMX-xi-erU" secondAttribute="top" constant="7" id="1FL-kR-6Kh"/>
+                            <constraint firstItem="qMX-xi-erU" firstAttribute="trailing" secondItem="Pmm-Ls-iHG" secondAttribute="trailing" constant="314" id="98H-Me-oSN"/>
                             <constraint firstItem="qMX-xi-erU" firstAttribute="trailing" secondItem="0qA-jH-f7h" secondAttribute="trailing" constant="184" id="D70-bd-Je3"/>
                             <constraint firstItem="qMX-xi-erU" firstAttribute="bottom" secondItem="b0X-nm-kd2" secondAttribute="bottom" constant="43" id="Iyb-pQ-OWd"/>
+                            <constraint firstItem="rTW-lr-kop" firstAttribute="trailing" secondItem="cBj-7Q-JqH" secondAttribute="trailing" id="TEv-Ub-wes"/>
+                            <constraint firstItem="Pmm-Ls-iHG" firstAttribute="top" secondItem="Fgq-Zq-1pd" secondAttribute="bottom" constant="18" id="X4Z-IW-aOu"/>
                             <constraint firstItem="qMX-xi-erU" firstAttribute="trailing" secondItem="Fgq-Zq-1pd" secondAttribute="trailing" constant="72" id="XcX-ey-5AR"/>
                             <constraint firstItem="cBj-7Q-JqH" firstAttribute="trailing" secondItem="1Ja-Vp-ags" secondAttribute="trailingMargin" id="adN-Xz-GGi"/>
                             <constraint firstItem="0qA-jH-f7h" firstAttribute="leading" secondItem="Fgq-Zq-1pd" secondAttribute="leading" id="akh-3d-K2A"/>
+                            <constraint firstItem="Pmm-Ls-iHG" firstAttribute="leading" secondItem="qMX-xi-erU" secondAttribute="leading" constant="55" id="ast-Vg-PNU"/>
                             <constraint firstItem="0qA-jH-f7h" firstAttribute="leading" secondItem="qMX-xi-erU" secondAttribute="leading" constant="31" id="lm0-Ur-1nR"/>
                             <constraint firstItem="0qA-jH-f7h" firstAttribute="top" secondItem="qMX-xi-erU" secondAttribute="top" constant="54" id="mxD-Qz-QRQ"/>
+                            <constraint firstItem="rTW-lr-kop" firstAttribute="leading" secondItem="qMX-xi-erU" secondAttribute="leading" constant="83" id="scP-zf-sYr"/>
+                            <constraint firstItem="rTW-lr-kop" firstAttribute="top" secondItem="Pmm-Ls-iHG" secondAttribute="bottom" constant="17" id="sg2-9U-zDr"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="qMX-xi-erU"/>
                     </view>
                     <connections>
+                        <outlet property="dateEndLaunch" destination="rTW-lr-kop" id="2Fy-R8-obS"/>
                         <outlet property="dateStartLaunch" destination="Fgq-Zq-1pd" id="ry8-Jr-TAU"/>
                     </connections>
                 </viewController>
