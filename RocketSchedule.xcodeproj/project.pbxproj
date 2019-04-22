@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B60B3B1B2201C97000ADC711 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60B3B1A2201C97000ADC711 /* DetailViewController.swift */; };
 		B60B3B1F22045EDC00ADC711 /* CustomTableViewCellDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60B3B1E22045EDC00ADC711 /* CustomTableViewCellDetail.swift */; };
+		B61AE943226184E9001034CD /* StructNotificationDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61AE942226184E9001034CD /* StructNotificationDate.swift */; };
 		B6427C4121EAD5B800999575 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6427C4021EAD5B800999575 /* AppDelegate.swift */; };
 		B6427C4621EAD5B800999575 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6427C4421EAD5B800999575 /* Main.storyboard */; };
 		B6427C4821EAD5BD00999575 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6427C4721EAD5BD00999575 /* Assets.xcassets */; };
@@ -24,6 +25,7 @@
 /* Begin PBXFileReference section */
 		B60B3B1A2201C97000ADC711 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		B60B3B1E22045EDC00ADC711 /* CustomTableViewCellDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCellDetail.swift; sourceTree = "<group>"; };
+		B61AE942226184E9001034CD /* StructNotificationDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructNotificationDate.swift; sourceTree = "<group>"; };
 		B6427C3D21EAD5B800999575 /* RocketSchedule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RocketSchedule.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6427C4021EAD5B800999575 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B6427C4521EAD5B800999575 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 				B6686E4D222F896100B6CC75 /* SearchLaunch.swift */,
 				B6527D8221F874F300D40241 /* CustomTableViewCell.swift */,
 				B60B3B1E22045EDC00ADC711 /* CustomTableViewCellDetail.swift */,
+				B61AE942226184E9001034CD /* StructNotificationDate.swift */,
 				B6427C4421EAD5B800999575 /* Main.storyboard */,
 				B6427C4721EAD5BD00999575 /* Assets.xcassets */,
 				B6427C4921EAD5BD00999575 /* LaunchScreen.storyboard */,
@@ -161,6 +164,7 @@
 				B60B3B1B2201C97000ADC711 /* DetailViewController.swift in Sources */,
 				B60B3B1F22045EDC00ADC711 /* CustomTableViewCellDetail.swift in Sources */,
 				B6686E4C222E54C100B6CC75 /* SearchRoketViewController.swift in Sources */,
+				B61AE943226184E9001034CD /* StructNotificationDate.swift in Sources */,
 				B6686E4E222F896100B6CC75 /* SearchLaunch.swift in Sources */,
 				B6527D8321F874F300D40241 /* CustomTableViewCell.swift in Sources */,
 				B6D8BC292229F61D000B590E /* ResultListViewController.swift in Sources */,
@@ -313,6 +317,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 44UHJ8FK3A;
 				INFOPLIST_FILE = RocketSchedule/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -331,6 +336,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 44UHJ8FK3A;
 				INFOPLIST_FILE = RocketSchedule/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

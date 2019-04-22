@@ -17,6 +17,7 @@ class ListViewController: UITableViewController {
     var count: Int = 0
     var jsonLaunches: Launch!
     var addedDate:Date!
+    var notificationDate = [StructNotificationDate]()
 
     override func tableView(_ tableView: UITableView,
                             numberOfRowsInSection section: Int) -> Int {
@@ -66,10 +67,16 @@ class ListViewController: UITableViewController {
             //UTC + 9(Japan)
 //            let addedDate = Date(timeInterval: 60*60*9*1, since: dateString)
             addedDate = Date(timeInterval: 60*60*9*1, since: dateString)
-            print("addedDate:\(addedDate)")
-            
+            print("addedDate:\(String(describing: addedDate))")
             print("formatterString:\(formatterString.string(from: addedDate)))")
             
+            //ID,LaunchDate added to struct
+            notificationDate.append(StructNotificationDate(id: self.jsonLaunches.launches[indexPath.row].id,
+                launchData: addedDate,
+                rocketName: self.jsonLaunches.launches[indexPath.row].name))
+            print("notificationDate - struct: \(notificationDate)")
+            
+
             cell.labelLaunchTime?.numberOfLines = 0
             cell.labelLaunchTime?.text = "\(formatterString.string(from: addedDate))"
         }else{
@@ -95,6 +102,8 @@ class ListViewController: UITableViewController {
         print("viewDidLoad start")
 
         launchJsonDownload()
+        
+        print("==viewDidLoad_jsonLaunches==\(jsonLaunches)")
 
         print("viewDidLoad end")
         
@@ -123,6 +132,9 @@ class ListViewController: UITableViewController {
 //        launchJsonDownload()
         
         print("viewDidAppear start")
+        
+        //直近のロケットの打ち上げ予定を通知する
+//        self.notificationRocket()
         
         //タイムゾーン（地域）の取得
 //        print("regioncode:\(TimeZone.current.localizedName(for: .standard, locale: .current) ?? "")")
@@ -228,7 +240,12 @@ class ListViewController: UITableViewController {
         
         // ローカル通知実行日時をセット（5分後)
         let date = Date()
-        let newDate = Date(timeInterval: 1*60, since: date)
+//        let launchDate = self.notificationDate[0].launchDate
+        print("Notification - date: \(date)")
+//        let newDate = Date(timeInterval: 1*60, since: date)
+        //Calendarクラスを使って日付（打ち上げ時刻）を減算して結果を返却する
+        let newDate = Calendar.current.date(byAdding: .minute, value: -10, to: date)!
+        print("Notification - newDate: \(newDate)")
         let component = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: newDate)
         
         // ローカル通知リクエストを作成

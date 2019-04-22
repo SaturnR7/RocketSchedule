@@ -23,6 +23,9 @@ class SearchRoketViewController: UIViewController {
     
     //日付用のPickerを生成
     let datePicker = UIDatePicker()
+    
+    //ユーザー設定値保持クラス
+    let searchValueSettings = UserDefaults()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +34,18 @@ class SearchRoketViewController: UIViewController {
         
         createEndDatePicker()
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        //設定値（前回検索履歴情報があった場合は、検索画面に値を設定
+        if let settingStartDate = searchValueSettings.string(forKey: "settingStartDate"){
+            dateStartLaunch.text = settingStartDate
+        }
+        if let settingStartDate = searchValueSettings.string(forKey: "settingEndDate"){
+            dateEndLaunch.text = settingStartDate
+        }
+
         
     }
     
@@ -91,6 +106,9 @@ class SearchRoketViewController: UIViewController {
         // Search StartDay to Display
         dateStartLaunch.text = dateFormatter.string(from: datePicker.date)
         
+        // 設定値を保持
+        searchValueSettings.set(dateFormatter.string(from: datePicker.date) , forKey: "settingStartDate")
+        
         print("dateStartLaunch.text: \(dateStartLaunch.text)")
         
         self.view.endEditing(true)
@@ -110,6 +128,9 @@ class SearchRoketViewController: UIViewController {
         // Search StartDay to Display
         dateEndLaunch.text = dateFormatter.string(from: datePicker.date)
         
+        // 設定値を保持
+        searchValueSettings.set(dateFormatter.string(from: datePicker.date) , forKey: "settingEndDate")
+
         print("dateEndLaunch.text: \(dateEndLaunch.text)")
         
         self.view.endEditing(true)

@@ -26,6 +26,8 @@ class ResultListViewController: UITableViewController {
     var urlStringOfSearchEndDate: String = "1969-09-20"
     let urlStringOf4: String = "&limit=999999"
     
+    var url: String!
+    
     
     
     //search of Rocket
@@ -117,16 +119,25 @@ class ResultListViewController: UITableViewController {
         
         //test
         if let searchStartLaunch = searchStartLaunch{
-            print("searchStartLaunch : \(searchStartLaunch)")
-            urlStringOfSearchStartDate = searchStartLaunch
+            if searchStartLaunch == "" {
+                print("searchStartLaunch : \(searchStartLaunch)")
+                urlStringOfSearchStartDate = urlStringOfDefaultStartDate
+            } else {
+                urlStringOfSearchStartDate = searchStartLaunch
+            }
         }
         if let searchEndLaunch = searchEndLaunch{
-            print("searchEndLaunch : \(searchEndLaunch)")
-            urlStringOfSearchEndDate = searchEndLaunch
+            if searchEndLaunch == "" {
+                print("searchEndLaunch : \(searchEndLaunch)")
+                urlStringOfSearchEndDate = urlStringOfDefaultEndDate
+            } else {
+                urlStringOfSearchEndDate = searchEndLaunch
+            }
         }
         print("testURL: \(urlStringOf1)\(urlStringOf2)\(urlStringOfSearchStartDate)\(urlStringOf3)\(urlStringOfSearchEndDate)\(urlStringOf4)")
         
-        
+        url = urlStringOf1 + urlStringOf2 + urlStringOfSearchStartDate + urlStringOf3 + urlStringOfSearchEndDate + urlStringOf4
+
         launchJsonDownload()
         
         //タイムゾーン（地域）の取得
@@ -174,7 +185,8 @@ class ResultListViewController: UITableViewController {
         
         if let url = URL(
 //            string: "https://launchlibrary.net/1.4/launch?startdate=1907-01-12&enddate=1969-09-20&limit=999999"){
-            string: "\(urlStringOf1)\(urlStringOf2)\(urlStringOfSearchStartDate)\(urlStringOf3)\(urlStringOfSearchEndDate)\(urlStringOf4)"){
+//            string: "\(urlStringOf1)\(urlStringOf2)\(urlStringOfSearchStartDate)\(urlStringOf3)\(urlStringOfSearchEndDate)\(urlStringOf4)"){
+            string: "\(url!)"){
 
             let task = URLSession.shared.dataTask(with: url, completionHandler: {(data, response, error) in
                 if let data = data, let response = response {
@@ -183,16 +195,23 @@ class ResultListViewController: UITableViewController {
                     let testdata = String(data: data, encoding: .utf8)!
                     print("data:\(testdata)")
                     
-                    let json = try! JSONDecoder().decode(Launch.self, from: data)
-                    
-                    self.count = json.count
-                    
-                    self.jsonLaunches = json
-                    
-                    for launch in json.launches {
-                        print("name:\(launch.name)")
+                    if testdata.contains("None found"){
+                        
+                        self.count = 0
+
+                    } else {
+                        
+                        let json = try! JSONDecoder().decode(Launch.self, from: data)
+                        
+                        self.count = json.count
+                        
+                        self.jsonLaunches = json
+                        
+                        for launch in json.launches {
+                            print("name:\(launch.name)")
+                        }
+                        
                     }
-                    
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
                     }
