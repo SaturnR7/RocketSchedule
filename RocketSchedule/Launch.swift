@@ -31,65 +31,8 @@ struct Launch: Codable {
         var lsp: String?
         var location: [String]?
 
-//        var vidURL: String?
-//        var inhold: Int?
-//        var isostart: String?
-//        var isoend: String?
-//        var isonet: String?
-//        var wsstamp: Int?
-//        var westamp: Int?
-//        var netstamp: Int?
-//        var infoURL: String?
-//        var infoURLs: [String]?
-//        var holdreason: String?
-//        var failreason: String?
-//        var hashtag: String?
-//        var rocket: [String]?
-//        var missions: [String]?
-
-//        private enum LaunchesKeys: String, CodingKey {
-//            case id
-//            case name
-//            case windowstart
-//            case windowend
-//            case net
-//            case status
-//            case tbdtime
-//            case vidURLs
-//            case vidURL
-//            case tbddate
-//            case probability
-//            case changed
-//            case lsp
-//
-////            case inhold
-////            case isostart
-////            case isoend
-////            case isonet
-////            case wsstamp
-////            case westamp
-////            case netstamp
-////            case infoURL
-////            case infoURLs
-////            case holdreason
-////            case failreason
-////            case hashtag
-////            case location
-////            case rocket
-////            case missions
-//
-//        }
-
     }
     
-//    private enum RootKeys: String, CodingKey {
-//        case launches
-//        case offset
-//        case count
-//        case total
-//    }
-
-
 }
 
 //extension TestLaunch: Decodable {
