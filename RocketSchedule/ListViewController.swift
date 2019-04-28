@@ -17,7 +17,10 @@ class ListViewController: UITableViewController {
     var count: Int = 0
     var jsonLaunches: Launch!
     var addedDate:Date!
+    //For Rocket Launch Notification
     var notificationDate = [StructNotificationDate]()
+    //For Display on PlansView
+    var viewRocketPlanData = [StructViewPlans]()
 
     override func tableView(_ tableView: UITableView,
                             numberOfRowsInSection section: Int) -> Int {
@@ -32,62 +35,26 @@ class ListViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView,
                             cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
 
         print("tableView cellForRowAt start")
 
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! CustomTableViewCell
         
-        print("launches.name\(self.jsonLaunches.launches[indexPath.row].name)")
-        //        cell.textLabel?.numberOfLines = 0
-        //        cell.textLabel?.text = "\(self.jsonLaunches.launches[indexPath.row].name)"
-        
-        // calendarを日付文字列だ使ってるcalendarに設定
         let formatterString = DateFormatter()
-        //        formatterString.calendar = Calendar(identifier: .gregorian)
-//        formatterString.timeZone = TimeZone.current
-//        formatterString.locale = Locale(identifier: "UTC")
-//        formatterString.locale = Locale.current
         //TimeZoneはUTCにしなければならない。
         //理由は、UTCに指定していないと、DateFormatter.date関数はcurrentのゾーンで
         //日付を返してしまうため。
         formatterString.timeZone = TimeZone(identifier: "UTC")
         formatterString.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        let jsonDate = self.jsonLaunches.launches[indexPath.row].windowstart
-        print ("jsonDate:\(jsonDate)")
+        formatterString.locale = Locale(identifier: "ja_JP")
+        formatterString.dateStyle = .full
+        formatterString.timeStyle = .medium
+
+        cell.labelLaunchTime?.numberOfLines = 0
+        cell.labelLaunchTime?.text = "\(formatterString.string(from: viewRocketPlanData[indexPath.row].launchDate))"
         
-        if let dateString = formatterString.date(from: jsonDate){
-            print("dateString:\(String(describing: dateString))")
-            
-            formatterString.locale = Locale(identifier: "ja_JP")
-//            formatterString.locale = Locale.current
-            formatterString.dateStyle = .full
-            formatterString.timeStyle = .medium
-
-            //UTC + 9(Japan)
-//            let addedDate = Date(timeInterval: 60*60*9*1, since: dateString)
-            addedDate = Date(timeInterval: 60*60*9*1, since: dateString)
-            print("addedDate:\(String(describing: addedDate))")
-            print("formatterString:\(formatterString.string(from: addedDate)))")
-            
-            //ID,LaunchDate added to struct
-            notificationDate.append(StructNotificationDate(id: self.jsonLaunches.launches[indexPath.row].id,
-                launchData: addedDate,
-                rocketName: self.jsonLaunches.launches[indexPath.row].name))
-            print("notificationDate - struct: \(notificationDate)")
-            
-
-            cell.labelLaunchTime?.numberOfLines = 0
-            cell.labelLaunchTime?.text = "\(formatterString.string(from: addedDate))"
-        }else{
-            print("dateString is nil")
-        }
-
-        
-//        cell.labelLaunchTime?.numberOfLines = 0
-//        cell.labelLaunchTime?.text = "\(self.jsonLaunches.launches[indexPath.row].windowstart)"
         cell.labelRocketName?.numberOfLines = 0
-        cell.labelRocketName?.text = "\(self.jsonLaunches.launches[indexPath.row].name)"
+        cell.labelRocketName?.text = "\(self.viewRocketPlanData[indexPath.row].rocketName)"
         
         print("tableView cellForRowAt end")
 
@@ -103,8 +70,6 @@ class ListViewController: UITableViewController {
 
         launchJsonDownload()
         
-        print("==viewDidLoad_jsonLaunches==\(jsonLaunches)")
-
         print("viewDidLoad end")
         
         //テーブルビューの pull-to-refresh
@@ -129,50 +94,9 @@ class ListViewController: UITableViewController {
     override func viewDidAppear(_ animated: Bool){
         super.viewDidAppear(animated)
 
-//        launchJsonDownload()
-        
         print("viewDidAppear start")
-        
-        //直近のロケットの打ち上げ予定を通知する
-//        self.notificationRocket()
-        
-        //タイムゾーン（地域）の取得
-//        print("regioncode:\(TimeZone.current.localizedName(for: .standard, locale: .current) ?? "")")
-//        print("Timezone:\(TimeZone.current)")
-//        print("TimezoneAutoupdatingCurrent:\(TimeZone.autoupdatingCurrent)")
-//
-//        //日付の加算テスト
-//        let now = Date() // Dec 27, 2015, 8:24 PM
-//        print("now:\(now)")
-//        // 60秒*60分*24時間*7日 = 1週間後の日付
-//        let date1 = Date(timeInterval: 60*60*9*1, since: now) // Jan 3, 2016, 8:24 PM
-//        print("date1:\(date1)")
-//
-//
-//        // styleを使う
-//        let formatter = DateFormatter()
-//        formatter.dateStyle = .medium
-//        formatter.timeStyle = .medium
-//        let localizedString = formatter.string(from: date1)
-//
-//        print("localizedString:\(localizedString)")
-        
-        
-//        // calendarを日付文字列だ使ってるcalendarに設定
-//        let formatterString = DateFormatter()
-//        // dateFormatをAPIのフォーマットに合わせて設定(rfc3339)
-//        formatterString.dateFormat = "yyyy-MM-dd HH:mm:ss"
-//        // localeをen_US_POSIXに設定
-//        formatterString.locale = Locale(identifier: "ja_JP")
-//        formatterString.calendar = Calendar(identifier: .gregorian)
-//        let dateString = formatterString.date(from: "2018-06-16 10:27:30")
-//
-//        if let test = dateString{
-//            print("dateString:\(String(describing: test))")
-//        }else{
-//            print("dateString is nil")
-//        }
-        
+
+        print("==jsonLaunches==\(notificationDate)")
 
         print("viewDidAppear end")
 
@@ -195,8 +119,8 @@ class ListViewController: UITableViewController {
                     
                     print(response)
                     
-                    let testdata = String(data: data, encoding: .utf8)!
-                    print("data:\(testdata)")
+//                    let testdata = String(data: data, encoding: .utf8)!
+//                    print("data:\(testdata)")
 
                     let json = try! JSONDecoder().decode(Launch.self, from: data)
                     
@@ -205,15 +129,54 @@ class ListViewController: UITableViewController {
                     self.jsonLaunches = json
                     
                     for launch in json.launches {
-                        print("name:\(launch.name)")
+//                        print("name:\(launch.name)")
+                        
+                        // calendarを日付文字列だ使ってるcalendarに設定
+                        let formatterString = DateFormatter()
+                        //TimeZoneはUTCにしなければならない。
+                        //理由は、UTCに指定していないと、DateFormatter.date関数はcurrentのゾーンで
+                        //日付を返してしまうため。
+                        formatterString.timeZone = TimeZone(identifier: "UTC")
+                        formatterString.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                        let jsonDate = launch.windowstart
+                        print ("jsonDate:\(jsonDate)")
+                        
+                        if let dateString = formatterString.date(from: jsonDate){
+                            print("dateString:\(String(describing: dateString))")
+                            
+                            formatterString.locale = Locale(identifier: "ja_JP")
+                            formatterString.dateStyle = .full
+                            formatterString.timeStyle = .medium
+                            
+                            //UTC + 9(Japan)
+                            self.addedDate = Date(timeInterval: 60*60*9*1, since: dateString)
+                            print("addedDate:\(String(describing: self.addedDate))")
+                            print("formatterString:\(formatterString.string(from: self.addedDate)))")
+                            
+                            //ID,LaunchDate added to struct
+                            self.notificationDate.append(StructNotificationDate(id: launch.id,
+                                                                launchData: self.addedDate,
+                                                                rocketName: launch.name))
+                            print("notificationDate - struct: \(self.notificationDate)")
+                            
+                            //LaunchDate,RocketName added to struct for display on PlansView
+                            self.viewRocketPlanData.append(StructViewPlans(
+                                                        launchData: self.addedDate,
+                                                        rocketName: launch.name))
+                            print("viewRocketPlanData - struct: \(self.viewRocketPlanData)")
+
+                        }else{
+                            print("dateString is nil")
+                        }
                     }
+
                     
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
                     }
                     
                     //直近のロケットの打ち上げ予定を通知する
-                    self.notificationRocket()
+//                    self.notificationRocket()
                     
                     print("launchJsonDownload end inside")
 
