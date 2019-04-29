@@ -11,6 +11,7 @@ import UIKit
 
 class DetailViewController : UITableViewController {
     
+    var id:Int!
     var name:String!
     var videoURL:String!
     
@@ -26,6 +27,8 @@ class DetailViewController : UITableViewController {
         cell.label1?.numberOfLines = 0
         cell.label1?.text = self.name
         cell.label2?.text = self.videoURL
+        
+        print("DetailViewCOntroller - id : \(id)")
         
         return cell
     }

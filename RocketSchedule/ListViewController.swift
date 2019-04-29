@@ -176,7 +176,7 @@ class ListViewController: UITableViewController {
                     }
                     
                     //直近のロケットの打ち上げ予定を通知する
-//                    self.notificationRocket()
+                    self.notificationRocket()
                     
                     print("launchJsonDownload end inside")
 
@@ -199,15 +199,20 @@ class ListViewController: UITableViewController {
         content.sound = UNNotificationSound.default
         content.title = "まもなくロケット打ち上げ"
 //        content.subtitle = "ロケット名"
-        content.body = "\(self.jsonLaunches.launches[0].name)"
+        content.body = "\(self.notificationDate[0].rocketName)"
         
-        // ローカル通知実行日時をセット（5分後)
-        let date = Date()
-//        let launchDate = self.notificationDate[0].launchDate
-        print("Notification - date: \(date)")
+        var testNotify = self.notificationDate.filter({$0.id == 1501})
+        print("testNotify : \(testNotify)")
+        let testNotifyDate = testNotify[0].launchDate
+        print("testNotifyDate : \(testNotifyDate)")
+
+        // ローカル通知実行日時をセット
+//        let date = Date()
+        let launchDate = self.notificationDate[0].launchDate
+        print("Notification - date: \(launchDate)")
 //        let newDate = Date(timeInterval: 1*60, since: date)
         //Calendarクラスを使って日付（打ち上げ時刻）を減算して結果を返却する
-        let newDate = Calendar.current.date(byAdding: .minute, value: -10, to: date)!
+        let newDate = Calendar.current.date(byAdding: .minute, value: -15, to: launchDate)!
         print("Notification - newDate: \(newDate)")
         let component = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: newDate)
         
@@ -215,6 +220,9 @@ class ListViewController: UITableViewController {
         let trigger = UNCalendarNotificationTrigger(dateMatching: component, repeats: false)
         // ユニークなIDを作る
         let identifier = NSUUID().uuidString
+        
+        print("identifier : \(identifier)")
+        
         let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
         
         // ローカル通知リクエストを登録
@@ -232,6 +240,7 @@ class ListViewController: UITableViewController {
             let launch = self.jsonLaunches.launches[indexPath.row]
             let controller = segue.destination as! DetailViewController
             controller.title = "Detail"
+            controller.id = launch.id
             controller.name = launch.name
             controller.videoURL = launch.vidURLs?[0]
             
