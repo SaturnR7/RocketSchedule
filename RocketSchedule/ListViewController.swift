@@ -21,6 +21,11 @@ class ListViewController: UITableViewController {
     var notificationDate = [StructNotificationDate]()
     //For Display on PlansView
     var viewRocketPlanData = [StructViewPlans]()
+    var forNotificationId: Int!
+    
+    //notification 受け取る側でのクラス宣言
+    let notificationCenter = NotificationCenter.default
+
 
     override func tableView(_ tableView: UITableView,
                             numberOfRowsInSection section: Int) -> Int {
@@ -35,9 +40,9 @@ class ListViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView,
                             cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
+        
         print("tableView cellForRowAt start")
-
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! CustomTableViewCell
         
         let formatterString = DateFormatter()
@@ -65,6 +70,11 @@ class ListViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // NotificationCenterに登録する
+        // Notificationのcatch関数は別に宣言
+        notificationCenter.addObserver(self, selector: #selector(catchNotification(notification:)), name: .myNotificationName, object: nil)
+
 
         print("viewDidLoad start")
 
@@ -97,6 +107,12 @@ class ListViewController: UITableViewController {
         print("viewDidAppear start")
 
         print("==jsonLaunches==\(notificationDate)")
+        
+        print("forNotificationId - \(forNotificationId)")
+//
+//        if forNotificationId != nil{
+//            notificationRocket()
+//        }
 
         print("viewDidAppear end")
 
@@ -193,7 +209,9 @@ class ListViewController: UITableViewController {
     }
     
     func notificationRocket(){
-        
+
+        print("forNotificationId In notificationRocket() - \(forNotificationId)")
+
         // ローカル通知のの内容
         let content = UNMutableNotificationContent()
         content.sound = UNNotificationSound.default
@@ -244,10 +262,22 @@ class ListViewController: UITableViewController {
             controller.name = launch.name
             controller.videoURL = launch.vidURLs?[0]
             
+            forNotificationId = launch.id
+            print("ListViewController - prepare : \(forNotificationId)")
+            
             
             
         }
         
+    }
+    
+    //Notification受け取ったらその後に実行したい処理を書く
+    @objc func catchNotification(notification: Notification) -> Void {
+        print("Catch notification")
+        
+        // do something
+        
+        print("catchNotification - forNotificationId : \(forNotificationId)")
     }
     
 }

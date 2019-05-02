@@ -15,6 +15,16 @@ class DetailViewController : UITableViewController {
     var name:String!
     var videoURL:String!
     
+    let notificationCenter = NotificationCenter.default
+    
+    @IBAction func notificationButton(_ sender: Any) {
+        
+        // Notification通知を送る（通知を送りたい箇所に書く。例えば何らかのボタンを押した際の処理の中等）
+        notificationCenter.post(name: .myNotificationName, object: nil)
+        
+    }
+    
+    
     override func tableView(_ tableView: UITableView,
                             numberOfRowsInSection section: Int) -> Int {
         return 1
@@ -36,6 +46,11 @@ class DetailViewController : UITableViewController {
     override func viewDidLoad(){
         super.viewDidLoad()
         
+        
+        
+        
+        
+        
     }
 
     @IBAction func videoLink(_ sender: Any) {
@@ -46,4 +61,11 @@ class DetailViewController : UITableViewController {
         
         
     }
+    
+    
+}
+
+//Notification.name の拡張
+extension Notification.Name {
+    static let myNotificationName = Notification.Name("myNotificationName")
 }
