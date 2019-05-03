@@ -25,6 +25,10 @@ class ListViewController: UITableViewController {
     
     //notification 受け取る側でのクラス宣言
     let notificationCenter = NotificationCenter.default
+    
+    // ローカル通知のの内容
+    let content = UNMutableNotificationContent()
+
 
 
     override func tableView(_ tableView: UITableView,
@@ -70,7 +74,9 @@ class ListViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        print("viewDidLoad start")
+
         // NotificationCenterに登録する
         // Notificationのcatch関数は別に宣言
         notificationCenter.addObserver(self, selector: #selector(catchNotification(notification:)), name: .myNotificationName, object: nil)
@@ -80,7 +86,6 @@ class ListViewController: UITableViewController {
 
         launchJsonDownload()
         
-        print("viewDidLoad end")
         
         //テーブルビューの pull-to-refresh
         refreshControl = UIRefreshControl()
@@ -88,16 +93,19 @@ class ListViewController: UITableViewController {
         
 //        self.tableView.reloadData()
         
+        print("viewDidLoad end")
     }
     
     
     //リフレッシュ処理
     @objc func refresh(sender: UIRefreshControl) {
+        print("In refresh Start")
         //Json再取得
         launchJsonDownload()
         
         sender.endRefreshing()
         
+        print("In refresh End")
     }
     
 
@@ -191,8 +199,8 @@ class ListViewController: UITableViewController {
                         self.tableView.reloadData()
                     }
                     
-                    //直近のロケットの打ち上げ予定を通知する
-                    self.notificationRocket()
+//                    //直近のロケットの打ち上げ予定を通知する
+//                    self.notificationRocket()
                     
                     print("launchJsonDownload end inside")
 
@@ -209,26 +217,23 @@ class ListViewController: UITableViewController {
     }
     
     func notificationRocket(){
+        
+        print("In notificationRocket Start")
 
         print("forNotificationId In notificationRocket() - \(forNotificationId)")
 
         // ローカル通知のの内容
-        let content = UNMutableNotificationContent()
         content.sound = UNNotificationSound.default
         content.title = "まもなくロケット打ち上げ"
-//        content.subtitle = "ロケット名"
-        content.body = "\(self.notificationDate[0].rocketName)"
         
-        var testNotify = self.notificationDate.filter({$0.id == 1501})
-        print("testNotify : \(testNotify)")
-        let testNotifyDate = testNotify[0].launchDate
-        print("testNotifyDate : \(testNotifyDate)")
+        var notifyRocketInfomation = self.notificationDate.filter({$0.id == forNotificationId})
+        //        content.subtitle = "ロケット名"
+        print("Notification - RocketName: \(notifyRocketInfomation[0].rocketName)")
+        content.body = "\(notifyRocketInfomation[0].rocketName)"
 
         // ローカル通知実行日時をセット
-//        let date = Date()
-        let launchDate = self.notificationDate[0].launchDate
+        let launchDate = notifyRocketInfomation[0].launchDate
         print("Notification - date: \(launchDate)")
-//        let newDate = Date(timeInterval: 1*60, since: date)
         //Calendarクラスを使って日付（打ち上げ時刻）を減算して結果を返却する
         let newDate = Calendar.current.date(byAdding: .minute, value: -15, to: launchDate)!
         print("Notification - newDate: \(newDate)")
@@ -239,7 +244,7 @@ class ListViewController: UITableViewController {
         // ユニークなIDを作る
         let identifier = NSUUID().uuidString
         
-        print("identifier : \(identifier)")
+        print("Notification - identifier : \(identifier)")
         
         let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
         
@@ -250,6 +255,7 @@ class ListViewController: UITableViewController {
             }
         }
         
+        print("In notificationRocket End")
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
@@ -278,6 +284,12 @@ class ListViewController: UITableViewController {
         // do something
         
         print("catchNotification - forNotificationId : \(forNotificationId)")
+        
+        //直近のロケットの打ち上げ予定を通知する
+        print("In catchNotification Start")
+        self.notificationRocket()
+        print("In catchNotification End")
+
     }
     
 }

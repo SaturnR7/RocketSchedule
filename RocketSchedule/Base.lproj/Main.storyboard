@@ -107,9 +107,8 @@
                                                 <action selector="videoLink:" destination="JqQ-9E-fdc" eventType="touchUpInside" id="1wi-uX-ZAr"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QIj-gt-38y">
-                                            <rect key="frame" x="356" y="11" width="31" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QIj-gt-38y">
+                                            <rect key="frame" x="363" y="11" width="31" height="30"/>
                                             <state key="normal" title="通知"/>
                                             <connections>
                                                 <action selector="notificationButton:" destination="JqQ-9E-fdc" eventType="touchUpInside" id="J40-bx-gKk"/>
@@ -118,8 +117,10 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="cR7-c4-cQc" firstAttribute="top" secondItem="nYv-zZ-bYi" secondAttribute="topMargin" constant="8" id="06U-t8-tKW"/>
+                                        <constraint firstItem="QIj-gt-38y" firstAttribute="top" secondItem="nYv-zZ-bYi" secondAttribute="topMargin" id="3iO-Mi-MqK"/>
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="cR7-c4-cQc" secondAttribute="trailing" constant="20" symbolic="YES" id="4Jj-Mo-VfE"/>
                                         <constraint firstItem="UIc-X3-MCo" firstAttribute="leading" secondItem="nYv-zZ-bYi" secondAttribute="leading" constant="177" id="5mF-gv-zoq"/>
+                                        <constraint firstItem="QIj-gt-38y" firstAttribute="trailing" secondItem="nYv-zZ-bYi" secondAttribute="trailingMargin" id="D3V-yK-bYx"/>
                                         <constraint firstItem="yiQ-vI-kjt" firstAttribute="top" secondItem="cR7-c4-cQc" secondAttribute="bottom" constant="85" id="GGn-bd-IPd"/>
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="yiQ-vI-kjt" secondAttribute="trailing" constant="20" symbolic="YES" id="Lt5-xn-Jha"/>
                                         <constraint firstItem="cR7-c4-cQc" firstAttribute="leading" secondItem="yiQ-vI-kjt" secondAttribute="leading" id="bQl-46-ihu"/>

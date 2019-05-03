@@ -38,7 +38,7 @@ class DetailViewController : UITableViewController {
         cell.label1?.text = self.name
         cell.label2?.text = self.videoURL
         
-        print("DetailViewCOntroller - id : \(id)")
+        print("DetailViewCOntroller - tableView - id : \(id)")
         
         return cell
     }
