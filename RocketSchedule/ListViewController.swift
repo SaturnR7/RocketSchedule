@@ -17,6 +17,7 @@ class ListViewController: UITableViewController {
     var count: Int = 0
     var jsonLaunches: Launch!
     var addedDate:Date!
+    var utcDate:Date!
     //For Rocket Launch Notification
     var notificationDate = [StructNotificationDate]()
     //For Display on PlansView
@@ -28,7 +29,9 @@ class ListViewController: UITableViewController {
     
     // ローカル通知のの内容
     let content = UNMutableNotificationContent()
-
+    
+    //For Notification ID
+    var notificationIdData = [StructNotificationId]()
 
 
     override func tableView(_ tableView: UITableView,
@@ -171,15 +174,18 @@ class ListViewController: UITableViewController {
                             formatterString.locale = Locale(identifier: "ja_JP")
                             formatterString.dateStyle = .full
                             formatterString.timeStyle = .medium
-                            
-                            //UTC + 9(Japan)
+
+                            //ローカル通知登録用の日付をData型でセットする
+                            self.utcDate = Date(timeInterval: 0, since: dateString)
+
+                            //UTC + 9(Japan) 表示用の日付（日本時間）をセットする
                             self.addedDate = Date(timeInterval: 60*60*9*1, since: dateString)
                             print("addedDate:\(String(describing: self.addedDate))")
                             print("formatterString:\(formatterString.string(from: self.addedDate)))")
                             
                             //ID,LaunchDate added to struct
                             self.notificationDate.append(StructNotificationDate(id: launch.id,
-                                                                launchData: self.addedDate,
+                                                                launchData: self.utcDate,
                                                                 rocketName: launch.name))
                             print("notificationDate - struct: \(self.notificationDate)")
                             
@@ -234,12 +240,15 @@ class ListViewController: UITableViewController {
         // ローカル通知実行日時をセット
         let launchDate = notifyRocketInfomation[0].launchDate
         print("Notification - date: \(launchDate)")
-        //Calendarクラスを使って日付（打ち上げ時刻）を減算して結果を返却する
+
+        //Calendarクラスを使って日付（UTCの打ち上げ時刻）を減算して結果を返却する
         let newDate = Calendar.current.date(byAdding: .minute, value: -15, to: launchDate)!
         print("Notification - newDate: \(newDate)")
-        let component = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: newDate)
-        
-        // ローカル通知リクエストを作成
+        //componentの日付（UTCの打ち上げ時刻）はタイムゾーンに従って現地の日付時刻に変換される
+        let component = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .timeZone], from: newDate)
+        print("Notification - component: \(component)")
+
+        // ローカル通知リクエストを作成（現地時間に変換したcomponent日付を渡す）
         let trigger = UNCalendarNotificationTrigger(dateMatching: component, repeats: false)
         // ユニークなIDを作る
         let identifier = NSUUID().uuidString
@@ -255,6 +264,13 @@ class ListViewController: UITableViewController {
             }
         }
         
+        // 登録IDをstructへ登録
+        self.notificationIdData.append(StructNotificationId(id: notifyRocketInfomation[0].id,
+                                                              notificationId: identifier
+                                                              ))
+        
+        print("Notification - notificationIdData : \(self.notificationIdData)")
+
         print("In notificationRocket End")
     }
     
