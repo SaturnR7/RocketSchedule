@@ -82,8 +82,10 @@ class ListViewController: UITableViewController {
 
         // NotificationCenterに登録する
         // Notificationのcatch関数は別に宣言
-        notificationCenter.addObserver(self, selector: #selector(catchNotification(notification:)), name: .myNotificationName, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(catchNotificationRocketAdd(notification:)), name: .myNotificationRocketAdd, object: nil)
 
+        notificationCenter.addObserver(self, selector: #selector(catchNotificationRocketRemove(notification:)), name: .myNotificationRocketRemove, object: nil)
+        
 
         print("viewDidLoad start")
 
@@ -222,7 +224,8 @@ class ListViewController: UITableViewController {
         print("launchJsonDownload end")
     }
     
-    func notificationRocket(){
+    //ロケット情報のローカル通知を登録する
+    func notificationRocketAdd(){
         
         print("In notificationRocket Start")
 
@@ -274,6 +277,27 @@ class ListViewController: UITableViewController {
         print("In notificationRocket End")
     }
     
+    //ロケット情報の通知情報を削除する
+    func notificationRocketRemove(){
+
+        print("In notificationRocketRemove Start")
+
+        var notifyRocketInfomation =
+            self.notificationIdData.filter({$0.id == forNotificationId})
+        print("notificationRemove - RocketName: \(notificationIdData[0].notificationId)")
+        
+        
+        // 通知の削除
+        let center = UNUserNotificationCenter.current()
+        center.removeDeliveredNotifications(withIdentifiers: [notifyRocketInfomation[0].notificationId])
+
+        
+        print("In notificationRocketRemove End")
+
+    }
+    
+    
+    //segueで詳細画面へ情報を渡す
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         
         if let indexPath = self.tableView.indexPathForSelectedRow {
@@ -293,20 +317,29 @@ class ListViewController: UITableViewController {
         
     }
     
-    //Notification受け取ったらその後に実行したい処理を書く
-    @objc func catchNotification(notification: Notification) -> Void {
-        print("Catch notification")
+    //ロケット情報の通知登録（Notificationを受け取り後）
+    @objc func catchNotificationRocketAdd(notification: Notification) -> Void {
+        print("In catchNotificationRocketAdd Start")
         
-        // do something
-        
-        print("catchNotification - forNotificationId : \(forNotificationId)")
+        print("catchNotificationRocketAdd - forNotificationId : \(forNotificationId)")
         
         //直近のロケットの打ち上げ予定を通知する
-        print("In catchNotification Start")
-        self.notificationRocket()
-        print("In catchNotification End")
+        self.notificationRocketAdd()
 
+        print("In catchNotificationRocketAdd End")
     }
     
+    //ロケット情報の通知削除（Notificationを受け取り後）
+    @objc func catchNotificationRocketRemove(notification: Notification) -> Void {
+        print("In catchNotificationRocketRemove Start")
+        
+        print("catchNotificationRocketRemove - forNotificationId : \(forNotificationId)")
+        
+        //直近のロケットの打ち上げ予定を通知する
+        self.notificationRocketRemove()
+        
+        print("In catchNotificationRocketRemove End")
+    }
+
 }
 

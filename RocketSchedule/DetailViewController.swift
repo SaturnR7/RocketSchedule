@@ -15,15 +15,29 @@ class DetailViewController : UITableViewController {
     var name:String!
     var videoURL:String!
     
+//    var notificationCondition:Bool = false
+    
     let notificationCenter = NotificationCenter.default
     
-    @IBAction func notificationButton(_ sender: Any) {
+    @IBAction func notificationSwitch(_ sender: UISwitch) {
         
-        // Notification通知を送る（通知を送りたい箇所に書く。例えば何らかのボタンを押した際の処理の中等）
-        notificationCenter.post(name: .myNotificationName, object: nil)
+        if(sender.isOn){
+            
+            //ロケット情報の通知登録
+            // Notification通知を送る（通知を送りたい箇所に書く。例えば何らかのボタンを押した際の処理の中等）
+            notificationCenter.post(name: .myNotificationRocketAdd, object: nil)
+
+        }else{
+            
+            //ロケット情報の通知削除
+            // Notification通知を送る（通知を送りたい箇所に書く。例えば何らかのボタンを押した際の処理の中等）
+            notificationCenter.post(name: .myNotificationRocketRemove, object: nil)
+
+            
+        }
         
     }
-    
+
     
     override func tableView(_ tableView: UITableView,
                             numberOfRowsInSection section: Int) -> Int {
@@ -32,6 +46,9 @@ class DetailViewController : UITableViewController {
     
     override func tableView(_ tableView: UITableView,
                             cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        print("DetailViewController - tableView Start")
+
         let cell = tableView.dequeueReusableCell(withIdentifier: "DetailCell") as! CustomTableViewCellDetail
         
         cell.label1?.numberOfLines = 0
@@ -40,17 +57,20 @@ class DetailViewController : UITableViewController {
         
         print("DetailViewCOntroller - tableView - id : \(id)")
         
+        print("DetailViewController - tableView End")
+
         return cell
     }
     
     override func viewDidLoad(){
         super.viewDidLoad()
         
+        print("DetailViewController - viewDidLoad Start")
         
         
         
-        
-        
+        print("DetailViewController - viewDidLoad End")
+
     }
 
     @IBAction func videoLink(_ sender: Any) {
@@ -67,5 +87,10 @@ class DetailViewController : UITableViewController {
 
 //Notification.name の拡張
 extension Notification.Name {
-    static let myNotificationName = Notification.Name("myNotificationName")
+    static let myNotificationRocketAdd = Notification.Name("myNotificationRocketAdd")
+}
+
+//Notification.name の拡張
+extension Notification.Name {
+    static let myNotificationRocketRemove = Notification.Name("myNotificationRocketRemove")
 }
