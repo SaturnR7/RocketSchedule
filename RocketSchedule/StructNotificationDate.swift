@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct StructNotificationDate {
+struct StructNotificationDate : Codable{
   
     var id:Int
     var launchDate:Date

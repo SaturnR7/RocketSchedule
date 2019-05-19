@@ -14,6 +14,7 @@ class DetailViewController : UITableViewController {
     var id:Int!
     var name:String!
     var videoURL:String!
+    var notifySwitch:Bool!
     
 //    var notificationCondition:Bool = false
     

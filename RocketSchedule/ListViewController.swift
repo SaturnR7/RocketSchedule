@@ -32,6 +32,11 @@ class ListViewController: UITableViewController {
     
     //For Notification ID
     var notificationIdData = [StructNotificationId]()
+    
+    // UserDefaults
+    let encoderForUserdDefaults = JSONEncoder()
+    let defaultsForRocketNotification = UserDefaults.standard
+
 
 
     override func tableView(_ tableView: UITableView,
@@ -273,8 +278,27 @@ class ListViewController: UITableViewController {
                                                               ))
         
         print("Notification - notificationIdData : \(self.notificationIdData)")
-
+        
         print("In notificationRocket End")
+        
+        // 通知情報のstructをUserDefaultsへ保存
+        let notifyRocketIndivisualInfomation =
+            self.notificationDate.filter({$0.id == forNotificationId})
+        if let encoded = try? encoderForUserdDefaults.encode(notifyRocketIndivisualInfomation[0]) {
+            defaultsForRocketNotification.set(encoded, forKey: "RokcetNotify+\(forNotificationId ?? 0)")
+        }
+        
+        print("Userdefaults - defaults : \(defaultsForRocketNotification)")
+        
+        // UserDefaultsから通知情報を取得
+        if let savedPerson = defaultsForRocketNotification.object(
+                forKey: "RokcetNotify+\(forNotificationId ?? 0)") as? Data {
+            let decoder = JSONDecoder()
+            if let loadedPerson = try? decoder.decode(StructNotificationDate.self, from: savedPerson) {
+                print("Userdefaults - RokcetNotify : \(loadedPerson.rocketName)")
+            }
+        }
+        
     }
     
     //ロケット情報の通知情報を削除する
@@ -291,6 +315,9 @@ class ListViewController: UITableViewController {
         let center = UNUserNotificationCenter.current()
         center.removeDeliveredNotifications(withIdentifiers: [notifyRocketInfomation[0].notificationId])
 
+        // UserDefaultsから通知情報を取得
+        defaultsForRocketNotification.removeObject(
+            forKey: "RokcetNotify+\(forNotificationId ?? 0)")
         
         print("In notificationRocketRemove End")
 
@@ -311,7 +338,15 @@ class ListViewController: UITableViewController {
             forNotificationId = launch.id
             print("ListViewController - prepare : \(forNotificationId)")
             
-            
+            // Userdefaultsにロケット情報を登録してるか確認する
+            // 登録している場合は、詳細画面のUISwitchをオンにする情報を渡す
+            if (defaultsForRocketNotification.object(
+                    forKey: "RokcetNotify+\(forNotificationId ?? 0)") != nil){
+                controller.notifySwitch = true
+            }else{
+                controller.notifySwitch = false
+            }
+
             
         }
         

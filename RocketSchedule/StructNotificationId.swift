@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct StructNotificationId {
+struct StructNotificationId : Codable{
     
     var id:Int
     var notificationId:String
