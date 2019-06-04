@@ -329,12 +329,12 @@ class ListViewController: UITableViewController {
         
         if let indexPath = self.tableView.indexPathForSelectedRow {
             let launch = self.jsonLaunches.launches[indexPath.row]
-            let controller = segue.destination as! DetailViewController
+            let controller = segue.destination as! DetailRocketViewController
             controller.title = "Detail"
             controller.id = launch.id
             controller.name = launch.name
             controller.videoURL = launch.vidURLs?[0]
-            
+             
             forNotificationId = launch.id
             print("ListViewController - prepare : \(forNotificationId)")
             

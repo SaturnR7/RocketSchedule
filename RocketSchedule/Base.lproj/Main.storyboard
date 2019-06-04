@@ -54,7 +54,7 @@
                                 <connections>
                                     <outlet property="labelLaunchTime" destination="JFJ-lo-ubb" id="ZS5-W6-RsT"/>
                                     <outlet property="labelRocketName" destination="Xlv-ym-Ehm" id="Wo2-wV-37F"/>
-                                    <segue destination="JqQ-9E-fdc" kind="show" id="TZG-eO-fwo"/>
+                                    <segue destination="leu-Mc-oif" kind="show" id="oUn-6F-p0o"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -144,6 +144,36 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oUF-iq-t6L" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2847.826086956522" y="830.70652173913049"/>
+        </scene>
+        <!--Detail Rocket View Controller-->
+        <scene sceneID="S9e-Z7-WP7">
+            <objects>
+                <viewController id="leu-Mc-oif" customClass="DetailRocketViewController" customModule="RocketSchedule" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Zlz-eZ-ndb">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="j9F-kI-Whc">
+                                <rect key="frame" x="345" y="103" width="51" height="31"/>
+                                <connections>
+                                    <action selector="notifyActionSwitch:" destination="leu-Mc-oif" eventType="valueChanged" id="pe5-2L-tbR"/>
+                                </connections>
+                            </switch>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="j9F-kI-Whc" firstAttribute="top" secondItem="HdE-ei-75H" secondAttribute="top" constant="39" id="hI9-SI-m3k"/>
+                            <constraint firstItem="j9F-kI-Whc" firstAttribute="trailing" secondItem="Zlz-eZ-ndb" secondAttribute="trailingMargin" id="rwx-CO-yp7"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="HdE-ei-75H"/>
+                    </view>
+                    <connections>
+                        <outlet property="notifyOutletSwitch" destination="j9F-kI-Whc" id="08a-mj-Ndl"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zU7-Qh-bb1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3586" y="836"/>
         </scene>
         <!--予定-->
         <scene sceneID="nyT-2y-38B">
@@ -480,6 +510,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="2Na-1M-7ZG"/>
+        <segue reference="rlx-aX-ZYy"/>
     </inferredMetricsTieBreakers>
 </document>

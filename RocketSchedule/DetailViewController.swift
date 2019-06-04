@@ -22,20 +22,20 @@ class DetailViewController : UITableViewController {
     
     @IBAction func notificationSwitch(_ sender: UISwitch) {
         
-        if(sender.isOn){
-            
-            //ロケット情報の通知登録
-            // Notification通知を送る（通知を送りたい箇所に書く。例えば何らかのボタンを押した際の処理の中等）
-            notificationCenter.post(name: .myNotificationRocketAdd, object: nil)
-
-        }else{
-            
-            //ロケット情報の通知削除
-            // Notification通知を送る（通知を送りたい箇所に書く。例えば何らかのボタンを押した際の処理の中等）
-            notificationCenter.post(name: .myNotificationRocketRemove, object: nil)
-
-            
-        }
+//        if(sender.isOn){
+//
+//            //ロケット情報の通知登録
+//            // Notification通知を送る（通知を送りたい箇所に書く。例えば何らかのボタンを押した際の処理の中等）
+//            notificationCenter.post(name: .myNotificationRocketAdd, object: nil)
+//
+//        }else{
+//
+//            //ロケット情報の通知削除
+//            // Notification通知を送る（通知を送りたい箇所に書く。例えば何らかのボタンを押した際の処理の中等）
+//            notificationCenter.post(name: .myNotificationRocketRemove, object: nil)
+//
+//
+//        }
         
     }
 
@@ -86,12 +86,12 @@ class DetailViewController : UITableViewController {
     
 }
 
-//Notification.name の拡張
-extension Notification.Name {
-    static let myNotificationRocketAdd = Notification.Name("myNotificationRocketAdd")
-}
-
-//Notification.name の拡張
-extension Notification.Name {
-    static let myNotificationRocketRemove = Notification.Name("myNotificationRocketRemove")
-}
+////Notification.name の拡張
+//extension Notification.Name {
+//    static let myNotificationRocketAdd = Notification.Name("myNotificationRocketAdd")
+//}
+//
+////Notification.name の拡張
+//extension Notification.Name {
+//    static let myNotificationRocketRemove = Notification.Name("myNotificationRocketRemove")
+//}
