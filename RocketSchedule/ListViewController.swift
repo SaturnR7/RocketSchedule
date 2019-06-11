@@ -162,6 +162,8 @@ class ListViewController: UITableViewController {
                     
                     self.jsonLaunches = json
                     
+                    print("JSON Data: \(json)")
+                    
                     for launch in json.launches {
 //                        print("name:\(launch.name)")
                         
@@ -302,18 +304,40 @@ class ListViewController: UITableViewController {
     }
     
     //ロケット情報の通知情報を削除する
-    func notificationRocketRemove(){
+    func notificationRocketRemove() throws{
 
         print("In notificationRocketRemove Start")
 
-        var notifyRocketInfomation =
-            self.notificationIdData.filter({$0.id == forNotificationId})
-        print("notificationRemove - RocketName: \(notificationIdData[0].notificationId)")
+        // Fetal Error Logic
+//        var notifyRocketInfomation =
+//            self.notificationIdData.filter({$0.id == forNotificationId})
+//        print("notificationRemove - RocketName: \(notificationIdData[0].notificationId)")
+        
+        // UserDefaultsから通知情報を取得
+        var notifyRocketInfomation:String
+        let center = UNUserNotificationCenter.current()
+
+        
+        if let savedPerson = defaultsForRocketNotification.object(
+            forKey: "RokcetNotify+\(forNotificationId ?? 0)") as? Data {
+            let decoder = JSONDecoder()
+            if let loadedPerson = try? decoder.decode(StructNotificationId.self, from: savedPerson) {
+                print("Userdefaults - RokcetNotify : \(loadedPerson.notificationId)")
+                notifyRocketInfomation = loadedPerson.notificationId
+
+                center.removeDeliveredNotifications(withIdentifiers: [notifyRocketInfomation])
+            }
+        }
+
         
         
         // 通知の削除
-        let center = UNUserNotificationCenter.current()
-        center.removeDeliveredNotifications(withIdentifiers: [notifyRocketInfomation[0].notificationId])
+        
+        // Fetal Error Logic
+//        let center = UNUserNotificationCenter.current()
+//        center.removeDeliveredNotifications(withIdentifiers: [notifyRocketInfomation[0].notificationId])
+//        let center = UNUserNotificationCenter.current()
+//        center.removeDeliveredNotifications(withIdentifiers: [notifyRocketInfomation])
 
         // UserDefaultsから通知情報を取得
         defaultsForRocketNotification.removeObject(
@@ -371,7 +395,11 @@ class ListViewController: UITableViewController {
         print("catchNotificationRocketRemove - forNotificationId : \(forNotificationId)")
         
         //直近のロケットの打ち上げ予定を通知する
-        self.notificationRocketRemove()
+        do{
+            try? self.notificationRocketRemove()
+        }catch{
+            
+        }
         
         print("In catchNotificationRocketRemove End")
     }

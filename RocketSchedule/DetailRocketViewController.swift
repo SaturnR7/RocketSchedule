@@ -58,6 +58,7 @@ class DetailRocketViewController : UIViewController {
         
         print("DetailRocketViewController - viewDidLoad End")
         
+        
     }
     
     @IBAction func videoLink(_ sender: Any) {

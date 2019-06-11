@@ -20,26 +20,6 @@ class DetailViewController : UITableViewController {
     
     let notificationCenter = NotificationCenter.default
     
-    @IBAction func notificationSwitch(_ sender: UISwitch) {
-        
-//        if(sender.isOn){
-//
-//            //ロケット情報の通知登録
-//            // Notification通知を送る（通知を送りたい箇所に書く。例えば何らかのボタンを押した際の処理の中等）
-//            notificationCenter.post(name: .myNotificationRocketAdd, object: nil)
-//
-//        }else{
-//
-//            //ロケット情報の通知削除
-//            // Notification通知を送る（通知を送りたい箇所に書く。例えば何らかのボタンを押した際の処理の中等）
-//            notificationCenter.post(name: .myNotificationRocketRemove, object: nil)
-//
-//
-//        }
-        
-    }
-
-    
     override func tableView(_ tableView: UITableView,
                             numberOfRowsInSection section: Int) -> Int {
         return 1

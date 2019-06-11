@@ -21,6 +21,9 @@ class SearchRoketViewController: UIViewController {
     
     @IBOutlet weak var dateEndLaunch: UITextField!
     
+    @IBOutlet weak var dataAgency: UITextField!
+    
+    
     //日付用のPickerを生成
     let datePicker = UIDatePicker()
     
