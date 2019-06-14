@@ -31,28 +31,30 @@ struct Launch: Codable {
         var lsp: String?
         var location: [String]?
         
-//        struct Location: Codable{
-//
-//            var id: Int
-//            var name: String
-//            var description: String
-//            var type: String
-//            var wikiURL: String
-//            var typeName: String
-//            var agencies: [Int]
-//            var tbdtime: Int
-//            var vidURLs: [String]?
-//            var probability: Int?
-//            var changed: String?
-//            var lsp: String?
-//            var location: [String]?
-//
-//
-//
-//
-//        }
+        struct Location: Codable{
 
+            var id: Int
+            var name: String
+            var description: String
+            var type: String
+            var wikiURL: String
+            var typeName: String
+            var agencies: [agencies]
+            var payLoads: [String]
 
+            struct agencies: Codable{
+                
+                var id: Int
+                var name: String
+                var abbrev: String
+                var type: String
+                var infoURL: String
+                var wikiURL: String
+                var changed: String
+                var infoURLs: [String]
+                
+            }
+        }
     }
     
     

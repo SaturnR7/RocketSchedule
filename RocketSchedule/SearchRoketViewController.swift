@@ -10,6 +10,19 @@ import Foundation
 import UIKit
 
 class SearchRoketViewController: UIViewController {
+
+//class SearchRoketViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDataSource {
+    
+//    let agencyArray = ["NASA", "JAXA"]
+//
+//    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+//        return 1
+//    }
+//
+//    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+//        agencyArray.count
+//    }
+    
     
     @IBAction func closeSearchView(_ sender: Any) {
         
@@ -23,12 +36,19 @@ class SearchRoketViewController: UIViewController {
     
     @IBOutlet weak var dataAgency: UITextField!
     
-    
     //日付用のPickerを生成
     let datePicker = UIDatePicker()
     
     //ユーザー設定値保持クラス
     let searchValueSettings = UserDefaults()
+    
+    // Agency Datasource
+    private let dataSource = ["NASA", "JAXA"]
+    
+    // Agency Picker
+    let agencyPicker = UIPickerView()
+
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +56,10 @@ class SearchRoketViewController: UIViewController {
         createStartDatePicker()
         
         createEndDatePicker()
+        
+        createAgencyDataPicker()
+        
+        createAgencyDataToolbar()
         
     }
     
@@ -48,8 +72,9 @@ class SearchRoketViewController: UIViewController {
         if let settingStartDate = searchValueSettings.string(forKey: "settingEndDate"){
             dateEndLaunch.text = settingStartDate
         }
-
-        
+        if let settingAgency = searchValueSettings.string(forKey: "settingAgency"){
+            dataAgency.text = settingAgency
+        }
     }
     
     
@@ -95,6 +120,32 @@ class SearchRoketViewController: UIViewController {
         
     }
 
+    func createAgencyDataPicker(){
+        
+        agencyPicker.delegate = self
+        
+        dataAgency.inputView = agencyPicker
+        
+    }
+
+    func createAgencyDataToolbar(){
+        
+        //create a toolbar
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        
+        //add a done button on this toolbar
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector (doneAgencyClicked))
+        
+        toolbar.setItems([doneButton], animated: true)
+        toolbar.isUserInteractionEnabled = true
+        
+        dataAgency.inputAccessoryView = toolbar
+        
+    }
+    
+
+    
     @objc func doneStartDayClicked(){
         
         //format the date display in textfield
@@ -139,6 +190,15 @@ class SearchRoketViewController: UIViewController {
         self.view.endEditing(true)
     }
     
+    
+    @objc func doneAgencyClicked(){
+        
+        // 設定値を保持
+        searchValueSettings.set(dataAgency.text, forKey: "settingAgency")
+        
+        self.view.endEditing(true)
+    }
+
 
     //画面遷移時に呼ばれる関数（セグエ経由で遷移先に値を渡す）
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
@@ -153,4 +213,28 @@ class SearchRoketViewController: UIViewController {
     }
     
 
+}
+
+extension SearchRoketViewController: UIPickerViewDelegate, UIPickerViewDataSource{
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return dataSource.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
+        dataAgency.text = dataSource[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        
+        return dataSource[row]
+    }
+    
+    
 }

@@ -156,6 +156,7 @@ class ListViewController: UITableViewController {
 //                    let testdata = String(data: data, encoding: .utf8)!
 //                    print("data:\(testdata)")
 
+                    // JSON decode to Struct-Launch
                     let json = try! JSONDecoder().decode(Launch.self, from: data)
                     
                     self.count = json.count

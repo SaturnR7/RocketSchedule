@@ -406,8 +406,9 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="M4W-xu-QPy">
-                                <rect key="frame" x="31" y="316" width="311" height="30"/>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="N4G-El-8q3">
+                                <rect key="frame" x="31" y="314" width="311" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -420,11 +421,8 @@
                             <constraint firstItem="cBj-7Q-JqH" firstAttribute="top" secondItem="qMX-xi-erU" secondAttribute="top" constant="7" id="1FL-kR-6Kh"/>
                             <constraint firstItem="qMX-xi-erU" firstAttribute="trailing" secondItem="Pmm-Ls-iHG" secondAttribute="trailing" constant="314" id="98H-Me-oSN"/>
                             <constraint firstItem="qMX-xi-erU" firstAttribute="trailing" secondItem="0qA-jH-f7h" secondAttribute="trailing" constant="184" id="D70-bd-Je3"/>
-                            <constraint firstItem="M4W-xu-QPy" firstAttribute="top" secondItem="6JW-nB-ViX" secondAttribute="bottom" constant="18" id="E6I-hc-91a"/>
                             <constraint firstItem="qMX-xi-erU" firstAttribute="bottom" secondItem="b0X-nm-kd2" secondAttribute="bottom" constant="43" id="Iyb-pQ-OWd"/>
-                            <constraint firstItem="M4W-xu-QPy" firstAttribute="trailing" secondItem="Fgq-Zq-1pd" secondAttribute="trailing" id="KhI-TD-LPh"/>
                             <constraint firstItem="rTW-lr-kop" firstAttribute="trailing" secondItem="cBj-7Q-JqH" secondAttribute="trailing" id="TEv-Ub-wes"/>
-                            <constraint firstItem="M4W-xu-QPy" firstAttribute="leading" secondItem="6JW-nB-ViX" secondAttribute="leading" id="Umm-Py-qs7"/>
                             <constraint firstItem="Pmm-Ls-iHG" firstAttribute="top" secondItem="Fgq-Zq-1pd" secondAttribute="bottom" constant="18" id="X4Z-IW-aOu"/>
                             <constraint firstItem="qMX-xi-erU" firstAttribute="trailing" secondItem="Fgq-Zq-1pd" secondAttribute="trailing" constant="72" id="XcX-ey-5AR"/>
                             <constraint firstItem="cBj-7Q-JqH" firstAttribute="trailing" secondItem="1Ja-Vp-ags" secondAttribute="trailingMargin" id="adN-Xz-GGi"/>
@@ -440,7 +438,7 @@
                         <viewLayoutGuide key="safeArea" id="qMX-xi-erU"/>
                     </view>
                     <connections>
-                        <outlet property="dataAgency" destination="M4W-xu-QPy" id="v5B-fb-vJU"/>
+                        <outlet property="dataAgency" destination="N4G-El-8q3" id="2rg-s4-GBi"/>
                         <outlet property="dateEndLaunch" destination="rTW-lr-kop" id="2Fy-R8-obS"/>
                         <outlet property="dateStartLaunch" destination="Fgq-Zq-1pd" id="ry8-Jr-TAU"/>
                     </connections>
