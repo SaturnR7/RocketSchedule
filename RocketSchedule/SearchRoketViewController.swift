@@ -43,7 +43,7 @@ class SearchRoketViewController: UIViewController {
     let searchValueSettings = UserDefaults()
     
     // Agency Datasource
-    private let dataSource = ["NASA", "JAXA"]
+    private let dataSource = ["なし", "NASA", "JAXA"]
     
     // Agency Picker
     let agencyPicker = UIPickerView()
@@ -125,6 +125,7 @@ class SearchRoketViewController: UIViewController {
         agencyPicker.delegate = self
         
         dataAgency.inputView = agencyPicker
+//        cellSearchAgency.inputview = agencyPicker
         
     }
 
@@ -207,7 +208,8 @@ class SearchRoketViewController: UIViewController {
         let controller = segue.destination as! ResultListViewController
         controller.searchStartLaunch = dateStartLaunch.text
         controller.searchEndLaunch = dateEndLaunch.text
-        
+        controller.searchAgency = dataAgency.text
+
 //        print("search segue : \(controller.searchStartLaunch)")
         
     }

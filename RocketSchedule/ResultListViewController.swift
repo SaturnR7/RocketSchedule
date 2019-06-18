@@ -28,11 +28,10 @@ class ResultListViewController: UITableViewController {
     
     var url: String!
     
-    
-    
     //search of Rocket
     var searchStartLaunch: String?
     var searchEndLaunch: String?
+    var searchAgency: String?
     
     @IBAction func searchRocket(_ sender: Any) {
         
@@ -117,6 +116,8 @@ class ResultListViewController: UITableViewController {
     override func viewDidAppear(_ animated: Bool){
         super.viewDidAppear(animated)
         
+        print("In viewDidAppear - searchAgency: \(searchAgency)")
+        
         //test
         if let searchStartLaunch = searchStartLaunch{
             if searchStartLaunch == "" {
@@ -134,6 +135,20 @@ class ResultListViewController: UITableViewController {
                 urlStringOfSearchEndDate = searchEndLaunch
             }
         }
+        
+        if let searchAgency = searchAgency{
+            
+            if searchAgency == "選択なし"{
+                
+                
+            } else {
+                
+                
+            }
+            
+        }
+        
+        
         print("testURL: \(urlStringOf1)\(urlStringOf2)\(urlStringOfSearchStartDate)\(urlStringOf3)\(urlStringOfSearchEndDate)\(urlStringOf4)")
         
         url = urlStringOf1 + urlStringOf2 + urlStringOfSearchStartDate + urlStringOf3 + urlStringOfSearchEndDate + urlStringOf4
