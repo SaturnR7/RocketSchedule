@@ -15,6 +15,7 @@ class ResultListViewController: UITableViewController {
     var item:Launch?
     var count: Int = 0
     var jsonLaunches: Launch!
+    var isAgencySearch: Bool!
     
     // Usage of URL "https://launchlibrary.net/1.4/launch?startdate=1907-01-12&enddate=1969-09-20&limit=999999"
     let urlStringOf1: String = "https://launchlibrary.net/1.4/launch"
@@ -25,6 +26,8 @@ class ResultListViewController: UITableViewController {
     let urlStringOfDefaultEndDate: String = "1969-09-20"
     var urlStringOfSearchEndDate: String = "1969-09-20"
     let urlStringOf4: String = "&limit=999999"
+    let urlStringOfAgency: String = "&agency="
+    var urlStringOfAgencyValue: String!
     
     var url: String!
     
@@ -138,8 +141,8 @@ class ResultListViewController: UITableViewController {
         
         if let searchAgency = searchAgency{
             
-            if searchAgency == "選択なし"{
-                
+            if searchAgency != "選択なし"{
+//                urlStringOfAgencyValue =
                 
             } else {
                 
