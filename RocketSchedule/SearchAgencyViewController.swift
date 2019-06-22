@@ -36,6 +36,15 @@ class SearchAgencyViewController : UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! CustomSearchAgencyCell
+        
+//        performSegue(withIdentifier: "backToSearchView", sender: cell.labelAgency.text)
+        
+
+    }
+    
     override func viewDidLoad(){
         
         super.viewDidLoad()
@@ -97,5 +106,5 @@ class SearchAgencyViewController : UITableViewController {
         }
         
     }
-
+    
 }
