@@ -30,6 +30,7 @@ class SearchAgencyViewController : UITableViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! CustomSearchAgencyCell
         
+        cell.selectionStyle = UITableViewCell.SelectionStyle.none
         cell.labelAgency?.numberOfLines = 0
         cell.labelAgency?.text = self.viewAgencies[indexPath.row].abbrev
         
@@ -38,16 +39,30 @@ class SearchAgencyViewController : UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! CustomSearchAgencyCell
+        let cell = tableView.cellForRow(at:indexPath)
+        
+        cell?.accessoryType = .checkmark
         
 //        performSegue(withIdentifier: "backToSearchView", sender: cell.labelAgency.text)
-        
 
     }
+    
+    // When did deselectedrow cell checkmark is none
+    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        
+        let cell = tableView.cellForRow(at:indexPath)
+        
+        cell?.accessoryType = .none
+        
+    }
+    
     
     override func viewDidLoad(){
         
         super.viewDidLoad()
+        
+        // セルの単一選択
+        tableView.allowsMultipleSelection = false
         
         launchJsonDownload()
         
