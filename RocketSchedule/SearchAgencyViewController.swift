@@ -17,8 +17,11 @@ class SearchAgencyViewController : UITableViewController {
     var jsonAgencies: StructAgency!
     var isAgencySearch: Bool!
     
-    //For Display on PlansView
+    // For Display on PlansView
     var viewAgencies = [StructViewSearchAgency]()
+    
+    // チェックされたセルの位置を保存しておく辞書をプロパティに宣言
+    var selectedCells = [String:Bool]()
 
     override func tableView(_ tableView: UITableView,
                             numberOfRowsInSection section: Int) -> Int {
@@ -30,6 +33,15 @@ class SearchAgencyViewController : UITableViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! CustomSearchAgencyCell
         
+        let key = "\(indexPath.section)-\(indexPath.row)"
+        
+        //
+        if selectedCells[key] != nil{
+            cell.accessoryType = UITableViewCell.AccessoryType.checkmark
+        } else {
+            cell.accessoryType = UITableViewCell.AccessoryType.none
+        }
+        
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
         cell.labelAgency?.numberOfLines = 0
         cell.labelAgency?.text = self.viewAgencies[indexPath.row].abbrev
@@ -39,20 +51,52 @@ class SearchAgencyViewController : UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let cell = tableView.cellForRow(at:indexPath)
+//        old
+//        let cell = tableView.cellForRow(at:indexPath)
+//
+//        cell?.accessoryType = .checkmark
         
-        cell?.accessoryType = .checkmark
+        let _cell = tableView.cellForRow(at: indexPath)
+        if let cell = _cell{
+            
+            let key = "\(indexPath.section)-\(indexPath.row)"
+            
+            if cell.accessoryType == UITableViewCell.AccessoryType.none{
+                
+                cell.accessoryType = UITableViewCell.AccessoryType.checkmark
+                selectedCells[key] = true
+                
+            } else {
+                
+                cell.accessoryType = UITableViewCell.AccessoryType.none
+                selectedCells.removeValue(forKey: key)
+                
+            }
+        }
         
-//        performSegue(withIdentifier: "backToSearchView", sender: cell.labelAgency.text)
-
     }
     
-    // When did deselectedrow cell checkmark is none
+    // When did deselectedrow cell checkmark none
     override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         
-        let cell = tableView.cellForRow(at:indexPath)
+//        //ols
+//        let cell = tableView.cellForRow(at:indexPath)
+//
+//        cell?.accessoryType = .none
         
-        cell?.accessoryType = .none
+        let _cell = tableView.cellForRow(at: indexPath)
+        if let cell = _cell{
+            
+            let key = "\(indexPath.section)-\(indexPath.row)"
+            
+            if cell.accessoryType == UITableViewCell.AccessoryType.checkmark{
+                
+                cell.accessoryType = UITableViewCell.AccessoryType.none
+                selectedCells.removeValue(forKey: key)
+
+            }
+        }
+
         
     }
     
@@ -121,5 +165,14 @@ class SearchAgencyViewController : UITableViewController {
         }
         
     }
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//
+//        let controller = segue.destination as! SearchRoketViewController
+//        controller.searchStartLaunch = dateStartLaunch.text
+//
+//
+//    }
+    
     
 }

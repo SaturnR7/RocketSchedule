@@ -12,13 +12,9 @@ class CustomSearchAgencyCell: UITableViewCell {
     
     @IBOutlet weak var labelAgency: UILabel!
     
-    
-    
-    
-    
-    
-    
-    
-    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        labelAgency.backgroundColor = .white
+    }
 
 }

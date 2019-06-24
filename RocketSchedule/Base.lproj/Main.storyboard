@@ -500,19 +500,8 @@
                             <outlet property="delegate" destination="r4d-Bj-0jf" id="z8f-H7-bZf"/>
                         </connections>
                     </tableView>
-                    <connections>
-                        <outlet property="searchDisplayController" destination="Bvz-BM-yCp" id="FdT-62-nrB"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qd8-Yv-Xee" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="Bvz-BM-yCp">
-                    <connections>
-                        <outlet property="delegate" destination="r4d-Bj-0jf" id="Ee9-2w-mAo"/>
-                        <outlet property="searchContentsController" destination="r4d-Bj-0jf" id="AAE-R8-swM"/>
-                        <outlet property="searchResultsDataSource" destination="r4d-Bj-0jf" id="zpP-B3-FAF"/>
-                        <outlet property="searchResultsDelegate" destination="r4d-Bj-0jf" id="rr7-aG-uFr"/>
-                    </connections>
-                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="3585.507246376812" y="1545.6521739130435"/>
         </scene>
