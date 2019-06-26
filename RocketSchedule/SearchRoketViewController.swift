@@ -43,11 +43,19 @@ class SearchRoketViewController: UIViewController {
     let searchValueSettings = UserDefaults()
     
     // Agency Datasource
-    private let dataSource = ["すべて", "NASA", "JAXA"]
+    private let dataSource = [
+        "すべて",
+        "JAXA(日本)",
+        "NASA(アメリカ)",
+        "RFSA(ロシア)",
+        "SPACEX"
+    ]
     
     // Agency Picker
     let agencyPicker = UIPickerView()
     
+    // Agencies Dictinary
+    var agenciesDictionary: Dictionary<String,String> = [:]
     
     
     override func viewDidLoad() {
@@ -60,6 +68,9 @@ class SearchRoketViewController: UIViewController {
         createAgencyDataPicker()
         
         createAgencyDataToolbar()
+        
+        // Value of Agency DataPicker
+        makeAgenciesDictionary()
         
     }
     
@@ -200,15 +211,40 @@ class SearchRoketViewController: UIViewController {
         self.view.endEditing(true)
     }
     
+    func makeAgenciesDictionary(){
+        
+        agenciesDictionary["JAXA(日本)"] = "JAXA"
+        agenciesDictionary["NASA(アメリカ)"] = "NASA"
+        agenciesDictionary["RFSA(ロシア)"] = "RFSA"
+        agenciesDictionary["SPACEX"] = "SpX"
+
+        // Test
+        let test = agenciesDictionary["NASA(アメリカ)"]
+        let test2 = agenciesDictionary["SPACEX"]
+        print("SearchRoketViewController - AgenciesDictionary: \(test)")
+        print("SearchRoketViewController - AgenciesDictionary2: \(test2)")
+        
+    }
+    
     
     //画面遷移時に呼ばれる関数（セグエ経由で遷移先に値を渡す）
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         
-        
+
         let controller = segue.destination as! ResultListViewController
         controller.searchStartLaunch = dateStartLaunch.text
         controller.searchEndLaunch = dateEndLaunch.text
-        controller.searchAgency = dataAgency.text
+
+        // Agency DataPicker data
+        if let bindingAgency = dataAgency.text{
+            let forSearchAgency = agenciesDictionary["\(bindingAgency)"]
+            
+            print("SearchRoketViewController - prepare - dataAgency.text: \(bindingAgency)")
+            print("SearchRoketViewController - prepare - forSearchAgency: \(forSearchAgency)")
+
+            controller.searchAgency = forSearchAgency
+        }
+        
         
         //test
         //test
