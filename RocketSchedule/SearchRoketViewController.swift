@@ -10,18 +10,18 @@ import Foundation
 import UIKit
 
 class SearchRoketViewController: UIViewController {
-
-//class SearchRoketViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDataSource {
     
-//    let agencyArray = ["NASA", "JAXA"]
-//
-//    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-//        return 1
-//    }
-//
-//    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-//        agencyArray.count
-//    }
+    //class SearchRoketViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    //    let agencyArray = ["NASA", "JAXA"]
+    //
+    //    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+    //        return 1
+    //    }
+    //
+    //    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    //        agencyArray.count
+    //    }
     
     
     @IBAction func closeSearchView(_ sender: Any) {
@@ -47,9 +47,9 @@ class SearchRoketViewController: UIViewController {
     
     // Agency Picker
     let agencyPicker = UIPickerView()
-
     
-
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -57,9 +57,9 @@ class SearchRoketViewController: UIViewController {
         
         createEndDatePicker()
         
-//        createAgencyDataPicker()
-//
-//        createAgencyDataToolbar()
+        createAgencyDataPicker()
+        
+        createAgencyDataToolbar()
         
     }
     
@@ -72,9 +72,9 @@ class SearchRoketViewController: UIViewController {
         if let settingStartDate = searchValueSettings.string(forKey: "settingEndDate"){
             dateEndLaunch.text = settingStartDate
         }
-//        if let settingAgency = searchValueSettings.string(forKey: "settingAgency"){
-//            dataAgency.text = settingAgency
-//        }
+        if let settingAgency = searchValueSettings.string(forKey: "settingAgency"){
+            dataAgency.text = settingAgency
+        }
     }
     
     
@@ -119,33 +119,33 @@ class SearchRoketViewController: UIViewController {
         dateEndLaunch.inputAccessoryView = toolbar
         
     }
-
-//    func createAgencyDataPicker(){
-//        
-//        agencyPicker.delegate = self
-//        
-//        dataAgency.inputView = agencyPicker
-////        cellSearchAgency.inputview = agencyPicker
-//        
-//    }
-//
-//    func createAgencyDataToolbar(){
-//        
-//        //create a toolbar
-//        let toolbar = UIToolbar()
-//        toolbar.sizeToFit()
-//        
-//        //add a done button on this toolbar
-//        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector (doneAgencyClicked))
-//        
-//        toolbar.setItems([doneButton], animated: true)
-//        toolbar.isUserInteractionEnabled = true
-//        
-//        dataAgency.inputAccessoryView = toolbar
-//        
-//    }
     
-
+    func createAgencyDataPicker(){
+        
+        agencyPicker.delegate = self
+        
+        dataAgency.inputView = agencyPicker
+        //        cellSearchAgency.inputview = agencyPicker
+        
+    }
+    
+    func createAgencyDataToolbar(){
+        
+        //create a toolbar
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        
+        //add a done button on this toolbar
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector (doneAgencyClicked))
+        
+        toolbar.setItems([doneButton], animated: true)
+        toolbar.isUserInteractionEnabled = true
+        
+        dataAgency.inputAccessoryView = toolbar
+        
+    }
+    
+    
     
     @objc func doneStartDayClicked(){
         
@@ -153,8 +153,8 @@ class SearchRoketViewController: UIViewController {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "ja_JP")
         dateFormatter.dateFormat = "yyyy-MM-dd"
-//        dateFormatter.dateStyle = .medium
-//        dateFormatter.timeStyle = .none
+        //        dateFormatter.dateStyle = .medium
+        //        dateFormatter.timeStyle = .none
         
         print("datePcker.date : \(datePicker.date)")
         
@@ -185,7 +185,7 @@ class SearchRoketViewController: UIViewController {
         
         // 設定値を保持
         searchValueSettings.set(dateFormatter.string(from: datePicker.date) , forKey: "settingEndDate")
-
+        
         print("dateEndLaunch.text: \(dateEndLaunch.text)")
         
         self.view.endEditing(true)
@@ -199,51 +199,46 @@ class SearchRoketViewController: UIViewController {
         
         self.view.endEditing(true)
     }
-
-
+    
+    
     //画面遷移時に呼ばれる関数（セグエ経由で遷移先に値を渡す）
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         
-        // if "完了" button tapped then go to Detail View
-        if segue.identifier == "unwindSearchData"{
-            let controller = segue.destination as! ResultListViewController
-            controller.searchStartLaunch = dateStartLaunch.text
-            controller.searchEndLaunch = dateEndLaunch.text
-//            controller.searchAgency = dataAgency.text
-        }
         
+        let controller = segue.destination as! ResultListViewController
+        controller.searchStartLaunch = dateStartLaunch.text
+        controller.searchEndLaunch = dateEndLaunch.text
+        controller.searchAgency = dataAgency.text
         
-        
-        
-
         //test
-//        print("search segue : \(controller.searchStartLaunch)")
+        //        print("search segue : \(controller.searchStartLaunch)")
         
     }
     
-
+    
 }
 
-//extension SearchRoketViewController: UIPickerViewDelegate, UIPickerViewDataSource{
-//
-//    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-//        return 1
-//    }
-//
-//
-//    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-//        return dataSource.count
-//    }
-//
-//    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-//
-//        dataAgency.text = dataSource[row]
-//    }
-//
-//    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-//
-//        return dataSource[row]
-//    }
-//
-//
-//}
+extension SearchRoketViewController: UIPickerViewDelegate, UIPickerViewDataSource{
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return dataSource.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
+        dataAgency.text = dataSource[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        
+        return dataSource[row]
+    }
+    
+    
+}
+

@@ -39,9 +39,9 @@ class ResultListViewController: UITableViewController {
     
     @IBAction func searchRocket(_ sender: Any) {
         
-//        let SearchRoketViewController = storyboard?.instantiateViewController(withIdentifier: "SearchRoketViewController") as! SearchRoketViewController
-//
-//        present(SearchRoketViewController, animated: true, completion: nil)
+        //        let SearchRoketViewController = storyboard?.instantiateViewController(withIdentifier: "SearchRoketViewController") as! SearchRoketViewController
+        //
+        //        present(SearchRoketViewController, animated: true, completion: nil)
         
         self.performSegue(withIdentifier: "toSearch", sender: nil)
         
@@ -114,7 +114,7 @@ class ResultListViewController: UITableViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-
+        
     }
     
     override func viewDidAppear(_ animated: Bool){
@@ -168,7 +168,7 @@ class ResultListViewController: UITableViewController {
         }
         
         print("ResultListViewController - viewDidAppear - RequestURL: \(url)")
-
+        
         launchJsonDownload()
         
         //タイムゾーン（地域）の取得
@@ -215,9 +215,9 @@ class ResultListViewController: UITableViewController {
     func launchJsonDownload(){
         
         if let url = URL(
-//            string: "https://launchlibrary.net/1.4/launch?startdate=1907-01-12&enddate=1969-09-20&limit=999999"){
+            //            string: "https://launchlibrary.net/1.4/launch?startdate=1907-01-12&enddate=1969-09-20&limit=999999"){
             string: "\(url!)"){
-
+            
             let task = URLSession.shared.dataTask(with: url, completionHandler: {(data, response, error) in
                 if let data = data, let response = response {
                     print(response)
@@ -228,7 +228,7 @@ class ResultListViewController: UITableViewController {
                     if testdata.contains("None found"){
                         
                         self.count = 0
-
+                        
                     } else {
                         
                         let json = try! JSONDecoder().decode(Launch.self, from: data)
@@ -274,4 +274,5 @@ class ResultListViewController: UITableViewController {
     }
     
 }
+
 
