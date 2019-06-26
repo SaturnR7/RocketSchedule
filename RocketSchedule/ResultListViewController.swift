@@ -141,7 +141,7 @@ class ResultListViewController: UITableViewController {
         
         if let searchAgency = searchAgency{
             
-            if searchAgency != "選択なし"{
+            if searchAgency != "すべて"{
 //                urlStringOfAgencyValue =
                 
             } else {
