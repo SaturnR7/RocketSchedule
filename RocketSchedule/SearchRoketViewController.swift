@@ -210,6 +210,7 @@ class SearchRoketViewController: UIViewController {
         controller.searchEndLaunch = dateEndLaunch.text
         controller.searchAgency = dataAgency.text
 
+        //test
 //        print("search segue : \(controller.searchStartLaunch)")
         
     }

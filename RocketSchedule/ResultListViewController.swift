@@ -15,7 +15,7 @@ class ResultListViewController: UITableViewController {
     var item:Launch?
     var count: Int = 0
     var jsonLaunches: Launch!
-    var isAgencySearch: Bool!
+    var isAgencySearch: Bool! = false
     
     // Usage of URL "https://launchlibrary.net/1.4/launch?startdate=1907-01-12&enddate=1969-09-20&limit=999999"
     let urlStringOf1: String = "https://launchlibrary.net/1.4/launch"
@@ -25,9 +25,10 @@ class ResultListViewController: UITableViewController {
     let urlStringOf3: String = "&enddate="
     let urlStringOfDefaultEndDate: String = "1969-09-20"
     var urlStringOfSearchEndDate: String = "1969-09-20"
-    let urlStringOf4: String = "&limit=999999"
+    let urlStringOfLimit: String = "&limit=999999"
     let urlStringOfAgency: String = "&agency="
     var urlStringOfAgencyValue: String!
+    let urlStringOfVerbose: String = "&mode=verbose"
     
     var url: String!
     
@@ -141,20 +142,32 @@ class ResultListViewController: UITableViewController {
         
         if let searchAgency = searchAgency{
             
+            // 機関が選択された場合は、URLに機関項目を設定する
             if searchAgency != "すべて"{
-//                urlStringOfAgencyValue =
+                urlStringOfAgencyValue = searchAgency
+                print("ResultListViewController - viewDidAppear - urlStringOfAgencyValue: \(urlStringOfAgencyValue)")
+                
+                isAgencySearch = true
                 
             } else {
                 
-                
+                isAgencySearch = false
             }
             
         }
         
         
-        print("testURL: \(urlStringOf1)\(urlStringOf2)\(urlStringOfSearchStartDate)\(urlStringOf3)\(urlStringOfSearchEndDate)\(urlStringOf4)")
+        // 検索画面において機関項目を選択した場合は、機関項目を付加したURLを発行する
+        if isAgencySearch{
+            
+            url = urlStringOf1 + urlStringOf2 + urlStringOfSearchStartDate + urlStringOf3 + urlStringOfSearchEndDate + urlStringOfAgency + urlStringOfAgencyValue + urlStringOfLimit
+            
+        } else {
+            
+            url = urlStringOf1 + urlStringOf2 + urlStringOfSearchStartDate + urlStringOf3 + urlStringOfSearchEndDate + urlStringOfLimit
+        }
         
-        url = urlStringOf1 + urlStringOf2 + urlStringOfSearchStartDate + urlStringOf3 + urlStringOfSearchEndDate + urlStringOf4
+        print("ResultListViewController - viewDidAppear - RequestURL: \(url)")
 
         launchJsonDownload()
         
@@ -203,7 +216,6 @@ class ResultListViewController: UITableViewController {
         
         if let url = URL(
 //            string: "https://launchlibrary.net/1.4/launch?startdate=1907-01-12&enddate=1969-09-20&limit=999999"){
-//            string: "\(urlStringOf1)\(urlStringOf2)\(urlStringOfSearchStartDate)\(urlStringOf3)\(urlStringOfSearchEndDate)\(urlStringOf4)"){
             string: "\(url!)"){
 
             let task = URLSession.shared.dataTask(with: url, completionHandler: {(data, response, error) in
