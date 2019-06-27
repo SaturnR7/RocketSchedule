@@ -264,11 +264,10 @@ class ResultListViewController: UITableViewController {
             let launch = self.jsonLaunches.launches[indexPath.row]
             let controller = segue.destination as! DetailViewController
             controller.title = "Detail"
+            controller.id = launch.id
             controller.name = launch.name
             controller.videoURL = launch.vidURLs?[0]
-            
-            
-            
+
         }
         
     }

@@ -5,11 +5,26 @@
 //  Created by Hidemasa Kobayashi on 2019/01/30.
 //  Copyright © 2019 zilch. All rights reserved.
 //
+//  Launch Result Detail View (From Launch Result View)
 
 import Foundation
 import UIKit
 
-class DetailViewController : UITableViewController {
+class DetailViewController : UIViewController {
+    
+    private var state: RocketFavoriteState = RocketNotAddedAsFavorite()
+    
+    @IBOutlet weak var detailRocketName: UILabel!
+    
+    @IBOutlet weak var testDetailURL: UILabel!
+    
+    @IBOutlet weak var buttonFavorite: UIButton!
+    
+    
+    @IBAction func buttonFavoriteTapped() {
+        self.state.buttonFavoriteTapped(detailViewController: self)
+    }
+    
     
     var id:Int!
     var name:String!
@@ -20,37 +35,77 @@ class DetailViewController : UITableViewController {
     
     let notificationCenter = NotificationCenter.default
     
-    override func tableView(_ tableView: UITableView,
-                            numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    override func tableView(_ tableView: UITableView,
-                            cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        print("DetailViewController - tableView Start")
+    // UserDefauls for Favorite
+    let defaultsForFavorite = UserDefaults.standard
 
-        let cell = tableView.dequeueReusableCell(withIdentifier: "DetailCell") as! CustomTableViewCellDetail
-        
-        cell.label1?.numberOfLines = 0
-        cell.label1?.text = self.name
-        cell.label2?.text = self.videoURL
-        
-        print("DetailViewCOntroller - tableView - id : \(id)")
-        
-        print("DetailViewController - tableView End")
-
-        return cell
-    }
     
     override func viewDidLoad(){
         super.viewDidLoad()
         
         print("DetailViewController - viewDidLoad Start")
         
+        detailRocketName.text = self.name
+        testDetailURL.text = self.videoURL
         
+        // 画面起動時にロケットのIDがUserDefaultsに存在していれば、
+        // stateにRocketAddedAsFavoriteクラスを入れる必要がある。
+        checkExistFavorite()
+
         
         print("DetailViewController - viewDidLoad End")
+
+    }
+    
+    // Set to state
+    func setState(state: RocketFavoriteState){
+        self.state = state
+    }
+    
+    // Check exist ID in UserDefaults
+    func checkExistFavorite(){
+        
+        print("DetailViewController - IN - checkExistFavorite")
+
+        // write check logic
+        let id = defaultsForFavorite.integer(forKey: "FavoriteID+\(self.id)")
+        print("DetailViewController - checkExistFavorite - ID: \(id)")
+        
+        // If ID not exist in UserDefaults State set RocketAddedAsFavorite
+        if id != 0 {
+            print("DetailViewController - checkExistFavorite - IN - IF")
+            state = RocketAddedAsFavorite()
+            print("DetailViewController - checkExistFavorite - OUT - IF")
+        }
+        
+        print("DetailViewController - OUT - checkExistFavorite")
+
+    }
+    
+    // Rocket add favorite
+    func addafavorite(){
+        
+        print("DetailViewController - IN - addafavorite")
+
+        // do something
+        defaultsForFavorite.set(self.id, forKey: "FavoriteID+\(self.id)")
+
+        print("DetailViewController - addafavorite - defaultsForFavorite: \(defaultsForFavorite.integer(forKey: "FavoriteID+\(self.id)"))")
+
+        print("DetailViewController - OUT - addafavorite")
+
+    }
+    
+    // Rocket remove favorite
+    func removeFavorite(){
+        
+        print("DetailViewController - IN - removeFavorite")
+
+        // do something
+        defaultsForFavorite.removeObject(forKey: "FavoriteID+\(self.id)")
+        
+        print("DetailViewController - removeFavorite - defaultsForFavorite: \(defaultsForFavorite.integer(forKey: "FavoriteID+\(self.id)"))")
+        
+        print("DetailViewController - OUT - removeFavorite")
 
     }
 
@@ -65,13 +120,3 @@ class DetailViewController : UITableViewController {
     
     
 }
-
-////Notification.name の拡張
-//extension Notification.Name {
-//    static let myNotificationRocketAdd = Notification.Name("myNotificationRocketAdd")
-//}
-//
-////Notification.name の拡張
-//extension Notification.Name {
-//    static let myNotificationRocketRemove = Notification.Name("myNotificationRocketRemove")
-//}
