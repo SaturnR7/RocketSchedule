@@ -396,7 +396,7 @@
         <!--打ち上げ結果-->
         <scene sceneID="Wfu-Fs-AWw">
             <objects>
-                <tableViewController id="Iza-eo-oSe" userLabel="打ち上げ結果" customClass="ResultListViewController" customModule="RocketSchedule" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="Iza-eo-oSe" userLabel="打ち上げ結果" customClass="FavoriteListView" customModule="RocketSchedule" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="H3B-ET-4hH">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -438,7 +438,7 @@
                                 <connections>
                                     <outlet property="labelLaunchTime" destination="6Cr-AK-lrK" id="nma-iE-cD9"/>
                                     <outlet property="labelRocketName" destination="w42-fi-CRQ" id="mWL-AS-R81"/>
-                                    <segue destination="JqQ-9E-fdc" kind="show" id="2Na-1M-7ZG"/>
+                                    <segue destination="w2z-Ga-Xtt" kind="show" id="Oqf-je-Qsf"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -625,4 +625,7 @@
             <point key="canvasLocation" x="1019" y="2260"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="Oqf-je-Qsf"/>
+    </inferredMetricsTieBreakers>
 </document>

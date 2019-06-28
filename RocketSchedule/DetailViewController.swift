@@ -36,7 +36,7 @@ class DetailViewController : UIViewController {
     let notificationCenter = NotificationCenter.default
     
     // UserDefauls for Favorite
-    let defaultsForFavorite = UserDefaults.standard
+    public let defaultsForFavorite = UserDefaults.standard
 
     
     override func viewDidLoad(){

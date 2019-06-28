@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -26,11 +26,31 @@
 		B69B6AF122BB6A6F00C691BD /* StructAgency.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69B6AF022BB6A6F00C691BD /* StructAgency.swift */; };
 		B69B6AF322BC870600C691BD /* CustomSearchAgencyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69B6AF222BC870600C691BD /* CustomSearchAgencyCell.swift */; };
 		B6A66F7422A4F8D2003CDA1B /* DetailRocketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A66F7322A4F8D2003CDA1B /* DetailRocketViewController.swift */; };
+		B6B8C41022C5BF4300EFEB2F /* FavoriteListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B8C40F22C5BF4300EFEB2F /* FavoriteListView.swift */; };
 		B6C23E8922C4AB610041B9D8 /* StateNotFavorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C23E8822C4AB610041B9D8 /* StateNotFavorite.swift */; };
 		B6D8BC292229F61D000B590E /* ResultListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D8BC282229F61D000B590E /* ResultListViewController.swift */; };
+		B6D9446922C5EEF800B4B968 /* FavoriteObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D9446822C5EEF800B4B968 /* FavoriteObject.swift */; };
+		B6D9446B22C5EFA400B4B968 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6D9446A22C5EFA400B4B968 /* Realm.framework */; };
+		B6D9446D22C5EFAB00B4B968 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6D9446C22C5EFAB00B4B968 /* RealmSwift.framework */; };
+		CC771E829FC0C52BF160E277 /* Pods_RocketSchedule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E504C709F181CBCABF35098 /* Pods_RocketSchedule.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		B68A439622C5EAE20053A620 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		1845EC9FEA8BD028B22707C7 /* Pods-RocketSchedule.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RocketSchedule.debug.xcconfig"; path = "Target Support Files/Pods-RocketSchedule/Pods-RocketSchedule.debug.xcconfig"; sourceTree = "<group>"; };
+		30F5A9B96ECE5CD5E58DECCB /* Pods-RocketSchedule.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RocketSchedule.release.xcconfig"; path = "Target Support Files/Pods-RocketSchedule/Pods-RocketSchedule.release.xcconfig"; sourceTree = "<group>"; };
+		5E504C709F181CBCABF35098 /* Pods_RocketSchedule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RocketSchedule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B60B3B1A2201C97000ADC711 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		B60B3B1E22045EDC00ADC711 /* CustomTableViewCellDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCellDetail.swift; sourceTree = "<group>"; };
 		B61AE942226184E9001034CD /* StructNotificationDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructNotificationDate.swift; sourceTree = "<group>"; };
@@ -52,8 +72,12 @@
 		B69B6AF022BB6A6F00C691BD /* StructAgency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructAgency.swift; sourceTree = "<group>"; };
 		B69B6AF222BC870600C691BD /* CustomSearchAgencyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchAgencyCell.swift; sourceTree = "<group>"; };
 		B6A66F7322A4F8D2003CDA1B /* DetailRocketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRocketViewController.swift; sourceTree = "<group>"; };
+		B6B8C40F22C5BF4300EFEB2F /* FavoriteListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteListView.swift; sourceTree = "<group>"; };
 		B6C23E8822C4AB610041B9D8 /* StateNotFavorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateNotFavorite.swift; sourceTree = "<group>"; };
 		B6D8BC282229F61D000B590E /* ResultListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultListViewController.swift; sourceTree = "<group>"; };
+		B6D9446822C5EEF800B4B968 /* FavoriteObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteObject.swift; sourceTree = "<group>"; };
+		B6D9446A22C5EFA400B4B968 /* Realm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Realm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B6D9446C22C5EFAB00B4B968 /* RealmSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,17 +85,31 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6D9446D22C5EFAB00B4B968 /* RealmSwift.framework in Frameworks */,
+				B6D9446B22C5EFA400B4B968 /* Realm.framework in Frameworks */,
+				CC771E829FC0C52BF160E277 /* Pods_RocketSchedule.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3426622B66FC966A336823D6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1845EC9FEA8BD028B22707C7 /* Pods-RocketSchedule.debug.xcconfig */,
+				30F5A9B96ECE5CD5E58DECCB /* Pods-RocketSchedule.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		B6427C3421EAD5B800999575 = {
 			isa = PBXGroup;
 			children = (
 				B6427C3F21EAD5B800999575 /* RocketSchedule */,
 				B6427C3E21EAD5B800999575 /* Products */,
+				3426622B66FC966A336823D6 /* Pods */,
+				BBA7955D2F1F70A4E36E773A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -89,6 +127,8 @@
 				B6427C4021EAD5B800999575 /* AppDelegate.swift */,
 				B6427C5221EAD67800999575 /* ListViewController.swift */,
 				B6D8BC282229F61D000B590E /* ResultListViewController.swift */,
+				B6B8C40F22C5BF4300EFEB2F /* FavoriteListView.swift */,
+				B6D9446822C5EEF800B4B968 /* FavoriteObject.swift */,
 				B6686E4B222E54C100B6CC75 /* SearchRoketViewController.swift */,
 				B60B3B1A2201C97000ADC711 /* DetailViewController.swift */,
 				B6C23E8822C4AB610041B9D8 /* StateNotFavorite.swift */,
@@ -112,6 +152,16 @@
 			path = RocketSchedule;
 			sourceTree = "<group>";
 		};
+		BBA7955D2F1F70A4E36E773A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B6D9446C22C5EFAB00B4B968 /* RealmSwift.framework */,
+				B6D9446A22C5EFA400B4B968 /* Realm.framework */,
+				5E504C709F181CBCABF35098 /* Pods_RocketSchedule.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -119,9 +169,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B6427C4F21EAD5BD00999575 /* Build configuration list for PBXNativeTarget "RocketSchedule" */;
 			buildPhases = (
+				AF4CCD6E1B03F541FD95DE4B /* [CP] Check Pods Manifest.lock */,
 				B6427C3921EAD5B800999575 /* Sources */,
 				B6427C3A21EAD5B800999575 /* Frameworks */,
 				B6427C3B21EAD5B800999575 /* Resources */,
+				1AF4762101080825F9671157 /* [CP] Embed Pods Frameworks */,
+				B68A439622C5EAE20053A620 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -178,6 +231,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1AF4762101080825F9671157 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RocketSchedule/Pods-RocketSchedule-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RocketSchedule/Pods-RocketSchedule-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RocketSchedule/Pods-RocketSchedule-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AF4CCD6E1B03F541FD95DE4B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RocketSchedule-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		B6427C3921EAD5B800999575 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -195,8 +290,10 @@
 				B6527D8321F874F300D40241 /* CustomTableViewCell.swift in Sources */,
 				B66E3DFE22BC99FE00B91A7A /* StructViewSearchAgency.swift in Sources */,
 				B621076B22708D2200CA76E8 /* StructViewPlans.swift in Sources */,
+				B6B8C41022C5BF4300EFEB2F /* FavoriteListView.swift in Sources */,
 				B6A66F7422A4F8D2003CDA1B /* DetailRocketViewController.swift in Sources */,
 				B6D8BC292229F61D000B590E /* ResultListViewController.swift in Sources */,
+				B6D9446922C5EEF800B4B968 /* FavoriteObject.swift in Sources */,
 				B69B6AF122BB6A6F00C691BD /* StructAgency.swift in Sources */,
 				B6474C1D227C111900E811CD /* StructNotificationId.swift in Sources */,
 				B6427C4121EAD5B800999575 /* AppDelegate.swift in Sources */,
@@ -344,6 +441,7 @@
 		};
 		B6427C5021EAD5BD00999575 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1845EC9FEA8BD028B22707C7 /* Pods-RocketSchedule.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -363,6 +461,7 @@
 		};
 		B6427C5121EAD5BD00999575 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 30F5A9B96ECE5CD5E58DECCB /* Pods-RocketSchedule.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

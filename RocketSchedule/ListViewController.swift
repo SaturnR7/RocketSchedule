@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import UserNotifications
+import RealmSwift
 
 class ListViewController: UITableViewController {
     
@@ -118,7 +119,10 @@ class ListViewController: UITableViewController {
         print("In refresh End")
     }
     
-
+    //RealmTest
+//    private var realm: Realm!
+    
+    
     override func viewDidAppear(_ animated: Bool){
         super.viewDidAppear(animated)
 
@@ -131,6 +135,13 @@ class ListViewController: UITableViewController {
 //        if forNotificationId != nil{
 //            notificationRocket()
 //        }
+        
+        // Realm Test
+        let realm = try! Realm()
+        // 文字列で検索条件を指定します
+        var testRealm = realm.objects(FavoriteObject.self)
+        print("testRealm : \(testRealm)")
+        
 
         print("viewDidAppear end")
 
