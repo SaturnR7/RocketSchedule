@@ -8,6 +8,7 @@
 
 import UIKit
 import UserNotifications
+import RealmSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -26,6 +27,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 UNUserNotificationCenter.current().delegate = self as UNUserNotificationCenterDelegate
             }
         }
+        
+
+        // Realm Migration
+        let config = Realm.Configuration(
+            
+            schemaVersion: 3,
+            
+            
+            migrationBlock: { migration, oldSchemaVersion in
+                if (oldSchemaVersion < 1) {
+                    
+                }
+        })
+        Realm.Configuration.defaultConfiguration = config
+        let realm = try! Realm()
+        
+        
         
         return true
     }

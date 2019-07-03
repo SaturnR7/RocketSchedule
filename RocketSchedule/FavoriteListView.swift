@@ -91,15 +91,6 @@ class FavoriteListView: UITableViewController {
         
         super.viewDidLoad()
         
-        //realm test
-        let author = FavoriteObject()
-        author.title = "Realm Test"
-        let realm = try! Realm()
-        try! realm.write {
-            realm.add(author)
-        }
-
-        
         launchJsonDownload()
 
         //テーブルビューの pull-to-refresh
@@ -126,10 +117,10 @@ class FavoriteListView: UITableViewController {
         
         // UserDefaults Test
         // 1829
-        var test = DetailViewController()
-        let getDefault = test.defaultsForFavorite.integer(forKey: "FavoriteID+\(1829)")
-        print("FavoriteListView - viewDidAppear - test.defaultsForFavorite: \(test.defaultsForFavorite)")
-        print("FavoriteListView - viewDidAppear - getDefault: \(getDefault)")
+//        var test = DetailViewController()
+//        let getDefault = test.defaultsForFavorite.integer(forKey: "FavoriteID+\(1829)")
+//        print("FavoriteListView - viewDidAppear - test.defaultsForFavorite: \(test.defaultsForFavorite)")
+//        print("FavoriteListView - viewDidAppear - getDefault: \(getDefault)")
 
     }
     

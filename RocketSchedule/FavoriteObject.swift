@@ -10,5 +10,7 @@ import Foundation
 import RealmSwift
 
 class FavoriteObject: Object {
+    @objc dynamic var id = 0
     @objc dynamic var title = ""
+    @objc dynamic var detail = ""
 }

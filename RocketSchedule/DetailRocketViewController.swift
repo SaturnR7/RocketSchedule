@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import RealmSwift
 
 class DetailRocketViewController : UIViewController {
     
@@ -55,6 +56,7 @@ class DetailRocketViewController : UIViewController {
             notifyOutletSwitch.isOn = false
             
         }
+        
         
         print("DetailRocketViewController - viewDidLoad End")
         

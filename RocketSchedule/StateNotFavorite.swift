@@ -15,6 +15,7 @@ protocol RocketFavoriteState {
 }
 
 
+// Delete Favorite Data that Data already registered in Realm
 // ロケット情報が既に登録されている状態からお気に入りを削除する
 class RocketAddedAsFavorite: NSObject, RocketFavoriteState{
     func buttonFavoriteTapped(detailViewController: DetailViewController){
@@ -23,6 +24,7 @@ class RocketAddedAsFavorite: NSObject, RocketFavoriteState{
     }
 }
 
+// Delete Favorite Data that Data not register in Realm
 // ロケット情報が登録されていない状態でから新たにお気に入り登録する
 class RocketNotAddedAsFavorite: NSObject, RocketFavoriteState{
     func buttonFavoriteTapped(detailViewController: DetailViewController){

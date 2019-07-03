@@ -136,12 +136,14 @@ class ListViewController: UITableViewController {
 //            notificationRocket()
 //        }
         
-        // Realm Test
-        let realm = try! Realm()
-        // 文字列で検索条件を指定します
-        var testRealm = realm.objects(FavoriteObject.self)
-        print("testRealm : \(testRealm)")
         
+        // Realm Test
+//        let realm = try! Realm()
+//        // 文字列で検索条件を指定します
+//        var testRealm = realm.objects(FavoriteObject.self)
+//        print("testRealm : \(testRealm)")
+//        print("testRealm : \(testRealm.filter("detail CONTAINS 'Test'"))")
+
 
         print("viewDidAppear end")
 
