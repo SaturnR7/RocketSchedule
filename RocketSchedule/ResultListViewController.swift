@@ -266,6 +266,8 @@ class ResultListViewController: UITableViewController {
             controller.title = "Detail"
             controller.id = launch.id
             controller.name = launch.name
+            controller.windowStart = launch.windowstart
+            controller.windowEnd = launch.windowend
             controller.videoURL = launch.vidURLs?[0]
 
         }

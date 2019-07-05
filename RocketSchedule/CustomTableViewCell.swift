@@ -14,6 +14,9 @@ class CustomTableViewCell: UITableViewCell {
     
     @IBOutlet weak var labelRocketName: UILabel!
     
+    @IBOutlet weak var labelRocketId: UILabel!
+    
+    
 //    override func awakeFromNib() {
 //        super.awakeFromNib()
 //        // Initialization code

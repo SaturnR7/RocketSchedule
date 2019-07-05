@@ -11,6 +11,8 @@ import RealmSwift
 
 class FavoriteObject: Object {
     @objc dynamic var id = 0
-    @objc dynamic var title = ""
-    @objc dynamic var detail = ""
+    @objc dynamic var rocketName = ""
+    @objc dynamic var windowStart = ""
+    @objc dynamic var windowEnd = ""
+    @objc dynamic var videoURL = ""
 }

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B60B3B1B2201C97000ADC711 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60B3B1A2201C97000ADC711 /* DetailViewController.swift */; };
 		B60B3B1F22045EDC00ADC711 /* CustomTableViewCellDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60B3B1E22045EDC00ADC711 /* CustomTableViewCellDetail.swift */; };
+		B6107ED322CDAA4D00932B1B /* StructRealmFavoriteData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6107ED222CDAA4D00932B1B /* StructRealmFavoriteData.swift */; };
 		B61AE943226184E9001034CD /* StructNotificationDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61AE942226184E9001034CD /* StructNotificationDate.swift */; };
 		B621076B22708D2200CA76E8 /* StructViewPlans.swift in Sources */ = {isa = PBXBuildFile; fileRef = B621076A22708D2200CA76E8 /* StructViewPlans.swift */; };
 		B6427C4121EAD5B800999575 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6427C4021EAD5B800999575 /* AppDelegate.swift */; };
@@ -53,6 +54,7 @@
 		5E504C709F181CBCABF35098 /* Pods_RocketSchedule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RocketSchedule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B60B3B1A2201C97000ADC711 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		B60B3B1E22045EDC00ADC711 /* CustomTableViewCellDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCellDetail.swift; sourceTree = "<group>"; };
+		B6107ED222CDAA4D00932B1B /* StructRealmFavoriteData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructRealmFavoriteData.swift; sourceTree = "<group>"; };
 		B61AE942226184E9001034CD /* StructNotificationDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructNotificationDate.swift; sourceTree = "<group>"; };
 		B621076A22708D2200CA76E8 /* StructViewPlans.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructViewPlans.swift; sourceTree = "<group>"; };
 		B6427C3D21EAD5B800999575 /* RocketSchedule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RocketSchedule.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -140,6 +142,7 @@
 				B60B3B1E22045EDC00ADC711 /* CustomTableViewCellDetail.swift */,
 				B69B6AF222BC870600C691BD /* CustomSearchAgencyCell.swift */,
 				B69B6AF022BB6A6F00C691BD /* StructAgency.swift */,
+				B6107ED222CDAA4D00932B1B /* StructRealmFavoriteData.swift */,
 				B61AE942226184E9001034CD /* StructNotificationDate.swift */,
 				B6474C1C227C111900E811CD /* StructNotificationId.swift */,
 				B621076A22708D2200CA76E8 /* StructViewPlans.swift */,
@@ -278,6 +281,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6107ED322CDAA4D00932B1B /* StructRealmFavoriteData.swift in Sources */,
 				B6427C5321EAD67800999575 /* ListViewController.swift in Sources */,
 				B6C23E8922C4AB610041B9D8 /* StateNotFavorite.swift in Sources */,
 				B6427C5921EDFA3E00999575 /* Launch.swift in Sources */,

@@ -425,6 +425,13 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mJZ-Nl-CoO">
+                                            <rect key="frame" x="352" y="105" width="42" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="6Cr-AK-lrK" firstAttribute="leading" secondItem="w42-fi-CRQ" secondAttribute="leading" id="Aug-YK-LQu"/>
@@ -437,6 +444,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="labelLaunchTime" destination="6Cr-AK-lrK" id="nma-iE-cD9"/>
+                                    <outlet property="labelRocketId" destination="mJZ-Nl-CoO" id="Njr-Jy-bEO"/>
                                     <outlet property="labelRocketName" destination="w42-fi-CRQ" id="mWL-AS-R81"/>
                                     <segue destination="w2z-Ga-Xtt" kind="show" id="Oqf-je-Qsf"/>
                                 </connections>

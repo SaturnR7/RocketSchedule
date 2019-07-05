@@ -27,10 +27,12 @@ class DetailViewController : UIViewController {
     }
     
     
-    var id:Int = 0
-    var name:String = ""
-    var videoURL:String!
-    var notifySwitch:Bool!
+    var id: Int = 0
+    var name: String = ""
+    var windowStart: String = ""
+    var windowEnd: String = ""
+    var videoURL: String!
+    var notifySwitch: Bool!
     
 //    var notificationCondition:Bool = false
     
@@ -105,11 +107,14 @@ class DetailViewController : UIViewController {
         let author = FavoriteObject()
         
         author.id = self.id
-        author.title = self.name
+        author.rocketName = self.name
         if self.videoURL == nil{
             self.videoURL = "Empty"
         }
-        author.detail = self.videoURL
+        author.windowStart = self.windowStart
+        author.windowEnd = self.windowEnd
+        author.videoURL = self.videoURL
+        
         let realm = try! Realm()
         try! realm.write {
             realm.add(author)
