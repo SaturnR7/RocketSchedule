@@ -62,7 +62,8 @@ class ResultListViewController: UITableViewController {
         //        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! CustomTableViewCell
         
-        print("launches.name\(self.jsonLaunches.launches[indexPath.row].name)")
+//        print("launches.name\(self.jsonLaunches.launches[indexPath.row].name)")
+        
         //        cell.textLabel?.numberOfLines = 0
         //        cell.textLabel?.text = "\(self.jsonLaunches.launches[indexPath.row].name)"
         
@@ -94,8 +95,8 @@ class ResultListViewController: UITableViewController {
             
             print("formatterString:\(formatterString.string(from: addedDate)))")
             
-            cell.labelLaunchTime?.numberOfLines = 0
-            cell.labelLaunchTime?.text = "\(formatterString.string(from: addedDate))"
+            cell.labelLaunchDate?.numberOfLines = 0
+            cell.labelLaunchDate?.text = "\(formatterString.string(from: addedDate))"
         }else{
             print("dateString is nil")
         }
@@ -218,12 +219,14 @@ class ResultListViewController: UITableViewController {
             //            string: "https://launchlibrary.net/1.4/launch?startdate=1907-01-12&enddate=1969-09-20&limit=999999"){
             string: "\(url!)"){
             
+            print("ResultListViewController - launchJsonDownload - URL: \(url)")
+            
             let task = URLSession.shared.dataTask(with: url, completionHandler: {(data, response, error) in
                 if let data = data, let response = response {
                     print(response)
                     
                     let testdata = String(data: data, encoding: .utf8)!
-                    print("data:\(testdata)")
+//                    print("data:\(testdata)")
                     
                     if testdata.contains("None found"){
                         
@@ -268,7 +271,8 @@ class ResultListViewController: UITableViewController {
             controller.name = launch.name
             controller.windowStart = launch.windowstart
             controller.windowEnd = launch.windowend
-            controller.videoURL = launch.vidURLs?[0]
+//            controller.videoURL = launch.vidURLs?[0]
+            controller.videoURL = launch.vidURLs
 
         }
         

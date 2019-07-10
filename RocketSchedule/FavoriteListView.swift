@@ -47,16 +47,27 @@ class FavoriteListView: UITableViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! CustomTableViewCell
 
-        
-        
         if editingStyle == .delete {
             
-            let targetId = Int(cell.labelRocketId.text ?? "0")
+//            print("FavoriteListView - tableView - cell.labelRocketId: \(cell.labelRocketId?.text)")
+            
+//            let targetId = Int(cell.labelRocketId.text ?? "0")
+            let targetId = Int(arrayFavoriteLaunches[indexPath.row].id)
+
+            print("FavoriteListView - tableView - targetId: \(targetId)")
             
             // Call Data Delete Func
-            removeFavorite(id: targetId ?? 0)
+            self.removeFavorite(id: targetId ?? 0)
             
-            tableView.deleteRows(at: [indexPath as IndexPath], with: UITableView.RowAnimation.automatic)
+            // Specify Cell Remove from Datasource
+            self.arrayFavoriteLaunches.remove(at: indexPath.row)
+            
+            // Delete Cell
+            self.tableView.deleteRows(at: [indexPath], with: .fade)
+            
+            // Favorit View Reload
+//            self.tableView.reloadData()
+
             
         }
         
@@ -106,8 +117,6 @@ class FavoriteListView: UITableViewController {
         
         cell.labelRocketName?.numberOfLines = 0
         cell.labelRocketName?.text = "\(self.arrayFavoriteLaunches[indexPath.row].rocketName)"
-        
-        cell.labelRocketId?.text = "\(self.arrayFavoriteLaunches[indexPath.row].id)"
         
         return cell
     }
@@ -161,18 +170,19 @@ class FavoriteListView: UITableViewController {
         arrayFavoriteLaunches = [StructRealmFavoriteData]()
 
         // Get From Realm
-        let getAllDataRealm = realm.objects(FavoriteObject.self)
-        
+//        let getAllDataRealm = realm.objects(FavoriteObject.self)
+        let getAllDataRealm = realm.objects(FavoriteObject.self).sorted(byKeyPath: "addedDate", ascending: true)
+
         // RealmData input to Array Struct
         for data in getAllDataRealm{
             
             arrayFavoriteLaunches.append(
                 StructRealmFavoriteData(
-                    id: data.id,
-                    rocketName: data.rocketName,
-                    windowsStart: data.windowStart,
-                    windowEnd: data.windowEnd,
-                    videoURL: data.videoURL
+                    id:             data.id,
+                    rocketName:     data.rocketName,
+                    windowsStart:   data.windowStart,
+                    windowEnd:      data.windowEnd,
+                    videoURL:       data.videoURL
                 )
             )
             
@@ -180,6 +190,7 @@ class FavoriteListView: UITableViewController {
         
         print("FavoriteListView - launchDataLoad - arrayFavoriteLaunches.count: \(arrayFavoriteLaunches.count)")
 //        print("FavoriteListView - launchDataLoad - arrayFavoriteLaunches[0].id: \(arrayFavoriteLaunches[0].id)")
+
         
     }
     
@@ -237,7 +248,7 @@ class FavoriteListView: UITableViewController {
         
         // do something
         let realm = try! Realm()
-        print("DetailViewController - removeFavorite - queryId:  \(id)")
+        print("FavoriteListView - removeFavorite - queryId:  \(id)")
         let filterRealm = realm.objects(FavoriteObject.self).filter("id = \(id)")
         
         // Data Delete that swiped cell

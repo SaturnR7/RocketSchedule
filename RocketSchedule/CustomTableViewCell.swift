@@ -10,11 +10,11 @@ import UIKit
 
 class CustomTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var labelLaunchDate: UILabel!
+    
     @IBOutlet weak var labelLaunchTime: UILabel!
     
     @IBOutlet weak var labelRocketName: UILabel!
-    
-    @IBOutlet weak var labelRocketId: UILabel!
     
     
 //    override func awakeFromNib() {

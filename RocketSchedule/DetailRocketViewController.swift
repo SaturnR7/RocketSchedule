@@ -12,13 +12,21 @@ import RealmSwift
 
 class DetailRocketViewController : UIViewController {
     
-    var id:Int!
-    var name:String!
-    var videoURL:String!
+    var id:Int?
+    var name:String?
+//    var videoURL:String!
+    var launchDate: Date!
+    var videoURL:[String]?
     var notifySwitch:Bool!
     
     let notificationCenter = NotificationCenter.default
-
+    
+    @IBOutlet weak var labelRocketName: UILabel!
+    
+    @IBOutlet weak var labelLaunchDate: UILabel!
+    
+    @IBOutlet weak var labelLaunchTime: UILabel!
+    
     @IBOutlet weak var notifyOutletSwitch: UISwitch!
     
     @IBAction func notifyActionSwitch(_ sender: UISwitch) {
@@ -45,6 +53,29 @@ class DetailRocketViewController : UIViewController {
         
         print("DetailRocketViewController - viewDidLoad Start")
         
+        // ナビゲーションバーのアイテムの色　（戻る　＜　とか　読み込みゲージとか）
+        self.navigationController?.navigationBar.tintColor = .white
+        
+        self.navigationItem.title = "詳細"
+
+        
+        // Rocket Name
+        labelRocketName.text? = name ?? ""
+        
+        // Launch Date
+        let formatterLaunchDate = DateFormatter()
+        formatterLaunchDate.locale = Locale(identifier: "ja_JP")
+        formatterLaunchDate.dateStyle = .full
+        formatterLaunchDate.timeStyle = .none
+        labelLaunchDate.text? = "\(formatterLaunchDate.string(from: launchDate))"
+        
+        // Launch Time
+        let formatterLaunchTime = DateFormatter()
+        formatterLaunchTime.locale = Locale(identifier: "ja_JP")
+        formatterLaunchTime.dateStyle = .none
+        formatterLaunchTime.timeStyle = .medium
+        labelLaunchTime.text? = "\(formatterLaunchTime.string(from: launchDate))"
+        
         //打ち上げ画面から渡ってきた通知スイッチのboolを判定して
         //スイッチの状態を設定する。
         if (notifySwitch){
@@ -65,13 +96,10 @@ class DetailRocketViewController : UIViewController {
     
     @IBAction func videoLink(_ sender: Any) {
         
-        UIApplication.shared.open(URL(string: self.videoURL)! as URL,
-                                  options: [:],
-                                  completionHandler: nil)
-        
+//        UIApplication.shared.open(URL(string: self.videoURL)! as URL,options: [:],completionHandler: nil)
+        UIApplication.shared.open(URL(string: self.videoURL?[0] ?? "")! as URL,options: [:],completionHandler: nil)
         
     }
-    
     
 }
 

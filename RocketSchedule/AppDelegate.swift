@@ -32,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Realm Migration
         let config = Realm.Configuration(
             
-            schemaVersion: 4,
+            schemaVersion: 5,
             
             
             migrationBlock: { migration, oldSchemaVersion in

@@ -15,4 +15,5 @@ class FavoriteObject: Object {
     @objc dynamic var windowStart = ""
     @objc dynamic var windowEnd = ""
     @objc dynamic var videoURL = ""
+    @objc dynamic var addedDate = ""
 }

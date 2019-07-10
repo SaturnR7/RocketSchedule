@@ -54,27 +54,48 @@ class ListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView,
                             cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        print("tableView cellForRowAt start")
+        print("ListViewController - tableView cellForRowAt start")
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! CustomTableViewCell
         
         let formatterString = DateFormatter()
+        
+        
+//        var testDate = viewRocketPlanData[indexPath.row].launchDate
+//        testDate.
+        
+        
         //TimeZoneはUTCにしなければならない。
         //理由は、UTCに指定していないと、DateFormatter.date関数はcurrentのゾーンで
         //日付を返してしまうため。
-        formatterString.timeZone = TimeZone(identifier: "UTC")
-        formatterString.dateFormat = "yyyy-MM-dd HH:mm:ss"
+//        formatterString.timeZone = TimeZone(identifier: "UTC")
+//        formatterString.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        formatterString.dateFormat = "yyyy/MM/dd (EEE)"
         formatterString.locale = Locale(identifier: "ja_JP")
-        formatterString.dateStyle = .full
-        formatterString.timeStyle = .medium
+//        formatterString.dateStyle = .full
+//        formatterString.timeStyle = .none
+        
+        print("ListViewController - tableview - launchDate: \(viewRocketPlanData[indexPath.row].launchDate)")
+
+        cell.labelLaunchDate?.numberOfLines = 0
+        cell.labelLaunchDate?.text = "\(formatterString.string(from: viewRocketPlanData[indexPath.row].launchDate))"
+        
+        
+        // Launch Time
+        let formatterLaunchTime = DateFormatter()
+//        formatterString.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        formatterLaunchTime.locale = Locale(identifier: "ja_JP")
+        formatterLaunchTime.dateStyle = .none
+        formatterLaunchTime.timeStyle = .medium
 
         cell.labelLaunchTime?.numberOfLines = 0
-        cell.labelLaunchTime?.text = "\(formatterString.string(from: viewRocketPlanData[indexPath.row].launchDate))"
+        cell.labelLaunchTime?.text = "\(formatterLaunchTime.string(from: viewRocketPlanData[indexPath.row].launchDate))"
         
+
         cell.labelRocketName?.numberOfLines = 0
         cell.labelRocketName?.text = "\(self.viewRocketPlanData[indexPath.row].rocketName)"
         
-        print("tableView cellForRowAt end")
+        print("ListViewController - tableView cellForRowAt end")
 
         return cell
     }
@@ -84,7 +105,11 @@ class ListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        print("viewDidLoad start")
+        print("ListViewController - viewDidLoad start")
+        
+        // cell borderline size
+        tableView.separatorInset =
+            UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20);
 
         // NotificationCenterに登録する
         // Notificationのcatch関数は別に宣言
@@ -93,7 +118,7 @@ class ListViewController: UITableViewController {
         notificationCenter.addObserver(self, selector: #selector(catchNotificationRocketRemove(notification:)), name: .myNotificationRocketRemove, object: nil)
         
 
-        print("viewDidLoad start")
+        print("ListViewController - viewDidLoad start")
 
         launchJsonDownload()
         
@@ -104,19 +129,19 @@ class ListViewController: UITableViewController {
         
 //        self.tableView.reloadData()
         
-        print("viewDidLoad end")
+        print("ListViewController - viewDidLoad end")
     }
     
     
     //リフレッシュ処理
     @objc func refresh(sender: UIRefreshControl) {
-        print("In refresh Start")
+        print("ListViewController - In refresh Start")
         //Json再取得
         launchJsonDownload()
         
         sender.endRefreshing()
         
-        print("In refresh End")
+        print("ListViewController - In refresh End")
     }
     
     //RealmTest
@@ -126,11 +151,11 @@ class ListViewController: UITableViewController {
     override func viewDidAppear(_ animated: Bool){
         super.viewDidAppear(animated)
 
-        print("viewDidAppear start")
+        print("ListViewController - viewDidAppear start")
 
-        print("==jsonLaunches==\(notificationDate)")
+        print("ListViewController - ==jsonLaunches==\(notificationDate)")
         
-        print("forNotificationId - \(forNotificationId)")
+        print("ListViewController - forNotificationId - \(forNotificationId)")
 //
 //        if forNotificationId != nil{
 //            notificationRocket()
@@ -145,19 +170,20 @@ class ListViewController: UITableViewController {
 //        print("testRealm : \(testRealm.filter("detail CONTAINS 'Test'"))")
 
 
-        print("viewDidAppear end")
+        print("ListViewController - viewDidAppear end")
 
     }
 
 
     func launchJsonDownload(){
         
-        print("launchJsonDownload start")
+        print("ListViewController - launchJsonDownload start")
         
         if let url = URL(
             string: "https://launchlibrary.net/1.4/launch?next=999999"){
             
             print("launchJsonDownload start inside URL")
+            print("launchJsonDownload - URL: https://launchlibrary.net/1.4/launch?next=999999")
 
             let task = URLSession.shared.dataTask(with: url, completionHandler: {(data, response, error) in
                 if let data = data, let response = response {
@@ -189,7 +215,7 @@ class ListViewController: UITableViewController {
                         formatterString.timeZone = TimeZone(identifier: "UTC")
                         formatterString.dateFormat = "yyyy-MM-dd HH:mm:ss"
                         let jsonDate = launch.windowstart
-                        print ("jsonDate:\(jsonDate)")
+//                        print ("jsonDate:\(jsonDate)")
                         
                         if let dateString = formatterString.date(from: jsonDate){
                             print("dateString:\(String(describing: dateString))")
@@ -242,13 +268,13 @@ class ListViewController: UITableViewController {
 
             }
 
-        print("launchJsonDownload end")
+        print("ListViewController - launchJsonDownload end")
     }
     
     //ロケット情報のローカル通知を登録する
     func notificationRocketAdd(){
         
-        print("In notificationRocket Start")
+        print("ListViewController - notificationRocket Start")
 
         print("forNotificationId In notificationRocket() - \(forNotificationId)")
 
@@ -295,8 +321,6 @@ class ListViewController: UITableViewController {
         
         print("Notification - notificationIdData : \(self.notificationIdData)")
         
-        print("In notificationRocket End")
-        
         // 通知情報のstructをUserDefaultsへ保存
         let notifyRocketIndivisualInfomation =
             self.notificationDate.filter({$0.id == forNotificationId})
@@ -315,12 +339,13 @@ class ListViewController: UITableViewController {
             }
         }
         
+        print("ListViewController - notificationRocket End")
     }
     
     //ロケット情報の通知情報を削除する
     func notificationRocketRemove() throws{
 
-        print("In notificationRocketRemove Start")
+        print("ListViewController - In notificationRocketRemove Start")
 
         // Fetal Error Logic
 //        var notifyRocketInfomation =
@@ -357,7 +382,7 @@ class ListViewController: UITableViewController {
         defaultsForRocketNotification.removeObject(
             forKey: "RokcetNotify+\(forNotificationId ?? 0)")
         
-        print("In notificationRocketRemove End")
+        print("ListViewController - In notificationRocketRemove End")
 
     }
     
@@ -371,7 +396,12 @@ class ListViewController: UITableViewController {
             controller.title = "Detail"
             controller.id = launch.id
             controller.name = launch.name
-            controller.videoURL = launch.vidURLs?[0]
+            // 詳細画面にDate型の日付を渡す
+            // 詳細画面での日付・時刻分け表示に都合がよいため
+            controller.launchDate = viewRocketPlanData[indexPath.row].launchDate
+//            controller.videoURL = launch.vidURLs?[0]
+            controller.videoURL = launch.vidURLs
+
              
             forNotificationId = launch.id
             print("ListViewController - prepare : \(forNotificationId)")
@@ -392,19 +422,19 @@ class ListViewController: UITableViewController {
     
     //ロケット情報の通知登録（Notificationを受け取り後）
     @objc func catchNotificationRocketAdd(notification: Notification) -> Void {
-        print("In catchNotificationRocketAdd Start")
+        print("ListViewController - In catchNotificationRocketAdd Start")
         
         print("catchNotificationRocketAdd - forNotificationId : \(forNotificationId)")
         
         //直近のロケットの打ち上げ予定を通知する
         self.notificationRocketAdd()
 
-        print("In catchNotificationRocketAdd End")
+        print("ListViewController - In catchNotificationRocketAdd End")
     }
     
     //ロケット情報の通知削除（Notificationを受け取り後）
     @objc func catchNotificationRocketRemove(notification: Notification) -> Void {
-        print("In catchNotificationRocketRemove Start")
+        print("ListViewController - In catchNotificationRocketRemove Start")
         
         print("catchNotificationRocketRemove - forNotificationId : \(forNotificationId)")
         
@@ -415,7 +445,7 @@ class ListViewController: UITableViewController {
             
         }
         
-        print("In catchNotificationRocketRemove End")
+        print("ListViewController - In catchNotificationRocketRemove End")
     }
 
 }

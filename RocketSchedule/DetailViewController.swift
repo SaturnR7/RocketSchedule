@@ -31,7 +31,8 @@ class DetailViewController : UIViewController {
     var name: String = ""
     var windowStart: String = ""
     var windowEnd: String = ""
-    var videoURL: String!
+//    var videoURL: String!
+    var videoURL: [String]?
     var notifySwitch: Bool!
     
 //    var notificationCondition:Bool = false
@@ -46,9 +47,12 @@ class DetailViewController : UIViewController {
         super.viewDidLoad()
         
         print("DetailViewController - viewDidLoad Start")
+       
+        // ナビゲーションバーのアイテムの色　（戻る　＜　とか　読み込みゲージとか）
+        self.navigationController?.navigationBar.tintColor = .white
         
         detailRocketName.text = self.name
-        testDetailURL.text = self.videoURL
+        testDetailURL.text = self.videoURL?[0]
         
         // 画面起動時にロケットのIDがRealmに存在していれば、
         // stateにRocketAddedAsFavoriteクラスを入れる必要がある。
@@ -109,12 +113,26 @@ class DetailViewController : UIViewController {
         author.id = self.id
         author.rocketName = self.name
         if self.videoURL == nil{
-            self.videoURL = "Empty"
+//            self.videoURL = "Empty"
+            self.videoURL?[0] = "Empty"
         }
         author.windowStart = self.windowStart
         author.windowEnd = self.windowEnd
-        author.videoURL = self.videoURL
+//        author.videoURL = self.videoURL
+        author.videoURL = self.videoURL?[0] ?? ""
+
+        // AddTime set to author
+        let addedDate = Date()
+        let formatterString = DateFormatter()
+        formatterString.timeZone = TimeZone(identifier: "JST")
+        formatterString.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        formatterString.locale = Locale(identifier: "ja_JP")
+        formatterString.dateStyle = .full
+        formatterString.timeStyle = .medium
+        author.addedDate = formatterString.string(from: addedDate)
         
+        print("DetailViewController - addafavorite - author.addedDate: \(author.addedDate)")
+
         let realm = try! Realm()
         try! realm.write {
             realm.add(author)
@@ -166,10 +184,11 @@ class DetailViewController : UIViewController {
 
     @IBAction func videoLink(_ sender: Any) {
         
-        UIApplication.shared.open(URL(string: self.videoURL)! as URL,
-                                  options: [:],
-                                  completionHandler: nil)
-        
+//        UIApplication.shared.open(URL(string: self.videoURL)! as URL,
+//                                  options: [:],
+//                                  completionHandler: nil)
+        UIApplication.shared.open(URL(string: self.videoURL?[0] ?? "")! as URL,options: [:],completionHandler: nil)
+
         
     }
     
