@@ -59,6 +59,9 @@ class ResultListViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView,
                             cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        print("ResultListViewController - tableview - start")
+        
         //        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! CustomTableViewCell
         
@@ -69,6 +72,7 @@ class ResultListViewController: UITableViewController {
         
         // calendarを日付文字列だ使ってるcalendarに設定
         let formatterString = DateFormatter()
+        let formatterLaunchDate = DateFormatter()
         //        formatterString.calendar = Calendar(identifier: .gregorian)
         //        formatterString.timeZone = TimeZone.current
         //        formatterString.locale = Locale(identifier: "UTC")
@@ -78,6 +82,7 @@ class ResultListViewController: UITableViewController {
         //日付を返してしまうため。
         formatterString.timeZone = TimeZone(identifier: "UTC")
         formatterString.dateFormat = "yyyy-MM-dd HH:mm:ss"
+//         formatterString.dateFormat = "yyyy-MM-dd (EEE)"
         let jsonDate = self.jsonLaunches.launches[indexPath.row].windowstart
         print ("jsonDate:\(jsonDate)")
         
@@ -86,17 +91,25 @@ class ResultListViewController: UITableViewController {
             
             formatterString.locale = Locale(identifier: "ja_JP")
             //            formatterString.locale = Locale.current
-            formatterString.dateStyle = .full
-            formatterString.timeStyle = .medium
+//            formatterString.dateStyle = .full
+//            formatterString.timeStyle = .none
             
             //UTC + 9(Japan)
             let addedDate = Date(timeInterval: 60*60*9*1, since: dateString)
             print("addedDate:\(addedDate)")
             
             print("formatterString:\(formatterString.string(from: addedDate)))")
+
+            formatterString.dateFormat = "yyyy/MM/dd (EEE)"
             
             cell.labelLaunchDate?.numberOfLines = 0
             cell.labelLaunchDate?.text = "\(formatterString.string(from: addedDate))"
+            
+            // 日付用ラベルに日付を表示
+            formatterString.dateFormat = "HH:mm:ss"
+            cell.labelLaunchTime?.numberOfLines = 0
+            cell.labelLaunchTime?.text = "\(formatterString.string(from: addedDate))"
+
         }else{
             print("dateString is nil")
         }
@@ -106,7 +119,9 @@ class ResultListViewController: UITableViewController {
         //        cell.labelLaunchTime?.text = "\(self.jsonLaunches.launches[indexPath.row].windowstart)"
         cell.labelRocketName?.numberOfLines = 0
         cell.labelRocketName?.text = "\(self.jsonLaunches.launches[indexPath.row].name)"
-        
+
+        print("ResultListViewController - tableview - end")
+
         return cell
     }
     
@@ -115,6 +130,11 @@ class ResultListViewController: UITableViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        // cell borderline size
+        tableView.separatorInset =
+            UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20);
+        
         
     }
     

@@ -53,9 +53,10 @@ class DetailRocketViewController : UIViewController {
         
         print("DetailRocketViewController - viewDidLoad Start")
         
-        // ナビゲーションバーのアイテムの色　（戻る　＜　とか　読み込みゲージとか）
+        // ナビゲーションバーのアイテムの色　（戻る　＜）
         self.navigationController?.navigationBar.tintColor = .white
         
+        // ナビゲーションバーのタイトル
         self.navigationItem.title = "詳細"
 
         
@@ -64,6 +65,7 @@ class DetailRocketViewController : UIViewController {
         
         // Launch Date
         let formatterLaunchDate = DateFormatter()
+        formatterLaunchDate.timeZone = TimeZone(identifier: "UTC")
         formatterLaunchDate.locale = Locale(identifier: "ja_JP")
         formatterLaunchDate.dateStyle = .full
         formatterLaunchDate.timeStyle = .none
@@ -71,6 +73,7 @@ class DetailRocketViewController : UIViewController {
         
         // Launch Time
         let formatterLaunchTime = DateFormatter()
+        formatterLaunchTime.timeZone = TimeZone(identifier: "UTC")
         formatterLaunchTime.locale = Locale(identifier: "ja_JP")
         formatterLaunchTime.dateStyle = .none
         formatterLaunchTime.timeStyle = .medium

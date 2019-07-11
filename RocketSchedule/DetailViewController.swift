@@ -19,6 +19,10 @@ class DetailViewController : UIViewController {
     
     @IBOutlet weak var testDetailURL: UILabel!
     
+    @IBOutlet weak var labelLaunchDate: UILabel!
+    
+    @IBOutlet weak var labelLaunchTime: UILabel!
+    
     @IBOutlet weak var buttonFavorite: UIButton!
     
     

@@ -128,6 +128,10 @@ class FavoriteListView: UITableViewController {
         // comment reason: Launch Data get from Realm
 //        launchJsonDownload()
         
+        // cell borderline size
+        tableView.separatorInset =
+            UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20);
+
         // Read Realm Data
         launchDataLoad()
 

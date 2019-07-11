@@ -68,7 +68,7 @@ class ListViewController: UITableViewController {
         //TimeZoneはUTCにしなければならない。
         //理由は、UTCに指定していないと、DateFormatter.date関数はcurrentのゾーンで
         //日付を返してしまうため。
-//        formatterString.timeZone = TimeZone(identifier: "UTC")
+        formatterString.timeZone = TimeZone(identifier: "UTC")
 //        formatterString.dateFormat = "yyyy-MM-dd HH:mm:ss"
         formatterString.dateFormat = "yyyy/MM/dd (EEE)"
         formatterString.locale = Locale(identifier: "ja_JP")
@@ -84,6 +84,7 @@ class ListViewController: UITableViewController {
         // Launch Time
         let formatterLaunchTime = DateFormatter()
 //        formatterString.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        formatterLaunchTime.timeZone = TimeZone(identifier: "UTC")
         formatterLaunchTime.locale = Locale(identifier: "ja_JP")
         formatterLaunchTime.dateStyle = .none
         formatterLaunchTime.timeStyle = .medium
