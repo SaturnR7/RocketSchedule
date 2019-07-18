@@ -69,26 +69,19 @@ class ListViewController: UITableViewController {
         //理由は、UTCに指定していないと、DateFormatter.date関数はcurrentのゾーンで
         //日付を返してしまうため。
         formatterString.timeZone = TimeZone(identifier: "UTC")
-//        formatterString.dateFormat = "yyyy-MM-dd HH:mm:ss"
         formatterString.dateFormat = "yyyy/MM/dd (EEE)"
         formatterString.locale = Locale(identifier: "ja_JP")
-//        formatterString.dateStyle = .full
-//        formatterString.timeStyle = .none
-        
         print("ListViewController - tableview - launchDate: \(viewRocketPlanData[indexPath.row].launchDate)")
-
         cell.labelLaunchDate?.numberOfLines = 0
         cell.labelLaunchDate?.text = "\(formatterString.string(from: viewRocketPlanData[indexPath.row].launchDate))"
         
         
         // Launch Time
         let formatterLaunchTime = DateFormatter()
-//        formatterString.dateFormat = "yyyy-MM-dd HH:mm:ss"
         formatterLaunchTime.timeZone = TimeZone(identifier: "UTC")
         formatterLaunchTime.locale = Locale(identifier: "ja_JP")
         formatterLaunchTime.dateStyle = .none
         formatterLaunchTime.timeStyle = .medium
-
         cell.labelLaunchTime?.numberOfLines = 0
         cell.labelLaunchTime?.text = "\(formatterLaunchTime.string(from: viewRocketPlanData[indexPath.row].launchDate))"
         

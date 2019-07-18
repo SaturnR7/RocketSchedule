@@ -33,6 +33,7 @@ class DetailViewController : UIViewController {
     
     var id: Int = 0
     var name: String = ""
+    var launchDate: Date!
     var windowStart: String = ""
     var windowEnd: String = ""
 //    var videoURL: String!
@@ -56,6 +57,25 @@ class DetailViewController : UIViewController {
         self.navigationController?.navigationBar.tintColor = .white
         
         detailRocketName.text = self.name
+        
+        
+        // Launch Date
+        let formatterLaunchDate = DateFormatter()
+        formatterLaunchDate.timeZone = TimeZone(identifier: "UTC")
+        formatterLaunchDate.locale = Locale(identifier: "ja_JP")
+        formatterLaunchDate.dateStyle = .full
+        formatterLaunchDate.timeStyle = .none
+        labelLaunchDate.text? = "\(formatterLaunchDate.string(from: self.launchDate))"
+//        labelLaunchDate.text = self.windowStart
+
+        // Launch Time
+        let formatterLaunchTime = DateFormatter()
+        formatterLaunchTime.timeZone = TimeZone(identifier: "UTC")
+        formatterLaunchTime.locale = Locale(identifier: "ja_JP")
+        formatterLaunchTime.dateStyle = .none
+        formatterLaunchTime.timeStyle = .medium
+        labelLaunchTime.text? = "\(formatterLaunchTime.string(from: self.launchDate))"
+        
         testDetailURL.text = self.videoURL?[0]
         
         // 画面起動時にロケットのIDがRealmに存在していれば、
@@ -66,10 +86,48 @@ class DetailViewController : UIViewController {
 
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        // 画面起動時にロケットのIDがRealmに存在していれば、
+        // stateにRocketAddedAsFavoriteクラスを入れる必要がある。
+//        checkExistFavorite()
+        
+        // ■■■以下の処理を実装する■■■
+        // 当画面に遷移した時、
+        // 当画面のロケット情報がお気に入り画面のお気に入り情報に
+        // 登録しているかRealmで存在チェックする
+        // 存在している場合：stateモードを削除モード（RocketAddedAsFavorite）にする
+        // 存在していない場合：stateモードを追加モード（RocketNotAddedAsFavorite）にする
+        if !isFavoriteDataExist(){
+            self.setState(state: RocketNotAddedAsFavorite())
+        }
+        
+    }
+    
     // Set to state
     func setState(state: RocketFavoriteState){
         self.state = state
     }
+    
+    // お気に入り情報に当画面のロケット情報が登録されているかチェック
+    func isFavoriteDataExist() -> Bool{
+        
+        print("FavoriteListView - IN - isFavoriteDataExist")
+
+        // Realm
+        let realm = try! Realm()
+        
+        let filterRealm = realm.objects(FavoriteObject.self).filter("id = \(self.id)")
+        
+        if filterRealm.count == 0{
+            print("FavoriteListView - OUT - isFavoriteDataExist - return: false")
+            return false
+        } else {
+            print("FavoriteListView - OUT - isFavoriteDataExist - return: true")
+            return true
+        }
+        
+    }
+
     
     // Check exist ID in UserDefaults
     func checkExistFavorite(){
@@ -114,20 +172,34 @@ class DetailViewController : UIViewController {
         // Raalm For Favorite
         let author = FavoriteObject()
         
+        // Date Formatter Declare
+        let formatterString = DateFormatter()
+
         author.id = self.id
         author.rocketName = self.name
         if self.videoURL == nil{
 //            self.videoURL = "Empty"
             self.videoURL?[0] = "Empty"
         }
+
+        // launchDate add to author as String because launchDate declaring Date type
+        formatterString.timeZone = TimeZone(identifier: "JST")
+        formatterString.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        formatterString.locale = Locale(identifier: "ja_JP")
+        formatterString.dateStyle = .full
+        formatterString.timeStyle = .medium
+        author.windowStart = formatterString.string(from: self.launchDate)
         author.windowStart = self.windowStart
+
         author.windowEnd = self.windowEnd
 //        author.videoURL = self.videoURL
         author.videoURL = self.videoURL?[0] ?? ""
 
+        print("DetailViewController - addafavorite - self.name: \(self.name)")
+        print("DetailViewController - addafavorite - self.windowStart: \(self.windowStart)")
+
         // AddTime set to author
         let addedDate = Date()
-        let formatterString = DateFormatter()
         formatterString.timeZone = TimeZone(identifier: "JST")
         formatterString.dateFormat = "yyyy-MM-dd HH:mm:ss"
         formatterString.locale = Locale(identifier: "ja_JP")
@@ -136,6 +208,8 @@ class DetailViewController : UIViewController {
         author.addedDate = formatterString.string(from: addedDate)
         
         print("DetailViewController - addafavorite - author.addedDate: \(author.addedDate)")
+        
+        author.launchDate = self.launchDate
 
         let realm = try! Realm()
         try! realm.write {

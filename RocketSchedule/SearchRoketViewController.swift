@@ -95,6 +95,8 @@ class SearchRoketViewController: UIViewController {
         datePicker.datePickerMode = .date
         datePicker.locale = Locale(identifier: "ja_JP")
         
+//        datePicker.date = dateStartLaunch.text
+        
         //日付用のPickerをテキストに割当
         dateStartLaunch.inputView = datePicker
         
@@ -163,9 +165,9 @@ class SearchRoketViewController: UIViewController {
         //format the date display in textfield
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "ja_JP")
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        //        dateFormatter.dateStyle = .medium
-        //        dateFormatter.timeStyle = .none
+        dateFormatter.dateFormat = "yyyy/MM/dd"
+//        dateFormatter.dateStyle = .medium
+//        dateFormatter.timeStyle = .none
         
         print("datePcker.date : \(datePicker.date)")
         
@@ -185,7 +187,7 @@ class SearchRoketViewController: UIViewController {
         //format the date display in textfield
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "ja_JP")
-        dateFormatter.dateFormat = "yyyy-MM-dd"
+        dateFormatter.dateFormat = "yyyy/MM/dd"
         //        dateFormatter.dateStyle = .medium
         //        dateFormatter.timeStyle = .none
         

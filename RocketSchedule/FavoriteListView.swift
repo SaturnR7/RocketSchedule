@@ -57,7 +57,7 @@ class FavoriteListView: UITableViewController {
             print("FavoriteListView - tableView - targetId: \(targetId)")
             
             // Call Data Delete Func
-            self.removeFavorite(id: targetId ?? 0)
+            self.removeFavorite(id: targetId)
             
             // Specify Cell Remove from Datasource
             self.arrayFavoriteLaunches.remove(at: indexPath.row)
@@ -108,9 +108,17 @@ class FavoriteListView: UITableViewController {
             print("addedDate:\(addedDate)")
             
             print("formatterString:\(formatterString.string(from: addedDate)))")
-            
+
+            // Launch Date For Display on Favorit View
+            formatterString.dateFormat = "yyyy/MM/dd (EEE)"
+            cell.labelLaunchDate?.numberOfLines = 0
+            cell.labelLaunchDate?.text = "\(formatterString.string(from: addedDate))"
+
+            // Launch Date For Display on Favorit View
+            formatterString.dateFormat = "HH:mm:ss"
             cell.labelLaunchTime?.numberOfLines = 0
             cell.labelLaunchTime?.text = "\(formatterString.string(from: addedDate))"
+            
         }else{
             print("dateString is nil")
         }
@@ -180,13 +188,16 @@ class FavoriteListView: UITableViewController {
         // RealmData input to Array Struct
         for data in getAllDataRealm{
             
+            print("FavoriteListView - launchDataLoad - for - data: \(data.windowStart)")
+            
             arrayFavoriteLaunches.append(
                 StructRealmFavoriteData(
                     id:             data.id,
                     rocketName:     data.rocketName,
                     windowsStart:   data.windowStart,
                     windowEnd:      data.windowEnd,
-                    videoURL:       data.videoURL
+                    videoURL:       data.videoURL,
+                    launchDate:     data.launchDate
                 )
             )
             
@@ -267,15 +278,19 @@ class FavoriteListView: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         
-//        if let indexPath = self.tableView.indexPathForSelectedRow {
-//            let launch = self.jsonLaunches.launches[indexPath.row]
-//            let controller = segue.destination as! DetailViewController
-//            controller.title = "Detail"
-//            controller.id = launch.id
-//            controller.name = launch.name
-//            controller.videoURL = launch.vidURLs?[0]
-//
-//        }
+        if let indexPath = self.tableView.indexPathForSelectedRow {
+            let launch = self.arrayFavoriteLaunches[indexPath.row]
+            let controller = segue.destination as! DetailViewController
+            controller.title = "Detail"
+            controller.id = launch.id
+            controller.name = launch.rocketName
+            controller.windowStart = launch.windowStart
+            controller.videoURL?[0] = launch.videoURL
+            // 詳細画面にDate型の日付を渡す
+            // 詳細画面での日付・時刻分け表示に都合がよいため
+            controller.launchDate = launch.launchDate
+
+        }
         
     }
     

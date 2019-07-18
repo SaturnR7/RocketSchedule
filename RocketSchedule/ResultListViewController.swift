@@ -16,6 +16,8 @@ class ResultListViewController: UITableViewController {
     var count: Int = 0
     var jsonLaunches: Launch!
     var isAgencySearch: Bool! = false
+    var addedDate:Date!
+
     
     // Usage of URL "https://launchlibrary.net/1.4/launch?startdate=1907-01-12&enddate=1969-09-20&limit=999999"
     let urlStringOf1: String = "https://launchlibrary.net/1.4/launch"
@@ -36,6 +38,10 @@ class ResultListViewController: UITableViewController {
     var searchStartLaunch: String?
     var searchEndLaunch: String?
     var searchAgency: String?
+    
+    //For Display on PlansView
+    var viewRocketPlanData = [StructViewPlans]()
+    
     
     @IBAction func searchRocket(_ sender: Any) {
         
@@ -65,55 +71,27 @@ class ResultListViewController: UITableViewController {
         //        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! CustomTableViewCell
         
-//        print("launches.name\(self.jsonLaunches.launches[indexPath.row].name)")
-        
-        //        cell.textLabel?.numberOfLines = 0
-        //        cell.textLabel?.text = "\(self.jsonLaunches.launches[indexPath.row].name)"
-        
-        // calendarを日付文字列だ使ってるcalendarに設定
-        let formatterString = DateFormatter()
-        let formatterLaunchDate = DateFormatter()
-        //        formatterString.calendar = Calendar(identifier: .gregorian)
-        //        formatterString.timeZone = TimeZone.current
-        //        formatterString.locale = Locale(identifier: "UTC")
-        //        formatterString.locale = Locale.current
         //TimeZoneはUTCにしなければならない。
         //理由は、UTCに指定していないと、DateFormatter.date関数はcurrentのゾーンで
         //日付を返してしまうため。
+        let formatterString = DateFormatter()
         formatterString.timeZone = TimeZone(identifier: "UTC")
-        formatterString.dateFormat = "yyyy-MM-dd HH:mm:ss"
-//         formatterString.dateFormat = "yyyy-MM-dd (EEE)"
-        let jsonDate = self.jsonLaunches.launches[indexPath.row].windowstart
-        print ("jsonDate:\(jsonDate)")
+        formatterString.dateFormat = "yyyy/MM/dd (EEE)"
+        formatterString.locale = Locale(identifier: "ja_JP")
+        print("ListViewController - tableview - launchDate: \(viewRocketPlanData[indexPath.row].launchDate)")
+        cell.labelLaunchDate?.numberOfLines = 0
+        cell.labelLaunchDate?.text = "\(formatterString.string(from: viewRocketPlanData[indexPath.row].launchDate))"
         
-        if let dateString = formatterString.date(from: jsonDate){
-            print("dateString:\(String(describing: dateString))")
-            
-            formatterString.locale = Locale(identifier: "ja_JP")
-            //            formatterString.locale = Locale.current
-//            formatterString.dateStyle = .full
-//            formatterString.timeStyle = .none
-            
-            //UTC + 9(Japan)
-            let addedDate = Date(timeInterval: 60*60*9*1, since: dateString)
-            print("addedDate:\(addedDate)")
-            
-            print("formatterString:\(formatterString.string(from: addedDate)))")
-
-            formatterString.dateFormat = "yyyy/MM/dd (EEE)"
-            
-            cell.labelLaunchDate?.numberOfLines = 0
-            cell.labelLaunchDate?.text = "\(formatterString.string(from: addedDate))"
-            
-            // 日付用ラベルに日付を表示
-            formatterString.dateFormat = "HH:mm:ss"
-            cell.labelLaunchTime?.numberOfLines = 0
-            cell.labelLaunchTime?.text = "\(formatterString.string(from: addedDate))"
-
-        }else{
-            print("dateString is nil")
-        }
         
+        // Launch Time
+        let formatterLaunchTime = DateFormatter()
+        formatterLaunchTime.timeZone = TimeZone(identifier: "UTC")
+        formatterLaunchTime.locale = Locale(identifier: "ja_JP")
+        formatterLaunchTime.dateStyle = .none
+        formatterLaunchTime.timeStyle = .medium
+        cell.labelLaunchTime?.numberOfLines = 0
+        cell.labelLaunchTime?.text = "\(formatterLaunchTime.string(from: viewRocketPlanData[indexPath.row].launchDate))"
+
         
         //        cell.labelLaunchTime?.numberOfLines = 0
         //        cell.labelLaunchTime?.text = "\(self.jsonLaunches.launches[indexPath.row].windowstart)"
@@ -260,25 +238,50 @@ class ResultListViewController: UITableViewController {
                         
                         self.jsonLaunches = json
                         
+                        // Initialize to Struct
+                        self.viewRocketPlanData = [StructViewPlans]()
+                        
                         for launch in json.launches {
-                            print("name:\(launch.name)")
+                            
+                            // calendarを日付文字列だ使ってるcalendarに設定
+                            let formatterString = DateFormatter()
+                            //TimeZoneはUTCにしなければならない。
+                            //理由は、UTCに指定していないと、DateFormatter.date関数はcurrentのゾーンで
+                            //日付を返してしまうため。
+                            formatterString.timeZone = TimeZone(identifier: "UTC")
+                            formatterString.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                            let jsonDate = launch.windowstart
+                            //                        print ("jsonDate:\(jsonDate)")
+                            
+                            if let dateString = formatterString.date(from: jsonDate){
+                                print("dateString:\(String(describing: dateString))")
+                                
+                                formatterString.locale = Locale(identifier: "ja_JP")
+                                formatterString.dateStyle = .full
+                                formatterString.timeStyle = .medium
+                                
+                                //UTC + 9(Japan) 表示用の日付（日本時間）をセットする
+                                self.addedDate = Date(timeInterval: 60*60*9*1, since: dateString)
+                                print("addedDate:\(String(describing: self.addedDate))")
+                                print("formatterString:\(formatterString.string(from: self.addedDate)))")
+
+                                //LaunchDate,RocketName added to struct for display on PlansView
+                                self.viewRocketPlanData.append(StructViewPlans(
+                                    launchData: self.addedDate,
+                                    rocketName: launch.name))
+                                print("name:\(launch.name)")
+                            }
                         }
                         
+                        DispatchQueue.main.async {
+                            self.tableView.reloadData()
+                        }
                     }
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
-                    }
-                    
-                } else {
-                    print(error ?? "Error")
                 }
             })
             
-            
             task.resume()
-            
         }
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
@@ -289,8 +292,13 @@ class ResultListViewController: UITableViewController {
             controller.title = "Detail"
             controller.id = launch.id
             controller.name = launch.name
-            controller.windowStart = launch.windowstart
+
+            // 詳細画面にDate型の日付を渡す
+            // 詳細画面での日付・時刻分け表示に都合がよいため
+            controller.launchDate = viewRocketPlanData[indexPath.row].launchDate
+//            controller.windowStart = launch.windowstart
             controller.windowEnd = launch.windowend
+            
 //            controller.videoURL = launch.vidURLs?[0]
             controller.videoURL = launch.vidURLs
 
