@@ -21,7 +21,7 @@ class ResultListViewController: UITableViewController {
     
     // Usage of URL "https://launchlibrary.net/1.4/launch?startdate=1907-01-12&enddate=1969-09-20&limit=999999"
     let urlStringOf1: String = "https://launchlibrary.net/1.4/launch"
-    let urlStringOf2: String = "?startdate="
+    let urlStringOf2: String = "&startdate="
     let urlStringOfDefaultStartDate: String = "1907-01-12"
     var urlStringOfSearchStartDate: String = "1907-01-12"
     let urlStringOf3: String = "&enddate="
@@ -30,7 +30,7 @@ class ResultListViewController: UITableViewController {
     let urlStringOfLimit: String = "&limit=999999"
     let urlStringOfAgency: String = "&agency="
     var urlStringOfAgencyValue: String!
-    let urlStringOfVerbose: String = "&mode=verbose"
+    let urlStringOfVerbose: String = "?mode=verbose"
     
     var url: String!
     
@@ -103,7 +103,12 @@ class ResultListViewController: UITableViewController {
         return cell
     }
     
-    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+//        let indexPath = IndexPath(row: 0, section: 0)
+//        self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+        
+    }
     
     override func viewDidLoad() {
         
@@ -118,6 +123,8 @@ class ResultListViewController: UITableViewController {
     
     override func viewDidAppear(_ animated: Bool){
         super.viewDidAppear(animated)
+        
+        print("ResultListViewController - viewDidAppear - Start")
         
         print("In viewDidAppear - searchAgency: \(searchAgency)")
         
@@ -159,11 +166,11 @@ class ResultListViewController: UITableViewController {
         // 検索画面において機関項目を選択した場合は、機関項目を付加したURLを発行する
         if isAgencySearch{
             
-            url = urlStringOf1 + urlStringOf2 + urlStringOfSearchStartDate + urlStringOf3 + urlStringOfSearchEndDate + urlStringOfAgency + urlStringOfAgencyValue + urlStringOfLimit
+            url = urlStringOf1 + urlStringOfVerbose + urlStringOf2 + urlStringOfSearchStartDate + urlStringOf3 + urlStringOfSearchEndDate + urlStringOfAgency + urlStringOfAgencyValue + urlStringOfLimit
             
         } else {
             
-            url = urlStringOf1 + urlStringOf2 + urlStringOfSearchStartDate + urlStringOf3 + urlStringOfSearchEndDate + urlStringOfLimit
+            url = urlStringOf1 + urlStringOfVerbose + urlStringOf2 + urlStringOfSearchStartDate + urlStringOf3 + urlStringOfSearchEndDate + urlStringOfLimit
         }
         
         print("ResultListViewController - viewDidAppear - RequestURL: \(url)")
@@ -192,22 +199,11 @@ class ResultListViewController: UITableViewController {
         print("localizedString:\(localizedString)")
         
         
-        //        // calendarを日付文字列だ使ってるcalendarに設定
-        //        let formatterString = DateFormatter()
-        //        // dateFormatをAPIのフォーマットに合わせて設定(rfc3339)
-        //        formatterString.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        //        // localeをen_US_POSIXに設定
-        //        formatterString.locale = Locale(identifier: "ja_JP")
-        //        formatterString.calendar = Calendar(identifier: .gregorian)
-        //        let dateString = formatterString.date(from: "2018-06-16 10:27:30")
-        //
-        //        if let test = dateString{
-        //            print("dateString:\(String(describing: test))")
-        //        }else{
-        //            print("dateString is nil")
-        //        }
-        
-        
+//        self.tableView.reloadData()
+//        let indexPath = IndexPath(row: 0, section: 0)
+//        self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+
+        print("ResultListViewController - viewDidAppear - End")
     }
     
     
@@ -237,7 +233,9 @@ class ResultListViewController: UITableViewController {
                         self.count = json.count
                         
                         self.jsonLaunches = json
-                        
+
+                        print("JSON Data: \(json)")
+
                         // Initialize to Struct
                         self.viewRocketPlanData = [StructViewPlans]()
                         
@@ -249,12 +247,13 @@ class ResultListViewController: UITableViewController {
                             //理由は、UTCに指定していないと、DateFormatter.date関数はcurrentのゾーンで
                             //日付を返してしまうため。
                             formatterString.timeZone = TimeZone(identifier: "UTC")
-                            formatterString.dateFormat = "yyyy-MM-dd HH:mm:ss"
+//                            formatterString.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                            formatterString.dateFormat = "MMMM dd, yyyy HH:mm:ss z"
                             let jsonDate = launch.windowstart
                             //                        print ("jsonDate:\(jsonDate)")
                             
                             if let dateString = formatterString.date(from: jsonDate){
-                                print("dateString:\(String(describing: dateString))")
+//                                print("dateString:\(String(describing: dateString))")
                                 
                                 formatterString.locale = Locale(identifier: "ja_JP")
                                 formatterString.dateStyle = .full
@@ -262,14 +261,14 @@ class ResultListViewController: UITableViewController {
                                 
                                 //UTC + 9(Japan) 表示用の日付（日本時間）をセットする
                                 self.addedDate = Date(timeInterval: 60*60*9*1, since: dateString)
-                                print("addedDate:\(String(describing: self.addedDate))")
-                                print("formatterString:\(formatterString.string(from: self.addedDate)))")
+//                                print("addedDate:\(String(describing: self.addedDate))")
+//                                print("formatterString:\(formatterString.string(from: self.addedDate)))")
 
                                 //LaunchDate,RocketName added to struct for display on PlansView
                                 self.viewRocketPlanData.append(StructViewPlans(
                                     launchData: self.addedDate,
                                     rocketName: launch.name))
-                                print("name:\(launch.name)")
+//                                print("name:\(launch.name)")
                             }
                         }
                         
@@ -292,6 +291,7 @@ class ResultListViewController: UITableViewController {
             controller.title = "Detail"
             controller.id = launch.id
             controller.name = launch.name
+            controller.rocketImageURL = launch.rocket.imageURL
 
             // 詳細画面にDate型の日付を渡す
             // 詳細画面での日付・時刻分け表示に都合がよいため
@@ -301,6 +301,9 @@ class ResultListViewController: UITableViewController {
             
 //            controller.videoURL = launch.vidURLs?[0]
             controller.videoURL = launch.vidURLs
+//            if let vidURLs = launch.vidURLs{
+//                controller.videoURL = vidURLs
+//            }
 
         }
         

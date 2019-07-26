@@ -18,6 +18,7 @@ class DetailRocketViewController : UIViewController {
     var launchDate: Date!
     var videoURL:[String]?
     var notifySwitch:Bool!
+    var rocketImageURL: String?
     
     let notificationCenter = NotificationCenter.default
     
@@ -46,6 +47,7 @@ class DetailRocketViewController : UIViewController {
         }
     }
     
+    @IBOutlet weak var imageRocket: UIImageView!
     
     
     override func viewDidLoad(){
@@ -82,20 +84,84 @@ class DetailRocketViewController : UIViewController {
         //打ち上げ画面から渡ってきた通知スイッチのboolを判定して
         //スイッチの状態を設定する。
         if (notifySwitch){
-            
             notifyOutletSwitch.isOn = true
-            
         }else{
-            
             notifyOutletSwitch.isOn = false
-            
         }
         
+        // ロケットの動画をアイコンにセットする処理
+        // vidURLs配列は動画URLが登録されている
+        // 動画URLが0件の場合は、動画アイコンを表示しない
+        if self.videoURL?.count != 0{
+            
+            let urlsCount = self.videoURL!.count
+            
+            // Title set to VideoButton
+            videoButtonSetTitle(videoCount: urlsCount)
+            
+            // VideoButton controll by URL's count
+            videoButtonControll(videoCount: urlsCount)
+            
+        }else{
+            planVideoLinkOutlet.setTitle("ビデオなし", for: .normal)
+            planVideoLinkOutlet.isEnabled = false
+            planVideoLinkOutlet2.isHidden = true
+            planVideoLinkOutlet3.isHidden = true
+        }
+
+        // Rocket Image Load
+        if let rocketImageURL = rocketImageURL{
+            loadImage(urlString: rocketImageURL)
+        }
+
         
         print("DetailRocketViewController - viewDidLoad End")
         
         
     }
+    
+    // Title set to VideoButton
+    func videoButtonSetTitle(videoCount: Int){
+        
+        for target in 1...videoCount {
+            switch target{
+            case 1: planVideoLinkOutlet.setTitle("📹", for: .normal)
+                
+            case 2: planVideoLinkOutlet.setTitle("📹", for: .normal)
+                    planVideoLinkOutlet2.setTitle("📹", for: .normal)
+                
+            case 3: planVideoLinkOutlet.setTitle("📹", for: .normal)
+                    planVideoLinkOutlet2.setTitle("📹", for: .normal)
+                    planVideoLinkOutlet3.setTitle("📹", for: .normal)
+                
+            default:
+                print("default")
+            }
+        }
+    }
+    
+    // Hidden set to VideoLink
+    func videoButtonControll(videoCount: Int){
+        
+        // videoCount -> 再生できる動画の本数
+        switch videoCount {
+        case 1: planVideoLinkOutlet.isHidden = false
+                planVideoLinkOutlet2.isHidden = true
+                planVideoLinkOutlet3.isHidden = true
+            
+        case 2: planVideoLinkOutlet.isHidden = false
+                planVideoLinkOutlet2.isHidden = false
+                planVideoLinkOutlet3.isHidden = true
+            
+        case 3: planVideoLinkOutlet.isHidden = false
+                planVideoLinkOutlet2.isHidden = false
+                planVideoLinkOutlet3.isHidden = false
+            
+        default:
+            print("switch default")
+        }
+    }
+    
     
     @IBAction func videoLink(_ sender: Any) {
         
@@ -103,6 +169,45 @@ class DetailRocketViewController : UIViewController {
         UIApplication.shared.open(URL(string: self.videoURL?[0] ?? "")! as URL,options: [:],completionHandler: nil)
         
     }
+    
+    func loadImage(urlString: String) {
+        
+        let url = URL(string: urlString)!
+        
+        URLSession.shared.dataTask(with: url) {(data, response, error) in
+            
+            if error != nil {
+                print(error!)
+                return
+            }
+            
+            DispatchQueue.main.async {
+                self.imageRocket.image = UIImage(data: data!)
+                print(response!)
+            }
+            
+            }.resume()
+        
+    }
+    
+    @IBAction func planVideoLink(_ sender: Any) {
+        UIApplication.shared.open(URL(string: self.videoURL?[0] ?? "")! as URL,options: [:],completionHandler: nil)
+    }
+    
+    @IBOutlet weak var planVideoLinkOutlet: UIButton!
+    
+    @IBAction func planVideoLink2(_ sender: Any) {
+        UIApplication.shared.open(URL(string: self.videoURL?[1] ?? "")! as URL,options: [:],completionHandler: nil)
+    }
+    
+    @IBOutlet weak var planVideoLinkOutlet2: UIButton!
+    
+    
+    @IBAction func planVideoLink3(_ sender: Any) {
+        UIApplication.shared.open(URL(string: self.videoURL?[2] ?? "")! as URL,options: [:],completionHandler: nil)
+    }
+    
+    @IBOutlet weak var planVideoLinkOutlet3: UIButton!
     
 }
 
@@ -115,3 +220,4 @@ extension Notification.Name {
 extension Notification.Name {
     static let myNotificationRocketRemove = Notification.Name("myNotificationRocketRemove")
 }
+

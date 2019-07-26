@@ -12,6 +12,19 @@ import RealmSwift
 
 class FavoriteListView: UITableViewController {
     
+    // 「今回は使用していないのでコメント化」リストに表示される○からマルチ選択した場合の処理
+    // 関連するプログラム：StateSelectFavorite.swift
+//    private var state: RocketFavoriteSelectState = FavoriteSelect()
+
+//    @IBAction func buttonSelect(_ sender: UIButton) {
+//
+//        // ボタンタップ時にお気に入りの登録、または未登録によって処理を変更する
+//        self.state.buttonTapped(favoriteListView: self)
+//
+//    }
+//    @IBOutlet weak var buttonSelectOutlet: UIButton!
+    
+    
     var count: Int = 0
     var jsonLaunches: Launch!
 //    var favoriteLaunches = StructRealmFavoriteData()
@@ -143,10 +156,6 @@ class FavoriteListView: UITableViewController {
         // Read Realm Data
         launchDataLoad()
 
-        //テーブルビューの pull-to-refresh
-//        refreshControl = UIRefreshControl()
-//        refreshControl?.addTarget(self, action: #selector(refresh(sender:)), for: .valueChanged)
-
     }
 
     //リフレッシュ処理
@@ -172,6 +181,37 @@ class FavoriteListView: UITableViewController {
         tableView.reloadData()
         
     }
+
+    // 「今回は使用していないのでコメント化」リストに表示される○からマルチ選択した場合の処理
+//    // Set to state
+//    func setState(state: RocketFavoriteSelectState){
+//        self.state = state
+//    }
+//
+//    func setToSelectMode(){
+//
+//        print("FavoriteListView - setToSelectMode - IN")
+//
+//        // multi
+////        tableView.isEditing = true
+//        setEditing(true, animated: true)
+//        tableView.allowsMultipleSelectionDuringEditing = true
+//
+//        print("FavoriteListView - setToSelectMode - OUT")
+//    }
+//
+//    func setToNormalMode(){
+//
+//        print("FavoriteListView - setToNormalMode - IN")
+//
+//        // multi
+////        tableView.isEditing = false
+//        setEditing(false, animated: true)
+//        tableView.allowsMultipleSelectionDuringEditing = false
+//
+//        print("FavoriteListView - setToNormalMode - OUT")
+//    }
+    
     
     func launchDataLoad(){
         
@@ -190,13 +230,18 @@ class FavoriteListView: UITableViewController {
             
             print("FavoriteListView - launchDataLoad - for - data: \(data.windowStart)")
             
+            var videoUrlArray: [String] = []
+            for videoUrlData in data.videoUrls{
+                videoUrlArray.append(videoUrlData.urlList)
+            }
+            
             arrayFavoriteLaunches.append(
                 StructRealmFavoriteData(
                     id:             data.id,
                     rocketName:     data.rocketName,
                     windowsStart:   data.windowStart,
                     windowEnd:      data.windowEnd,
-                    videoURL:       data.videoURL,
+                    videoURLs:      videoUrlArray,
                     launchDate:     data.launchDate
                 )
             )
@@ -285,7 +330,7 @@ class FavoriteListView: UITableViewController {
             controller.id = launch.id
             controller.name = launch.rocketName
             controller.windowStart = launch.windowStart
-            controller.videoURL?[0] = launch.videoURL
+            controller.videoURL = launch.videoURLs
             // 詳細画面にDate型の日付を渡す
             // 詳細画面での日付・時刻分け表示に都合がよいため
             controller.launchDate = launch.launchDate

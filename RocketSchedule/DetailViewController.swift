@@ -17,8 +17,6 @@ class DetailViewController : UIViewController {
     
     @IBOutlet weak var detailRocketName: UILabel!
     
-    @IBOutlet weak var testDetailURL: UILabel!
-    
     @IBOutlet weak var labelLaunchDate: UILabel!
     
     @IBOutlet weak var labelLaunchTime: UILabel!
@@ -27,8 +25,13 @@ class DetailViewController : UIViewController {
     
     
     @IBAction func buttonFavoriteTapped() {
+        // ボタンタップ時にお気に入りの登録、または未登録によって処理を変更する
         self.state.buttonFavoriteTapped(detailViewController: self)
     }
+    
+    @IBOutlet weak var imageRocket: UIImageView!
+    
+    @IBOutlet weak var labelLiveStream: UILabel!
     
     
     var id: Int = 0
@@ -47,6 +50,9 @@ class DetailViewController : UIViewController {
     // UserDefauls for Favorite
     // Comment. reason: Data using RealmDB
 //    public let defaultsForFavorite = UserDefaults.standard
+    
+    var rocketImageURL: String?
+
     
     override func viewDidLoad(){
         super.viewDidLoad()
@@ -76,14 +82,79 @@ class DetailViewController : UIViewController {
         formatterLaunchTime.timeStyle = .medium
         labelLaunchTime.text? = "\(formatterLaunchTime.string(from: self.launchDate))"
         
-        testDetailURL.text = self.videoURL?[0]
+        // ロケットの動画をアイコンにセットする処理
+        // vidURLs配列は動画URLが登録されている
+        // 動画URLが0件の場合は、動画アイコンを表示しない
+        if self.videoURL?.count != 0{
+            
+            let urlsCount = self.videoURL!.count
+            
+            // Title set to VideoButton
+            videoButtonSetTitle(videoCount: urlsCount)
+            
+            // VideoButton controll by URL's count
+            videoButtonControll(videoCount: urlsCount)
+            
+        }else{
+            videoLinkOutlet.setTitle("ビデオなし", for: .normal)
+            videoLinkOutlet.isEnabled = false
+            videoLinkOutlet2.isHidden = true
+            videoLinkOutlet3.isHidden = true
+        }
         
         // 画面起動時にロケットのIDがRealmに存在していれば、
         // stateにRocketAddedAsFavoriteクラスを入れる必要がある。
         checkExistFavorite()
         
+        // Get Rocket Image
+        if let rocketImageURL = rocketImageURL{
+            loadImage(urlString: rocketImageURL)
+        }
+
         print("DetailViewController - viewDidLoad End")
 
+    }
+    
+    // Title set to VideoButton
+    func videoButtonSetTitle(videoCount: Int){
+        
+        for target in 1...videoCount {
+            switch target{
+            case 1: videoLinkOutlet.setTitle("📹", for: .normal)
+                
+            case 2: videoLinkOutlet.setTitle("📹", for: .normal)
+                    videoLinkOutlet2.setTitle("📹", for: .normal)
+                
+            case 3: videoLinkOutlet.setTitle("📹", for: .normal)
+                    videoLinkOutlet2.setTitle("📹", for: .normal)
+                    videoLinkOutlet3.setTitle("📹", for: .normal)
+                
+            default:
+                print("default")
+            }
+        }
+    }
+    
+    // Hidden set to VideoLink
+    func videoButtonControll(videoCount: Int){
+        
+        // videoCount -> 再生できる動画の本数
+        switch videoCount {
+        case 1: videoLinkOutlet.isHidden = false
+                videoLinkOutlet2.isHidden = true
+                videoLinkOutlet3.isHidden = true
+
+        case 2: videoLinkOutlet.isHidden = false
+                videoLinkOutlet2.isHidden = false
+                videoLinkOutlet3.isHidden = true
+
+        case 3: videoLinkOutlet.isHidden = false
+                videoLinkOutlet2.isHidden = false
+                videoLinkOutlet3.isHidden = false
+            
+        default:
+            print("switch default")
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -192,8 +263,15 @@ class DetailViewController : UIViewController {
         author.windowStart = self.windowStart
 
         author.windowEnd = self.windowEnd
+
 //        author.videoURL = self.videoURL
-        author.videoURL = self.videoURL?[0] ?? ""
+//        author.videoURL = self.videoURL?[0] ?? ""
+        for data in self.videoURL!{
+            let videoUrlList = VideoUrlList()
+            videoUrlList.urlList = data
+            author.videoUrls.append(videoUrlList)
+        }
+        
 
         print("DetailViewController - addafavorite - self.name: \(self.name)")
         print("DetailViewController - addafavorite - self.windowStart: \(self.windowStart)")
@@ -261,14 +339,44 @@ class DetailViewController : UIViewController {
     }
 
     @IBAction func videoLink(_ sender: Any) {
-        
-//        UIApplication.shared.open(URL(string: self.videoURL)! as URL,
-//                                  options: [:],
-//                                  completionHandler: nil)
         UIApplication.shared.open(URL(string: self.videoURL?[0] ?? "")! as URL,options: [:],completionHandler: nil)
+    }
+    
+    @IBOutlet weak var videoLinkOutlet: UIButton!
+    
+    @IBAction func videoLink2(_ sender: Any) {
+        UIApplication.shared.open(URL(string: self.videoURL?[1] ?? "")! as URL,options: [:],completionHandler: nil)
 
+    }
+    
+    @IBOutlet weak var videoLinkOutlet2: UIButton!
+    
+    @IBAction func videoLink3(_ sender: Any) {
+        
+        UIApplication.shared.open(URL(string: self.videoURL?[2] ?? "")! as URL,options: [:],completionHandler: nil)
         
     }
     
+    @IBOutlet weak var videoLinkOutlet3: UIButton!
     
+    
+    func loadImage(urlString: String) {
+        
+        let url = URL(string: urlString)!
+        
+        URLSession.shared.dataTask(with: url) {(data, response, error) in
+            
+            if error != nil {
+                print(error!)
+                return
+            }
+            
+            DispatchQueue.main.async {
+                self.imageRocket.image = UIImage(data: data!)
+                print(response!)
+            }
+            
+            }.resume()
+        
+    }
 }

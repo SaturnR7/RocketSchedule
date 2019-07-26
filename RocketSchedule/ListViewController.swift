@@ -13,16 +13,20 @@ import RealmSwift
 
 class ListViewController: UITableViewController {
     
-    var items = [Launch]()
-    var item:Launch?
+//    var items = [Launch]()
+//    var item:Launch?
     var count: Int = 0
     var jsonLaunches: Launch!
     var addedDate:Date!
     var utcDate:Date!
+    
     //For Rocket Launch Notification
     var notificationDate = [StructNotificationDate]()
+    
     //For Display on PlansView
     var viewRocketPlanData = [StructViewPlans]()
+    
+    // Grobal Rocket ID
     var forNotificationId: Int!
     
     //notification 受け取る側でのクラス宣言
@@ -31,14 +35,6 @@ class ListViewController: UITableViewController {
     // ローカル通知のの内容
     let content = UNMutableNotificationContent()
     
-    //For Notification ID
-    var notificationIdData = [StructNotificationId]()
-    
-    // UserDefaults
-    let encoderForUserdDefaults = JSONEncoder()
-    let defaultsForRocketNotification = UserDefaults.standard
-
-
 
     override func tableView(_ tableView: UITableView,
                             numberOfRowsInSection section: Int) -> Int {
@@ -147,9 +143,9 @@ class ListViewController: UITableViewController {
 
         print("ListViewController - viewDidAppear start")
 
-        print("ListViewController - ==jsonLaunches==\(notificationDate)")
-        
-        print("ListViewController - forNotificationId - \(forNotificationId)")
+//        print("ListViewController - ==jsonLaunches==\(notificationDate)")
+//
+//        print("ListViewController - forNotificationId - \(forNotificationId)")
 //
 //        if forNotificationId != nil{
 //            notificationRocket()
@@ -162,6 +158,8 @@ class ListViewController: UITableViewController {
 //        var testRealm = realm.objects(FavoriteObject.self)
 //        print("testRealm : \(testRealm)")
 //        print("testRealm : \(testRealm.filter("detail CONTAINS 'Test'"))")
+        
+        print("Jason Data: \(jsonLaunches)")
 
 
         print("ListViewController - viewDidAppear end")
@@ -172,9 +170,11 @@ class ListViewController: UITableViewController {
     func launchJsonDownload(){
         
         print("ListViewController - launchJsonDownload start")
-        
+
+        //             string: "https://launchlibrary.net/1.4/launch?next=999999"){
+
         if let url = URL(
-            string: "https://launchlibrary.net/1.4/launch?next=999999"){
+            string: "https://launchlibrary.net/1.4/launch?mode=verbose&next=100"){
             
             print("launchJsonDownload start inside URL")
             print("launchJsonDownload - URL: https://launchlibrary.net/1.4/launch?next=999999")
@@ -188,6 +188,7 @@ class ListViewController: UITableViewController {
                     
 //                    let testdata = String(data: data, encoding: .utf8)!
 //                    print("data:\(testdata)")
+//                    print("data: \(data)")
 
                     // JSON decode to Struct-Launch
                     let json = try! JSONDecoder().decode(Launch.self, from: data)
@@ -196,7 +197,7 @@ class ListViewController: UITableViewController {
                     
                     self.jsonLaunches = json
                     
-                    print("JSON Data: \(json)")
+//                    print("JSON Data: \(json)")
                     
                     for launch in json.launches {
 //                        print("name:\(launch.name)")
@@ -207,12 +208,13 @@ class ListViewController: UITableViewController {
                         //理由は、UTCに指定していないと、DateFormatter.date関数はcurrentのゾーンで
                         //日付を返してしまうため。
                         formatterString.timeZone = TimeZone(identifier: "UTC")
-                        formatterString.dateFormat = "yyyy-MM-dd HH:mm:ss"
+//                        formatterString.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                        formatterString.dateFormat = "MMMM dd, yyyy HH:mm:ss z"
                         let jsonDate = launch.windowstart
-//                        print ("jsonDate:\(jsonDate)")
+                        print ("jsonDate:\(jsonDate)")
                         
                         if let dateString = formatterString.date(from: jsonDate){
-                            print("dateString:\(String(describing: dateString))")
+//                            print("dateString:\(String(describing: dateString))")
                             
                             formatterString.locale = Locale(identifier: "ja_JP")
                             formatterString.dateStyle = .full
@@ -223,20 +225,20 @@ class ListViewController: UITableViewController {
 
                             //UTC + 9(Japan) 表示用の日付（日本時間）をセットする
                             self.addedDate = Date(timeInterval: 60*60*9*1, since: dateString)
-                            print("addedDate:\(String(describing: self.addedDate))")
-                            print("formatterString:\(formatterString.string(from: self.addedDate)))")
+//                            print("addedDate:\(String(describing: self.addedDate))")
+//                            print("formatterString:\(formatterString.string(from: self.addedDate)))")
                             
                             //ID,LaunchDate added to struct
                             self.notificationDate.append(StructNotificationDate(id: launch.id,
                                                                 launchData: self.utcDate,
                                                                 rocketName: launch.name))
-                            print("notificationDate - struct: \(self.notificationDate)")
+//                            print("notificationDate - struct: \(self.notificationDate)")
                             
                             //LaunchDate,RocketName added to struct for display on PlansView
                             self.viewRocketPlanData.append(StructViewPlans(
                                                         launchData: self.addedDate,
                                                         rocketName: launch.name))
-                            print("viewRocketPlanData - struct: \(self.viewRocketPlanData)")
+//                            print("viewRocketPlanData - struct: \(self.viewRocketPlanData)")
 
                         }else{
                             print("dateString is nil")
@@ -308,31 +310,18 @@ class ListViewController: UITableViewController {
             }
         }
         
-        // 登録IDをstructへ登録
-        self.notificationIdData.append(StructNotificationId(id: notifyRocketInfomation[0].id,
-                                                              notificationId: identifier
-                                                              ))
         
-        print("Notification - notificationIdData : \(self.notificationIdData)")
+        // Notify Data add to Realm
+        let author = RealmNotifyObject()
+        author.id = forNotificationId
+        author.notifyId = identifier
         
-        // 通知情報のstructをUserDefaultsへ保存
-        let notifyRocketIndivisualInfomation =
-            self.notificationDate.filter({$0.id == forNotificationId})
-        if let encoded = try? encoderForUserdDefaults.encode(notifyRocketIndivisualInfomation[0]) {
-            defaultsForRocketNotification.set(encoded, forKey: "RokcetNotify+\(forNotificationId ?? 0)")
+        let realm = try! Realm()
+        try! realm.write {
+            realm.add(author)
         }
         
-        print("Userdefaults - defaults : \(defaultsForRocketNotification)")
-        
-        // UserDefaultsから通知情報を取得
-        if let savedPerson = defaultsForRocketNotification.object(
-                forKey: "RokcetNotify+\(forNotificationId ?? 0)") as? Data {
-            let decoder = JSONDecoder()
-            if let loadedPerson = try? decoder.decode(StructNotificationDate.self, from: savedPerson) {
-                print("Userdefaults - RokcetNotify : \(loadedPerson.rocketName)")
-            }
-        }
-        
+
         print("ListViewController - notificationRocket End")
     }
     
@@ -341,48 +330,37 @@ class ListViewController: UITableViewController {
 
         print("ListViewController - In notificationRocketRemove Start")
 
-        // Fetal Error Logic
-//        var notifyRocketInfomation =
-//            self.notificationIdData.filter({$0.id == forNotificationId})
-//        print("notificationRemove - RocketName: \(notificationIdData[0].notificationId)")
-        
-        // UserDefaultsから通知情報を取得
-        var notifyRocketInfomation:String
         let center = UNUserNotificationCenter.current()
-
+        var notifyIdForDelete: Int = 0
+        // Realmクエリのためoptionalを外す
+        if let forNotificationId = forNotificationId{
+            notifyIdForDelete = forNotificationId
+        }
         
-        if let savedPerson = defaultsForRocketNotification.object(
-            forKey: "RokcetNotify+\(forNotificationId ?? 0)") as? Data {
-            let decoder = JSONDecoder()
-            if let loadedPerson = try? decoder.decode(StructNotificationId.self, from: savedPerson) {
-                print("Userdefaults - RokcetNotify : \(loadedPerson.notificationId)")
-                notifyRocketInfomation = loadedPerson.notificationId
+        print("notifyId : \(notifyIdForDelete)")
 
-                center.removeDeliveredNotifications(withIdentifiers: [notifyRocketInfomation])
-            }
+        // Notify Data remove from Realm
+        let realm = try! Realm()
+        let filterRealm = realm.objects(RealmNotifyObject.self).filter("id = \(notifyIdForDelete)")
+
+        print("notifyRocketInfomation : \(filterRealm[0].id)")
+        print("notifyRocketInfomation : \(filterRealm[0].notifyId)")
+
+        // Delete Notify
+        center.removePendingNotificationRequests(
+            withIdentifiers: [filterRealm[0].notifyId])
+
+        try! realm.write {
+            realm.delete(filterRealm)
         }
 
-        
-        
-        // 通知の削除
-        
-        // Fetal Error Logic
-//        let center = UNUserNotificationCenter.current()
-//        center.removeDeliveredNotifications(withIdentifiers: [notifyRocketInfomation[0].notificationId])
-//        let center = UNUserNotificationCenter.current()
-//        center.removeDeliveredNotifications(withIdentifiers: [notifyRocketInfomation])
-
-        // UserDefaultsから通知情報を取得
-        defaultsForRocketNotification.removeObject(
-            forKey: "RokcetNotify+\(forNotificationId ?? 0)")
-        
         print("ListViewController - In notificationRocketRemove End")
-
     }
-    
     
     //segueで詳細画面へ情報を渡す
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
+        
+        print("ListViewController - prepare - Start")
         
         if let indexPath = self.tableView.indexPathForSelectedRow {
             let launch = self.jsonLaunches.launches[indexPath.row]
@@ -395,15 +373,25 @@ class ListViewController: UITableViewController {
             controller.launchDate = viewRocketPlanData[indexPath.row].launchDate
 //            controller.videoURL = launch.vidURLs?[0]
             controller.videoURL = launch.vidURLs
+            
+            controller.rocketImageURL = launch.rocket.imageURL
 
              
             forNotificationId = launch.id
             print("ListViewController - prepare : \(forNotificationId)")
             
-            // Userdefaultsにロケット情報を登録してるか確認する
+            // ロケット情報を通知登録してるか確認する
             // 登録している場合は、詳細画面のUISwitchをオンにする情報を渡す
-            if (defaultsForRocketNotification.object(
-                    forKey: "RokcetNotify+\(forNotificationId ?? 0)") != nil){
+            var notifyIdForDelete: Int = 0
+            if let forNotificationId = forNotificationId{
+                notifyIdForDelete = forNotificationId
+            }
+            print("notifyId : \(notifyIdForDelete)")
+            // Notify Data remove from Realm
+            let realm = try! Realm()
+            let filterRealm = realm.objects(RealmNotifyObject.self).filter("id = \(notifyIdForDelete)")
+            // 通知データ取得件数が０件（登録していない）はスイッチをオフにする
+            if (filterRealm.count != 0){
                 controller.notifySwitch = true
             }else{
                 controller.notifySwitch = false
@@ -412,6 +400,7 @@ class ListViewController: UITableViewController {
             
         }
         
+        print("ListViewController - prepare - End")
     }
     
     //ロケット情報の通知登録（Notificationを受け取り後）

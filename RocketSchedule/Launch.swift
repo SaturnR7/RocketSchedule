@@ -25,39 +25,51 @@ struct Launch: Codable {
         var status: Int
         var tbddate: Int
         var tbdtime: Int
-        var vidURLs: [String]?
+        var vidURLs: [String]
         var probability: Int?
         var changed: String?
-        var lsp: String?
-        var location: [String]?
+//        var lsp: Int?
+//        var location: [String]?
+        var rocket: RocketContent
         
-        struct Location: Codable{
-
+//        struct Location: Codable{
+//
+//            var id: Int
+//            var name: String
+//            var description: String
+//            var type: String
+//            var wikiURL: String
+//            var typeName: String
+//            var agencies: [agencies]
+//            var payLoads: [String]
+//
+//            struct agencies: Codable{
+//
+//                var id: Int
+//                var name: String
+//                var abbrev: String
+//                var type: String
+//                var infoURL: String
+//                var wikiURL: String
+//                var changed: String
+//                var infoURLs: [String]
+//
+//            }
+//        }
+        
+        struct RocketContent: Codable{
             var id: Int
             var name: String
-            var description: String
-            var type: String
-            var wikiURL: String
-            var typeName: String
-            var agencies: [agencies]
-            var payLoads: [String]
-
-            struct agencies: Codable{
-                
-                var id: Int
-                var name: String
-                var abbrev: String
-                var type: String
-                var infoURL: String
-                var wikiURL: String
-                var changed: String
-                var infoURLs: [String]
-                
-            }
+//            var defaultPads: String
+//            var family: String
+            var wikiURL: String?
+            var infoURL: String?
+            var changed: String?
+            var infoURLs: [String]?
+            var imageURL: String?
+            var imageSizes: [Int]?
         }
     }
-    
-    
 }
 
 //extension TestLaunch: Decodable {

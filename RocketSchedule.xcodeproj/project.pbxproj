@@ -10,6 +10,8 @@
 		B60B3B1B2201C97000ADC711 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60B3B1A2201C97000ADC711 /* DetailViewController.swift */; };
 		B60B3B1F22045EDC00ADC711 /* CustomTableViewCellDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60B3B1E22045EDC00ADC711 /* CustomTableViewCellDetail.swift */; };
 		B6107ED322CDAA4D00932B1B /* StructRealmFavoriteData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6107ED222CDAA4D00932B1B /* StructRealmFavoriteData.swift */; };
+		B614F61522E5853F000F0AFC /* RealmNotifyObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B614F61422E5853F000F0AFC /* RealmNotifyObject.swift */; };
+		B614F61722E6BF03000F0AFC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B614F61622E6BF03000F0AFC /* QuartzCore.framework */; };
 		B61AE943226184E9001034CD /* StructNotificationDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61AE942226184E9001034CD /* StructNotificationDate.swift */; };
 		B621076B22708D2200CA76E8 /* StructViewPlans.swift in Sources */ = {isa = PBXBuildFile; fileRef = B621076A22708D2200CA76E8 /* StructViewPlans.swift */; };
 		B6427C4121EAD5B800999575 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6427C4021EAD5B800999575 /* AppDelegate.swift */; };
@@ -20,6 +22,7 @@
 		B6427C5921EDFA3E00999575 /* Launch.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6427C5821EDFA3E00999575 /* Launch.swift */; };
 		B6474C1D227C111900E811CD /* StructNotificationId.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6474C1C227C111900E811CD /* StructNotificationId.swift */; };
 		B6527D8321F874F300D40241 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6527D8221F874F300D40241 /* CustomTableViewCell.swift */; };
+		B65E043822E844B5007C8E3D /* AsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65E043722E844B5007C8E3D /* AsyncImageView.swift */; };
 		B6686E4C222E54C100B6CC75 /* SearchRoketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6686E4B222E54C100B6CC75 /* SearchRoketViewController.swift */; };
 		B6686E4E222F896100B6CC75 /* SearchLaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6686E4D222F896100B6CC75 /* SearchLaunch.swift */; };
 		B66E3DFE22BC99FE00B91A7A /* StructViewSearchAgency.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66E3DFD22BC99FE00B91A7A /* StructViewSearchAgency.swift */; };
@@ -27,6 +30,7 @@
 		B69B6AF122BB6A6F00C691BD /* StructAgency.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69B6AF022BB6A6F00C691BD /* StructAgency.swift */; };
 		B69B6AF322BC870600C691BD /* CustomSearchAgencyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69B6AF222BC870600C691BD /* CustomSearchAgencyCell.swift */; };
 		B6A66F7422A4F8D2003CDA1B /* DetailRocketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A66F7322A4F8D2003CDA1B /* DetailRocketViewController.swift */; };
+		B6B867BB22E43D30005C15D5 /* StateSelectFavorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B867BA22E43D2F005C15D5 /* StateSelectFavorite.swift */; };
 		B6B8C41022C5BF4300EFEB2F /* FavoriteListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B8C40F22C5BF4300EFEB2F /* FavoriteListView.swift */; };
 		B6C23E8922C4AB610041B9D8 /* StateNotFavorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C23E8822C4AB610041B9D8 /* StateNotFavorite.swift */; };
 		B6D8BC292229F61D000B590E /* ResultListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D8BC282229F61D000B590E /* ResultListViewController.swift */; };
@@ -55,6 +59,8 @@
 		B60B3B1A2201C97000ADC711 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		B60B3B1E22045EDC00ADC711 /* CustomTableViewCellDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCellDetail.swift; sourceTree = "<group>"; };
 		B6107ED222CDAA4D00932B1B /* StructRealmFavoriteData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructRealmFavoriteData.swift; sourceTree = "<group>"; };
+		B614F61422E5853F000F0AFC /* RealmNotifyObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmNotifyObject.swift; sourceTree = "<group>"; };
+		B614F61622E6BF03000F0AFC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		B61AE942226184E9001034CD /* StructNotificationDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructNotificationDate.swift; sourceTree = "<group>"; };
 		B621076A22708D2200CA76E8 /* StructViewPlans.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructViewPlans.swift; sourceTree = "<group>"; };
 		B6427C3D21EAD5B800999575 /* RocketSchedule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RocketSchedule.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -67,6 +73,7 @@
 		B6427C5821EDFA3E00999575 /* Launch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Launch.swift; sourceTree = "<group>"; };
 		B6474C1C227C111900E811CD /* StructNotificationId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructNotificationId.swift; sourceTree = "<group>"; };
 		B6527D8221F874F300D40241 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		B65E043722E844B5007C8E3D /* AsyncImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImageView.swift; sourceTree = "<group>"; };
 		B6686E4B222E54C100B6CC75 /* SearchRoketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRoketViewController.swift; sourceTree = "<group>"; };
 		B6686E4D222F896100B6CC75 /* SearchLaunch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLaunch.swift; sourceTree = "<group>"; };
 		B66E3DFD22BC99FE00B91A7A /* StructViewSearchAgency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructViewSearchAgency.swift; sourceTree = "<group>"; };
@@ -74,6 +81,7 @@
 		B69B6AF022BB6A6F00C691BD /* StructAgency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructAgency.swift; sourceTree = "<group>"; };
 		B69B6AF222BC870600C691BD /* CustomSearchAgencyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchAgencyCell.swift; sourceTree = "<group>"; };
 		B6A66F7322A4F8D2003CDA1B /* DetailRocketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRocketViewController.swift; sourceTree = "<group>"; };
+		B6B867BA22E43D2F005C15D5 /* StateSelectFavorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateSelectFavorite.swift; sourceTree = "<group>"; };
 		B6B8C40F22C5BF4300EFEB2F /* FavoriteListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteListView.swift; sourceTree = "<group>"; };
 		B6C23E8822C4AB610041B9D8 /* StateNotFavorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateNotFavorite.swift; sourceTree = "<group>"; };
 		B6D8BC282229F61D000B590E /* ResultListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultListViewController.swift; sourceTree = "<group>"; };
@@ -87,6 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B614F61722E6BF03000F0AFC /* QuartzCore.framework in Frameworks */,
 				B6D9446D22C5EFAB00B4B968 /* RealmSwift.framework in Frameworks */,
 				B6D9446B22C5EFA400B4B968 /* Realm.framework in Frameworks */,
 				CC771E829FC0C52BF160E277 /* Pods_RocketSchedule.framework in Frameworks */,
@@ -131,10 +140,13 @@
 				B6A66F7322A4F8D2003CDA1B /* DetailRocketViewController.swift */,
 				B6D8BC282229F61D000B590E /* ResultListViewController.swift */,
 				B60B3B1A2201C97000ADC711 /* DetailViewController.swift */,
+				B65E043722E844B5007C8E3D /* AsyncImageView.swift */,
 				B6686E4B222E54C100B6CC75 /* SearchRoketViewController.swift */,
 				B69B6AEE22BB61F500C691BD /* SearchAgencyViewController.swift */,
 				B6B8C40F22C5BF4300EFEB2F /* FavoriteListView.swift */,
 				B6D9446822C5EEF800B4B968 /* FavoriteObject.swift */,
+				B614F61422E5853F000F0AFC /* RealmNotifyObject.swift */,
+				B6B867BA22E43D2F005C15D5 /* StateSelectFavorite.swift */,
 				B6C23E8822C4AB610041B9D8 /* StateNotFavorite.swift */,
 				B6427C5821EDFA3E00999575 /* Launch.swift */,
 				B6686E4D222F896100B6CC75 /* SearchLaunch.swift */,
@@ -158,6 +170,7 @@
 		BBA7955D2F1F70A4E36E773A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B614F61622E6BF03000F0AFC /* QuartzCore.framework */,
 				B6D9446C22C5EFAB00B4B968 /* RealmSwift.framework */,
 				B6D9446A22C5EFA400B4B968 /* Realm.framework */,
 				5E504C709F181CBCABF35098 /* Pods_RocketSchedule.framework */,
@@ -288,8 +301,11 @@
 				B69B6AEF22BB61F500C691BD /* SearchAgencyViewController.swift in Sources */,
 				B60B3B1B2201C97000ADC711 /* DetailViewController.swift in Sources */,
 				B60B3B1F22045EDC00ADC711 /* CustomTableViewCellDetail.swift in Sources */,
+				B6B867BB22E43D30005C15D5 /* StateSelectFavorite.swift in Sources */,
+				B614F61522E5853F000F0AFC /* RealmNotifyObject.swift in Sources */,
 				B6686E4C222E54C100B6CC75 /* SearchRoketViewController.swift in Sources */,
 				B61AE943226184E9001034CD /* StructNotificationDate.swift in Sources */,
+				B65E043822E844B5007C8E3D /* AsyncImageView.swift in Sources */,
 				B6686E4E222F896100B6CC75 /* SearchLaunch.swift in Sources */,
 				B6527D8321F874F300D40241 /* CustomTableViewCell.swift in Sources */,
 				B66E3DFE22BC99FE00B91A7A /* StructViewSearchAgency.swift in Sources */,

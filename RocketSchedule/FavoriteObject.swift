@@ -14,7 +14,13 @@ class FavoriteObject: Object {
     @objc dynamic var rocketName = ""
     @objc dynamic var windowStart = ""
     @objc dynamic var windowEnd = ""
-    @objc dynamic var videoURL = ""
+//    @objc dynamic var videoURL = ""
     @objc dynamic var addedDate = ""
     @objc dynamic var launchDate = Date()
+    
+    let videoUrls = List<VideoUrlList>()
+}
+
+class VideoUrlList: Object{
+    @objc dynamic var urlList = ""
 }
