@@ -35,6 +35,9 @@ class ListViewController: UITableViewController {
     // ローカル通知のの内容
     let content = UNMutableNotificationContent()
     
+    // UIViewが表示できるかテスト
+    var indicatorView: UIView!
+    
 
     override func tableView(_ tableView: UITableView,
                             numberOfRowsInSection section: Int) -> Int {
@@ -90,12 +93,37 @@ class ListViewController: UITableViewController {
         return cell
     }
     
+    // Indicator
+    var indicator = UIActivityIndicatorView()
     
-
+    func activityIndicator() {
+        indicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        // インジケーターアイコンの丸み表現
+        indicator.layer.cornerRadius = 8
+        indicator.style = UIActivityIndicatorView.Style.white
+//        indicator.center = self.indicatorView.center
+        indicator.center = CGPoint.init(x: self.indicatorView.bounds.width / 2, y: self.indicatorView.bounds.height / 3)
+        self.view.addSubview(indicator)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         print("ListViewController - viewDidLoad start")
+        
+        // インジケーター用のUIViewを表示
+        // init Boundsで全画面にviewを表示
+        indicatorView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height))
+//        let bgColor = UIColor.gray
+        let bgColor = UIColor.init(red: 38/255, green: 38/255, blue: 38/255, alpha: 1)
+        indicatorView.backgroundColor = bgColor
+        indicatorView.isUserInteractionEnabled = true
+        self.view.addSubview(indicatorView)
+        
+        // Indicator
+        activityIndicator()
+        indicator.startAnimating()
+        indicator.backgroundColor = UIColor.black
         
         // cell borderline size
         tableView.separatorInset =
@@ -109,19 +137,17 @@ class ListViewController: UITableViewController {
         
 
         print("ListViewController - viewDidLoad start")
-
+        
+        // Json Download
         launchJsonDownload()
         
-        
         //テーブルビューの pull-to-refresh
-        refreshControl = UIRefreshControl()
-        refreshControl?.addTarget(self, action: #selector(refresh(sender:)), for: .valueChanged)
-        
-//        self.tableView.reloadData()
+        // -> launchJsonDownload()のcompletionhandlerに移動
+//        refreshControl = UIRefreshControl()
+//        refreshControl?.addTarget(self, action: #selector(refresh(sender:)), for: .valueChanged)
         
         print("ListViewController - viewDidLoad end")
     }
-    
     
     //リフレッシュ処理
     @objc func refresh(sender: UIRefreshControl) {
@@ -134,15 +160,12 @@ class ListViewController: UITableViewController {
         print("ListViewController - In refresh End")
     }
     
-    //RealmTest
-//    private var realm: Realm!
-    
-    
     override func viewDidAppear(_ animated: Bool){
+        
         super.viewDidAppear(animated)
 
         print("ListViewController - viewDidAppear start")
-
+        
 //        print("ListViewController - ==jsonLaunches==\(notificationDate)")
 //
 //        print("ListViewController - forNotificationId - \(forNotificationId)")
@@ -151,22 +174,12 @@ class ListViewController: UITableViewController {
 //            notificationRocket()
 //        }
         
-        
-        // Realm Test
-//        let realm = try! Realm()
-//        // 文字列で検索条件を指定します
-//        var testRealm = realm.objects(FavoriteObject.self)
-//        print("testRealm : \(testRealm)")
-//        print("testRealm : \(testRealm.filter("detail CONTAINS 'Test'"))")
-        
         print("Jason Data: \(jsonLaunches)")
-
-
         print("ListViewController - viewDidAppear end")
 
     }
 
-
+    // Rocket LibraryからJsonデータをダウンロード
     func launchJsonDownload(){
         
         print("ListViewController - launchJsonDownload start")
@@ -197,7 +210,7 @@ class ListViewController: UITableViewController {
                     
                     self.jsonLaunches = json
                     
-//                    print("JSON Data: \(json)")
+                    print("JSON Data: \(json)")
                     
                     for launch in json.launches {
 //                        print("name:\(launch.name)")
@@ -246,8 +259,21 @@ class ListViewController: UITableViewController {
                     }
 
                     
+                    // 非同期処理完了後の処理（Jsonダウンロード完了後）
                     DispatchQueue.main.async {
+                        
+                        // テーブル情報のリロード
                         self.tableView.reloadData()
+                        
+                        // インジケーターアイコンを非表示
+                        self.indicator.stopAnimating()
+                        
+                        // インジケーター用のUIViewを非表示
+                        self.indicatorView.isHidden = true
+                        
+                        //テーブルビューの pull-to-refresh
+                        self.refreshControl = UIRefreshControl()
+                        self.refreshControl?.addTarget(self, action: #selector(self.refresh(sender:)), for: .valueChanged)
                     }
                     
 //                    //直近のロケットの打ち上げ予定を通知する
@@ -373,6 +399,19 @@ class ListViewController: UITableViewController {
             controller.launchDate = viewRocketPlanData[indexPath.row].launchDate
 //            controller.videoURL = launch.vidURLs?[0]
             controller.videoURL = launch.vidURLs
+            
+            
+            // Agency name send to DetailView
+            if launch.location.pads[0].agencies!.count != 0{
+                if let agency = launch.location.pads[0].agencies{
+                    print("ListViewController - prepare - agency : \(agency[0].abbrev)")
+                    controller.agency = agency[0].abbrev
+                }
+            }else{
+                controller.agency = "機関名なし"
+            }
+//            controller.agency = launch.agencies.abbrev
+            
             
             controller.rocketImageURL = launch.rocket.imageURL
 

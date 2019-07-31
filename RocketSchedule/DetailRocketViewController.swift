@@ -17,6 +17,7 @@ class DetailRocketViewController : UIViewController {
 //    var videoURL:String!
     var launchDate: Date!
     var videoURL:[String]?
+    var agency: String = ""
     var notifySwitch:Bool!
     var rocketImageURL: String?
     
@@ -47,8 +48,9 @@ class DetailRocketViewController : UIViewController {
         }
     }
     
-    @IBOutlet weak var imageRocket: UIImageView!
+    @IBOutlet weak var labelAgency: UILabel!
     
+    @IBOutlet weak var imageRocket: UIImageView!
     
     override func viewDidLoad(){
         super.viewDidLoad()
@@ -108,11 +110,20 @@ class DetailRocketViewController : UIViewController {
             planVideoLinkOutlet2.isHidden = true
             planVideoLinkOutlet3.isHidden = true
         }
+        
+        // Agency Name
+        // 機関名をラベル表示用にするため、Dictionaryから日本語表記名を取得する
+        let dicAgencies = DicAgencies()
+        let agency = dicAgencies.getAgencyOfJapanese(key: self.agency)
+        print("DetailRocketViewController - viewDidLoad - agency: \(agency)")
+        labelAgency.text = agency
 
         // Rocket Image Load
         if let rocketImageURL = rocketImageURL{
             loadImage(urlString: rocketImageURL)
         }
+        //        let asyncImageView = AsyncImageView()
+        //        imageRocket.image = asyncImageView.loadImage(urlString: rocketImageURL ?? "")
 
         
         print("DetailRocketViewController - viewDidLoad End")

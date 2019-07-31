@@ -24,6 +24,10 @@ class FavoriteListView: UITableViewController {
 //    }
 //    @IBOutlet weak var buttonSelectOutlet: UIButton!
     
+    // Self Class Name
+    var className: String {
+        return String(describing: type(of: self)) // ClassName
+    }
     
     var count: Int = 0
     var jsonLaunches: Launch!
@@ -94,51 +98,87 @@ class FavoriteListView: UITableViewController {
     
     override func tableView(_ tableView: UITableView,
                             cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! CustomTableViewCell
+//
+//        // Launch Date add Local Date
+//        let formatterString = DateFormatter()
+//        //TimeZoneはUTCにしなければならない。
+//        //理由は、UTCに指定していないと、
+//        //DateFormatter.date関数はcurrentのゾーンで
+//        //日付を返してしまうため。
+//        formatterString.timeZone = TimeZone(identifier: "UTC")
+//        formatterString.dateFormat = "yyyy-MM-dd HH:mm:ss"
+////        print ("FavoriteListView - tableView - arrayFavoriteLaunchesWindowStart:\(self.arrayFavoriteLaunches[indexPath.row].windowStart)")
+//        let jsonDate = self.arrayFavoriteLaunches[indexPath.row].windowStart
+//        print ("jsonDate:\(jsonDate)")
+//
+//        if let dateString = formatterString.date(from: jsonDate){
+//            print("dateString:\(String(describing: dateString))")
+//
+//            formatterString.locale = Locale(identifier: "ja_JP")
+//            //            formatterString.locale = Locale.current
+//            formatterString.dateStyle = .full
+//            formatterString.timeStyle = .medium
+//
+//            //UTC + 9(Japan)
+//            let addedDate = Date(timeInterval: 60*60*9*1, since: dateString)
+//            print("addedDate:\(addedDate)")
+//
+//            print("formatterString:\(formatterString.string(from: addedDate)))")
+//
+//            // Launch Date For Display on Favorit View
+//            formatterString.dateFormat = "yyyy/MM/dd (EEE)"
+//            cell.labelLaunchDate?.numberOfLines = 0
+//            cell.labelLaunchDate?.text = "\(formatterString.string(from: addedDate))"
+//
+//            // Launch Date For Display on Favorit View
+//            formatterString.dateFormat = "HH:mm:ss"
+//            cell.labelLaunchTime?.numberOfLines = 0
+//            cell.labelLaunchTime?.text = "\(formatterString.string(from: addedDate))"
+//
+//        }else{
+//            print("dateString is nil")
+//        }
+//
+//        cell.labelRocketName?.numberOfLines = 0
+//        cell.labelRocketName?.text = "\(self.arrayFavoriteLaunches[indexPath.row].rocketName)"
+        
+        
+        print("FavoriteListView - tableview - start")
+        
+        //        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! CustomTableViewCell
         
-        // Launch Date add Local Date
-        let formatterString = DateFormatter()
         //TimeZoneはUTCにしなければならない。
-        //理由は、UTCに指定していないと、
-        //DateFormatter.date関数はcurrentのゾーンで
+        //理由は、UTCに指定していないと、DateFormatter.date関数はcurrentのゾーンで
         //日付を返してしまうため。
+        let formatterString = DateFormatter()
         formatterString.timeZone = TimeZone(identifier: "UTC")
-        formatterString.dateFormat = "yyyy-MM-dd HH:mm:ss"
-//        print ("FavoriteListView - tableView - arrayFavoriteLaunchesWindowStart:\(self.arrayFavoriteLaunches[indexPath.row].windowStart)")
-        let jsonDate = self.arrayFavoriteLaunches[indexPath.row].windowStart
-        print ("jsonDate:\(jsonDate)")
+        formatterString.dateFormat = "yyyy/MM/dd (EEE)"
+        formatterString.locale = Locale(identifier: "ja_JP")
+        print("FavoriteListView - tableview - launchDate: \(arrayFavoriteLaunches[indexPath.row].launchDate)")
+        cell.labelLaunchDate?.numberOfLines = 0
+        cell.labelLaunchDate?.text = "\(formatterString.string(from: arrayFavoriteLaunches[indexPath.row].launchDate))"
         
-        if let dateString = formatterString.date(from: jsonDate){
-            print("dateString:\(String(describing: dateString))")
-            
-            formatterString.locale = Locale(identifier: "ja_JP")
-            //            formatterString.locale = Locale.current
-            formatterString.dateStyle = .full
-            formatterString.timeStyle = .medium
-            
-            //UTC + 9(Japan)
-            let addedDate = Date(timeInterval: 60*60*9*1, since: dateString)
-            print("addedDate:\(addedDate)")
-            
-            print("formatterString:\(formatterString.string(from: addedDate)))")
-
-            // Launch Date For Display on Favorit View
-            formatterString.dateFormat = "yyyy/MM/dd (EEE)"
-            cell.labelLaunchDate?.numberOfLines = 0
-            cell.labelLaunchDate?.text = "\(formatterString.string(from: addedDate))"
-
-            // Launch Date For Display on Favorit View
-            formatterString.dateFormat = "HH:mm:ss"
-            cell.labelLaunchTime?.numberOfLines = 0
-            cell.labelLaunchTime?.text = "\(formatterString.string(from: addedDate))"
-            
-        }else{
-            print("dateString is nil")
-        }
         
+        // Launch Time
+        let formatterLaunchTime = DateFormatter()
+        formatterLaunchTime.timeZone = TimeZone(identifier: "UTC")
+        formatterLaunchTime.locale = Locale(identifier: "ja_JP")
+        formatterLaunchTime.dateStyle = .none
+        formatterLaunchTime.timeStyle = .medium
+        cell.labelLaunchTime?.numberOfLines = 0
+        cell.labelLaunchTime?.text = "\(formatterLaunchTime.string(from: arrayFavoriteLaunches[indexPath.row].launchDate))"
+        
+        
+        //        cell.labelLaunchTime?.numberOfLines = 0
+        //        cell.labelLaunchTime?.text = "\(self.jsonLaunches.launches[indexPath.row].windowstart)"
         cell.labelRocketName?.numberOfLines = 0
-        cell.labelRocketName?.text = "\(self.arrayFavoriteLaunches[indexPath.row].rocketName)"
+        cell.labelRocketName?.text = "\(arrayFavoriteLaunches[indexPath.row].rocketName)"
         
+        print("FavoriteListView - tableview - end")
+        
+
         return cell
     }
     
@@ -242,7 +282,8 @@ class FavoriteListView: UITableViewController {
                     windowsStart:   data.windowStart,
                     windowEnd:      data.windowEnd,
                     videoURLs:      videoUrlArray,
-                    launchDate:     data.launchDate
+                    launchDate:     data.launchDate,
+                    agency:         data.agency
                 )
             )
             
@@ -331,14 +372,17 @@ class FavoriteListView: UITableViewController {
             controller.name = launch.rocketName
             controller.windowStart = launch.windowStart
             controller.videoURL = launch.videoURLs
+            controller.agency = launch.agency
             // 詳細画面にDate型の日付を渡す
             // 詳細画面での日付・時刻分け表示に都合がよいため
             controller.launchDate = launch.launchDate
+            
+            // 自身のクラス名を設定（遷移先のクラスがどのクラスから遷移されたクラスか判別するため
+            print("FavoriteListView - viewDidLoad - Classname: \(className)")
+            controller.previousClassName = className
 
         }
-        
     }
-    
 }
 
 

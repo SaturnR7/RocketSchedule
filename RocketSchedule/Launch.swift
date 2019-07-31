@@ -8,15 +8,15 @@
 
 import Foundation
 
+// Using URL: https://launchlibrary.net/1.4/launch?mode=verbose&next=100
+
 struct Launch: Codable {
-    
     var launches: [Content]
     var total: Int
     var offset: Int
     var count: Int
     
     struct Content: Codable {
-        
         var id: Int
         var name: String
         var windowstart: String
@@ -28,40 +28,35 @@ struct Launch: Codable {
         var vidURLs: [String]
         var probability: Int?
         var changed: String?
-//        var lsp: Int?
-//        var location: [String]?
+        var location: Location
         var rocket: RocketContent
         
-//        struct Location: Codable{
-//
-//            var id: Int
-//            var name: String
-//            var description: String
-//            var type: String
-//            var wikiURL: String
-//            var typeName: String
-//            var agencies: [agencies]
-//            var payLoads: [String]
-//
-//            struct agencies: Codable{
-//
-//                var id: Int
-//                var name: String
-//                var abbrev: String
-//                var type: String
-//                var infoURL: String
-//                var wikiURL: String
-//                var changed: String
-//                var infoURLs: [String]
-//
-//            }
-//        }
-        
+        struct Location: Codable{
+            var pads: [PadsContent]
+            var id: Int
+            var name: String
+            var wikiURL: String
+            
+            struct PadsContent: Codable{
+                var agencies: [AgenciesContent]?
+                
+                struct AgenciesContent: Codable{
+                    var id: Int
+                    var name: String
+                    var abbrev: String
+                    var type: Int
+                    var infoURL: String?
+                    var wikiURL: String?
+                    var changed: String?
+                    var infoURLs: [String]?
+                    
+                }
+            }
+        }
+
         struct RocketContent: Codable{
             var id: Int
             var name: String
-//            var defaultPads: String
-//            var family: String
             var wikiURL: String?
             var infoURL: String?
             var changed: String?
@@ -71,6 +66,8 @@ struct Launch: Codable {
         }
     }
 }
+
+
 
 //extension TestLaunch: Decodable {
 //

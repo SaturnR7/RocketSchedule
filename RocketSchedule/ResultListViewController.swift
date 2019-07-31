@@ -35,13 +35,15 @@ class ResultListViewController: UITableViewController {
     var url: String!
     
     //search of Rocket
-    var searchStartLaunch: String?
-    var searchEndLaunch: String?
-    var searchAgency: String?
+    var searchStartLaunch = ""
+    var searchEndLaunch = ""
+    var searchAgency = ""
     
     //For Display on PlansView
     var viewRocketPlanData = [StructViewPlans]()
     
+    // URL userdefaults
+    var searchURL = UserDefaults()
     
     @IBAction func searchRocket(_ sender: Any) {
         
@@ -127,39 +129,54 @@ class ResultListViewController: UITableViewController {
         print("ResultListViewController - viewDidAppear - Start")
         
         print("In viewDidAppear - searchAgency: \(searchAgency)")
+
+        print("searchStartLaunch: \(searchStartLaunch)")
+        print("searchEndLaunch: \(searchEndLaunch)")
+
+        
+        var isDefaultSearch = false
         
         //test
-        if let searchStartLaunch = searchStartLaunch{
-            if searchStartLaunch == "" {
-                print("searchStartLaunch : \(searchStartLaunch)")
-                urlStringOfSearchStartDate = urlStringOfDefaultStartDate
-            } else {
-                urlStringOfSearchStartDate = searchStartLaunch
-            }
-        }
-        if let searchEndLaunch = searchEndLaunch{
-            if searchEndLaunch == "" {
-                print("searchEndLaunch : \(searchEndLaunch)")
-                urlStringOfSearchEndDate = urlStringOfDefaultEndDate
-            } else {
-                urlStringOfSearchEndDate = searchEndLaunch
-            }
+        if searchStartLaunch == "" {
+            print("searchStartLaunch : \(searchStartLaunch)")
+            
+            // 初回起動時はtrueになる
+            isDefaultSearch = true
+            
+            urlStringOfSearchStartDate = urlStringOfDefaultStartDate
+        } else {
+            urlStringOfSearchStartDate = searchStartLaunch
         }
         
-        if let searchAgency = searchAgency{
-            
-            // 機関が選択された場合は、URLに機関項目を設定する
+        if searchEndLaunch == "" {
+            print("searchEndLaunch : \(searchEndLaunch)")
+            urlStringOfSearchEndDate = urlStringOfDefaultEndDate
+        } else {
+            urlStringOfSearchEndDate = searchEndLaunch
+        }
+        
+        // 機関が選択された場合は、URLに機関項目を設定する
+        //        if searchAgency != "すべて"{
+        //            urlStringOfAgencyValue = searchAgency
+        //            print("ResultListViewController - viewDidAppear - urlStringOfAgencyValue: \(urlStringOfAgencyValue)")
+        //
+        //            isAgencySearch = true
+        //
+        //        } else {
+        //
+        //            isAgencySearch = false
+        //        }
+        if searchAgency == ""{
+            isAgencySearch = false
+        }else{
             if searchAgency != "すべて"{
                 urlStringOfAgencyValue = searchAgency
                 print("ResultListViewController - viewDidAppear - urlStringOfAgencyValue: \(urlStringOfAgencyValue)")
                 
                 isAgencySearch = true
-                
-            } else {
-                
+            }else{
                 isAgencySearch = false
             }
-            
         }
         
         
@@ -173,30 +190,43 @@ class ResultListViewController: UITableViewController {
             url = urlStringOf1 + urlStringOfVerbose + urlStringOf2 + urlStringOfSearchStartDate + urlStringOf3 + urlStringOfSearchEndDate + urlStringOfLimit
         }
         
+        // 初回起動時に前回検索していた場合は、前回検索したURLを使用する
+        if isDefaultSearch{
+            if searchURL.string(forKey: "settingURL") != nil{
+                print("searchURL Userdefault: \(searchURL.string(forKey: "settingURL"))")
+                url = searchURL.string(forKey: "settingURL")
+            }
+        }
+        
+        
         print("ResultListViewController - viewDidAppear - RequestURL: \(url)")
         
+        // URLを保持
+        searchURL.set(url , forKey: "settingURL")
+        
+        // URL検索
         launchJsonDownload()
         
-        //タイムゾーン（地域）の取得
-        print("regioncode:\(TimeZone.current.localizedName(for: .standard, locale: .current) ?? "")")
-        print("Timezone:\(TimeZone.current)")
-        print("TimezoneAutoupdatingCurrent:\(TimeZone.autoupdatingCurrent)")
-        
-        //日付の加算テスト
-        let now = Date() // Dec 27, 2015, 8:24 PM
-        print("now:\(now)")
-        // 60秒*60分*24時間*7日 = 1週間後の日付
-        let date1 = Date(timeInterval: 60*60*9*1, since: now) // Jan 3, 2016, 8:24 PM
-        print("date1:\(date1)")
-        
-        
-        // styleを使う
-        let formatter = DateFormatter()
-        formatter.dateStyle = .medium
-        formatter.timeStyle = .medium
-        let localizedString = formatter.string(from: date1)
-        
-        print("localizedString:\(localizedString)")
+//        //タイムゾーン（地域）の取得
+//        print("regioncode:\(TimeZone.current.localizedName(for: .standard, locale: .current) ?? "")")
+//        print("Timezone:\(TimeZone.current)")
+//        print("TimezoneAutoupdatingCurrent:\(TimeZone.autoupdatingCurrent)")
+//
+//        //日付の加算テスト
+//        let now = Date() // Dec 27, 2015, 8:24 PM
+//        print("now:\(now)")
+//        // 60秒*60分*24時間*7日 = 1週間後の日付
+//        let date1 = Date(timeInterval: 60*60*9*1, since: now) // Jan 3, 2016, 8:24 PM
+//        print("date1:\(date1)")
+//
+//
+//        // styleを使う
+//        let formatter = DateFormatter()
+//        formatter.dateStyle = .medium
+//        formatter.timeStyle = .medium
+//        let localizedString = formatter.string(from: date1)
+//
+//        print("localizedString:\(localizedString)")
         
         
 //        self.tableView.reloadData()
@@ -234,7 +264,7 @@ class ResultListViewController: UITableViewController {
                         
                         self.jsonLaunches = json
 
-                        print("JSON Data: \(json)")
+//                        print("JSON Data: \(json)")
 
                         // Initialize to Struct
                         self.viewRocketPlanData = [StructViewPlans]()
@@ -296,14 +326,25 @@ class ResultListViewController: UITableViewController {
             // 詳細画面にDate型の日付を渡す
             // 詳細画面での日付・時刻分け表示に都合がよいため
             controller.launchDate = viewRocketPlanData[indexPath.row].launchDate
-//            controller.windowStart = launch.windowstart
+            //            controller.windowStart = launch.windowstart
             controller.windowEnd = launch.windowend
             
-//            controller.videoURL = launch.vidURLs?[0]
+            //            controller.videoURL = launch.vidURLs?[0]
             controller.videoURL = launch.vidURLs
 //            if let vidURLs = launch.vidURLs{
 //                controller.videoURL = vidURLs
 //            }
+
+            // Agency name send to DetailView
+            if launch.location.pads[0].agencies!.count != 0{
+                if let agency = launch.location.pads[0].agencies{
+                    print("ListViewController - prepare - agency : \(agency[0].abbrev)")
+                    controller.agency = agency[0].abbrev
+                }
+            }else{
+                controller.agency = "機関名なし"
+            }
+
 
         }
         

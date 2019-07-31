@@ -359,8 +359,8 @@ class SearchRoketViewController: UIViewController {
 
         let controller = segue.destination as! ResultListViewController
         // 遷移元に検索日付を渡すが、検索URLのパラメタ用に日付の"/"を"-"(ハイフン)に置換える
-        controller.searchStartLaunch = dateStartLaunch.text?.replacingOccurrences(of: "/", with: "-")
-        controller.searchEndLaunch = dateEndLaunch.text?.replacingOccurrences(of: "/", with: "-")
+        controller.searchStartLaunch = dateStartLaunch.text?.replacingOccurrences(of: "/", with: "-") ?? ""
+        controller.searchEndLaunch = dateEndLaunch.text?.replacingOccurrences(of: "/", with: "-") ?? ""
 
         // Agency DataPicker data
 //        if let bindingAgency = forTextField{
@@ -369,7 +369,7 @@ class SearchRoketViewController: UIViewController {
             print("SearchRoketViewController - prepare - forTextField: \(forTextField)")
             print("SearchRoketViewController - prepare - forSearchAgency: \(forSearchAgency)")
 
-            controller.searchAgency = forSearchAgency
+        controller.searchAgency = forSearchAgency ?? ""
 //        }
     }
 }

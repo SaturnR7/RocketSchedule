@@ -33,6 +33,7 @@ class DetailViewController : UIViewController {
     
     @IBOutlet weak var labelLiveStream: UILabel!
     
+    @IBOutlet weak var labelAgency: UILabel!
     
     var id: Int = 0
     var name: String = ""
@@ -42,7 +43,10 @@ class DetailViewController : UIViewController {
 //    var videoURL: String!
     var videoURL: [String]?
     var notifySwitch: Bool!
-    
+    var agency: String = ""
+// Class Name: 遷移元のクラス名
+    var previousClassName: String = ""
+
 //    var notificationCondition:Bool = false
     
     let notificationCenter = NotificationCenter.default
@@ -52,13 +56,14 @@ class DetailViewController : UIViewController {
 //    public let defaultsForFavorite = UserDefaults.standard
     
     var rocketImageURL: String?
+    
 
     
     override func viewDidLoad(){
         super.viewDidLoad()
         
         print("DetailViewController - viewDidLoad Start")
-       
+        
         // ナビゲーションバーのアイテムの色　（戻る　＜　とか　読み込みゲージとか）
         self.navigationController?.navigationBar.tintColor = .white
         
@@ -106,9 +111,29 @@ class DetailViewController : UIViewController {
         // stateにRocketAddedAsFavoriteクラスを入れる必要がある。
         checkExistFavorite()
         
+        
+        // 機関名をラベル表示用にするため、Dictionaryから日本語表記名を取得する
+        let dicAgencies = DicAgencies()
+        let agency = dicAgencies.getAgencyOfJapanese(key: self.agency)
+        print("DetailRocketViewController - viewDidLoad - agency: \(agency)")
+        labelAgency.text = agency
+
+        
         // Get Rocket Image
         if let rocketImageURL = rocketImageURL{
             loadImage(urlString: rocketImageURL)
+        }
+        
+        // お気に入りボタンの表示・非表示判定
+        // 遷移元の画面によりお気に入りボタンを制御する
+        // 表示する　：ResultListViewController
+        // 表示しない：FavoriteListView
+        let constantClassName = StructClassName()
+        switch previousClassName {
+        case constantClassName.className_02:
+            buttonFavorite.isHidden = true
+        default:
+            buttonFavorite.isHidden = false
         }
 
         print("DetailViewController - viewDidLoad End")
@@ -288,6 +313,13 @@ class DetailViewController : UIViewController {
         print("DetailViewController - addafavorite - author.addedDate: \(author.addedDate)")
         
         author.launchDate = self.launchDate
+        
+        // 機関名をラベル表示用にするため、Dictionaryから日本語表記名を取得して登録する
+        let dicAgencies = DicAgencies()
+        let agency = dicAgencies.getAgencyOfJapanese(key: self.agency)
+        print("DetailRocketViewController - viewDidLoad - agency: \(agency)")
+        author.agency = agency
+
 
         let realm = try! Realm()
         try! realm.write {
