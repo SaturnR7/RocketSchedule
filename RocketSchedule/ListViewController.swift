@@ -35,8 +35,11 @@ class ListViewController: UITableViewController {
     // ローカル通知のの内容
     let content = UNMutableNotificationContent()
     
-    // UIViewが表示できるかテスト
+    // インジケーター用のUIViewを宣言
     var indicatorView: UIView!
+    
+    // ロケット名日本語変換クラス
+    var rocketEng2Jpn = RocketNameEng2Jpn()
     
 
     override func tableView(_ tableView: UITableView,
@@ -84,9 +87,12 @@ class ListViewController: UITableViewController {
         cell.labelLaunchTime?.numberOfLines = 0
         cell.labelLaunchTime?.text = "\(formatterLaunchTime.string(from: viewRocketPlanData[indexPath.row].launchDate))"
         
-
+        // ロケットを日本語名に変換して表示する
+        //        cell.labelRocketName?.text = "\(self.viewRocketPlanData[indexPath.row].rocketName)"
         cell.labelRocketName?.numberOfLines = 0
-        cell.labelRocketName?.text = "\(self.viewRocketPlanData[indexPath.row].rocketName)"
+        cell.labelRocketName?.text =
+            rocketEng2Jpn.checkStringSpecifyRocketName(name: self.viewRocketPlanData[indexPath.row].rocketName)
+        
         
         print("ListViewController - tableView cellForRowAt end")
 
@@ -174,7 +180,7 @@ class ListViewController: UITableViewController {
 //            notificationRocket()
 //        }
         
-        print("Jason Data: \(jsonLaunches)")
+//        print("Json Data: \(jsonLaunches)")
         print("ListViewController - viewDidAppear end")
 
     }
@@ -187,7 +193,7 @@ class ListViewController: UITableViewController {
         //             string: "https://launchlibrary.net/1.4/launch?next=999999"){
 
         if let url = URL(
-            string: "https://launchlibrary.net/1.4/launch?mode=verbose&next=100"){
+            string: "https://launchlibrary.net/1.4/launch?mode=verbose&next=5"){
             
             print("launchJsonDownload start inside URL")
             print("launchJsonDownload - URL: https://launchlibrary.net/1.4/launch?next=999999")
@@ -224,7 +230,7 @@ class ListViewController: UITableViewController {
 //                        formatterString.dateFormat = "yyyy-MM-dd HH:mm:ss"
                         formatterString.dateFormat = "MMMM dd, yyyy HH:mm:ss z"
                         let jsonDate = launch.windowstart
-                        print ("jsonDate:\(jsonDate)")
+//                        print ("jsonDate:\(jsonDate)")
                         
                         if let dateString = formatterString.date(from: jsonDate){
 //                            print("dateString:\(String(describing: dateString))")
@@ -402,10 +408,14 @@ class ListViewController: UITableViewController {
             
             
             // Agency name send to DetailView
-            if launch.location.pads[0].agencies!.count != 0{
-                if let agency = launch.location.pads[0].agencies{
-                    print("ListViewController - prepare - agency : \(agency[0].abbrev)")
-                    controller.agency = agency[0].abbrev
+            if launch.location.pads[0].agencies != nil{
+                if launch.location.pads[0].agencies!.count != 0{
+                    if let agency = launch.location.pads[0].agencies{
+                        print("ListViewController - prepare - agency : \(agency[0].abbrev)")
+                        controller.agency = agency[0].abbrev
+                    }
+                }else{
+                    controller.agency = "機関名なし"
                 }
             }else{
                 controller.agency = "機関名なし"

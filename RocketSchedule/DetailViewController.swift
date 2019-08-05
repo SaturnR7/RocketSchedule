@@ -44,7 +44,7 @@ class DetailViewController : UIViewController {
     var videoURL: [String]?
     var notifySwitch: Bool!
     var agency: String = ""
-// Class Name: 遷移元のクラス名
+    // Class Name: 遷移元のクラス名
     var previousClassName: String = ""
 
 //    var notificationCondition:Bool = false
@@ -319,6 +319,11 @@ class DetailViewController : UIViewController {
         let agency = dicAgencies.getAgencyOfJapanese(key: self.agency)
         print("DetailRocketViewController - viewDidLoad - agency: \(agency)")
         author.agency = agency
+        
+        // URL of RocketImage save to
+        if let rocketImageURL = self.rocketImageURL{
+            author.rocketImageURL = rocketImageURL
+        }
 
 
         let realm = try! Realm()

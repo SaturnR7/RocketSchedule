@@ -18,6 +18,7 @@ class FavoriteObject: Object {
     @objc dynamic var addedDate = ""
     @objc dynamic var launchDate = Date()
     @objc dynamic var agency = ""
+    @objc dynamic var rocketImageURL = ""
     
     let videoUrls = List<VideoUrlList>()
 }

@@ -11,6 +11,11 @@ import UIKit
 
 class SearchRoketViewController: UIViewController {
     
+    // Self Class Name
+    var className: String {
+        return String(describing: type(of: self)) // ClassName
+    }
+    
     //class SearchRoketViewController: UIViewController,UIPickerViewDelegate, UIPickerViewDataSource {
     
     //    let agencyArray = ["NASA", "JAXA"]
@@ -371,6 +376,11 @@ class SearchRoketViewController: UIViewController {
 
         controller.searchAgency = forSearchAgency ?? ""
 //        }
+        
+        // 自身のクラス名を設定（遷移先のクラスがどのクラスから遷移されたクラスか判別するため
+        print("FavoriteListView - viewDidLoad - Classname: \(className)")
+        controller.previousClassName = className
+
     }
 }
 

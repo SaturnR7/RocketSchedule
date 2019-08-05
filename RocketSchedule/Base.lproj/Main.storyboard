@@ -421,6 +421,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="buttonSearch" destination="oHA-0X-dt2" id="MeM-xb-xF7"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z9h-76-nLU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -876,6 +879,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Oqf-je-Qsf"/>
+        <segue reference="xmU-u5-zN0"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -45,6 +45,14 @@ class ResultListViewController: UITableViewController {
     // URL userdefaults
     var searchURL = UserDefaults()
     
+    // Class Name: 遷移元のクラス名
+    var previousClassName: String = ""
+    
+    // ロケット名日本語変換クラス
+    var rocketEng2Jpn = RocketNameEng2Jpn()
+    
+    @IBOutlet weak var buttonSearch: UIBarButtonItem!
+    
     @IBAction func searchRocket(_ sender: Any) {
         
         //        let SearchRoketViewController = storyboard?.instantiateViewController(withIdentifier: "SearchRoketViewController") as! SearchRoketViewController
@@ -94,11 +102,11 @@ class ResultListViewController: UITableViewController {
         cell.labelLaunchTime?.numberOfLines = 0
         cell.labelLaunchTime?.text = "\(formatterLaunchTime.string(from: viewRocketPlanData[indexPath.row].launchDate))"
 
-        
-        //        cell.labelLaunchTime?.numberOfLines = 0
-        //        cell.labelLaunchTime?.text = "\(self.jsonLaunches.launches[indexPath.row].windowstart)"
+        // ロケットを日本語名に変換して表示する
+//        cell.labelRocketName?.text = "\(self.jsonLaunches.launches[indexPath.row].name)"
         cell.labelRocketName?.numberOfLines = 0
-        cell.labelRocketName?.text = "\(self.jsonLaunches.launches[indexPath.row].name)"
+        cell.labelRocketName?.text =
+            rocketEng2Jpn.checkStringSpecifyRocketName(name: self.jsonLaunches.launches[indexPath.row].name)
 
         print("ResultListViewController - tableview - end")
 
@@ -112,9 +120,75 @@ class ResultListViewController: UITableViewController {
         
     }
     
+    // Indicator アイコンの定義
+    var indicator = UIActivityIndicatorView()
+    // インジケーター用のUIViewを宣言
+    var indicatorView: UIView!
+    // 0件用のUIViewを宣言
+    var indicatorViewZero: UIView!
+
+    func activityIndicator() {
+        
+        indicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        // インジケーターアイコンの丸み表現
+        indicator.layer.cornerRadius = 8
+        indicator.style = UIActivityIndicatorView.Style.white
+//        indicator.center = self.indicatorView.center
+        indicator.center = CGPoint.init(x: self.indicatorView.bounds.width / 2, y: self.indicatorView.bounds.height / 3)
+        self.view.addSubview(indicator)
+    }
+    
+    // インジケーター用のUIViewを表示
+    func enableIndicatorView() {
+
+        // インジケーター用のView表示が有効だった場合は、初期状態（非表示）に戻す
+        if self.indicatorView != nil{
+            if self.indicatorView.isHidden == false{
+                self.indicatorView.isHidden = true
+            }
+        }
+        
+        // init Boundsで全画面にviewを表示
+        indicatorView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height))
+        //        let bgColor = UIColor.gray
+        let bgColor = UIColor.init(red: 38/255, green: 38/255, blue: 38/255, alpha: 1)
+        indicatorView.backgroundColor = bgColor
+        indicatorView.isUserInteractionEnabled = true
+        
+        self.view.addSubview(indicatorView)
+
+    }
+
+    var zeroMessage = UILabel()
+    
+    // 0件用のUIViewを表示
+    func enableIndicatorViewZero() {
+        
+//        // init Boundsで全画面にviewを表示
+//        indicatorView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height))
+//        //        let bgColor = UIColor.gray
+//        let bgColor = UIColor.init(red: 38/255, green: 38/255, blue: 38/255, alpha: 1)
+//        indicatorView.backgroundColor = bgColor
+//        indicatorView.isUserInteractionEnabled = true
+//        self.view.addSubview(indicatorView)
+        
+        // 0件メッセージ
+        zeroMessage = UILabel.init(frame: CGRect.init(x: 20, y: 20, width: 200, height: 10))
+        zeroMessage.text = "該当なし"
+        zeroMessage.textColor = UIColor.white
+        zeroMessage.font = UIFont.init(name: "Futura", size: 20)
+        self.view.addSubview(zeroMessage)
+
+    }
+
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        // viewDidAppearのswitch処理用
+        // 初回起動時はインジケーター表示・JSONロードのみ処理を行う
+        previousClassName = "viewDidLoad"
         
         // cell borderline size
         tableView.separatorInset =
@@ -127,112 +201,121 @@ class ResultListViewController: UITableViewController {
         super.viewDidAppear(animated)
         
         print("ResultListViewController - viewDidAppear - Start")
-        
         print("In viewDidAppear - searchAgency: \(searchAgency)")
-
         print("searchStartLaunch: \(searchStartLaunch)")
         print("searchEndLaunch: \(searchEndLaunch)")
-
         
-        var isDefaultSearch = false
-        
-        //test
-        if searchStartLaunch == "" {
-            print("searchStartLaunch : \(searchStartLaunch)")
+        // インジケーターの表示・JSONロードの判定
+        // 呼び出し元によってふるまいを変える
+        let constantClassName = StructClassName()
+        switch previousClassName {
+        // 初回起動時
+        case constantClassName.functionName_01:
+            print("IN - case constantClassName.functionName_01")
+            // インジケーター用のUIViewを表示
+            enableIndicatorView()
+            // Indicatorのスタート
+            activityIndicator()
+            indicator.startAnimating()
+            indicator.backgroundColor = UIColor.black
             
-            // 初回起動時はtrueになる
-            isDefaultSearch = true
+            // 検索中は検索ボタンを無効化
+            buttonSearch.isEnabled = false
             
-            urlStringOfSearchStartDate = urlStringOfDefaultStartDate
-        } else {
-            urlStringOfSearchStartDate = searchStartLaunch
-        }
-        
-        if searchEndLaunch == "" {
-            print("searchEndLaunch : \(searchEndLaunch)")
-            urlStringOfSearchEndDate = urlStringOfDefaultEndDate
-        } else {
-            urlStringOfSearchEndDate = searchEndLaunch
-        }
-        
-        // 機関が選択された場合は、URLに機関項目を設定する
-        //        if searchAgency != "すべて"{
-        //            urlStringOfAgencyValue = searchAgency
-        //            print("ResultListViewController - viewDidAppear - urlStringOfAgencyValue: \(urlStringOfAgencyValue)")
-        //
-        //            isAgencySearch = true
-        //
-        //        } else {
-        //
-        //            isAgencySearch = false
-        //        }
-        if searchAgency == ""{
-            isAgencySearch = false
-        }else{
-            if searchAgency != "すべて"{
-                urlStringOfAgencyValue = searchAgency
-                print("ResultListViewController - viewDidAppear - urlStringOfAgencyValue: \(urlStringOfAgencyValue)")
-                
-                isAgencySearch = true
-            }else{
-                isAgencySearch = false
-            }
-        }
-        
-        
-        // 検索画面において機関項目を選択した場合は、機関項目を付加したURLを発行する
-        if isAgencySearch{
-            
-            url = urlStringOf1 + urlStringOfVerbose + urlStringOf2 + urlStringOfSearchStartDate + urlStringOf3 + urlStringOfSearchEndDate + urlStringOfAgency + urlStringOfAgencyValue + urlStringOfLimit
-            
-        } else {
-            
-            url = urlStringOf1 + urlStringOfVerbose + urlStringOf2 + urlStringOfSearchStartDate + urlStringOf3 + urlStringOfSearchEndDate + urlStringOfLimit
-        }
-        
-        // 初回起動時に前回検索していた場合は、前回検索したURLを使用する
-        if isDefaultSearch{
+            // URLを取得
             if searchURL.string(forKey: "settingURL") != nil{
                 print("searchURL Userdefault: \(searchURL.string(forKey: "settingURL"))")
                 url = searchURL.string(forKey: "settingURL")
+            }else{
+                // 前回検索なし・初回起動時はアプリ起動日から起動日ー１週間前までの
+                // URLを生成処理を実装する
+                // do something
+                
+                // 暫定対応
+                url = "https://launchlibrary.net/1.4/launch?mode=verbose&startdate=2017-07-23&enddate=2018-09-01&agency=JAXA&limit=999999"
+                
             }
+            // URL検索
+            launchJsonDownload()
+            
+            // previousClassName初期化
+            previousClassName = ""
+            
+            print("OUT - case constantClassName.functionName_01")
+        // 検索画面から検索実行
+        case constantClassName.className_03:
+            print("IN - case constantClassName.className_03")
+            // インジケーター用のUIViewを表示
+            enableIndicatorView()
+            // Indicatorのスタート
+            activityIndicator()
+            indicator.startAnimating()
+            indicator.backgroundColor = UIColor.black
+            
+            // 検索中は検索ボタンを無効化
+            buttonSearch.isEnabled = false
+            
+            // 検索URLの生成
+            if searchStartLaunch == "" {
+                print("searchStartLaunch : \(searchStartLaunch)")
+                // 初回起動時はtrueになる
+                //            isDefaultSearch = true
+                urlStringOfSearchStartDate = urlStringOfDefaultStartDate
+            } else {
+                urlStringOfSearchStartDate = searchStartLaunch
+            }
+            
+            if searchEndLaunch == "" {
+                print("searchEndLaunch : \(searchEndLaunch)")
+                urlStringOfSearchEndDate = urlStringOfDefaultEndDate
+            } else {
+                urlStringOfSearchEndDate = searchEndLaunch
+            }
+            // 機関が選択された場合は、URLに機関項目を設定する
+            if searchAgency == ""{
+                isAgencySearch = false
+            }else{
+                if searchAgency != "すべて"{
+                    urlStringOfAgencyValue = searchAgency
+                    print("ResultListViewController - viewDidAppear - urlStringOfAgencyValue: \(urlStringOfAgencyValue)")
+                    
+                    isAgencySearch = true
+                }else{
+                    isAgencySearch = false
+                }
+            }
+            // 検索画面において機関項目を選択した場合は、機関項目を付加したURLを発行する
+            if isAgencySearch{
+                url = urlStringOf1 + urlStringOfVerbose + urlStringOf2 + urlStringOfSearchStartDate + urlStringOf3 + urlStringOfSearchEndDate + urlStringOfAgency + urlStringOfAgencyValue + urlStringOfLimit
+            } else {
+                url = urlStringOf1 + urlStringOfVerbose + urlStringOf2 + urlStringOfSearchStartDate + urlStringOf3 + urlStringOfSearchEndDate + urlStringOfLimit
+            }
+            
+            // URLを保持
+            searchURL.set(url , forKey: "settingURL")
+            // URL検索
+            launchJsonDownload()
+            // self.count = 0 の場合、検索結果0件、以下に0件処理を実装する
+            if self.count == 0{
+                // インジケーターアイコンを非表示
+                self.indicator.stopAnimating()
+                
+                // インジケーター用のUIViewを非表示
+                self.indicatorView.isHidden = true
+            }
+            // previousClassName初期化
+            previousClassName = ""
+            
+            print("OUT - case constantClassName.className_03")
+        // 遷移元が初回起動時・検索実行時以外の場合
+        default:
+            print("IN - default")
+            // previousClassName初期化
+            previousClassName = ""
+            print("OUT - default")
         }
-        
-        
-        print("ResultListViewController - viewDidAppear - RequestURL: \(url)")
-        
-        // URLを保持
-        searchURL.set(url , forKey: "settingURL")
-        
-        // URL検索
-        launchJsonDownload()
-        
-//        //タイムゾーン（地域）の取得
-//        print("regioncode:\(TimeZone.current.localizedName(for: .standard, locale: .current) ?? "")")
-//        print("Timezone:\(TimeZone.current)")
-//        print("TimezoneAutoupdatingCurrent:\(TimeZone.autoupdatingCurrent)")
-//
-//        //日付の加算テスト
-//        let now = Date() // Dec 27, 2015, 8:24 PM
-//        print("now:\(now)")
-//        // 60秒*60分*24時間*7日 = 1週間後の日付
-//        let date1 = Date(timeInterval: 60*60*9*1, since: now) // Jan 3, 2016, 8:24 PM
-//        print("date1:\(date1)")
-//
-//
-//        // styleを使う
-//        let formatter = DateFormatter()
-//        formatter.dateStyle = .medium
-//        formatter.timeStyle = .medium
-//        let localizedString = formatter.string(from: date1)
-//
-//        print("localizedString:\(localizedString)")
-        
-        
-//        self.tableView.reloadData()
-//        let indexPath = IndexPath(row: 0, section: 0)
-//        self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
 
+        print("ResultListViewController - viewDidAppear - RequestURL: \(url)")
         print("ResultListViewController - viewDidAppear - End")
     }
     
@@ -249,12 +332,40 @@ class ResultListViewController: UITableViewController {
                 if let data = data, let response = response {
                     print(response)
                     
+
                     let testdata = String(data: data, encoding: .utf8)!
 //                    print("data:\(testdata)")
                     
                     if testdata.contains("None found"){
                         
+                        print("testdata: None Found")
+                        
                         self.count = 0
+                        
+                        // 非同期処理完了後の処理
+                        DispatchQueue.main.async {
+                            
+                            print("DispatchQueue.main.async - IN - count=0")
+                            
+                            if let httpResponse = response as? HTTPURLResponse {
+                                print("status code: \(httpResponse.statusCode)")
+                            }
+                            
+                            // テーブル情報のリロード
+                            self.tableView.reloadData()
+                            
+                            // インジケーターアイコンを非表示
+                            self.indicator.stopAnimating()
+                            
+                            // 0件メッセージの表示
+                            self.enableIndicatorViewZero()
+                            
+                            // 検索後は検索ボタンを有効化
+                            self.buttonSearch.isEnabled = true
+
+                            print("DispatchQueue.main.async - OUT - count=0")
+                            
+                        }
                         
                     } else {
                         
@@ -264,7 +375,7 @@ class ResultListViewController: UITableViewController {
                         
                         self.jsonLaunches = json
 
-//                        print("JSON Data: \(json)")
+                        print("ResultListViewController - JSON Data: \(json)")
 
                         // Initialize to Struct
                         self.viewRocketPlanData = [StructViewPlans]()
@@ -302,12 +413,38 @@ class ResultListViewController: UITableViewController {
                             }
                         }
                         
+                        // 非同期処理完了後の処理（JSONダウンロード完了後）
                         DispatchQueue.main.async {
+                            
+                            print("DispatchQueue.main.async - IN")
+                            
+                            if let httpResponse = response as? HTTPURLResponse {
+                                print("ステータスコード: \(httpResponse.statusCode)")
+                            }
+                            
+                            // テーブル情報のリロード
                             self.tableView.reloadData()
+                            
+                            // インジケーターアイコンを非表示
+                            self.indicator.stopAnimating()
+                            
+                            // インジケーター用のUIViewを非表示
+                            self.indicatorView.isHidden = true
+                            
+                            // 0件メッセージの非表示
+                            self.zeroMessage.isHidden = true
+                            
+                            // 検索後は検索ボタンを有効化
+                            self.buttonSearch.isEnabled = true
+                            
+                            print("DispatchQueue.main.async - OUT")
+
                         }
                     }
                 }
             })
+            
+            print("task.resumeの手前 - self.count: \(self.count)")
             
             task.resume()
         }
@@ -336,15 +473,18 @@ class ResultListViewController: UITableViewController {
 //            }
 
             // Agency name send to DetailView
-            if launch.location.pads[0].agencies!.count != 0{
-                if let agency = launch.location.pads[0].agencies{
-                    print("ListViewController - prepare - agency : \(agency[0].abbrev)")
-                    controller.agency = agency[0].abbrev
+            if launch.location.pads[0].agencies != nil{
+                if launch.location.pads[0].agencies!.count != 0{
+                    if let agency = launch.location.pads[0].agencies{
+                        print("ListViewController - prepare - agency : \(agency[0].abbrev)")
+                        controller.agency = agency[0].abbrev
+                    }
+                }else{
+                    controller.agency = "機関名なし"
                 }
             }else{
                 controller.agency = "機関名なし"
             }
-
 
         }
         

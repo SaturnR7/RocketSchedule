@@ -56,6 +56,9 @@ class FavoriteListView: UITableViewController {
     var searchEndLaunch: String?
     var searchAgency: String?
     
+    // ロケット名日本語変換クラス
+    var rocketEng2Jpn = RocketNameEng2Jpn()
+    
     // Realm
 //    let realm = try! Realm()
     
@@ -170,11 +173,11 @@ class FavoriteListView: UITableViewController {
         cell.labelLaunchTime?.numberOfLines = 0
         cell.labelLaunchTime?.text = "\(formatterLaunchTime.string(from: arrayFavoriteLaunches[indexPath.row].launchDate))"
         
-        
-        //        cell.labelLaunchTime?.numberOfLines = 0
-        //        cell.labelLaunchTime?.text = "\(self.jsonLaunches.launches[indexPath.row].windowstart)"
+        // ロケットを日本語名に変換して表示する
+//        cell.labelRocketName?.text = "\(arrayFavoriteLaunches[indexPath.row].rocketName)"
         cell.labelRocketName?.numberOfLines = 0
-        cell.labelRocketName?.text = "\(arrayFavoriteLaunches[indexPath.row].rocketName)"
+        cell.labelRocketName?.text =
+            rocketEng2Jpn.checkStringSpecifyRocketName(name: arrayFavoriteLaunches[indexPath.row].rocketName)
         
         print("FavoriteListView - tableview - end")
         
@@ -283,7 +286,8 @@ class FavoriteListView: UITableViewController {
                     windowEnd:      data.windowEnd,
                     videoURLs:      videoUrlArray,
                     launchDate:     data.launchDate,
-                    agency:         data.agency
+                    agency:         data.agency,
+                    rocketImageURL: data.rocketImageURL
                 )
             )
             
@@ -376,6 +380,8 @@ class FavoriteListView: UITableViewController {
             // 詳細画面にDate型の日付を渡す
             // 詳細画面での日付・時刻分け表示に都合がよいため
             controller.launchDate = launch.launchDate
+            
+            controller.rocketImageURL = launch.rocketImageURL
             
             // 自身のクラス名を設定（遷移先のクラスがどのクラスから遷移されたクラスか判別するため
             print("FavoriteListView - viewDidLoad - Classname: \(className)")
