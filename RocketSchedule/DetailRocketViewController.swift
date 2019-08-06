@@ -23,7 +23,12 @@ class DetailRocketViewController : UIViewController {
     
     let notificationCenter = NotificationCenter.default
     
+    // ロケット名日本語変換クラス
+    var rocketEng2Jpn = RocketNameEng2Jpn()
+    
     @IBOutlet weak var labelRocketName: UILabel!
+    
+    @IBOutlet weak var labelRocketNameEng: UILabel!
     
     @IBOutlet weak var labelLaunchDate: UILabel!
     
@@ -63,10 +68,14 @@ class DetailRocketViewController : UIViewController {
         // ナビゲーションバーのタイトル
         self.navigationItem.title = "詳細"
 
-        
-        // Rocket Name
-        labelRocketName.text? = name ?? ""
-        
+        // Rocket Name JPN
+//        labelRocketName.text? = name ?? ""
+        labelRocketName.text? = rocketEng2Jpn.checkStringSpecifyRocketName(name: self.name ?? "")
+
+        // Rocket Name ENG
+        labelRocketNameEng.adjustsFontSizeToFitWidth = true
+        labelRocketNameEng.text? = self.name ?? ""
+
         // Launch Date
         let formatterLaunchDate = DateFormatter()
         formatterLaunchDate.timeZone = TimeZone(identifier: "UTC")

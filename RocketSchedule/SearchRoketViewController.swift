@@ -31,7 +31,29 @@ class SearchRoketViewController: UIViewController {
     
     @IBAction func closeSearchView(_ sender: Any) {
         
+//        // 打ち上げ期間の設定値を保持
+//        searchValueSettings.set(dateStartLaunch.text , forKey: "settingStartDate")
+//        searchValueSettings.set(dateEndLaunch.text , forKey: "settingEndDate")
+//        // 機関の設定値を保存
+//        searchValueSettings.set(dataAgency.text, forKey: "settingAgency")
+        // 検索項目の設定を保存
+        lastSelectValueSet()
+
+        // 検索画面を閉じる
         dismiss(animated: true, completion: nil)
+        
+    }
+    
+    @IBAction func buttonClear(_ sender: UIButton) {
+        
+        // 現在から１週間前の日付をセットする
+        dateStartLaunch.text = getStringDay1weekAgo()
+        // 現在日付をセットする
+        dateEndLaunch.text = getStringToday()
+        // 機関「すべて」をセットする
+        dataAgency.text = "すべて"
+        // 機関リストを先頭に移動する
+        agencyPicker.selectRow(0, inComponent: 0, animated: false)
         
     }
     
@@ -73,12 +95,13 @@ class SearchRoketViewController: UIViewController {
     var agencyText = ""
 
     // Agency picker for selected history
-    var forTextField = ""
-    var historyRow = 0
+    var forAgencyTextField = ""
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("SearchRoketViewController - viewDidLoad - Start")
         
         // 打ち上げ期間の開始日付
         createStartDatePicker()
@@ -93,21 +116,55 @@ class SearchRoketViewController: UIViewController {
         // Value of Agency DataPicker
         makeAgenciesDictionary()
         
+        print("SearchRoketViewController - viewDidLoad - End")
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    // 現在の日付を取得
+    func getStringToday() -> String{
         
-        // 初回イントール時は日付にデフォルト値を設定する
-        // 開始日：本日の７日前
-        // 終了日：本日
         let today = Date()
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "ja_JP")
         dateFormatter.dateFormat = "yyyy/MM/dd"
-        let todayString = dateFormatter.string(from: today)
+        
+        return dateFormatter.string(from: today)
+    }
+    
+    // 現在から１週間前の日付を取得
+    func getStringDay1weekAgo() -> String{
+    
+        let today = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "ja_JP")
+        dateFormatter.dateFormat = "yyyy/MM/dd"
+
         // -60秒*60分*24時間*7日 = 1週間前の日付
         let pastDate = Date(timeInterval: -60*60*24*7, since: today)
-        let pastDateString = dateFormatter.string(from: pastDate)
+        
+        return dateFormatter.string(from: pastDate)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        print("SearchRoketViewController - viewDidAppear - Start")
+
+//        // 初回イントール時は日付にデフォルト値を設定する
+//        // 開始日：本日の７日前
+//        // 終了日：本日
+//        let today = Date()
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.locale = Locale(identifier: "ja_JP")
+//        dateFormatter.dateFormat = "yyyy/MM/dd"
+//        let todayString = dateFormatter.string(from: today)
+//
+//        // -60秒*60分*24時間*7日 = 1週間前の日付
+//        let pastDate = Date(timeInterval: -60*60*24*7, since: today)
+//        let pastDateString = dateFormatter.string(from: pastDate)
+
+        // 現在日付の取得
+        let todayString = getStringToday()
+        // 現在から１週間前の日付を取得
+        let pastDateString = getStringDay1weekAgo()
 
         // 設定値（前回検索履歴情報があった場合は、検索画面に値を設定
         if let settingStartDate = searchValueSettings.string(forKey: "settingStartDate"){
@@ -149,6 +206,8 @@ class SearchRoketViewController: UIViewController {
         searchLabel.text = "|"
         labelAgency.text = "機関"
         
+
+        print("SearchRoketViewController - viewDidAppear - End")
     }
     
     func createStartDatePicker(){
@@ -318,8 +377,18 @@ class SearchRoketViewController: UIViewController {
     
     @objc func doneAgencyClicked(){
         
+        print("doneAgencyClicked - forAgencyTextField: \(forAgencyTextField)")
+
+        // データピッカー表示時に、何も変更せずDoneをタップした場合は、
+        // 直前の期間名を設定する。
+        if forAgencyTextField == ""{
+            forAgencyTextField = dataAgency.text!
+        }
+        
         // ピッカーで選択した機関をテキストフィールドに設定
-        dataAgency.text = forTextField
+        dataAgency.text = forAgencyTextField
+        
+        print("doneAgencyClicked - dataAgency.text: \(dataAgency.text)")
         
         // 設定値を保持
         searchValueSettings.set(dataAgency.text, forKey: "settingAgency")
@@ -358,9 +427,20 @@ class SearchRoketViewController: UIViewController {
         
     }
     
+    func lastSelectValueSet(){
+        // 打ち上げ期間の設定値を保持
+        searchValueSettings.set(dateStartLaunch.text , forKey: "settingStartDate")
+        searchValueSettings.set(dateEndLaunch.text , forKey: "settingEndDate")
+        // 機関の設定値を保存
+        searchValueSettings.set(dataAgency.text, forKey: "settingAgency")
+    }
+    
     
     //画面遷移時に呼ばれる関数（セグエ経由で遷移先に値を渡す）
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
+        
+        // 検索項目の設定を保存
+        lastSelectValueSet()
 
         let controller = segue.destination as! ResultListViewController
         // 遷移元に検索日付を渡すが、検索URLのパラメタ用に日付の"/"を"-"(ハイフン)に置換える
@@ -368,14 +448,14 @@ class SearchRoketViewController: UIViewController {
         controller.searchEndLaunch = dateEndLaunch.text?.replacingOccurrences(of: "/", with: "-") ?? ""
 
         // Agency DataPicker data
-//        if let bindingAgency = forTextField{
-            let forSearchAgency = agenciesDictionary["\(forTextField)"]
-            
-            print("SearchRoketViewController - prepare - forTextField: \(forTextField)")
-            print("SearchRoketViewController - prepare - forSearchAgency: \(forSearchAgency)")
-
-        controller.searchAgency = forSearchAgency ?? ""
-//        }
+        // 検索画面表示用の期間名から、URL検索用の機関名を取得して遷移元に渡す。
+//        let forSearchAgency = agenciesDictionary["\(forAgencyTextField)"]
+        controller.searchAgency = agenciesDictionary["\(dataAgency.text!)"] ?? ""
+        print("dataAgency.text: \(dataAgency.text!)")
+        print("agenciesDictionary's Agency: \(agenciesDictionary["\(dataAgency.text!)"])")
+        print("SearchRoketViewController - prepare - forAgencyTextField: \(forAgencyTextField)")
+//        print("SearchRoketViewController - prepare - forSearchAgency: \(forSearchAgency)")
+//        controller.searchAgency = forSearchAgency ?? ""
         
         // 自身のクラス名を設定（遷移先のクラスがどのクラスから遷移されたクラスか判別するため
         print("FavoriteListView - viewDidLoad - Classname: \(className)")
@@ -396,8 +476,8 @@ extension SearchRoketViewController: UIPickerViewDelegate, UIPickerViewDataSourc
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
-        // テキストフィールド表示用
-        forTextField = dataSource[row]
+        // テキストフィールド表示用の値をセットする
+        forAgencyTextField = dataSource[row]
         
         // 選択した項目のrow値値を保持（検索画面の前回検索履歴保持）
         // picker表示時に前回選択した項目を表示させるため

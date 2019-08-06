@@ -176,6 +176,7 @@ class FavoriteListView: UITableViewController {
         // ロケットを日本語名に変換して表示する
 //        cell.labelRocketName?.text = "\(arrayFavoriteLaunches[indexPath.row].rocketName)"
         cell.labelRocketName?.numberOfLines = 0
+        cell.labelRocketName?.adjustsFontSizeToFitWidth = true
         cell.labelRocketName?.text =
             rocketEng2Jpn.checkStringSpecifyRocketName(name: arrayFavoriteLaunches[indexPath.row].rocketName)
         

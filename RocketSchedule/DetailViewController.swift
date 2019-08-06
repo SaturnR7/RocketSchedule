@@ -17,6 +17,8 @@ class DetailViewController : UIViewController {
     
     @IBOutlet weak var detailRocketName: UILabel!
     
+    @IBOutlet weak var detailRocketNameEng: UILabel!
+    
     @IBOutlet weak var labelLaunchDate: UILabel!
     
     @IBOutlet weak var labelLaunchTime: UILabel!
@@ -57,6 +59,8 @@ class DetailViewController : UIViewController {
     
     var rocketImageURL: String?
     
+    // ロケット名日本語変換クラス
+    var rocketEng2Jpn = RocketNameEng2Jpn()
 
     
     override func viewDidLoad(){
@@ -67,8 +71,12 @@ class DetailViewController : UIViewController {
         // ナビゲーションバーのアイテムの色　（戻る　＜　とか　読み込みゲージとか）
         self.navigationController?.navigationBar.tintColor = .white
         
-        detailRocketName.text = self.name
+        // Rocket Name JPN
+        detailRocketName.text = rocketEng2Jpn.checkStringSpecifyRocketName(name: self.name)
         
+        // Rocket Name ENG
+        detailRocketNameEng.adjustsFontSizeToFitWidth = true
+        detailRocketNameEng.text = self.name
         
         // Launch Date
         let formatterLaunchDate = DateFormatter()

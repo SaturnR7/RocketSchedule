@@ -90,6 +90,8 @@ class ListViewController: UITableViewController {
         // ロケットを日本語名に変換して表示する
         //        cell.labelRocketName?.text = "\(self.viewRocketPlanData[indexPath.row].rocketName)"
         cell.labelRocketName?.numberOfLines = 0
+        // フォントサイズの自動調節
+        cell.labelRocketName?.adjustsFontSizeToFitWidth = true
         cell.labelRocketName?.text =
             rocketEng2Jpn.checkStringSpecifyRocketName(name: self.viewRocketPlanData[indexPath.row].rocketName)
         
@@ -117,6 +119,11 @@ class ListViewController: UITableViewController {
 
         print("ListViewController - viewDidLoad start")
         
+        print("Timezone: \(TimeZone.ReferenceType.local)")
+        print("TimeZone Current Abbreviation: \(TimeZone.current.abbreviation())")
+        print("Timezone List: \(TimeZone.abbreviationDictionary)")
+        print("TimeZone Identifiers: \(TimeZone.knownTimeZoneIdentifiers)")
+        
         // インジケーター用のUIViewを表示
         // init Boundsで全画面にviewを表示
         indicatorView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height))
@@ -140,6 +147,11 @@ class ListViewController: UITableViewController {
         notificationCenter.addObserver(self, selector: #selector(catchNotificationRocketAdd(notification:)), name: .myNotificationRocketAdd, object: nil)
 
         notificationCenter.addObserver(self, selector: #selector(catchNotificationRocketRemove(notification:)), name: .myNotificationRocketRemove, object: nil)
+        
+        // Test Get Timezone abbreviation //
+        let abbreviation = DicTimeZone()
+        let test = abbreviation.getAgencyOfJapanese()
+        print("Test abbreviation: \(test)")
         
 
         print("ListViewController - viewDidLoad start")
@@ -216,7 +228,7 @@ class ListViewController: UITableViewController {
                     
                     self.jsonLaunches = json
                     
-                    print("JSON Data: \(json)")
+//                    print("JSON Data: \(json)")
                     
                     for launch in json.launches {
 //                        print("name:\(launch.name)")

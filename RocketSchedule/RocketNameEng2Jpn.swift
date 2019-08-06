@@ -11,53 +11,6 @@ import Foundation
 // class か structか、どっちでもいい
 class RocketNameEng2Jpn {
     
-    // この処理のデメリットは、ロケット名が増えるたびに英語ロケットをrocketNamesと
-    // rocketNameEng2Jpnの二つに二重で登録しなければいけない。
-    
-    // ロケット名を追加する場合は、小文字で英語文字列を配列の最後に地下する。
-    private let rocketNames
-        = [
-            "soyuz",
-            "falcon 9",
-            "falcon9",
-            "falcon heavy",
-            "falconheavy",
-            "proton",
-            "ariane",
-            "atlas",
-            "rokot",
-            "delta",
-            "vega",
-            "longmarch",
-            "long march",
-            "h-iia",
-            "h-iib",
-            "epsilon",
-            "electron"
-        ]
-    
-    // ロケット名を追加する場合は、小文字で英語文字列と日本語名を配列の最後に地下する。
-    private let rocketNameEng2Jpn: [String:String]
-        = [
-            "soyuz":"ソユーズ",
-            "falcon 9":"ファルコン9",
-            "falcon9":"ファルコン9",
-            "falcon heavy":"ファルコンヘビー",
-            "falconheavy":"ファルコンヘビー",
-            "proton":"プロトン",
-            "ariane":"アリアン",
-            "atlas":"アトラス",
-            "rokot":"ロコット",
-            "delta":"デルタ",
-            "vega":"ヴェガ",
-            "longmarch":"ロングマーチ",
-            "long march":"ロングマーチ",
-            "h-iia":"H-2Aロケット",
-            "h-iib":"H-2Bロケット",
-            "epsilon":"イプシロン",
-            "electron":"エレクトロン"
-        ]
-    
     // 英語のロケット名を日本語の文字列に変換して呼び出し元へ返却する。
     // 引数で受け取った前方文字列が定数に含まれている場合、
     // 定数の英語ロケット名をキーとして日本語の文字列取得して返す。
@@ -83,4 +36,54 @@ class RocketNameEng2Jpn {
             return name
         }
     }
+    
+    // この処理のデメリットは、ロケット名が増えるたびに英語ロケットをrocketNamesと
+    // rocketNameEng2Jpnの二つに二重で登録しなければいけない。
+    
+    // ロケット名を追加する場合は、小文字で英語文字列を配列の最後に地下する。
+    private let rocketNames
+        = [
+            "soyuz",
+            "falcon 9",
+            "falcon9",
+            "falcon heavy",
+            "falconheavy",
+            "proton",
+            "ariane",
+            "atlas",
+            "rokot",
+            "delta",
+            "vega",
+            "longmarch",
+            "long march",
+            "h-iia",
+            "h-iib",
+            "epsilon",
+            "electron",
+            "saturn"
+        ]
+    
+    // ロケット名を追加する場合は、小文字で英語文字列と日本語名を配列の最後に地下する。
+    private let rocketNameEng2Jpn: [String:String]
+        = [
+            "soyuz":"ソユーズ",
+            "falcon 9":"ファルコン9",
+            "falcon9":"ファルコン9",
+            "falcon heavy":"ファルコンヘビー",
+            "falconheavy":"ファルコンヘビー",
+            "proton":"プロトン",
+            "ariane":"アリアン",
+            "atlas":"アトラス",
+            "rokot":"ロコット",
+            "delta":"デルタ",
+            "vega":"ヴェガ",
+            "longmarch":"ロングマーチ",
+            "long march":"ロングマーチ",
+            "h-iia":"H-2Aロケット",
+            "h-iib":"H-2Bロケット",
+            "epsilon":"イプシロン",
+            "electron":"エレクトロン",
+            "saturn":"サターン"
+        ]
+    
 }

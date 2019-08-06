@@ -105,6 +105,8 @@ class ResultListViewController: UITableViewController {
         // ロケットを日本語名に変換して表示する
 //        cell.labelRocketName?.text = "\(self.jsonLaunches.launches[indexPath.row].name)"
         cell.labelRocketName?.numberOfLines = 0
+        // フォントサイズの自動調節
+        cell.labelRocketName?.adjustsFontSizeToFitWidth = true
         cell.labelRocketName?.text =
             rocketEng2Jpn.checkStringSpecifyRocketName(name: self.jsonLaunches.launches[indexPath.row].name)
 
@@ -375,7 +377,7 @@ class ResultListViewController: UITableViewController {
                         
                         self.jsonLaunches = json
 
-                        print("ResultListViewController - JSON Data: \(json)")
+//                        print("ResultListViewController - JSON Data: \(json)")
 
                         // Initialize to Struct
                         self.viewRocketPlanData = [StructViewPlans]()
