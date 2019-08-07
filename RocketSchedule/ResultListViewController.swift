@@ -51,6 +51,20 @@ class ResultListViewController: UITableViewController {
     // ロケット名日本語変換クラス
     var rocketEng2Jpn = RocketNameEng2Jpn()
     
+    // Timeintervalの値
+    var timeintervalValue: Double = 0
+    
+    // 検索結果0件
+    var resultZero = false
+    
+    // Indicator アイコンの定義
+    var indicator = UIActivityIndicatorView()
+    // インジケーター用のUIViewを宣言
+    var indicatorView: UIView!
+    // 0件用のUIViewを宣言
+    var indicatorZeroView: UIView!
+
+    
     @IBOutlet weak var buttonSearch: UIBarButtonItem!
     
     @IBAction func searchRocket(_ sender: Any) {
@@ -112,6 +126,9 @@ class ResultListViewController: UITableViewController {
 
         print("ResultListViewController - tableview - end")
 
+//        let indexPathForTop = IndexPath(row: 0, section: 0)
+//        self.tableView.scrollToRow(at: indexPathForTop, at: .top, animated: true)
+
         return cell
     }
     
@@ -122,13 +139,6 @@ class ResultListViewController: UITableViewController {
         
     }
     
-    // Indicator アイコンの定義
-    var indicator = UIActivityIndicatorView()
-    // インジケーター用のUIViewを宣言
-    var indicatorView: UIView!
-    // 0件用のUIViewを宣言
-    var indicatorViewZero: UIView!
-
     func activityIndicator() {
         
         indicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
@@ -140,39 +150,38 @@ class ResultListViewController: UITableViewController {
         self.view.addSubview(indicator)
     }
     
-    // インジケーター用のUIViewを表示
+    // インジケーター用のUIViewを生成
     func enableIndicatorView() {
 
-        // インジケーター用のView表示が有効だった場合は、初期状態（非表示）に戻す
-        if self.indicatorView != nil{
-            if self.indicatorView.isHidden == false{
-                self.indicatorView.isHidden = true
-            }
-        }
-        
         // init Boundsで全画面にviewを表示
-        indicatorView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height))
+        self.indicatorView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height))
         //        let bgColor = UIColor.gray
         let bgColor = UIColor.init(red: 38/255, green: 38/255, blue: 38/255, alpha: 1)
-        indicatorView.backgroundColor = bgColor
-        indicatorView.isUserInteractionEnabled = true
-        
+        self.indicatorView.backgroundColor = bgColor
+        self.indicatorView.isUserInteractionEnabled = true
         self.view.addSubview(indicatorView)
 
+        // 検索実行時のみこのviewを表示するため、それ以外は非表示にする。
+        self.indicatorView.isHidden = true
     }
 
+    // インジケーター用のUIViewを生成
+    func enableIndicatorZeroView() {
+        
+        // init Boundsで全画面にviewを表示
+        self.indicatorZeroView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height))
+        let bgColor = UIColor.init(red: 255/255, green: 38/255, blue: 38/255, alpha: 1)
+        self.indicatorZeroView.backgroundColor = bgColor
+        self.indicatorZeroView.isUserInteractionEnabled = true
+        self.view.addSubview(indicatorZeroView)
+        
+        // 検索0件の時だけこのviewを表示するため、それ以外は非表示にする。
+        self.indicatorZeroView.isHidden = true
+    }
     var zeroMessage = UILabel()
     
     // 0件用のUIViewを表示
     func enableIndicatorViewZero() {
-        
-//        // init Boundsで全画面にviewを表示
-//        indicatorView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height))
-//        //        let bgColor = UIColor.gray
-//        let bgColor = UIColor.init(red: 38/255, green: 38/255, blue: 38/255, alpha: 1)
-//        indicatorView.backgroundColor = bgColor
-//        indicatorView.isUserInteractionEnabled = true
-//        self.view.addSubview(indicatorView)
         
         // 0件メッセージ
         zeroMessage = UILabel.init(frame: CGRect.init(x: 20, y: 20, width: 200, height: 10))
@@ -186,17 +195,30 @@ class ResultListViewController: UITableViewController {
     
     override func viewDidLoad() {
         
+        print("ResultListViewController - viewDidLoad - Start")
+        
         super.viewDidLoad()
         
         // viewDidAppearのswitch処理用
         // 初回起動時はインジケーター表示・JSONロードのみ処理を行う
         previousClassName = "viewDidLoad"
         
+        // インジケーター用のviewを生成
+        enableIndicatorView()
+        enableIndicatorZeroView()
+        
         // cell borderline size
         tableView.separatorInset =
             UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20);
         
-        
+        // GMTからTimeinterval用の値を取得
+        let timeRelated = TimeRelated()
+        let gmtValue = timeRelated.getGmtValue()
+        print("Abbreviation Value: \(gmtValue)")
+        timeintervalValue = timeRelated.getTimeintervalValue(gmtValue: gmtValue)
+
+        print("ResultListViewController - viewDidLoad - End")
+
     }
     
     override func viewDidAppear(_ animated: Bool){
@@ -207,15 +229,22 @@ class ResultListViewController: UITableViewController {
         print("searchStartLaunch: \(searchStartLaunch)")
         print("searchEndLaunch: \(searchEndLaunch)")
         
+        // 0件用のUIを初期化（非表示）
+        self.zeroMessage.isHidden = true
+        self.indicatorZeroView.isHidden = true
+
         // インジケーターの表示・JSONロードの判定
-        // 呼び出し元によってふるまいを変える
+        // 呼び出し元によって、以下switch-caseの処理を実行する。
         let constantClassName = StructClassName()
         switch previousClassName {
         // 初回起動時
         case constantClassName.functionName_01:
             print("IN - case constantClassName.functionName_01")
+            
             // インジケーター用のUIViewを表示
-            enableIndicatorView()
+//            enableIndicatorView()
+            self.indicatorView.isHidden = false
+            
             // Indicatorのスタート
             activityIndicator()
             indicator.startAnimating()
@@ -247,12 +276,24 @@ class ResultListViewController: UITableViewController {
         // 検索画面から検索実行
         case constantClassName.className_03:
             print("IN - case constantClassName.className_03")
+            
+            // インジケーター用のViewを最前面に表示
+            self.view.bringSubviewToFront(self.indicatorView)
             // インジケーター用のUIViewを表示
-            enableIndicatorView()
+//            enableIndicatorView()
+            self.indicatorView.isHidden = false
+
             // Indicatorのスタート
             activityIndicator()
             indicator.startAnimating()
             indicator.backgroundColor = UIColor.black
+            
+            if !resultZero {
+                // 途中までスクロールしていた場合は、リストの先頭に移動する
+                let indexPathForTop = IndexPath(row: 0, section: 0)
+                self.tableView.scrollToRow(at: indexPathForTop, at: .top, animated: true)
+            }
+            resultZero = false
             
             // 検索中は検索ボタンを無効化
             buttonSearch.isEnabled = false
@@ -314,6 +355,12 @@ class ResultListViewController: UITableViewController {
             print("IN - default")
             // previousClassName初期化
             previousClassName = ""
+            
+            if resultZero {
+                // インジケーター用のViewを最前面に表示
+                self.view.bringSubviewToFront(self.indicatorZeroView)
+                self.indicatorZeroView.isHidden = false
+            }
             print("OUT - default")
         }
 
@@ -344,7 +391,7 @@ class ResultListViewController: UITableViewController {
                         
                         self.count = 0
                         
-                        // 非同期処理完了後の処理
+                        // 非同期処理完了後の処理（0件)
                         DispatchQueue.main.async {
                             
                             print("DispatchQueue.main.async - IN - count=0")
@@ -356,6 +403,12 @@ class ResultListViewController: UITableViewController {
                             // テーブル情報のリロード
                             self.tableView.reloadData()
                             
+                            // 0件用インジケーターviewの表示
+                            self.indicatorZeroView.isHidden = false
+                            
+                            // インジケーター用のViewを最前面に表示
+                            self.view.bringSubviewToFront(self.indicatorZeroView)
+
                             // インジケーターアイコンを非表示
                             self.indicator.stopAnimating()
                             
@@ -364,6 +417,9 @@ class ResultListViewController: UITableViewController {
                             
                             // 検索後は検索ボタンを有効化
                             self.buttonSearch.isEnabled = true
+                            
+                            // 結果0件
+                            self.resultZero = true
 
                             print("DispatchQueue.main.async - OUT - count=0")
                             
@@ -403,9 +459,9 @@ class ResultListViewController: UITableViewController {
                                 formatterString.timeStyle = .medium
                                 
                                 //UTC + 9(Japan) 表示用の日付（日本時間）をセットする
-                                self.addedDate = Date(timeInterval: 60*60*9*1, since: dateString)
-//                                print("addedDate:\(String(describing: self.addedDate))")
-//                                print("formatterString:\(formatterString.string(from: self.addedDate)))")
+                                print("timeintervalValue: \(self.timeintervalValue)")
+//                                self.addedDate = Date(timeInterval: 60*60*9*1, since: dateString)
+                                self.addedDate = Date(timeInterval: self.timeintervalValue, since: dateString)
 
                                 //LaunchDate,RocketName added to struct for display on PlansView
                                 self.viewRocketPlanData.append(StructViewPlans(
@@ -424,6 +480,9 @@ class ResultListViewController: UITableViewController {
                                 print("ステータスコード: \(httpResponse.statusCode)")
                             }
                             
+//                            // 0件メッセージの非表示
+//                            self.zeroMessage.isHidden = true
+                            
                             // テーブル情報のリロード
                             self.tableView.reloadData()
                             
@@ -432,9 +491,6 @@ class ResultListViewController: UITableViewController {
                             
                             // インジケーター用のUIViewを非表示
                             self.indicatorView.isHidden = true
-                            
-                            // 0件メッセージの非表示
-                            self.zeroMessage.isHidden = true
                             
                             // 検索後は検索ボタンを有効化
                             self.buttonSearch.isEnabled = true
@@ -457,7 +513,6 @@ class ResultListViewController: UITableViewController {
         if let indexPath = self.tableView.indexPathForSelectedRow {
             let launch = self.jsonLaunches.launches[indexPath.row]
             let controller = segue.destination as! DetailViewController
-            controller.title = "Detail"
             controller.id = launch.id
             controller.name = launch.name
             controller.rocketImageURL = launch.rocket.imageURL

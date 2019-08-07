@@ -41,6 +41,9 @@ class ListViewController: UITableViewController {
     // ロケット名日本語変換クラス
     var rocketEng2Jpn = RocketNameEng2Jpn()
     
+    // Timeintervalの値
+    var timeintervalValue: Double = 0
+    
 
     override func tableView(_ tableView: UITableView,
                             numberOfRowsInSection section: Int) -> Int {
@@ -148,10 +151,11 @@ class ListViewController: UITableViewController {
 
         notificationCenter.addObserver(self, selector: #selector(catchNotificationRocketRemove(notification:)), name: .myNotificationRocketRemove, object: nil)
         
-        // Test Get Timezone abbreviation //
-        let abbreviation = DicTimeZone()
-        let test = abbreviation.getAgencyOfJapanese()
-        print("Test abbreviation: \(test)")
+        // GMTからTimeinterval用の値を取得
+        let timeRelated = TimeRelated()
+        let gmtValue = timeRelated.getGmtValue()
+        print("Abbreviation Value: \(gmtValue)")
+        timeintervalValue = timeRelated.getTimeintervalValue(gmtValue: gmtValue)
         
 
         print("ListViewController - viewDidLoad start")
@@ -255,9 +259,9 @@ class ListViewController: UITableViewController {
                             self.utcDate = Date(timeInterval: 0, since: dateString)
 
                             //UTC + 9(Japan) 表示用の日付（日本時間）をセットする
-                            self.addedDate = Date(timeInterval: 60*60*9*1, since: dateString)
-//                            print("addedDate:\(String(describing: self.addedDate))")
-//                            print("formatterString:\(formatterString.string(from: self.addedDate)))")
+                            print("timeintervalValue: \(self.timeintervalValue)")
+//                            self.addedDate = Date(timeInterval: 60*60*9*1, since: dateString)
+                            self.addedDate = Date(timeInterval: self.timeintervalValue, since: dateString)
                             
                             //ID,LaunchDate added to struct
                             self.notificationDate.append(StructNotificationDate(id: launch.id,
@@ -409,7 +413,6 @@ class ListViewController: UITableViewController {
         if let indexPath = self.tableView.indexPathForSelectedRow {
             let launch = self.jsonLaunches.launches[indexPath.row]
             let controller = segue.destination as! DetailRocketViewController
-            controller.title = "Detail"
             controller.id = launch.id
             controller.name = launch.name
             // 詳細画面にDate型の日付を渡す

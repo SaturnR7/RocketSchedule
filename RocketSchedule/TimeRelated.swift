@@ -8,8 +8,7 @@
 
 import Foundation
 
-// UTCまたはGMTから現在のタイムゾーンまでの時差（時間）をInt型で返すクラス
-class DicTimeZone {
+class TimeRelated {
 
     private let timeZoneAbb: [String:Int]
         = [
@@ -41,7 +40,8 @@ class DicTimeZone {
             "GMT-12":-12
           ]
 
-    func getAgencyOfJapanese() -> Int{
+    // UTCまたはGMTから現在のタイムゾーンまでの時差（時間）をInt型で返すクラス
+    func getGmtValue() -> Int{
         
         let abbreviation = TimeZone.current.abbreviation()
         if let abbreviation = abbreviation{
@@ -49,5 +49,11 @@ class DicTimeZone {
         }else{
             return 0 // UTC
         }
+    }
+    
+    // GMTの時差を元にTimeinterval用のDouble値を返す
+    // Usage: let date = Date(timeInterval: 60*60*9*1, since: dateString)
+    func getTimeintervalValue(gmtValue value: Int) -> Double {
+            return Double(60*60*value*1)
     }
  }

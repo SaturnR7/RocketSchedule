@@ -9,6 +9,7 @@
 import Foundation
 import RealmSwift
 
+// Realm Object
 class FavoriteObject: Object {
     @objc dynamic var id = 0
     @objc dynamic var rocketName = ""

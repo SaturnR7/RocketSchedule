@@ -372,7 +372,6 @@ class FavoriteListView: UITableViewController {
         if let indexPath = self.tableView.indexPathForSelectedRow {
             let launch = self.arrayFavoriteLaunches[indexPath.row]
             let controller = segue.destination as! DetailViewController
-            controller.title = "Detail"
             controller.id = launch.id
             controller.name = launch.rocketName
             controller.windowStart = launch.windowStart
