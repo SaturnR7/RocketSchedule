@@ -11,8 +11,8 @@ import UIKit
 
 class ResultListViewController: UITableViewController {
     
-    var items = [Launch]()
-    var item:Launch?
+//    var items = [Launch]()
+//    var item:Launch?
     var count: Int = 0
     var jsonLaunches: Launch!
     var isAgencySearch: Bool! = false
@@ -51,8 +51,9 @@ class ResultListViewController: UITableViewController {
     // ロケット名日本語変換クラス
     var rocketEng2Jpn = RocketNameEng2Jpn()
     
+    // TimeRelated.swiftを使った処理だが不要のためコメント化
     // Timeintervalの値
-    var timeintervalValue: Double = 0
+//    var timeintervalValue: Double = 0
     
     // 検索結果0件
     var resultZero = false
@@ -62,7 +63,7 @@ class ResultListViewController: UITableViewController {
     // インジケーター用のUIViewを宣言
     var indicatorView: UIView!
     // 0件用のUIViewを宣言
-    var indicatorZeroView: UIView!
+    var resultZeroView: UIView!
 
     
     @IBOutlet weak var buttonSearch: UIBarButtonItem!
@@ -165,18 +166,18 @@ class ResultListViewController: UITableViewController {
         self.indicatorView.isHidden = true
     }
 
-    // インジケーター用のUIViewを生成
-    func enableIndicatorZeroView() {
+    // 0件用のUIViewを生成
+    func enableResultZeroView() {
         
         // init Boundsで全画面にviewを表示
-        self.indicatorZeroView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height))
+        self.resultZeroView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height))
         let bgColor = UIColor.init(red: 255/255, green: 38/255, blue: 38/255, alpha: 1)
-        self.indicatorZeroView.backgroundColor = bgColor
-        self.indicatorZeroView.isUserInteractionEnabled = true
-        self.view.addSubview(indicatorZeroView)
+        self.resultZeroView.backgroundColor = bgColor
+        self.resultZeroView.isUserInteractionEnabled = true
+        self.view.addSubview(resultZeroView)
         
         // 検索0件の時だけこのviewを表示するため、それ以外は非表示にする。
-        self.indicatorZeroView.isHidden = true
+        self.resultZeroView.isHidden = true
     }
     var zeroMessage = UILabel()
     
@@ -184,11 +185,11 @@ class ResultListViewController: UITableViewController {
     func enableIndicatorViewZero() {
         
         // 0件メッセージ
-        zeroMessage = UILabel.init(frame: CGRect.init(x: 20, y: 20, width: 200, height: 10))
-        zeroMessage.text = "該当なし"
-        zeroMessage.textColor = UIColor.white
-        zeroMessage.font = UIFont.init(name: "Futura", size: 20)
-        self.view.addSubview(zeroMessage)
+        self.zeroMessage = UILabel.init(frame: CGRect.init(x: 20, y: 20, width: 200, height: 10))
+        self.zeroMessage.text = "該当なし"
+        self.zeroMessage.textColor = UIColor.white
+        self.zeroMessage.font = UIFont.init(name: "Futura", size: 20)
+        self.view.addSubview(self.zeroMessage)
 
     }
 
@@ -205,17 +206,24 @@ class ResultListViewController: UITableViewController {
         
         // インジケーター用のviewを生成
         enableIndicatorView()
-        enableIndicatorZeroView()
+        // 0件用のviewを生成
+        enableResultZeroView()
+        // 0件メッセージの表示
+        enableIndicatorViewZero()
+
+        // インジケーターアイコンの生成
+        activityIndicator()
         
         // cell borderline size
         tableView.separatorInset =
             UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20);
         
-        // GMTからTimeinterval用の値を取得
-        let timeRelated = TimeRelated()
-        let gmtValue = timeRelated.getGmtValue()
-        print("Abbreviation Value: \(gmtValue)")
-        timeintervalValue = timeRelated.getTimeintervalValue(gmtValue: gmtValue)
+        // TimeRelated.swiftを使った処理だが不要のためコメント化
+//        // GMTからTimeinterval用の値を取得
+//        let timeRelated = TimeRelated()
+//        let gmtValue = timeRelated.getGmtValue()
+//        print("Abbreviation Value: \(gmtValue)")
+//        timeintervalValue = timeRelated.getTimeintervalValue(gmtValue: gmtValue)
 
         print("ResultListViewController - viewDidLoad - End")
 
@@ -231,7 +239,7 @@ class ResultListViewController: UITableViewController {
         
         // 0件用のUIを初期化（非表示）
         self.zeroMessage.isHidden = true
-        self.indicatorZeroView.isHidden = true
+        self.resultZeroView.isHidden = true
 
         // インジケーターの表示・JSONロードの判定
         // 呼び出し元によって、以下switch-caseの処理を実行する。
@@ -338,14 +346,7 @@ class ResultListViewController: UITableViewController {
             searchURL.set(url , forKey: "settingURL")
             // URL検索
             launchJsonDownload()
-            // self.count = 0 の場合、検索結果0件、以下に0件処理を実装する
-            if self.count == 0{
-                // インジケーターアイコンを非表示
-                self.indicator.stopAnimating()
-                
-                // インジケーター用のUIViewを非表示
-                self.indicatorView.isHidden = true
-            }
+            
             // previousClassName初期化
             previousClassName = ""
             
@@ -358,8 +359,9 @@ class ResultListViewController: UITableViewController {
             
             if resultZero {
                 // インジケーター用のViewを最前面に表示
-                self.view.bringSubviewToFront(self.indicatorZeroView)
-                self.indicatorZeroView.isHidden = false
+//                self.view.bringSubviewToFront(self.resultZeroView)
+                self.resultZeroView.isHidden = false
+                self.zeroMessage.isHidden = false
             }
             print("OUT - default")
         }
@@ -403,17 +405,20 @@ class ResultListViewController: UITableViewController {
                             // テーブル情報のリロード
                             self.tableView.reloadData()
                             
-                            // 0件用インジケーターviewの表示
-                            self.indicatorZeroView.isHidden = false
-                            
+                            // 0件用viewの表示
+                            self.resultZeroView.isHidden = false
+                            // インジケーターviewの非表示
+                            self.indicatorView.isHidden = true
+
                             // インジケーター用のViewを最前面に表示
-                            self.view.bringSubviewToFront(self.indicatorZeroView)
+//                            self.view.bringSubviewToFront(self.indicatorZeroView)
 
                             // インジケーターアイコンを非表示
                             self.indicator.stopAnimating()
                             
                             // 0件メッセージの表示
-                            self.enableIndicatorViewZero()
+//                            self.enableIndicatorViewZero()
+                            self.zeroMessage.isHidden = false
                             
                             // 検索後は検索ボタンを有効化
                             self.buttonSearch.isEnabled = true
@@ -458,10 +463,11 @@ class ResultListViewController: UITableViewController {
                                 formatterString.dateStyle = .full
                                 formatterString.timeStyle = .medium
                                 
-                                //UTC + 9(Japan) 表示用の日付（日本時間）をセットする
-                                print("timeintervalValue: \(self.timeintervalValue)")
-//                                self.addedDate = Date(timeInterval: 60*60*9*1, since: dateString)
-                                self.addedDate = Date(timeInterval: self.timeintervalValue, since: dateString)
+                                // システム設定しているタイムゾーンを元にUTCから発射日時を算出する
+                                // TimeRelated.swiftを使った処理だが不要のためコメント化
+//                                print("timeintervalValue: \(self.timeintervalValue)")
+//                                self.addedDate = Date(timeInterval: self.timeintervalValue, since: dateString)
+                                self.addedDate = Date(timeInterval: Double(Calendar.current.timeZone.secondsFromGMT()), since: dateString)
 
                                 //LaunchDate,RocketName added to struct for display on PlansView
                                 self.viewRocketPlanData.append(StructViewPlans(

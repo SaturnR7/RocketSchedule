@@ -41,8 +41,9 @@ class ListViewController: UITableViewController {
     // ロケット名日本語変換クラス
     var rocketEng2Jpn = RocketNameEng2Jpn()
     
+    // TimeRelated.swiftを使った処理だが不要のためコメント化
     // Timeintervalの値
-    var timeintervalValue: Double = 0
+//    var timeintervalValue: Double = 0
     
 
     override func tableView(_ tableView: UITableView,
@@ -123,6 +124,7 @@ class ListViewController: UITableViewController {
         print("ListViewController - viewDidLoad start")
         
         print("Timezone: \(TimeZone.ReferenceType.local)")
+        print("Timezone secondsFromGMT : \(Calendar.current.timeZone.secondsFromGMT())")
         print("TimeZone Current Abbreviation: \(TimeZone.current.abbreviation())")
         print("Timezone List: \(TimeZone.abbreviationDictionary)")
         print("TimeZone Identifiers: \(TimeZone.knownTimeZoneIdentifiers)")
@@ -151,15 +153,14 @@ class ListViewController: UITableViewController {
 
         notificationCenter.addObserver(self, selector: #selector(catchNotificationRocketRemove(notification:)), name: .myNotificationRocketRemove, object: nil)
         
-        // GMTからTimeinterval用の値を取得
-        let timeRelated = TimeRelated()
-        let gmtValue = timeRelated.getGmtValue()
-        print("Abbreviation Value: \(gmtValue)")
-        timeintervalValue = timeRelated.getTimeintervalValue(gmtValue: gmtValue)
+        // TimeRelated.swiftを使った処理だが不要のためコメント化
+//        // GMTからTimeinterval用の値を取得
+//        let timeRelated = TimeRelated()
+//        let gmtValue = timeRelated.getGmtValue()
+//        print("Abbreviation Value: \(gmtValue)")
+//        timeintervalValue = timeRelated.getTimeintervalValue(gmtValue: gmtValue)
         
 
-        print("ListViewController - viewDidLoad start")
-        
         // Json Download
         launchJsonDownload()
         
@@ -258,11 +259,13 @@ class ListViewController: UITableViewController {
                             //ローカル通知登録用の日付をData型でセットする
                             self.utcDate = Date(timeInterval: 0, since: dateString)
 
-                            //UTC + 9(Japan) 表示用の日付（日本時間）をセットする
-                            print("timeintervalValue: \(self.timeintervalValue)")
+                            // システム設定しているタイムゾーンを元にUTCから発射日時を算出する
 //                            self.addedDate = Date(timeInterval: 60*60*9*1, since: dateString)
-                            self.addedDate = Date(timeInterval: self.timeintervalValue, since: dateString)
-                            
+                            // TimeRelated.swiftを使った処理だが不要のためコメント化
+//                            print("timeintervalValue: \(self.timeintervalValue)")
+//                            self.addedDate = Date(timeInterval: self.timeintervalValue, since: dateString)
+                            self.addedDate = Date(timeInterval: Double(Calendar.current.timeZone.secondsFromGMT()), since: dateString)
+
                             //ID,LaunchDate added to struct
                             self.notificationDate.append(StructNotificationDate(id: launch.id,
                                                                 launchData: self.utcDate,

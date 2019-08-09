@@ -8,6 +8,7 @@
 
 import Foundation
 
+// TimeRelated.swiftを使った処理だが不要となった
 class TimeRelated {
 
     private let timeZoneAbb: [String:Int]
@@ -40,10 +41,14 @@ class TimeRelated {
             "GMT-12":-12
           ]
 
-    // UTCまたはGMTから現在のタイムゾーンまでの時差（時間）をInt型で返すクラス
+    // UTCまたはGMTから現在のタイムゾーンまでの時差（時間）をInt型で返す。
+    // タイムゾーンを東京に設定している場合、「GMT+9」なのでInt型で「9」を返す。
     func getGmtValue() -> Int{
         
         let abbreviation = TimeZone.current.abbreviation()
+
+        print("TimeRelated - getGmtValue - abbreviation: \(abbreviation)")
+        
         if let abbreviation = abbreviation{
             return timeZoneAbb[abbreviation] ?? 0
         }else{
@@ -51,7 +56,7 @@ class TimeRelated {
         }
     }
     
-    // GMTの時差を元にTimeinterval用のDouble値を返す
+    // GMTの時差を元にTimeinterval用のDouble値を返す。
     // Usage: let date = Date(timeInterval: 60*60*9*1, since: dateString)
     func getTimeintervalValue(gmtValue value: Int) -> Double {
             return Double(60*60*value*1)
