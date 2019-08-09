@@ -29,7 +29,6 @@
 		B6686E4C222E54C100B6CC75 /* SearchRoketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6686E4B222E54C100B6CC75 /* SearchRoketViewController.swift */; };
 		B6686E4E222F896100B6CC75 /* SearchLaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6686E4D222F896100B6CC75 /* SearchLaunch.swift */; };
 		B66E3DFE22BC99FE00B91A7A /* StructViewSearchAgency.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66E3DFD22BC99FE00B91A7A /* StructViewSearchAgency.swift */; };
-		B68F0F5422FD0B710078F4E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B68F0F5322FD0B700078F4E3 /* Assets.xcassets */; };
 		B69B6AEF22BB61F500C691BD /* SearchAgencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69B6AEE22BB61F500C691BD /* SearchAgencyViewController.swift */; };
 		B69B6AF122BB6A6F00C691BD /* StructAgency.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69B6AF022BB6A6F00C691BD /* StructAgency.swift */; };
 		B69B6AF322BC870600C691BD /* CustomSearchAgencyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69B6AF222BC870600C691BD /* CustomSearchAgencyCell.swift */; };
@@ -41,6 +40,7 @@
 		B6D9446922C5EEF800B4B968 /* FavoriteObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D9446822C5EEF800B4B968 /* FavoriteObject.swift */; };
 		B6D9446B22C5EFA400B4B968 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6D9446A22C5EFA400B4B968 /* Realm.framework */; };
 		B6D9446D22C5EFAB00B4B968 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6D9446C22C5EFAB00B4B968 /* RealmSwift.framework */; };
+		B6E0BE4C22FD1117003D9A36 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6E0BE4B22FD1116003D9A36 /* Assets.xcassets */; };
 		CC771E829FC0C52BF160E277 /* Pods_RocketSchedule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E504C709F181CBCABF35098 /* Pods_RocketSchedule.framework */; };
 /* End PBXBuildFile section */
 
@@ -84,7 +84,6 @@
 		B6686E4B222E54C100B6CC75 /* SearchRoketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRoketViewController.swift; sourceTree = "<group>"; };
 		B6686E4D222F896100B6CC75 /* SearchLaunch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLaunch.swift; sourceTree = "<group>"; };
 		B66E3DFD22BC99FE00B91A7A /* StructViewSearchAgency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructViewSearchAgency.swift; sourceTree = "<group>"; };
-		B68F0F5322FD0B700078F4E3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../../.Trash/Assets.xcassets; sourceTree = "<group>"; };
 		B69B6AEE22BB61F500C691BD /* SearchAgencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAgencyViewController.swift; sourceTree = "<group>"; };
 		B69B6AF022BB6A6F00C691BD /* StructAgency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructAgency.swift; sourceTree = "<group>"; };
 		B69B6AF222BC870600C691BD /* CustomSearchAgencyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchAgencyCell.swift; sourceTree = "<group>"; };
@@ -96,6 +95,7 @@
 		B6D9446822C5EEF800B4B968 /* FavoriteObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteObject.swift; sourceTree = "<group>"; };
 		B6D9446A22C5EFA400B4B968 /* Realm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Realm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6D9446C22C5EFAB00B4B968 /* RealmSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B6E0BE4B22FD1116003D9A36 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,7 +172,7 @@
 				B6157F1522F96FA800475AD4 /* TimeRelated.swift */,
 				B61B8C0522F6A4F900F3CFE5 /* RocketNameEng2Jpn.swift */,
 				B6427C4421EAD5B800999575 /* Main.storyboard */,
-				B68F0F5322FD0B700078F4E3 /* Assets.xcassets */,
+				B6E0BE4B22FD1116003D9A36 /* Assets.xcassets */,
 				B6427C4921EAD5BD00999575 /* LaunchScreen.storyboard */,
 				B6427C4C21EAD5BD00999575 /* Info.plist */,
 			);
@@ -252,7 +252,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B6427C4B21EAD5BD00999575 /* LaunchScreen.storyboard in Resources */,
-				B68F0F5422FD0B710078F4E3 /* Assets.xcassets in Resources */,
+				B6E0BE4C22FD1117003D9A36 /* Assets.xcassets in Resources */,
 				B6427C4621EAD5B800999575 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
