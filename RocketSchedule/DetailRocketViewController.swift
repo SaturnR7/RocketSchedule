@@ -44,14 +44,20 @@ class DetailRocketViewController : UIViewController {
             // Notification通知を送る（通知を送りたい箇所に書く。例えば何らかのボタンを押した際の処理の中等）
             notificationCenter.post(name: .myNotificationRocketAdd, object: nil)
             
+            imageNotify.image = UIImage.init(named: "Icon_View_01_notify")
+            
         }else{
             
             //ロケット情報の通知削除
             // Notification通知を送る（通知を送りたい箇所に書く。例えば何らかのボタンを押した際の処理の中等）
             notificationCenter.post(name: .myNotificationRocketRemove, object: nil)
             
+            imageNotify.image = UIImage.init(named: "Icon_View_01_notify_off")
+
         }
     }
+    
+    @IBOutlet weak var imageNotify: UIImageView!
     
     @IBOutlet weak var labelAgency: UILabel!
     
@@ -95,8 +101,10 @@ class DetailRocketViewController : UIViewController {
         //打ち上げ画面から渡ってきた通知スイッチのboolを判定して
         //スイッチの状態を設定する。
         if (notifySwitch){
+            imageNotify.image = UIImage.init(named: "Icon_View_01_notify")
             notifyOutletSwitch.isOn = true
         }else{
+            imageNotify.image = UIImage.init(named: "Icon_View_01_notify_off")
             notifyOutletSwitch.isOn = false
         }
         
@@ -114,7 +122,7 @@ class DetailRocketViewController : UIViewController {
             videoButtonControll(videoCount: urlsCount)
             
         }else{
-            planVideoLinkOutlet.setTitle("ビデオなし", for: .normal)
+            planVideoLinkOutlet.setTitle("ライブ配信がある場合はアイコンが表示されます", for: .normal)
             planVideoLinkOutlet.isEnabled = false
             planVideoLinkOutlet2.isHidden = true
             planVideoLinkOutlet3.isHidden = true
@@ -145,15 +153,24 @@ class DetailRocketViewController : UIViewController {
         
         for target in 1...videoCount {
             switch target{
-            case 1: planVideoLinkOutlet.setTitle("📹", for: .normal)
+            case 1:
+//                    planVideoLinkOutlet.setTitle("📹", for: .normal)
+                    planVideoLinkOutlet.setImage(UIImage.init(named: "Icon_View_02_video"), for: .normal)
                 
-            case 2: planVideoLinkOutlet.setTitle("📹", for: .normal)
-                    planVideoLinkOutlet2.setTitle("📹", for: .normal)
-                
-            case 3: planVideoLinkOutlet.setTitle("📹", for: .normal)
-                    planVideoLinkOutlet2.setTitle("📹", for: .normal)
-                    planVideoLinkOutlet3.setTitle("📹", for: .normal)
-                
+            case 2:
+//                    planVideoLinkOutlet.setTitle("📹", for: .normal)
+//                    planVideoLinkOutlet2.setTitle("📹", for: .normal)
+                    planVideoLinkOutlet.setImage(UIImage.init(named: "Icon_View_02_video"), for: .normal)
+                    planVideoLinkOutlet2.setImage(UIImage.init(named: "Icon_View_02_video"), for: .normal)
+
+            case 3:
+//                    planVideoLinkOutlet.setTitle("📹", for: .normal)
+//                    planVideoLinkOutlet2.setTitle("📹", for: .normal)
+//                    planVideoLinkOutlet3.setTitle("📹", for: .normal)
+                    planVideoLinkOutlet.setImage(UIImage.init(named: "Icon_View_02_video"), for: .normal)
+                    planVideoLinkOutlet2.setImage(UIImage.init(named: "Icon_View_02_video"), for: .normal)
+                    planVideoLinkOutlet3.setImage(UIImage.init(named: "Icon_View_02_video"), for: .normal)
+
             default:
                 print("default")
             }

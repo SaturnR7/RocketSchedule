@@ -25,10 +25,19 @@ class DetailViewController : UIViewController {
     
     @IBOutlet weak var buttonFavorite: UIButton!
     
-    
     @IBAction func buttonFavoriteTapped() {
         // ボタンタップ時にお気に入りの登録、または未登録によって処理を変更する
         self.state.buttonFavoriteTapped(detailViewController: self)
+        
+        // ロケット情報のお気に入り登録状況によってお気に入りアイコンを変更する
+        // 登録あり：★
+        // 登録なし：☆
+        if isFavoriteDataExist(){
+            self.buttonFavorite.setImage(UIImage.init(named: "Icon_Tab_03_favorite"), for: .normal)
+        }else{
+            self.buttonFavorite.setImage(UIImage.init(named: "Icon_Tab_03_favorite_off"), for: .normal)
+        }
+
     }
     
     @IBOutlet weak var imageRocket: UIImageView!
@@ -71,6 +80,15 @@ class DetailViewController : UIViewController {
         // ナビゲーションバーのアイテムの色　（戻る　＜　とか　読み込みゲージとか）
         self.navigationController?.navigationBar.tintColor = .white
         
+        // ロケット情報のお気に入り登録状況によってお気に入りアイコンを変更する
+        // 登録あり：★
+        // 登録なし：☆
+        if isFavoriteDataExist(){
+            self.buttonFavorite.setImage(UIImage.init(named: "Icon_Tab_03_favorite"), for: .normal)
+        }else{
+            self.buttonFavorite.setImage(UIImage.init(named: "Icon_Tab_03_favorite_off"), for: .normal)
+        }
+
         // Rocket Name JPN
         detailRocketName.text = rocketEng2Jpn.checkStringSpecifyRocketName(name: self.name)
         
@@ -137,6 +155,7 @@ class DetailViewController : UIViewController {
         // 表示する　：ResultListViewController
         // 表示しない：FavoriteListView
         let constantClassName = StructClassName()
+        print("previousClassName: \(previousClassName)")
         switch previousClassName {
         case constantClassName.className_02:
             buttonFavorite.isHidden = true
@@ -153,15 +172,24 @@ class DetailViewController : UIViewController {
         
         for target in 1...videoCount {
             switch target{
-            case 1: videoLinkOutlet.setTitle("📹", for: .normal)
-                
-            case 2: videoLinkOutlet.setTitle("📹", for: .normal)
-                    videoLinkOutlet2.setTitle("📹", for: .normal)
-                
-            case 3: videoLinkOutlet.setTitle("📹", for: .normal)
-                    videoLinkOutlet2.setTitle("📹", for: .normal)
-                    videoLinkOutlet3.setTitle("📹", for: .normal)
-                
+            case 1:
+//                    videoLinkOutlet.setTitle("📹", for: .normal)
+                    videoLinkOutlet.setImage(UIImage.init(named: "Icon_View_02_video"), for: .normal)
+
+            case 2:
+//                    videoLinkOutlet.setTitle("📹", for: .normal)
+//                    videoLinkOutlet2.setTitle("📹", for: .normal)
+                    videoLinkOutlet.setImage(UIImage.init(named: "Icon_View_02_video"), for: .normal)
+                    videoLinkOutlet2.setImage(UIImage.init(named: "Icon_View_02_video"), for: .normal)
+
+            case 3:
+//                    videoLinkOutlet.setTitle("📹", for: .normal)
+//                    videoLinkOutlet2.setTitle("📹", for: .normal)
+//                    videoLinkOutlet3.setTitle("📹", for: .normal)
+                    videoLinkOutlet.setImage(UIImage.init(named: "Icon_View_02_video"), for: .normal)
+                    videoLinkOutlet2.setImage(UIImage.init(named: "Icon_View_02_video"), for: .normal)
+                    videoLinkOutlet3.setImage(UIImage.init(named: "Icon_View_02_video"), for: .normal)
+
             default:
                 print("default")
             }
@@ -195,7 +223,6 @@ class DetailViewController : UIViewController {
         // stateにRocketAddedAsFavoriteクラスを入れる必要がある。
 //        checkExistFavorite()
         
-        // ■■■以下の処理を実装する■■■
         // 当画面に遷移した時、
         // 当画面のロケット情報がお気に入り画面のお気に入り情報に
         // 登録しているかRealmで存在チェックする

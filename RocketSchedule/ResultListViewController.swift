@@ -200,6 +200,10 @@ class ResultListViewController: UITableViewController {
         
         super.viewDidLoad()
         
+        // バックボタンのタイトルを設定
+        // 遷移先のバックボタンにタイトルを設定する場合は、title: に文字を設定する。
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+
         // viewDidAppearのswitch処理用
         // 初回起動時はインジケーター表示・JSONロードのみ処理を行う
         previousClassName = "viewDidLoad"
@@ -471,6 +475,7 @@ class ResultListViewController: UITableViewController {
 
                                 //LaunchDate,RocketName added to struct for display on PlansView
                                 self.viewRocketPlanData.append(StructViewPlans(
+                                    id: launch.id,
                                     launchData: self.addedDate,
                                     rocketName: launch.name))
 //                                print("name:\(launch.name)")

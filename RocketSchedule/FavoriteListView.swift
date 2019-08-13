@@ -193,6 +193,10 @@ class FavoriteListView: UITableViewController {
         // comment reason: Launch Data get from Realm
 //        launchJsonDownload()
         
+        // バックボタンのタイトルを設定
+        // 遷移先のバックボタンにタイトルを設定する場合は、title: に文字を設定する。
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+
         // cell borderline size
         tableView.separatorInset =
             UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20);

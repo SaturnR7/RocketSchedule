@@ -99,7 +99,36 @@ class ListViewController: UITableViewController {
         cell.labelRocketName?.text =
             rocketEng2Jpn.checkStringSpecifyRocketName(name: self.viewRocketPlanData[indexPath.row].rocketName)
         
+        // テスト：ロケット画像の表示
+////        cell.imageView?.image = UIImage(named: "Atlas+V+551_480")
+//        cell.rocketImageViewCell.image = UIImage(named: "Atlas+V+551_480")
+//        let imageViewScale = max(cell.rocketImageViewCell.image.size. ,
+//                                 cell.rocketImageViewCell.image.size.height / viewHeight)
+//        let originalImage = UIImage(named: "Atlas+V+551_480")
+//        let cropZone = CGRect(x: 2, y: 5, width: 5, height: 5)
+//        guard let cutImage = originalImage?.cgImage?.cropping(to: cropZone)
+//            else{
+//                    return cell
+//            }
+//        cell.rocketImageViewCell.image? = UIImage(cgImage: cutImage)
+
+//        let imageOriginalNotify = UIImage(named: "Icon_View_01_notify")
+//        let reSize = CGSize(width: (imageOriginalNotify?.size.width)! / 2, height: (imageOriginalNotify?.size.height)! / 2)
+//        cell.imageNotify.image = imageOriginalNotify?.reSizeImage(reSize: reSize)
+//        cell.imageNotify.image = imageOriginalNotify?.scaleImage(scaleSize: 0.5)
         
+
+        // テスト：通知アイコン表示
+//        cell.imageNotify.image = UIImage(named: "Icon_View_01_notify")
+//        // 通知情報が登録されていない場合は、通知アイコンを非表示にする
+//        // Notify Data remove from Realm
+//        let realm = try! Realm()
+//        let filterRealm = realm.objects(RealmNotifyObject.self).filter("id = \(self.viewRocketPlanData[indexPath.row].id)")
+//        // 通知データ取得件数が０件（登録していない）はスイッチをオフにする
+//        if (filterRealm.count == 0){
+//            cell.imageNotify.isHidden = true
+//        }
+
         print("ListViewController - tableView cellForRowAt end")
 
         return cell
@@ -128,6 +157,10 @@ class ListViewController: UITableViewController {
         print("TimeZone Current Abbreviation: \(TimeZone.current.abbreviation())")
         print("Timezone List: \(TimeZone.abbreviationDictionary)")
         print("TimeZone Identifiers: \(TimeZone.knownTimeZoneIdentifiers)")
+        
+        // バックボタンのタイトルを設定
+        // 遷移先のバックボタンにタイトルを設定する場合は、title: に文字を設定する。
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
         // インジケーター用のUIViewを表示
         // init Boundsで全画面にviewを表示
@@ -198,6 +231,16 @@ class ListViewController: UITableViewController {
 //        }
         
 //        print("Json Data: \(jsonLaunches)")
+        
+        // テスト
+//        let indexPathForTop = IndexPath(row: 0, section: 0)
+//        let cell = tableView.cellForRow(at: indexPathForTop) as! CustomTableViewCell
+//        cell.imageNotify.isHidden = true
+//        // テーブル情報のリロード
+//        self.tableView.reloadData()
+
+        
+        
         print("ListViewController - viewDidAppear end")
 
     }
@@ -274,8 +317,9 @@ class ListViewController: UITableViewController {
                             
                             //LaunchDate,RocketName added to struct for display on PlansView
                             self.viewRocketPlanData.append(StructViewPlans(
-                                                        launchData: self.addedDate,
-                                                        rocketName: launch.name))
+                                                                id: launch.id,
+                                                                launchData: self.addedDate,
+                                                                rocketName: launch.name))
 //                            print("viewRocketPlanData - struct: \(self.viewRocketPlanData)")
 
                         }else{
@@ -500,3 +544,20 @@ class ListViewController: UITableViewController {
 
 }
 
+extension UIImage {
+    // resize image
+    func reSizeImage(reSize:CGSize)->UIImage {
+        //UIGraphicsBeginImageContext(reSize);
+        UIGraphicsBeginImageContextWithOptions(reSize,false,UIScreen.main.scale);
+        self.draw(in: CGRect(x: 0, y: 0, width: reSize.width, height: reSize.height));
+        let reSizeImage:UIImage! = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        return reSizeImage;
+    }
+    
+    // scale the image at rates
+    func scaleImage(scaleSize:CGFloat)->UIImage {
+        let reSize = CGSize(width: self.size.width * scaleSize, height: self.size.height * scaleSize)
+        return reSizeImage(reSize: reSize)
+    }
+}

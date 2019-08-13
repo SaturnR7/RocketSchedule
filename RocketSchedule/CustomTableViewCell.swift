@@ -16,6 +16,11 @@ class CustomTableViewCell: UITableViewCell {
     
     @IBOutlet weak var labelRocketName: UILabel!
     
+    // テスト用：ロケット画像表示
+    @IBOutlet weak var rocketImageViewCell: UIImageView!
+    
+    // 通知ありなし確認
+    @IBOutlet weak var imageNotify: UIImageView!
     
 //    override func awakeFromNib() {
 //        super.awakeFromNib()

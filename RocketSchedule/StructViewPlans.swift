@@ -10,10 +10,12 @@ import Foundation
 
 struct StructViewPlans {
     
+    var id:Int
     var launchDate:Date
     var rocketName:String
     
-    init(launchData: Date, rocketName: String){
+    init(id: Int, launchData: Date, rocketName: String){
+        self.id = id
         self.launchDate = launchData
         self.rocketName = rocketName
     }
