@@ -161,17 +161,17 @@ class ResultListViewController: UITableViewController {
         self.indicatorView.backgroundColor = bgColor
         self.indicatorView.isUserInteractionEnabled = true
         self.view.addSubview(indicatorView)
-
+        
         // 検索実行時のみこのviewを表示するため、それ以外は非表示にする。
         self.indicatorView.isHidden = true
     }
-
+    
     // 0件用のUIViewを生成
     func enableResultZeroView() {
         
         // init Boundsで全画面にviewを表示
         self.resultZeroView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height))
-        let bgColor = UIColor.init(red: 255/255, green: 38/255, blue: 38/255, alpha: 1)
+        let bgColor = UIColor.init(red: 38/255, green: 38/255, blue: 38/255, alpha: 1)
         self.resultZeroView.backgroundColor = bgColor
         self.resultZeroView.isUserInteractionEnabled = true
         self.view.addSubview(resultZeroView)
