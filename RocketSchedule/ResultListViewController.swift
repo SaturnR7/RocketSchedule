@@ -144,8 +144,11 @@ class ResultListViewController: UITableViewController {
         
         indicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
         // インジケーターアイコンの丸み表現
-        indicator.layer.cornerRadius = 8
+        indicator.layer.cornerRadius = 10
         indicator.style = UIActivityIndicatorView.Style.white
+        indicator.backgroundColor =
+            UIColor.init(red: 60/255, green: 60/255, blue: 60/255, alpha: 1)
+//        UIColor.init(red: 38/255, green: 38/255, blue: 38/255, alpha: 1)
 //        indicator.center = self.indicatorView.center
         indicator.center = CGPoint.init(x: self.indicatorView.bounds.width / 2, y: self.indicatorView.bounds.height / 3)
         self.view.addSubview(indicator)
@@ -260,7 +263,7 @@ class ResultListViewController: UITableViewController {
             // Indicatorのスタート
             activityIndicator()
             indicator.startAnimating()
-            indicator.backgroundColor = UIColor.black
+//            indicator.backgroundColor = UIColor.black
             
             // 検索中は検索ボタンを無効化
             buttonSearch.isEnabled = false
@@ -298,7 +301,7 @@ class ResultListViewController: UITableViewController {
             // Indicatorのスタート
             activityIndicator()
             indicator.startAnimating()
-            indicator.backgroundColor = UIColor.black
+//            indicator.backgroundColor = UIColor.black
             
             if !resultZero {
                 // 途中までスクロールしていた場合は、リストの先頭に移動する
