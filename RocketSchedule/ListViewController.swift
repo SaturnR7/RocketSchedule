@@ -45,6 +45,9 @@ class ListViewController: UITableViewController {
     // Timeintervalの値
 //    var timeintervalValue: Double = 0
     
+    // セルに表示するロケット画像
+    var imageForRocketCell: UIImage!
+    
 
     override func tableView(_ tableView: UITableView,
                             numberOfRowsInSection section: Int) -> Int {
@@ -100,10 +103,9 @@ class ListViewController: UITableViewController {
             rocketEng2Jpn.checkStringSpecifyRocketName(name: self.viewRocketPlanData[indexPath.row].rocketName)
         
         // テスト：ロケット画像の表示
-////        cell.imageView?.image = UIImage(named: "Atlas+V+551_480")
 //        cell.rocketImageViewCell.image = UIImage(named: "Atlas+V+551_480")
-//        let imageViewScale = max(cell.rocketImageViewCell.image.size. ,
-//                                 cell.rocketImageViewCell.image.size.height / viewHeight)
+////        let imageViewScale = max(cell.rocketImageViewCell.image.size. ,
+////                                 cell.rocketImageViewCell.image.size.height / viewHeight)
 //        let originalImage = UIImage(named: "Atlas+V+551_480")
 //        let cropZone = CGRect(x: 2, y: 5, width: 5, height: 5)
 //        guard let cutImage = originalImage?.cgImage?.cropping(to: cropZone)
@@ -111,13 +113,23 @@ class ListViewController: UITableViewController {
 //                    return cell
 //            }
 //        cell.rocketImageViewCell.image? = UIImage(cgImage: cutImage)
+        
+        // ロケット画像の表示
+        // 画像URLの文字列を変更（解像度を1920より小さく）
+        print("tableView - Before ImageURL: \(self.viewRocketPlanData[indexPath.row].rocketImageURL)")
+//        // 画像の設定.
+//        let myImage:UIImage = UIImage(named:"Atlas+V+551_480")!
+        let replacedImageURL = self.viewRocketPlanData[indexPath.row].rocketImageURL.replacingOccurrences(of: "_1920.png", with: "_480.png")
+        print("tableView - After ImageURL: \(replacedImageURL)")
+//        loadImage(urlString: replacedImageURL)
+        cell.rocketImageSetCell(imageUrl: replacedImageURL)
 
+
+        // テスト：通知アイコン表示
 //        let imageOriginalNotify = UIImage(named: "Icon_View_01_notify")
 //        let reSize = CGSize(width: (imageOriginalNotify?.size.width)! / 2, height: (imageOriginalNotify?.size.height)! / 2)
 //        cell.imageNotify.image = imageOriginalNotify?.reSizeImage(reSize: reSize)
 //        cell.imageNotify.image = imageOriginalNotify?.scaleImage(scaleSize: 0.5)
-        
-
         // テスト：通知アイコン表示
 //        cell.imageNotify.image = UIImage(named: "Icon_View_01_notify")
 //        // 通知情報が登録されていない場合は、通知アイコンを非表示にする
@@ -198,6 +210,9 @@ class ListViewController: UITableViewController {
 
         // Json Download
         launchJsonDownload()
+        
+        // Rocket Image Download
+        rocketImageDownload()
         
         //テーブルビューの pull-to-refresh
         // -> launchJsonDownload()のcompletionhandlerに移動
@@ -321,7 +336,8 @@ class ListViewController: UITableViewController {
                             self.viewRocketPlanData.append(StructViewPlans(
                                                                 id: launch.id,
                                                                 launchData: self.addedDate,
-                                                                rocketName: launch.name))
+                                                                rocketName: launch.name,
+                                                                rocketImageURL: launch.rocket.imageURL ?? ""))
 //                            print("viewRocketPlanData - struct: \(self.viewRocketPlanData)")
 
                         }else{
@@ -454,7 +470,73 @@ class ListViewController: UITableViewController {
         print("ListViewController - In notificationRocketRemove End")
     }
     
-    //segueで詳細画面へ情報を渡す
+    // セル表示用の画像ダウンロード
+    func rocketImageDownload(){
+        
+        
+        
+        
+        
+        
+        
+    }
+    
+    func loadImage(urlString: String) {
+
+        let url = URL(string: urlString)!
+
+        URLSession.shared.dataTask(with: url) {(data, response, error) in
+
+            if error != nil {
+                print(error!)
+                return
+            }
+
+            DispatchQueue.main.async {
+                print("loadImage data: \(data)")
+                self.imageForRocketCell = UIImage(data: data!)
+                print(response!)
+            }
+
+        }.resume()
+
+    }
+//    func loadImage(urlString: String) -> UIImage {
+//
+//        let url = URL(string: urlString)!
+//
+//        var result: UIImage!
+//
+//        // セマフォを0で初期化
+//        let semaphore = DispatchSemaphore(value: 0)
+////        processAsync() { (url: String) in
+////        }
+//        URLSession.shared.dataTask(with: url) {(data, response, error) in
+//
+//
+//            if error != nil {
+//                print(error!)
+//                return
+//            }
+//
+//            DispatchQueue.main.async {
+//                print("loadImage data: \(data)")
+//                self.imageForRocketCell = UIImage(data: data!)
+//                print(response!)
+//            }
+//            // セマフォをインクリメント（+1）
+//            semaphore.signal()
+//
+//        }.resume()
+//        // セマフォをデクリメント（-1）、ただしセマフォが0の場合はsignal()の実行を待つ
+//        semaphore.wait()
+//        return result
+//    }
+    
+    // 非同期処理
+    func processAsync(completion: @escaping (_ url: String) -> Void) { }
+    
+    //segueで詳細画面へ打ち上げ情報を渡す
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         
         print("ListViewController - prepare - Start")
@@ -561,5 +643,26 @@ extension UIImage {
     func scaleImage(scaleSize:CGFloat)->UIImage {
         let reSize = CGSize(width: self.size.width * scaleSize, height: self.size.height * scaleSize)
         return reSizeImage(reSize: reSize)
+    }
+}
+
+extension UIImage{
+    
+    // Resizeのクラスメソッドを作る.
+    class func ResizeUIImage(image : UIImage,width : CGFloat, height : CGFloat)-> UIImage!{
+        
+        // 指定された画像の大きさのコンテキストを用意.
+        UIGraphicsBeginImageContext(CGSize(width: width, height: height))
+        
+        // コンテキストに画像を描画する.
+        image.draw(in: CGRect(x: 0, y: 0, width: width, height: height))
+        
+        // コンテキストからUIImageを作る.
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        
+        // コンテキストを閉じる.
+        UIGraphicsEndImageContext()
+        
+        return newImage
     }
 }

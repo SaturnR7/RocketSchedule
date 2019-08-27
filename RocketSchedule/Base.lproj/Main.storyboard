@@ -13,7 +13,7 @@
         <scene sceneID="I5L-w8-Wr3">
             <objects>
                 <tableViewController id="W3v-fC-3fP" customClass="ListViewController" customModule="RocketSchedule" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="P4Q-kH-bLD">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="P4Q-kH-bLD">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.203125" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -22,7 +22,7 @@
                                 <rect key="frame" x="0.0" y="28" width="414" height="240"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="XzG-XE-1YQ" id="RvZ-0G-Xcy">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="239.66666666666666"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="240"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Launch Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JFJ-lo-ubb">
@@ -52,6 +52,9 @@
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cjZ-j8-zRv">
                                             <rect key="frame" x="9" y="106" width="32" height="32"/>
                                         </imageView>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MUH-X1-yBH">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="239.66666666666666"/>
+                                        </imageView>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="AQL-nV-M7Q" firstAttribute="leading" secondItem="cjZ-j8-zRv" secondAttribute="trailing" constant="20" id="41P-xK-ph4"/>
@@ -59,12 +62,16 @@
                                         <constraint firstAttribute="bottomMargin" secondItem="Xlv-ym-Ehm" secondAttribute="bottom" constant="16" id="EoZ-RE-2Dy"/>
                                         <constraint firstItem="JFJ-lo-ubb" firstAttribute="centerX" secondItem="AQL-nV-M7Q" secondAttribute="centerX" id="FEA-Gs-Cxe"/>
                                         <constraint firstItem="AQL-nV-M7Q" firstAttribute="top" secondItem="JFJ-lo-ubb" secondAttribute="bottom" constant="8" symbolic="YES" id="L1f-e6-D6L"/>
+                                        <constraint firstItem="MUH-X1-yBH" firstAttribute="centerY" secondItem="RvZ-0G-Xcy" secondAttribute="centerY" id="Lv1-iv-uYg"/>
+                                        <constraint firstItem="MUH-X1-yBH" firstAttribute="top" secondItem="RvZ-0G-Xcy" secondAttribute="top" id="Orc-Eg-Rlx"/>
                                         <constraint firstItem="Xlv-ym-Ehm" firstAttribute="leading" secondItem="RvZ-0G-Xcy" secondAttribute="leadingMargin" constant="35" id="Rd2-fI-d8c"/>
                                         <constraint firstItem="AQL-nV-M7Q" firstAttribute="leading" secondItem="RvZ-0G-Xcy" secondAttribute="leadingMargin" constant="41" id="VCb-ID-acd"/>
+                                        <constraint firstItem="MUH-X1-yBH" firstAttribute="centerX" secondItem="AQL-nV-M7Q" secondAttribute="centerX" id="VuO-sn-WGJ"/>
                                         <constraint firstItem="JFJ-lo-ubb" firstAttribute="centerX" secondItem="RvZ-0G-Xcy" secondAttribute="centerX" id="c4s-W6-MTq"/>
                                         <constraint firstItem="JFJ-lo-ubb" firstAttribute="top" secondItem="RvZ-0G-Xcy" secondAttribute="topMargin" constant="14" id="fHn-Tk-vOb"/>
                                         <constraint firstItem="cjZ-j8-zRv" firstAttribute="leading" secondItem="RvZ-0G-Xcy" secondAttribute="leadingMargin" constant="-11" id="iQS-jW-fow"/>
                                         <constraint firstItem="cjZ-j8-zRv" firstAttribute="top" secondItem="JFJ-lo-ubb" secondAttribute="bottom" constant="20" id="lil-wO-IUH"/>
+                                        <constraint firstItem="MUH-X1-yBH" firstAttribute="leading" secondItem="RvZ-0G-Xcy" secondAttribute="leading" id="nFF-uj-2gF"/>
                                         <constraint firstItem="Xlv-ym-Ehm" firstAttribute="top" secondItem="AQL-nV-M7Q" secondAttribute="bottom" constant="22" id="oCg-FA-xCW"/>
                                         <constraint firstItem="cjZ-j8-zRv" firstAttribute="centerY" secondItem="AQL-nV-M7Q" secondAttribute="centerY" id="rmC-h1-ImZ"/>
                                         <constraint firstItem="AQL-nV-M7Q" firstAttribute="centerX" secondItem="Xlv-ym-Ehm" secondAttribute="centerX" id="vG3-MB-oy8"/>
@@ -76,6 +83,7 @@
                                     <outlet property="labelLaunchDate" destination="JFJ-lo-ubb" id="K8a-Fh-Twj"/>
                                     <outlet property="labelLaunchTime" destination="AQL-nV-M7Q" id="MZX-sd-5d2"/>
                                     <outlet property="labelRocketName" destination="Xlv-ym-Ehm" id="Wo2-wV-37F"/>
+                                    <outlet property="rocketImageViewCell" destination="MUH-X1-yBH" id="plE-UT-fzM"/>
                                     <segue destination="ggL-0m-ZsG" kind="show" id="Vhb-dX-Zx1"/>
                                 </connections>
                             </tableViewCell>
@@ -106,7 +114,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1087"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lKP-OM-ZVW">
-                                                <rect key="frame" x="0.0" y="64" width="414" height="1092"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="1087"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Launch Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vuL-BR-Dey">
                                                         <rect key="frame" x="18" y="126" width="172" height="26"/>
@@ -222,7 +230,7 @@
                                                     <constraint firstItem="j3W-MV-cnV" firstAttribute="baseline" secondItem="qJo-J7-bfV" secondAttribute="baseline" id="O4e-PN-aLv"/>
                                                     <constraint firstItem="Vxa-En-kE8" firstAttribute="baseline" secondItem="qJo-J7-bfV" secondAttribute="baseline" id="Orm-Gc-hnh"/>
                                                     <constraint firstItem="xUI-Zg-5ff" firstAttribute="leading" secondItem="Xps-mz-ahG" secondAttribute="leading" id="Qu9-n8-sP1"/>
-                                                    <constraint firstAttribute="height" constant="1092" id="Ra9-AL-Sd6"/>
+                                                    <constraint firstAttribute="height" constant="1087" id="Ra9-AL-Sd6"/>
                                                     <constraint firstAttribute="trailing" secondItem="dnm-Gt-T68" secondAttribute="trailing" id="ULw-qo-Gbb"/>
                                                     <constraint firstAttribute="trailing" secondItem="G8m-IC-sBs" secondAttribute="trailing" constant="22" id="UmT-mx-CZu"/>
                                                     <constraint firstItem="qJo-J7-bfV" firstAttribute="baseline" secondItem="Vxa-En-kE8" secondAttribute="baseline" id="Vbr-1a-Tlb"/>
@@ -251,8 +259,8 @@
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="lKP-OM-ZVW" firstAttribute="centerX" secondItem="e4e-R4-dDy" secondAttribute="centerX" id="6jb-A1-ln0"/>
-                                            <constraint firstItem="lKP-OM-ZVW" firstAttribute="top" secondItem="e4e-R4-dDy" secondAttribute="top" constant="64" id="B8V-vF-af9"/>
-                                            <constraint firstAttribute="bottom" secondItem="lKP-OM-ZVW" secondAttribute="bottom" constant="44" id="l8Z-wz-6YO"/>
+                                            <constraint firstItem="lKP-OM-ZVW" firstAttribute="top" secondItem="e4e-R4-dDy" secondAttribute="top" id="B8V-vF-af9"/>
+                                            <constraint firstAttribute="bottom" secondItem="lKP-OM-ZVW" secondAttribute="bottom" id="l8Z-wz-6YO"/>
                                             <constraint firstAttribute="trailing" secondItem="lKP-OM-ZVW" secondAttribute="trailing" id="t4l-ck-fUV"/>
                                             <constraint firstItem="lKP-OM-ZVW" firstAttribute="leading" secondItem="e4e-R4-dDy" secondAttribute="leading" id="v27-kN-hYd"/>
                                         </constraints>
@@ -366,7 +374,7 @@
         <scene sceneID="x0X-zJ-Pgh">
             <objects>
                 <tableViewController id="yKt-iI-TyZ" userLabel="打ち上げ結果" customClass="ResultListViewController" customModule="RocketSchedule" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="WqT-pk-pWr">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="WqT-pk-pWr">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.20136443661971831" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -375,7 +383,7 @@
                                 <rect key="frame" x="0.0" y="28" width="414" height="240"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="B0D-JE-oEX" id="87X-S6-sh5">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="239.66666666666666"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="240"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Launch Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="exf-Ae-Mfq">
@@ -402,6 +410,9 @@
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6DQ-7f-NIT" userLabel="Rocket Image View Cell">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="239.66666666666666"/>
+                                        </imageView>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="exf-Ae-Mfq" firstAttribute="centerX" secondItem="xGw-bp-9ht" secondAttribute="centerX" id="5pR-gT-rFc"/>
@@ -410,10 +421,14 @@
                                         <constraint firstItem="xGw-bp-9ht" firstAttribute="leading" secondItem="87X-S6-sh5" secondAttribute="leadingMargin" constant="41" id="Y1D-Pr-Nmb"/>
                                         <constraint firstItem="exf-Ae-Mfq" firstAttribute="leading" secondItem="87X-S6-sh5" secondAttribute="leadingMargin" constant="-7" id="ZNm-By-yPb"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="8cQ-j7-pe1" secondAttribute="bottom" constant="16" id="as0-m8-MzL"/>
+                                        <constraint firstItem="6DQ-7f-NIT" firstAttribute="centerY" secondItem="87X-S6-sh5" secondAttribute="centerY" id="dDo-sL-vCb"/>
+                                        <constraint firstItem="6DQ-7f-NIT" firstAttribute="top" secondItem="87X-S6-sh5" secondAttribute="top" id="dio-cc-4f6"/>
                                         <constraint firstItem="xGw-bp-9ht" firstAttribute="top" secondItem="exf-Ae-Mfq" secondAttribute="bottom" constant="8" symbolic="YES" id="en2-h5-UqJ"/>
+                                        <constraint firstItem="6DQ-7f-NIT" firstAttribute="leading" secondItem="87X-S6-sh5" secondAttribute="leading" id="ovX-Sz-3EI"/>
                                         <constraint firstItem="exf-Ae-Mfq" firstAttribute="top" secondItem="87X-S6-sh5" secondAttribute="topMargin" constant="14" id="pwS-Yy-eMn"/>
                                         <constraint firstItem="xGw-bp-9ht" firstAttribute="centerX" secondItem="8cQ-j7-pe1" secondAttribute="centerX" id="q2d-9K-W97"/>
                                         <constraint firstItem="8cQ-j7-pe1" firstAttribute="top" secondItem="xGw-bp-9ht" secondAttribute="bottom" constant="22" id="qer-Zn-Xmo"/>
+                                        <constraint firstItem="6DQ-7f-NIT" firstAttribute="centerX" secondItem="8cQ-j7-pe1" secondAttribute="centerX" id="xwl-jB-dC4"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.20095180457746478" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -421,6 +436,7 @@
                                     <outlet property="labelLaunchDate" destination="exf-Ae-Mfq" id="8XG-xr-8XY"/>
                                     <outlet property="labelLaunchTime" destination="xGw-bp-9ht" id="zHk-4M-959"/>
                                     <outlet property="labelRocketName" destination="8cQ-j7-pe1" id="znN-2D-WLJ"/>
+                                    <outlet property="rocketImageViewCell" destination="6DQ-7f-NIT" id="PoL-iv-hbE"/>
                                     <segue destination="w2z-Ga-Xtt" kind="show" id="xmU-u5-zN0"/>
                                 </connections>
                             </tableViewCell>
@@ -450,7 +466,7 @@
         <scene sceneID="Wfu-Fs-AWw">
             <objects>
                 <tableViewController id="Iza-eo-oSe" userLabel="打ち上げ結果" customClass="FavoriteListView" customModule="RocketSchedule" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="H3B-ET-4hH">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="H3B-ET-4hH">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.20210717429577466" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -459,7 +475,7 @@
                                 <rect key="frame" x="0.0" y="28" width="414" height="240"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yaa-fn-H7o" id="s1w-sU-twi">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="239.66666666666666"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="240"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Launch Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oU2-7R-bIj">
@@ -486,6 +502,9 @@
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hBO-Tz-G3X">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="240"/>
+                                        </imageView>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="oU2-7R-bIj" firstAttribute="centerX" secondItem="s1w-sU-twi" secondAttribute="centerX" id="6xE-Id-eIb"/>
@@ -493,9 +512,13 @@
                                         <constraint firstAttribute="bottomMargin" secondItem="GdU-Nj-fcq" secondAttribute="bottom" constant="16" id="KtH-t0-gIS"/>
                                         <constraint firstItem="oU2-7R-bIj" firstAttribute="centerX" secondItem="IO7-Sx-h4j" secondAttribute="centerX" id="NS7-QF-PsL"/>
                                         <constraint firstItem="GdU-Nj-fcq" firstAttribute="leading" secondItem="s1w-sU-twi" secondAttribute="leadingMargin" constant="34" id="OKB-uv-93I"/>
+                                        <constraint firstItem="hBO-Tz-G3X" firstAttribute="leading" secondItem="s1w-sU-twi" secondAttribute="leading" id="UMQ-Ry-WC9"/>
+                                        <constraint firstItem="hBO-Tz-G3X" firstAttribute="top" secondItem="s1w-sU-twi" secondAttribute="top" id="Vda-AN-XIj"/>
                                         <constraint firstItem="IO7-Sx-h4j" firstAttribute="leading" secondItem="s1w-sU-twi" secondAttribute="leadingMargin" constant="40" id="aks-Kc-Qbm"/>
+                                        <constraint firstItem="hBO-Tz-G3X" firstAttribute="centerX" secondItem="oU2-7R-bIj" secondAttribute="centerX" id="b6K-e4-uEX"/>
                                         <constraint firstItem="IO7-Sx-h4j" firstAttribute="top" secondItem="oU2-7R-bIj" secondAttribute="bottom" constant="8" symbolic="YES" id="c15-iS-KRA"/>
                                         <constraint firstItem="GdU-Nj-fcq" firstAttribute="top" secondItem="IO7-Sx-h4j" secondAttribute="bottom" constant="22" id="hcc-jy-2Mv"/>
+                                        <constraint firstItem="hBO-Tz-G3X" firstAttribute="centerY" secondItem="s1w-sU-twi" secondAttribute="centerY" id="ihf-fP-o2h"/>
                                         <constraint firstItem="IO7-Sx-h4j" firstAttribute="centerX" secondItem="GdU-Nj-fcq" secondAttribute="centerX" id="uAc-7F-Lzt"/>
                                         <constraint firstItem="oU2-7R-bIj" firstAttribute="top" secondItem="s1w-sU-twi" secondAttribute="topMargin" constant="14" id="v5f-fe-wIa"/>
                                     </constraints>
@@ -505,6 +528,7 @@
                                     <outlet property="labelLaunchDate" destination="oU2-7R-bIj" id="Vur-gR-ezc"/>
                                     <outlet property="labelLaunchTime" destination="IO7-Sx-h4j" id="fWr-cr-d0U"/>
                                     <outlet property="labelRocketName" destination="GdU-Nj-fcq" id="jI6-Fs-gub"/>
+                                    <outlet property="rocketImageViewCell" destination="hBO-Tz-G3X" id="Gff-73-s9s"/>
                                     <segue destination="w2z-Ga-Xtt" kind="show" id="Oqf-je-Qsf"/>
                                 </connections>
                             </tableViewCell>
@@ -518,7 +542,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pgb-Dd-rAY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1925" y="1546"/>
+            <point key="canvasLocation" x="1924.6376811594205" y="1544.8369565217392"/>
         </scene>
         <!--絞り込み-->
         <scene sceneID="LrS-25-L0L">
@@ -948,6 +972,6 @@
         <image name="Icon_View_03_search" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="xmU-u5-zN0"/>
+        <segue reference="Oqf-je-Qsf"/>
     </inferredMetricsTieBreakers>
 </document>

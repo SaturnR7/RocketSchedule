@@ -54,7 +54,7 @@ class SearchRoketViewController: UIViewController {
         dataAgency.text = "すべて"
         // 機関リストを先頭に移動する
         agencyPicker.selectRow(0, inComponent: 0, animated: false)
-        
+
     }
     
     @IBOutlet weak var dateStartLaunch: UITextField!

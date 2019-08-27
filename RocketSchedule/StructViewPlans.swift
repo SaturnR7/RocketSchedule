@@ -13,11 +13,13 @@ struct StructViewPlans {
     var id:Int
     var launchDate:Date
     var rocketName:String
+    var rocketImageURL:String
     
-    init(id: Int, launchData: Date, rocketName: String){
+    init(id: Int, launchData: Date, rocketName: String, rocketImageURL: String){
         self.id = id
         self.launchDate = launchData
         self.rocketName = rocketName
+        self.rocketImageURL = rocketImageURL
     }
     
 }

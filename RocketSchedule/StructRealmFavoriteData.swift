@@ -18,6 +18,7 @@ struct StructRealmFavoriteData {
     var launchDate: Date
     var agency: String
     var rocketImageURL: String
+    var rocketImageUrlForCell: String
 
 //    var id: Int = 0
 //    var rocketName: String = ""
@@ -32,7 +33,8 @@ struct StructRealmFavoriteData {
          videoURLs: [String],
          launchDate: Date,
          agency: String,
-         rocketImageURL: String){
+         rocketImageURL: String,
+         rocketImageUrlForCell: String){
         
         self.id = id
         self.rocketName = rocketName
@@ -42,6 +44,7 @@ struct StructRealmFavoriteData {
         self.launchDate = launchDate
         self.agency = agency
         self.rocketImageURL = rocketImageURL
+        self.rocketImageUrlForCell = rocketImageUrlForCell
     }
 
 //    var favoriteData: [Content]

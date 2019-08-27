@@ -67,6 +67,7 @@ class DetailViewController : UIViewController {
 //    public let defaultsForFavorite = UserDefaults.standard
     
     var rocketImageURL: String?
+    var rocketImageUrlForCell: String = ""
     
     // ロケット名日本語変換クラス
     var rocketEng2Jpn = RocketNameEng2Jpn()
@@ -360,6 +361,8 @@ class DetailViewController : UIViewController {
             author.rocketImageURL = rocketImageURL
         }
 
+        // URL for Cell of RocketImage save to
+        author.rocketImageUrlForCell = self.rocketImageUrlForCell
 
         let realm = try! Realm()
         try! realm.write {

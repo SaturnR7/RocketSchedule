@@ -180,6 +180,12 @@ class FavoriteListView: UITableViewController {
         cell.labelRocketName?.text =
             rocketEng2Jpn.checkStringSpecifyRocketName(name: arrayFavoriteLaunches[indexPath.row].rocketName)
         
+        
+        // ロケット画像の表示
+        print("tableView - ImageURLforCell: \(self.arrayFavoriteLaunches[indexPath.row].rocketImageUrlForCell)")
+        cell.rocketImageSetCell(imageUrl: self.arrayFavoriteLaunches[indexPath.row].rocketImageUrlForCell)
+        
+        
         print("FavoriteListView - tableview - end")
         
 
@@ -292,7 +298,8 @@ class FavoriteListView: UITableViewController {
                     videoURLs:      videoUrlArray,
                     launchDate:     data.launchDate,
                     agency:         data.agency,
-                    rocketImageURL: data.rocketImageURL
+                    rocketImageURL: data.rocketImageURL,
+                    rocketImageUrlForCell:  data.rocketImageUrlForCell
                 )
             )
             

@@ -125,6 +125,18 @@ class ResultListViewController: UITableViewController {
         cell.labelRocketName?.text =
             rocketEng2Jpn.checkStringSpecifyRocketName(name: self.jsonLaunches.launches[indexPath.row].name)
 
+        
+        // ロケット画像の表示
+        // 画像URLの文字列を変更（解像度を1920より小さく）
+        print("tableView - Before ImageURL: \(self.viewRocketPlanData[indexPath.row].rocketImageURL)")
+        //        // 画像の設定.
+        //        let myImage:UIImage = UIImage(named:"Atlas+V+551_480")!
+        let replacedImageURL = self.viewRocketPlanData[indexPath.row].rocketImageURL.replacingOccurrences(of: "_1920.png", with: "_480.png")
+        print("tableView - After ImageURL: \(replacedImageURL)")
+        //        loadImage(urlString: replacedImageURL)
+        cell.rocketImageSetCell(imageUrl: replacedImageURL)
+
+        
         print("ResultListViewController - tableview - end")
 
 //        let indexPathForTop = IndexPath(row: 0, section: 0)
@@ -480,7 +492,8 @@ class ResultListViewController: UITableViewController {
                                 self.viewRocketPlanData.append(StructViewPlans(
                                     id: launch.id,
                                     launchData: self.addedDate,
-                                    rocketName: launch.name))
+                                    rocketName: launch.name,
+                                    rocketImageURL: launch.rocket.imageURL ?? ""))
 //                                print("name:\(launch.name)")
                             }
                         }
@@ -556,6 +569,9 @@ class ResultListViewController: UITableViewController {
             }else{
                 controller.agency = "機関名なし"
             }
+            
+            let replacedImageURL = self.viewRocketPlanData[indexPath.row].rocketImageURL.replacingOccurrences(of: "_1920.png", with: "_640.png")
+            controller.rocketImageUrlForCell = replacedImageURL
 
         }
         
