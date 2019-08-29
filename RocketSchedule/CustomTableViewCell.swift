@@ -47,23 +47,71 @@ class CustomTableViewCell: UITableViewCell {
                 print("loadImage data: \(data)")
 
                 print(response!)
-                self.rocketImageViewCell.image = UIImage(data: data!)
+                let original = UIImage(data: data!)
+                
+                // こういう荒業は使ってはいけない！！
+                // 該当のロケット画像なしの場合は、共通の画像が使用されている、
+                // しかし、フレームサイズでクロップすると画像以外の余白がセルに表示されてしまい
+                // 見栄えがひどい、共通の画像のURLが渡ってきたときは、固定値でクロップして当現象を回避する
+                if imageUrl == "https://s3.amazonaws.com/launchlibrary/RocketImages/placeholder_480.png"{
 
-                self.rocketImageViewCell.image =
-                    UIImage.resizeUIImage(
-                        image: self.rocketImageViewCell.image!,
-                        width: self.rocketImageViewCell.frame.maxX,
-                        height: self.rocketImageViewCell.frame.maxY
-                    )
+                    self.rocketImageViewCell.image =
+                        original?.cropping(to: CGRect(
+                            x:      Int(30),
+                            y:      Int(30),
+                            width:  Int(self.rocketImageViewCell.frame.maxX),
+                            height: Int(self.rocketImageViewCell.frame.maxY)))
+                }else{
+                    
+                    self.rocketImageViewCell.image =
+                        original?.cropping(to: CGRect(
+                            x:      Int(original!.size.width/3),
+                            y:      Int(original!.size.height/3),
+                            width:  Int(self.rocketImageViewCell.frame.maxX),
+                            height: Int(self.rocketImageViewCell.frame.maxY)))
+                }
+                
+
+//                self.rocketImageViewCell.image = UIImage(data: data!)
+//                self.rocketImageViewCell.image =
+//                    UIImage.resizeUIImage(
+//                        image: self.rocketImageViewCell.image!,
+//                        width: self.rocketImageViewCell.frame.maxX,
+//                        height: self.rocketImageViewCell.frame.maxY
+//                    )
                 
                 // 透過する
-                self.rocketImageViewCell.alpha = 0.25
+                self.rocketImageViewCell.alpha = 0.3
                 
             }
             
         }.resume()
     }
     
+}
+
+extension UIImage {
+    
+    func cropping(to: CGRect) -> UIImage? {
+        
+        var opaque = false
+        
+        if let cgImage = cgImage {
+            switch cgImage.alphaInfo {
+            case .noneSkipLast, .noneSkipFirst:
+                opaque = true
+            default:
+                break
+            }
+        }
+        
+        UIGraphicsBeginImageContextWithOptions(to.size, opaque, scale)
+        
+        draw(at: CGPoint(x: -to.origin.x, y: -to.origin.y))
+        let result = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return result
+    }
 }
 
 extension UIImage{

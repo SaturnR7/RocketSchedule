@@ -561,13 +561,17 @@ class ListViewController: UITableViewController {
                         controller.agency = agency[0].abbrev
                     }
                 }else{
-                    controller.agency = "機関名なし"
+                    controller.agency = "N/A"
                 }
             }else{
-                controller.agency = "機関名なし"
+                controller.agency = "N/A"
             }
 //            controller.agency = launch.agencies.abbrev
             
+            // 発射する国（コード）
+//            if let agency = launch.location.pads[0].agencies{
+//                controller.countryCode = agency[0].countryCode
+//            }
             
             controller.rocketImageURL = launch.rocket.imageURL
 

@@ -19,6 +19,7 @@ class DetailRocketViewController : UIViewController {
     var videoURL:[String]?
     var agency: String = ""
     var notifySwitch:Bool!
+//    var countryCode: String = ""
     var rocketImageURL: String?
     
     let notificationCenter = NotificationCenter.default
@@ -73,13 +74,20 @@ class DetailRocketViewController : UIViewController {
         
         // ナビゲーションバーのタイトル
         self.navigationItem.title = "詳細"
+        
+        // COPYメニューが表示されないので不採用
+        // UIlabelのロングタップコピー実装
+//        labelRocketName.isUserInteractionEnabled = true
+//        let rocketNameLabelTg = UITapGestureRecognizer(target: self, action: #selector(tappedLabel(_:)))
+//        labelRocketName.addGestureRecognizer(rocketNameLabelTg)
 
         // Rocket Name JPN
 //        labelRocketName.text? = name ?? ""
         labelRocketName.text? = rocketEng2Jpn.checkStringSpecifyRocketName(name: self.name ?? "")
 
         // Rocket Name ENG
-        labelRocketNameEng.adjustsFontSizeToFitWidth = true
+//        labelRocketNameEng.sizeToFit()
+//        labelRocketNameEng.adjustsFontSizeToFitWidth = true
         labelRocketNameEng.text? = self.name ?? ""
 
         // Launch Date
@@ -122,7 +130,7 @@ class DetailRocketViewController : UIViewController {
             videoButtonControll(videoCount: urlsCount)
             
         }else{
-            planVideoLinkOutlet.setTitle("ライブ配信がある場合はアイコンが表示されます", for: .normal)
+            planVideoLinkOutlet.setTitle("なし", for: .normal)
             planVideoLinkOutlet.isEnabled = false
             planVideoLinkOutlet2.isHidden = true
             planVideoLinkOutlet3.isHidden = true
@@ -147,6 +155,13 @@ class DetailRocketViewController : UIViewController {
         
         
     }
+    
+    // COPYメニューが表示されないので不採用
+    // UILabelのロングタップ時の処理
+//    @objc func tappedLabel(_ sender:UITapGestureRecognizer) {
+//        UIPasteboard.general.string = labelRocketName.text
+//        print("clip board :\(UIPasteboard.general.string!)")
+//    }
     
     // Title set to VideoButton
     func videoButtonSetTitle(videoCount: Int){
@@ -220,6 +235,8 @@ class DetailRocketViewController : UIViewController {
             
             DispatchQueue.main.async {
                 self.imageRocket.image = UIImage(data: data!)
+                // UIImageView
+                self.imageRocket.contentMode = .scaleAspectFill
                 print(response!)
             }
             

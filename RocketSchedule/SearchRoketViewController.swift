@@ -59,6 +59,10 @@ class SearchRoketViewController: UIViewController {
     
     @IBOutlet weak var dateStartLaunch: UITextField!
     
+    @IBAction func dateStartLaunchEdit(_ sender: UITextField) {
+        
+    }
+    
     @IBOutlet weak var dateEndLaunch: UITextField!
     
     @IBOutlet weak var dataAgency: UITextField!
@@ -117,31 +121,6 @@ class SearchRoketViewController: UIViewController {
         makeAgenciesDictionary()
         
         print("SearchRoketViewController - viewDidLoad - End")
-    }
-    
-    // 現在の日付を取得
-    func getStringToday() -> String{
-        
-        let today = Date()
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "ja_JP")
-        dateFormatter.dateFormat = "yyyy/MM/dd"
-        
-        return dateFormatter.string(from: today)
-    }
-    
-    // 現在から１週間前の日付を取得
-    func getStringDay1weekAgo() -> String{
-    
-        let today = Date()
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "ja_JP")
-        dateFormatter.dateFormat = "yyyy/MM/dd"
-
-        // -60秒*60分*24時間*7日 = 1週間前の日付
-        let pastDate = Date(timeInterval: -60*60*24*7, since: today)
-        
-        return dateFormatter.string(from: pastDate)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -329,7 +308,7 @@ class SearchRoketViewController: UIViewController {
         agencyPicker.backgroundColor =
             UIColor.init(red: 38/255, green: 38/255, blue: 38/255, alpha: 1)
         agencyPicker.setValue(UIColor.white, forKey: "textColor")
-
+        
         dataAgency.inputView = agencyPicker
         //        cellSearchAgency.inputview = agencyPicker
         
@@ -361,6 +340,32 @@ class SearchRoketViewController: UIViewController {
         
     }
     
+    // 現在の日付を取得
+    func getStringToday() -> String{
+        
+        let today = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "ja_JP")
+        dateFormatter.dateFormat = "yyyy/MM/dd"
+        
+        return dateFormatter.string(from: today)
+    }
+    
+    // 現在から１週間前の日付を取得
+    func getStringDay1weekAgo() -> String{
+        
+        let today = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "ja_JP")
+        dateFormatter.dateFormat = "yyyy/MM/dd"
+        
+        // -60秒*60分*24時間*7日 = 1週間前の日付
+        let pastDate = Date(timeInterval: -60*60*24*7, since: today)
+        
+        return dateFormatter.string(from: pastDate)
+    }
+    
+
     @objc func doneStartDayClicked(){
         
         //format the date display in textfield

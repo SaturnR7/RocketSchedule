@@ -29,6 +29,8 @@
 		B6686E4C222E54C100B6CC75 /* SearchRoketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6686E4B222E54C100B6CC75 /* SearchRoketViewController.swift */; };
 		B6686E4E222F896100B6CC75 /* SearchLaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6686E4D222F896100B6CC75 /* SearchLaunch.swift */; };
 		B66E3DFE22BC99FE00B91A7A /* StructViewSearchAgency.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66E3DFD22BC99FE00B91A7A /* StructViewSearchAgency.swift */; };
+		B692B4322317A629001717E2 /* DicCountryCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B692B4312317A629001717E2 /* DicCountryCode.swift */; };
+		B692B4362317C38F001717E2 /* CopyUILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B692B4352317C38F001717E2 /* CopyUILabel.swift */; };
 		B69B6AEF22BB61F500C691BD /* SearchAgencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69B6AEE22BB61F500C691BD /* SearchAgencyViewController.swift */; };
 		B69B6AF122BB6A6F00C691BD /* StructAgency.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69B6AF022BB6A6F00C691BD /* StructAgency.swift */; };
 		B69B6AF322BC870600C691BD /* CustomSearchAgencyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69B6AF222BC870600C691BD /* CustomSearchAgencyCell.swift */; };
@@ -84,6 +86,8 @@
 		B6686E4B222E54C100B6CC75 /* SearchRoketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRoketViewController.swift; sourceTree = "<group>"; };
 		B6686E4D222F896100B6CC75 /* SearchLaunch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLaunch.swift; sourceTree = "<group>"; };
 		B66E3DFD22BC99FE00B91A7A /* StructViewSearchAgency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructViewSearchAgency.swift; sourceTree = "<group>"; };
+		B692B4312317A629001717E2 /* DicCountryCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DicCountryCode.swift; sourceTree = "<group>"; };
+		B692B4352317C38F001717E2 /* CopyUILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyUILabel.swift; sourceTree = "<group>"; };
 		B69B6AEE22BB61F500C691BD /* SearchAgencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAgencyViewController.swift; sourceTree = "<group>"; };
 		B69B6AF022BB6A6F00C691BD /* StructAgency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructAgency.swift; sourceTree = "<group>"; };
 		B69B6AF222BC870600C691BD /* CustomSearchAgencyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchAgencyCell.swift; sourceTree = "<group>"; };
@@ -169,6 +173,8 @@
 				B66E3DFD22BC99FE00B91A7A /* StructViewSearchAgency.swift */,
 				B628F4D722F1488600BA6C0E /* StructClassName.swift */,
 				B61C1FFF22EFF2910003A297 /* DicAgencies.swift */,
+				B692B4312317A629001717E2 /* DicCountryCode.swift */,
+				B692B4352317C38F001717E2 /* CopyUILabel.swift */,
 				B6157F1522F96FA800475AD4 /* TimeRelated.swift */,
 				B61B8C0522F6A4F900F3CFE5 /* RocketNameEng2Jpn.swift */,
 				B6427C4421EAD5B800999575 /* Main.storyboard */,
@@ -313,6 +319,7 @@
 				B69B6AEF22BB61F500C691BD /* SearchAgencyViewController.swift in Sources */,
 				B60B3B1B2201C97000ADC711 /* DetailViewController.swift in Sources */,
 				B60B3B1F22045EDC00ADC711 /* CustomTableViewCellDetail.swift in Sources */,
+				B692B4322317A629001717E2 /* DicCountryCode.swift in Sources */,
 				B6B867BB22E43D30005C15D5 /* StateSelectFavorite.swift in Sources */,
 				B61B8C0622F6A4F900F3CFE5 /* RocketNameEng2Jpn.swift in Sources */,
 				B614F61522E5853F000F0AFC /* RealmNotifyObject.swift in Sources */,
@@ -320,6 +327,7 @@
 				B6157F1622F96FA800475AD4 /* TimeRelated.swift in Sources */,
 				B6686E4C222E54C100B6CC75 /* SearchRoketViewController.swift in Sources */,
 				B61AE943226184E9001034CD /* StructNotificationDate.swift in Sources */,
+				B692B4362317C38F001717E2 /* CopyUILabel.swift in Sources */,
 				B65E043822E844B5007C8E3D /* AsyncImageView.swift in Sources */,
 				B6686E4E222F896100B6CC75 /* SearchLaunch.swift in Sources */,
 				B6527D8321F874F300D40241 /* CustomTableViewCell.swift in Sources */,

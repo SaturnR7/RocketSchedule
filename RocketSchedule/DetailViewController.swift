@@ -128,7 +128,7 @@ class DetailViewController : UIViewController {
             videoButtonControll(videoCount: urlsCount)
             
         }else{
-            videoLinkOutlet.setTitle("ビデオなし", for: .normal)
+            videoLinkOutlet.setTitle("なし", for: .normal)
             videoLinkOutlet.isEnabled = false
             videoLinkOutlet2.isHidden = true
             videoLinkOutlet3.isHidden = true
