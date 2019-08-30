@@ -80,7 +80,10 @@ class DetailViewController : UIViewController {
         
         // ナビゲーションバーのアイテムの色　（戻る　＜　とか　読み込みゲージとか）
         self.navigationController?.navigationBar.tintColor = .white
-        
+        // バックボタンのタイトルを設定
+        // 遷移先のバックボタンにタイトルを設定する場合は、title: に文字を設定する。
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+
         // ロケット情報のお気に入り登録状況によってお気に入りアイコンを変更する
         // 登録あり：★
         // 登録なし：☆
@@ -448,10 +451,21 @@ class DetailViewController : UIViewController {
             
             DispatchQueue.main.async {
                 self.imageRocket.image = UIImage(data: data!)
+                // UIImageViewのサイズに収まるようにサイズを調整
+                self.imageRocket.contentMode = .scaleAspectFill
                 print(response!)
             }
             
             }.resume()
         
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        // ロケット画像を閲覧用のビューに渡す
+        if segue.identifier == "imageSendToView"{
+            let controller = segue.destination as! RocketImageViewController
+            controller.rocketImage = self.imageRocket.image
+        }
     }
 }

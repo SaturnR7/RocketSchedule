@@ -31,6 +31,7 @@
 		B66E3DFE22BC99FE00B91A7A /* StructViewSearchAgency.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66E3DFD22BC99FE00B91A7A /* StructViewSearchAgency.swift */; };
 		B692B4322317A629001717E2 /* DicCountryCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B692B4312317A629001717E2 /* DicCountryCode.swift */; };
 		B692B4362317C38F001717E2 /* CopyUILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B692B4352317C38F001717E2 /* CopyUILabel.swift */; };
+		B692B4382318EFDF001717E2 /* RocketImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B692B4372318EFDF001717E2 /* RocketImageViewController.swift */; };
 		B69B6AEF22BB61F500C691BD /* SearchAgencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69B6AEE22BB61F500C691BD /* SearchAgencyViewController.swift */; };
 		B69B6AF122BB6A6F00C691BD /* StructAgency.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69B6AF022BB6A6F00C691BD /* StructAgency.swift */; };
 		B69B6AF322BC870600C691BD /* CustomSearchAgencyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69B6AF222BC870600C691BD /* CustomSearchAgencyCell.swift */; };
@@ -88,6 +89,7 @@
 		B66E3DFD22BC99FE00B91A7A /* StructViewSearchAgency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructViewSearchAgency.swift; sourceTree = "<group>"; };
 		B692B4312317A629001717E2 /* DicCountryCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DicCountryCode.swift; sourceTree = "<group>"; };
 		B692B4352317C38F001717E2 /* CopyUILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyUILabel.swift; sourceTree = "<group>"; };
+		B692B4372318EFDF001717E2 /* RocketImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketImageViewController.swift; sourceTree = "<group>"; };
 		B69B6AEE22BB61F500C691BD /* SearchAgencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAgencyViewController.swift; sourceTree = "<group>"; };
 		B69B6AF022BB6A6F00C691BD /* StructAgency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructAgency.swift; sourceTree = "<group>"; };
 		B69B6AF222BC870600C691BD /* CustomSearchAgencyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchAgencyCell.swift; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 				B6A66F7322A4F8D2003CDA1B /* DetailRocketViewController.swift */,
 				B6D8BC282229F61D000B590E /* ResultListViewController.swift */,
 				B60B3B1A2201C97000ADC711 /* DetailViewController.swift */,
+				B692B4372318EFDF001717E2 /* RocketImageViewController.swift */,
 				B65E043722E844B5007C8E3D /* AsyncImageView.swift */,
 				B6686E4B222E54C100B6CC75 /* SearchRoketViewController.swift */,
 				B69B6AEE22BB61F500C691BD /* SearchAgencyViewController.swift */,
@@ -334,6 +337,7 @@
 				B66E3DFE22BC99FE00B91A7A /* StructViewSearchAgency.swift in Sources */,
 				B621076B22708D2200CA76E8 /* StructViewPlans.swift in Sources */,
 				B6B8C41022C5BF4300EFEB2F /* FavoriteListView.swift in Sources */,
+				B692B4382318EFDF001717E2 /* RocketImageViewController.swift in Sources */,
 				B6A66F7422A4F8D2003CDA1B /* DetailRocketViewController.swift in Sources */,
 				B6D8BC292229F61D000B590E /* ResultListViewController.swift in Sources */,
 				B6D9446922C5EEF800B4B968 /* FavoriteObject.swift in Sources */,

@@ -75,6 +75,11 @@ class DetailRocketViewController : UIViewController {
         // ナビゲーションバーのタイトル
         self.navigationItem.title = "詳細"
         
+        // バックボタンのタイトルを設定
+        // 遷移先のバックボタンにタイトルを設定する場合は、title: に文字を設定する。
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+
+        
         // COPYメニューが表示されないので不採用
         // UIlabelのロングタップコピー実装
 //        labelRocketName.isUserInteractionEnabled = true
@@ -150,7 +155,6 @@ class DetailRocketViewController : UIViewController {
         //        let asyncImageView = AsyncImageView()
         //        imageRocket.image = asyncImageView.loadImage(urlString: rocketImageURL ?? "")
 
-        
         print("DetailRocketViewController - viewDidLoad End")
         
         
@@ -235,13 +239,20 @@ class DetailRocketViewController : UIViewController {
             
             DispatchQueue.main.async {
                 self.imageRocket.image = UIImage(data: data!)
-                // UIImageView
+                // UIImageViewのサイズに収まるようにサイズを調整
                 self.imageRocket.contentMode = .scaleAspectFill
                 print(response!)
             }
             
             }.resume()
         
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        let controller = segue.destination as! RocketImageViewController
+        controller.rocketImage = self.imageRocket.image
+
     }
     
     @IBAction func planVideoLink(_ sender: Any) {

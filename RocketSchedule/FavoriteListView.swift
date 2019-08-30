@@ -182,8 +182,10 @@ class FavoriteListView: UITableViewController {
         
         
         // ロケット画像の表示
-        print("tableView - ImageURLforCell: \(self.arrayFavoriteLaunches[indexPath.row].rocketImageUrlForCell)")
-        cell.rocketImageSetCell(imageUrl: self.arrayFavoriteLaunches[indexPath.row].rocketImageUrlForCell)
+        print("tableView - Before ImageURL: \(self.arrayFavoriteLaunches[indexPath.row].rocketImageURL)")
+        let replacedImageURL = self.arrayFavoriteLaunches[indexPath.row].rocketImageURL.replacingOccurrences(of: "_1920.png", with: "_480.png")
+        print("tableView - After ImageURL: \(replacedImageURL)")
+        cell.rocketImageSetCell(imageUrl: replacedImageURL)
         
         
         print("FavoriteListView - tableview - end")
