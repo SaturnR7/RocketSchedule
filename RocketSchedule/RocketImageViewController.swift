@@ -20,8 +20,19 @@ class RocketImageViewController: UIViewController, UIScrollViewDelegate {
     @IBAction func rocketImageLongPressAction(_ sender: UILongPressGestureRecognizer) {
         
         // 共有メニューの表示
-//        shareImage()
+        // 実装となると、twitter,facebook,save imageなど権限設定と動作確認が必要になる
+        shareImage()
     }
+    
+    @IBAction func imageShareButton(_ sender: UIBarButtonItem) {
+        
+        shareImage()
+    }
+    
+    @IBOutlet weak var imageShareButtonOutlet: UIBarButtonItem!
+    
+    
+    @IBOutlet weak var imageToolBar: UIToolbar!
     
     var rocketImage: UIImage!
     

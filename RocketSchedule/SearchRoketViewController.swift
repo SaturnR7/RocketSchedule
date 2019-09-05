@@ -87,7 +87,8 @@ class SearchRoketViewController: UIViewController {
         "JAXA(日本)",
         "NASA(アメリカ)",
         "RFSA(ロシア)",
-        "SPACEX"
+        "SPACEX",
+        "アリアンスペース(欧州)"
     ]
     
     // Agencies Dictinary
@@ -453,6 +454,7 @@ class SearchRoketViewController: UIViewController {
         agenciesDictionary["NASA(アメリカ)"] = "NASA"
         agenciesDictionary["RFSA(ロシア)"] = "RFSA"
         agenciesDictionary["SPACEX"] = "SpX"
+        agenciesDictionary["アリアンスペース(欧州)"] = "ASA"
 
         // Test
         let test = agenciesDictionary["NASA(アメリカ)"]

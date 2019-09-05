@@ -81,7 +81,7 @@ class CustomTableViewCell: UITableViewCell {
 //                    )
                 
                 // 透過する
-                self.rocketImageViewCell.alpha = 0.3
+                self.rocketImageViewCell.alpha = 0.2
                 
             }
             

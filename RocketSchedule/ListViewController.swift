@@ -69,10 +69,8 @@ class ListViewController: UITableViewController {
         
         let formatterString = DateFormatter()
         
-        
 //        var testDate = viewRocketPlanData[indexPath.row].launchDate
 //        testDate.
-        
         
         //TimeZoneはUTCにしなければならない。
         //理由は、UTCに指定していないと、DateFormatter.date関数はcurrentのゾーンで
@@ -172,6 +170,10 @@ class ListViewController: UITableViewController {
         print("Timezone List: \(TimeZone.abbreviationDictionary)")
         print("TimeZone Identifiers: \(TimeZone.knownTimeZoneIdentifiers)")
         
+        //ディクショナリ形式で初期値を指定できる
+        let notifyTime = UserDefaults()
+        notifyTime.register(defaults: ["ChangeTime" : 10])
+        
         // バックボタンのタイトルを設定
         // 遷移先のバックボタンにタイトルを設定する場合は、title: に文字を設定する。
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
@@ -214,11 +216,6 @@ class ListViewController: UITableViewController {
         // Rocket Image Download
         rocketImageDownload()
         
-        //テーブルビューの pull-to-refresh
-        // -> launchJsonDownload()のcompletionhandlerに移動
-//        refreshControl = UIRefreshControl()
-//        refreshControl?.addTarget(self, action: #selector(refresh(sender:)), for: .valueChanged)
-        
         print("ListViewController - viewDidLoad end")
     }
     
@@ -238,6 +235,19 @@ class ListViewController: UITableViewController {
         super.viewDidAppear(animated)
 
         print("ListViewController - viewDidAppear start")
+
+        let userDefaultsValue = UserDefaults.standard.integer(forKey: "ChangeTime")
+        print("userdefaults ChangeTime: \(userDefaultsValue)")
+        print("userdefaults ChangeTime(minus): \(-userDefaultsValue)")
+        
+        // 未配信の通知情報一覧
+        let center = UNUserNotificationCenter.current()
+        center.getPendingNotificationRequests { (requests: [UNNotificationRequest]) in
+            
+            for request in requests{
+                print("Pending Notify: \(request)")
+            }
+        }
         
 //        print("ListViewController - ==jsonLaunches==\(notificationDate)")
 //
@@ -327,6 +337,8 @@ class ListViewController: UITableViewController {
                             self.addedDate = Date(timeInterval: Double(Calendar.current.timeZone.secondsFromGMT()), since: dateString)
 
                             //ID,LaunchDate added to struct
+                            // launchDateにUTCの日付を渡す。
+                            // （通知情報登録時にUTCの日付を現地のタイムゾーンに変更して登録する）
                             self.notificationDate.append(StructNotificationDate(id: launch.id,
                                                                 launchData: self.utcDate,
                                                                 rocketName: launch.name))
@@ -358,9 +370,10 @@ class ListViewController: UITableViewController {
                         // インジケーター用のUIViewを非表示
                         self.indicatorView.isHidden = true
                         
-                        //テーブルビューの pull-to-refresh
-                        self.refreshControl = UIRefreshControl()
-                        self.refreshControl?.addTarget(self, action: #selector(self.refresh(sender:)), for: .valueChanged)
+                        // テーブルビューの pull-to-refresh
+                        // 有効にする場合はコメントを解除
+//                        self.refreshControl = UIRefreshControl()
+//                        self.refreshControl?.addTarget(self, action: #selector(self.refresh(sender:)), for: .valueChanged)
                     }
                     
 //                    //直近のロケットの打ち上げ予定を通知する
@@ -387,6 +400,10 @@ class ListViewController: UITableViewController {
 
         print("forNotificationId In notificationRocket() - \(forNotificationId)")
 
+        let userDefaultsValue = UserDefaults.standard.integer(forKey: "ChangeTime")
+        print("ListViewController - userdefaults ChangeTime: \(userDefaultsValue)")
+        print("ListViewController - userdefaults ChangeTime(minus): \(-userDefaultsValue)")
+
         // ローカル通知のの内容
         content.sound = UNNotificationSound.default
         content.title = "まもなくロケット打ち上げ"
@@ -401,7 +418,7 @@ class ListViewController: UITableViewController {
         print("Notification - date: \(launchDate)")
 
         //Calendarクラスを使って日付（UTCの打ち上げ時刻）を減算して結果を返却する
-        let newDate = Calendar.current.date(byAdding: .minute, value: -15, to: launchDate)!
+        let newDate = Calendar.current.date(byAdding: .minute, value: -userDefaultsValue, to: launchDate)!
         print("Notification - newDate: \(newDate)")
         //componentの日付（UTCの打ち上げ時刻）はタイムゾーンに従って現地の日付時刻に変換される
         let component = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .timeZone], from: newDate)
@@ -414,7 +431,12 @@ class ListViewController: UITableViewController {
         
         print("Notification - identifier : \(identifier)")
         
-        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+        print("Notification - Register Date: \(trigger.nextTriggerDate())")
+        
+        // ローカル通知リクエスト作成
+        let request = UNNotificationRequest(identifier: identifier,
+                                            content: content,
+                                            trigger: trigger)
         
         // ローカル通知リクエストを登録
         UNUserNotificationCenter.current().add(request){ (error : Error?) in
@@ -428,6 +450,9 @@ class ListViewController: UITableViewController {
         let author = RealmNotifyObject()
         author.id = forNotificationId
         author.notifyId = identifier
+        author.notifyUtcDate = launchDate
+        author.notifyTitle = "まもなくロケット打ち上げ"
+        author.notifyRocketName = notifyRocketInfomation[0].rocketName
         
         let realm = try! Realm()
         try! realm.write {
@@ -458,7 +483,7 @@ class ListViewController: UITableViewController {
 
         print("notifyRocketInfomation : \(filterRealm[0].id)")
         print("notifyRocketInfomation : \(filterRealm[0].notifyId)")
-
+        
         // Delete Notify
         center.removePendingNotificationRequests(
             withIdentifiers: [filterRealm[0].notifyId])
@@ -472,12 +497,6 @@ class ListViewController: UITableViewController {
     
     // セル表示用の画像ダウンロード
     func rocketImageDownload(){
-        
-        
-        
-        
-        
-        
         
     }
     
@@ -543,6 +562,8 @@ class ListViewController: UITableViewController {
         
         if let indexPath = self.tableView.indexPathForSelectedRow {
             let launch = self.jsonLaunches.launches[indexPath.row]
+            print("ListViewController - prepare - launch: \(launch)")
+
             let controller = segue.destination as! DetailRocketViewController
             controller.id = launch.id
             controller.name = launch.name
@@ -561,10 +582,10 @@ class ListViewController: UITableViewController {
                         controller.agency = agency[0].abbrev
                     }
                 }else{
-                    controller.agency = "N/A"
+                    controller.agency = "ー"
                 }
             }else{
-                controller.agency = "N/A"
+                controller.agency = "ー"
             }
 //            controller.agency = launch.agencies.abbrev
             

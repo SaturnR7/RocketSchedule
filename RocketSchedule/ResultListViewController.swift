@@ -537,8 +537,12 @@ class ResultListViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?){
         
+        print("ResultListViewController - prepare - Start")
+
         if let indexPath = self.tableView.indexPathForSelectedRow {
             let launch = self.jsonLaunches.launches[indexPath.row]
+            print("ResultListViewController - prepare - launch: \(launch)")
+
             let controller = segue.destination as! DetailViewController
             controller.id = launch.id
             controller.name = launch.name
@@ -560,14 +564,14 @@ class ResultListViewController: UITableViewController {
             if launch.location.pads[0].agencies != nil{
                 if launch.location.pads[0].agencies!.count != 0{
                     if let agency = launch.location.pads[0].agencies{
-                        print("ListViewController - prepare - agency : \(agency[0].abbrev)")
+                        print("ResultListViewController - prepare - agency : \(agency[0].abbrev)")
                         controller.agency = agency[0].abbrev
                     }
                 }else{
-                    controller.agency = "機関名なし"
+                    controller.agency = "ー"
                 }
             }else{
-                controller.agency = "機関名なし"
+                controller.agency = "ー"
             }
             
             let replacedImageURL = self.viewRocketPlanData[indexPath.row].rocketImageURL.replacingOccurrences(of: "_1920.png", with: "_640.png")
@@ -575,6 +579,7 @@ class ResultListViewController: UITableViewController {
 
         }
         
+        print("ResultListViewController - prepare - End")
     }
     
 }

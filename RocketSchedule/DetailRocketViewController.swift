@@ -135,7 +135,7 @@ class DetailRocketViewController : UIViewController {
             videoButtonControll(videoCount: urlsCount)
             
         }else{
-            planVideoLinkOutlet.setTitle("なし", for: .normal)
+            planVideoLinkOutlet.setTitle("ライブ配信がある場合はここにビデオアイコンが表示されます", for: .normal)
             planVideoLinkOutlet.isEnabled = false
             planVideoLinkOutlet2.isHidden = true
             planVideoLinkOutlet3.isHidden = true

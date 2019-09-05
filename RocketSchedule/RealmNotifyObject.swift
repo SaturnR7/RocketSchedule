@@ -12,4 +12,7 @@ import RealmSwift
 class RealmNotifyObject: Object {
     @objc dynamic var id = 0
     @objc dynamic var notifyId = ""
+    @objc dynamic var notifyUtcDate = Date()
+    @objc dynamic var notifyTitle = ""
+    @objc dynamic var notifyRocketName = ""
 }

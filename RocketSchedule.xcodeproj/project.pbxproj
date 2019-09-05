@@ -14,6 +14,7 @@
 		B614F61722E6BF03000F0AFC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B614F61622E6BF03000F0AFC /* QuartzCore.framework */; };
 		B6157F1622F96FA800475AD4 /* TimeRelated.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6157F1522F96FA800475AD4 /* TimeRelated.swift */; };
 		B61AE943226184E9001034CD /* StructNotificationDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61AE942226184E9001034CD /* StructNotificationDate.swift */; };
+		B61B517823209BB60091D95F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61B517723209BB60091D95F /* SettingsViewController.swift */; };
 		B61B8C0622F6A4F900F3CFE5 /* RocketNameEng2Jpn.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61B8C0522F6A4F900F3CFE5 /* RocketNameEng2Jpn.swift */; };
 		B61C200022EFF2910003A297 /* DicAgencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61C1FFF22EFF2910003A297 /* DicAgencies.swift */; };
 		B621076B22708D2200CA76E8 /* StructViewPlans.swift in Sources */ = {isa = PBXBuildFile; fileRef = B621076A22708D2200CA76E8 /* StructViewPlans.swift */; };
@@ -70,6 +71,7 @@
 		B614F61622E6BF03000F0AFC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		B6157F1522F96FA800475AD4 /* TimeRelated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeRelated.swift; sourceTree = "<group>"; };
 		B61AE942226184E9001034CD /* StructNotificationDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructNotificationDate.swift; sourceTree = "<group>"; };
+		B61B517723209BB60091D95F /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		B61B8C0522F6A4F900F3CFE5 /* RocketNameEng2Jpn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketNameEng2Jpn.swift; sourceTree = "<group>"; };
 		B61C1FFF22EFF2910003A297 /* DicAgencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DicAgencies.swift; sourceTree = "<group>"; };
 		B621076A22708D2200CA76E8 /* StructViewPlans.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructViewPlans.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				B6686E4B222E54C100B6CC75 /* SearchRoketViewController.swift */,
 				B69B6AEE22BB61F500C691BD /* SearchAgencyViewController.swift */,
 				B6B8C40F22C5BF4300EFEB2F /* FavoriteListView.swift */,
+				B61B517723209BB60091D95F /* SettingsViewController.swift */,
 				B6D9446822C5EEF800B4B968 /* FavoriteObject.swift */,
 				B614F61422E5853F000F0AFC /* RealmNotifyObject.swift */,
 				B6B867BA22E43D2F005C15D5 /* StateSelectFavorite.swift */,
@@ -322,6 +325,7 @@
 				B69B6AEF22BB61F500C691BD /* SearchAgencyViewController.swift in Sources */,
 				B60B3B1B2201C97000ADC711 /* DetailViewController.swift in Sources */,
 				B60B3B1F22045EDC00ADC711 /* CustomTableViewCellDetail.swift in Sources */,
+				B61B517823209BB60091D95F /* SettingsViewController.swift in Sources */,
 				B692B4322317A629001717E2 /* DicCountryCode.swift in Sources */,
 				B6B867BB22E43D30005C15D5 /* StateSelectFavorite.swift in Sources */,
 				B61B8C0622F6A4F900F3CFE5 /* RocketNameEng2Jpn.swift in Sources */,
@@ -503,7 +507,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.gmail.hidemasa.kobayashi.RocketSchedule;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -523,7 +527,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.gmail.hidemasa.kobayashi.RocketSchedule;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

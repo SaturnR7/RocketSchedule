@@ -15,13 +15,14 @@ struct DicAgencies {
            "VKO":"VKO(ロシア)",
            "NASA":"NASA(アメリカ)",
            "JAXA":"JAXA(日本)",
-           "SpX":"SPACEX(アメリカ)"
+           "SpX":"SPACEX(アメリカ)",
+           "ASA":"アリアンスペース(欧州)"
           ]
     
     func getAgencyOfJapanese(key: String) -> String{
         
         let value = agencies[key]
         
-        return value ?? "N/A"
+        return value ?? "ー"
     }
 }
