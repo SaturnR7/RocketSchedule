@@ -10,8 +10,11 @@ import Foundation
 import UIKit
 import UserNotifications
 import RealmSwift
+import StoreKit
 
 class SettingsViewController: UITableViewController {
+
+    
     
     @IBOutlet weak var notityTimeSlider: UISlider!
     
@@ -38,6 +41,8 @@ class SettingsViewController: UITableViewController {
         
         print("SettingsViewController - notifyTimerSliderSender - End")
     }
+    
+    
     
     let notifyTime = UserDefaults()
     
@@ -126,16 +131,27 @@ class SettingsViewController: UITableViewController {
         switch section {
         case 0:
             return 1
-//        case 1:
-//            return 2
+        case 1:
+            return 3
         default:
             return 0
         }
     }
 
-
-    
-    
-    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("SettingViewController - tableView - didSelectRowAt indePath: \(indexPath)")
+        
+        switch indexPath {
+            
+        // 「データ提供元」タップ時の動作（Launch Libraryのリンク先を開く）
+        case [1,1]:
+            print("indexPath : 1,1")
+            UIApplication.shared.open(URL(string: "https://launchlibrary.net/")! as URL,options: [:],completionHandler: nil)
+            
+        default:
+            return
+        }
+        
+    }
 
 }

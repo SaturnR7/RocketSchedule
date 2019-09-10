@@ -37,6 +37,24 @@ class RocketNameEng2Jpn {
         }
     }
     
+    func getMissionName(name: String) -> String {
+        
+        let result = separateString(originalName: name, separateString: "|")
+        
+        if result[1] != ""{
+            return result[1].trimmingCharacters(in: .whitespaces)
+        }else{
+            return name
+        }
+    }
+    
+    
+    func separateString (originalName name: String, separateString target: String) -> [String]{
+        
+        return name.components(separatedBy: target)
+
+    }
+    
     // この処理のデメリットは、ロケット名が増えるたびに英語ロケットをrocketNamesと
     // rocketNameEng2Jpnの二つに二重で登録しなければいけない。
     
@@ -60,7 +78,21 @@ class RocketNameEng2Jpn {
             "h-iib",
             "epsilon",
             "electron",
-            "saturn"
+            "saturn",
+            "kuaizhou",
+            "pslv",
+            "zhuque",
+            "gslv",
+            "antares",
+            "simorgh",
+            "safir",
+            "os-m1",
+            "hyperbola",
+            "smart dragon",
+            "smartdragon",
+            "gemini",
+            "vostok",
+            "voskhod"
         ]
     
     // ロケット名を追加する場合は、小文字で英語文字列と日本語名を配列の最後に地下する。
@@ -83,7 +115,21 @@ class RocketNameEng2Jpn {
             "h-iib":"H-2Bロケット",
             "epsilon":"イプシロン",
             "electron":"エレクトロン",
-            "saturn":"サターン"
+            "saturn":"サターンロケット",
+            "kuaizhou":"快舟(かいしゅう)",
+            "pslv":"PSLV",
+            "zhuque":"朱雀(チューチュエ)",
+            "gslv":"GSLV Mark III",
+            "antares":"アンタレス",
+            "simorgh":"シームルグ",
+            "safir":"サフィール",
+            "os-m1":"OS-M1",
+            "hyperbola":"ハイパーボラ",
+            "smart dragon":"捷竜(ジェロン)",
+            "smartdragon":"捷竜(ジェロン)",
+            "gemini":"ジェミニ",
+            "vostok":"ボストーク",
+            "voskhod":"ボスホート"
         ]
     
 }

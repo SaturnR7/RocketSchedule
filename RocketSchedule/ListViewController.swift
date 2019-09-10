@@ -100,6 +100,10 @@ class ListViewController: UITableViewController {
         cell.labelRocketName?.text =
             rocketEng2Jpn.checkStringSpecifyRocketName(name: self.viewRocketPlanData[indexPath.row].rocketName)
         
+        // ミッション名を表示する
+        cell.labelMissionName?.numberOfLines = 0
+        cell.labelMissionName?.text = rocketEng2Jpn.getMissionName(name: self.viewRocketPlanData[indexPath.row].rocketName)
+
         // テスト：ロケット画像の表示
 //        cell.rocketImageViewCell.image = UIImage(named: "Atlas+V+551_480")
 ////        let imageViewScale = max(cell.rocketImageViewCell.image.size. ,
@@ -148,10 +152,11 @@ class ListViewController: UITableViewController {
     var indicator = UIActivityIndicatorView()
     
     func activityIndicator() {
-        indicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        indicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 70, height: 70))
         // インジケーターアイコンの丸み表現
         indicator.layer.cornerRadius = 10
-        indicator.style = UIActivityIndicatorView.Style.white
+        
+        indicator.style = UIActivityIndicatorView.Style.whiteLarge
         indicator.backgroundColor =
             UIColor.init(red: 60/255, green: 60/255, blue: 60/255, alpha: 1)
 //        indicator.center = self.indicatorView.center
@@ -164,19 +169,23 @@ class ListViewController: UITableViewController {
 
         print("ListViewController - viewDidLoad start")
         
-        print("Timezone: \(TimeZone.ReferenceType.local)")
-        print("Timezone secondsFromGMT : \(Calendar.current.timeZone.secondsFromGMT())")
-        print("TimeZone Current Abbreviation: \(TimeZone.current.abbreviation())")
-        print("Timezone List: \(TimeZone.abbreviationDictionary)")
-        print("TimeZone Identifiers: \(TimeZone.knownTimeZoneIdentifiers)")
+//        print("Timezone: \(TimeZone.ReferenceType.local)")
+//        print("Timezone secondsFromGMT : \(Calendar.current.timeZone.secondsFromGMT())")
+//        print("TimeZone Current Abbreviation: \(TimeZone.current.abbreviation())")
+//        print("Timezone List: \(TimeZone.abbreviationDictionary)")
+//        print("TimeZone Identifiers: \(TimeZone.knownTimeZoneIdentifiers)")
         
-        //ディクショナリ形式で初期値を指定できる
+        // ディクショナリ形式で初期値を指定できる
         let notifyTime = UserDefaults()
         notifyTime.register(defaults: ["ChangeTime" : 10])
         
         // バックボタンのタイトルを設定
         // 遷移先のバックボタンにタイトルを設定する場合は、title: に文字を設定する。
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        
+        
+        // Realmの通知済み情報の存在を確認し、存在する場合はRealmのデータを削除する
+//        checkAndRemoveRealmNotify()
         
         // インジケーター用のUIViewを表示
         // init Boundsで全画面にviewを表示
@@ -219,6 +228,52 @@ class ListViewController: UITableViewController {
         print("ListViewController - viewDidLoad end")
     }
     
+    // 配信済みの通知情報の存在チェックし、存在する場合はRealmのデータを削除する
+    // スレッド間での例外発生：当機能は保留にする
+//    func checkAndRemoveRealmNotify(){
+//
+//        print("ListViewController - checkAndRemoveRealmNotify - Start")
+//
+//        // 未配信の通知情報一覧
+//        let center = UNUserNotificationCenter.current()
+//
+//
+//        // Notify Data remove from Realm
+//        let realm = try! Realm()
+//        let getRealmData = realm.objects(RealmNotifyObject.self)
+//
+//        if getRealmData.count == 0 {
+//            print("getRealmData is 0 count")
+//            return
+//        }
+//
+//        // 登録通知分の通知時刻を変更する
+//        for data in getRealmData{
+//
+//            print("data notifyId: \(data)")
+//            // 通知センター未配信一覧を取得する
+//            center.getPendingNotificationRequests { (requests: [UNNotificationRequest]) in
+//
+//                // 未配信分繰り返し、Realmの通知情報と一致した場合は、Realmデータを削除する
+//                for request in requests{
+//                    print("Pending Notify: \(request)")
+//                    print("Pending Notify ID: \(request.identifier)")
+//
+//                    //
+//                    if data.notifyId == request.identifier{
+//
+//                        print("Notify ID Match! ID: \(data.notifyId)")
+//                        try! realm.write {
+//                            realm.delete(data)
+//                        }
+//                        break
+//                    }
+//                }
+//            }
+//        }
+//        print("ListViewController - checkAndRemoveRealmNotify - End")
+//    }
+    
     //リフレッシュ処理
     @objc func refresh(sender: UIRefreshControl) {
         print("ListViewController - In refresh Start")
@@ -246,6 +301,7 @@ class ListViewController: UITableViewController {
             
             for request in requests{
                 print("Pending Notify: \(request)")
+                print("Pending Notify ID: \(request.identifier)")
             }
         }
         
@@ -266,7 +322,8 @@ class ListViewController: UITableViewController {
 //        // テーブル情報のリロード
 //        self.tableView.reloadData()
 
-        
+//        // Realmの通知済み情報の存在を確認し、存在する場合はRealmのデータを削除する
+//        checkAndRemoveRealmNotify()
         
         print("ListViewController - viewDidAppear end")
 
@@ -303,21 +360,29 @@ class ListViewController: UITableViewController {
                     
                     self.jsonLaunches = json
                     
-//                    print("JSON Data: \(json)")
+                    print("JSON Data: \(json)")
                     
                     for launch in json.launches {
 //                        print("name:\(launch.name)")
                         
                         // calendarを日付文字列だ使ってるcalendarに設定
                         let formatterString = DateFormatter()
-                        //TimeZoneはUTCにしなければならない。
-                        //理由は、UTCに指定していないと、DateFormatter.date関数はcurrentのゾーンで
-                        //日付を返してしまうため。
+                        
+                        // TimeZoneはUTCにしなければならない。
+                        // 理由は、UTCに指定していないと、DateFormatter.date関数はcurrentのゾーンで
+                        // 日付を返してしまうため。
                         formatterString.timeZone = TimeZone(identifier: "UTC")
 //                        formatterString.dateFormat = "yyyy-MM-dd HH:mm:ss"
                         formatterString.dateFormat = "MMMM dd, yyyy HH:mm:ss z"
+                        
+                        // 固定フォーマットで表示
+                        // 【info.plist】
+                        // Localization native development region：Japan
+                        // localeプロパティを設定しないと、日付変換処理でnilが返ってしまう。
+                        formatterString.locale = Locale(identifier: "en_US_POSIX")
+                        
                         let jsonDate = launch.windowstart
-//                        print ("jsonDate:\(jsonDate)")
+                        print("jsonDate:\(jsonDate)")
                         
                         if let dateString = formatterString.date(from: jsonDate){
 //                            print("dateString:\(String(describing: dateString))")
@@ -512,9 +577,9 @@ class ListViewController: UITableViewController {
             }
 
             DispatchQueue.main.async {
-                print("loadImage data: \(data)")
+//                print("loadImage data: \(data)")
                 self.imageForRocketCell = UIImage(data: data!)
-                print(response!)
+//                print(response!)
             }
 
         }.resume()

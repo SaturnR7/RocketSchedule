@@ -453,7 +453,7 @@ class DetailViewController : UIViewController {
                 self.imageRocket.image = UIImage(data: data!)
                 // UIImageViewのサイズに収まるようにサイズを調整
                 self.imageRocket.contentMode = .scaleAspectFill
-                print(response!)
+//                print(response!)
             }
             
             }.resume()

@@ -79,6 +79,8 @@ class DetailRocketViewController : UIViewController {
         // 遷移先のバックボタンにタイトルを設定する場合は、title: に文字を設定する。
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
 
+        // 通知スイッチの配色をへ設定（オン時の背景色）
+        notifyOutletSwitch.onTintColor = UIColor.init(red: 30/255, green: 144/255, blue: 255/255, alpha: 1)
         
         // COPYメニューが表示されないので不採用
         // UIlabelのロングタップコピー実装
@@ -241,7 +243,7 @@ class DetailRocketViewController : UIViewController {
                 self.imageRocket.image = UIImage(data: data!)
                 // UIImageViewのサイズに収まるようにサイズを調整
                 self.imageRocket.contentMode = .scaleAspectFill
-                print(response!)
+//                print(response!)
             }
             
             }.resume()

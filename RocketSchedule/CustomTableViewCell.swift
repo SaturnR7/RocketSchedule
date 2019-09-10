@@ -10,17 +10,23 @@ import UIKit
 
 class CustomTableViewCell: UITableViewCell {
 
+    // 打ち上げ日付
     @IBOutlet weak var labelLaunchDate: UILabel!
     
+    // 打ち上げ時刻
     @IBOutlet weak var labelLaunchTime: UILabel!
     
+    // ロケット名
     @IBOutlet weak var labelRocketName: UILabel!
+    
+    // ミッション名
+    @IBOutlet weak var labelMissionName: UILabel!
     
     // テスト用：ロケット画像表示
     @IBOutlet weak var rocketImageViewCell: UIImageView!
     
     // 通知ありなし確認
-    @IBOutlet weak var imageNotify: UIImageView!
+//    @IBOutlet weak var imageNotify: UIImageView!
     
 //    override func awakeFromNib() {
 //        super.awakeFromNib()
@@ -46,7 +52,8 @@ class CustomTableViewCell: UITableViewCell {
             DispatchQueue.main.async {
                 print("loadImage data: \(data)")
 
-                print(response!)
+//                print(response!)
+                
                 let original = UIImage(data: data!)
                 
                 // こういう荒業は使ってはいけない！！

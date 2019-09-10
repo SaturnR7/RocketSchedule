@@ -125,6 +125,9 @@ class ResultListViewController: UITableViewController {
         cell.labelRocketName?.text =
             rocketEng2Jpn.checkStringSpecifyRocketName(name: self.jsonLaunches.launches[indexPath.row].name)
 
+        // ミッション名を表示する
+        cell.labelMissionName?.numberOfLines = 0
+        cell.labelMissionName?.text = rocketEng2Jpn.getMissionName(name: self.jsonLaunches.launches[indexPath.row].name)
         
         // ロケット画像の表示
         // 画像URLの文字列を変更（解像度を1920より小さく）
@@ -154,10 +157,11 @@ class ResultListViewController: UITableViewController {
     
     func activityIndicator() {
         
-        indicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        indicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 70, height: 70))
         // インジケーターアイコンの丸み表現
         indicator.layer.cornerRadius = 10
-        indicator.style = UIActivityIndicatorView.Style.white
+        
+        indicator.style = UIActivityIndicatorView.Style.whiteLarge
         indicator.backgroundColor =
             UIColor.init(red: 60/255, green: 60/255, blue: 60/255, alpha: 1)
 //        UIColor.init(red: 38/255, green: 38/255, blue: 38/255, alpha: 1)
@@ -466,12 +470,20 @@ class ResultListViewController: UITableViewController {
                             
                             // calendarを日付文字列だ使ってるcalendarに設定
                             let formatterString = DateFormatter()
+                            
                             //TimeZoneはUTCにしなければならない。
                             //理由は、UTCに指定していないと、DateFormatter.date関数はcurrentのゾーンで
                             //日付を返してしまうため。
                             formatterString.timeZone = TimeZone(identifier: "UTC")
 //                            formatterString.dateFormat = "yyyy-MM-dd HH:mm:ss"
                             formatterString.dateFormat = "MMMM dd, yyyy HH:mm:ss z"
+                            
+                            // 固定フォーマットで表示
+                            // 【info.plist】
+                            // Localization native development region：Japan
+                            // localeプロパティを設定しないと、日付変換処理でnilが返ってしまう。
+                            formatterString.locale = Locale(identifier: "en_US_POSIX")
+                            
                             let jsonDate = launch.windowstart
                             //                        print ("jsonDate:\(jsonDate)")
                             

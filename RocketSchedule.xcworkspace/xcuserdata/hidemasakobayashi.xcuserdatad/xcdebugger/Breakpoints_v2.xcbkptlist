@@ -26,29 +26,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RocketSchedule/ListViewController.swift"
-            timestampString = "589363875.379132"
+            timestampString = "589799942.152853"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "482"
-            endingLineNumber = "482"
-            landmarkName = "notificationRocketRemove()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "RocketSchedule/ListViewController.swift"
-            timestampString = "589363875.379724"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "475"
-            endingLineNumber = "475"
-            landmarkName = "notificationRocketRemove()"
-            landmarkType = "7">
+            startingLineNumber = "547"
+            endingLineNumber = "547"
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -58,7 +42,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RocketSchedule/SearchRoketViewController.swift"
-            timestampString = "589363875.380211"
+            timestampString = "589448225.994884"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "150"
@@ -74,7 +58,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RocketSchedule/DetailViewController.swift"
-            timestampString = "589173679.050501"
+            timestampString = "589448225.99498"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "329"
@@ -90,7 +74,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RocketSchedule/DetailViewController.swift"
-            timestampString = "589173679.0505641"
+            timestampString = "589448225.995054"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "377"
@@ -106,13 +90,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RocketSchedule/ListViewController.swift"
-            timestampString = "589363875.380828"
+            timestampString = "589799942.163241"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "530"
-            endingLineNumber = "530"
-            landmarkName = "ListViewController"
-            landmarkType = "3">
+            startingLineNumber = "595"
+            endingLineNumber = "595"
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -122,13 +106,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RocketSchedule/DicAgencies.swift"
-            timestampString = "589363875.381253"
+            timestampString = "589799942.168383"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "24"
             endingLineNumber = "24"
-            landmarkName = "getAgencyOfJapanese(key:)"
-            landmarkType = "7">
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -138,11 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RocketSchedule/ResultListViewController.swift"
-            timestampString = "589363875.381371"
+            timestampString = "589799942.171491"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "588"
-            endingLineNumber = "588">
+            startingLineNumber = "600"
+            endingLineNumber = "600">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -152,11 +136,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RocketSchedule/DetailRocketViewController.swift"
-            timestampString = "589363875.381443"
+            timestampString = "589799942.171821"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "152"
-            endingLineNumber = "152"
+            startingLineNumber = "154"
+            endingLineNumber = "154"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -168,11 +152,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RocketSchedule/ResultListViewController.swift"
-            timestampString = "589363875.381549"
+            timestampString = "589799942.183567"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "395"
-            endingLineNumber = "395"
+            startingLineNumber = "399"
+            endingLineNumber = "399"
             landmarkName = "launchJsonDownload()"
             landmarkType = "7">
          </BreakpointContent>
@@ -184,11 +168,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RocketSchedule/ResultListViewController.swift"
-            timestampString = "589363875.381614"
+            timestampString = "589799942.18383"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "266"
-            endingLineNumber = "266"
+            startingLineNumber = "270"
+            endingLineNumber = "270"
             landmarkName = "viewDidAppear(_:)"
             landmarkType = "7">
             <Locations>
@@ -247,11 +231,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RocketSchedule/ResultListViewController.swift"
-            timestampString = "589363875.381676"
+            timestampString = "589799942.1839581"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "540"
-            endingLineNumber = "540"
+            startingLineNumber = "552"
+            endingLineNumber = "552"
             landmarkName = "prepare(for:sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -262,14 +246,78 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "RocketSchedule/SettingsViewController.swift"
-            timestampString = "589363875.381734"
+            filePath = "RocketSchedule/ListViewController.swift"
+            timestampString = "589799942.1840889"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
+            startingLineNumber = "189"
+            endingLineNumber = "189"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RocketSchedule/ListViewController.swift"
+            timestampString = "589799942.191072"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "345"
+            endingLineNumber = "345"
+            landmarkName = "unknown"
+            landmarkType = "0">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RocketSchedule.ListViewController.launchJsonDownload() -&gt; ()"
+                  moduleName = "RocketSchedule"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hidemasakobayashi/Xcode/RocketSchedule/RocketSchedule/ListViewController.swift"
+                  timestampString = "589440148.7909679"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "340"
+                  endingLineNumber = "340"
+                  offsetFromSymbolStart = "926">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in RocketSchedule.ListViewController.launchJsonDownload() -&gt; ()"
+                  moduleName = "RocketSchedule"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hidemasakobayashi/Xcode/RocketSchedule/RocketSchedule/ListViewController.swift"
+                  timestampString = "589440148.796855"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "341"
+                  endingLineNumber = "341"
+                  offsetFromSymbolStart = "988">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RocketSchedule/ListViewController.swift"
+            timestampString = "589799942.194347"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

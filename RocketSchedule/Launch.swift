@@ -58,12 +58,27 @@ struct Launch: Codable {
         struct RocketContent: Codable{
             var id: Int
             var name: String
+//            var agencies: [AgenciesContent]
             var wikiURL: String?
             var infoURL: String?
             var changed: String?
             var infoURLs: [String]?
             var imageURL: String?
             var imageSizes: [Int]?
+            
+//            struct AgenciesContent: Codable{
+//                var id: Int
+//                var name: String
+//                var abbrev: String
+//                var countryCode: String
+//                var type: Int
+//                var infoURL: String?
+//                var wikiURL: String?
+//                var changed: String?
+//                var infoURLs: [String]?
+//                
+//            }
+
         }
     }
 }
