@@ -128,11 +128,13 @@ class SettingsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         
+        tableView.separatorInset = .zero
+        
         switch section {
         case 0:
             return 1
         case 1:
-            return 3
+            return 2
         default:
             return 0
         }
@@ -144,7 +146,8 @@ class SettingsViewController: UITableViewController {
         switch indexPath {
             
         // 「データ提供元」タップ時の動作（Launch Libraryのリンク先を開く）
-        case [1,1]:
+        case [1,0]:
+//        case [1,0]: //「おひねり」項目を追加した場合は当コメントに置き換える
             print("indexPath : 1,1")
             UIApplication.shared.open(URL(string: "https://launchlibrary.net/")! as URL,options: [:],completionHandler: nil)
             

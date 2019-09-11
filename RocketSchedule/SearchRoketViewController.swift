@@ -145,6 +145,9 @@ class SearchRoketViewController: UIViewController {
         let todayString = getStringToday()
         // 現在から１週間前の日付を取得
         let pastDateString = getStringDay1weekAgo()
+        
+        dateStartLaunch.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
+        dateEndLaunch.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
 
         // 設定値（前回検索履歴情報があった場合は、検索画面に値を設定
         if let settingStartDate = searchValueSettings.string(forKey: "settingStartDate"){
@@ -183,7 +186,8 @@ class SearchRoketViewController: UIViewController {
 
         // レイアウト表示（storyboardに組み込むと早く表示されてしまうためダサい）
         labelLaunch.text = "打ち上げ期間"
-        searchLabel.text = "|"
+        searchLabel.text = "｜"
+        searchLabel.baselineAdjustment = UIBaselineAdjustment.alignCenters
         labelAgency.text = "機関"
         
 
