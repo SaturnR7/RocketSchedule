@@ -870,7 +870,7 @@
                                 <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="20"/>
                                 <state key="normal" title="¥120"/>
                                 <connections>
-                                    <action selector="buttonPurchase_1:" destination="zn3-pN-XFu" eventType="touchUpInside" id="DeY-Mx-MBZ"/>
+                                    <action selector="buttonPurchase_1:" destination="zn3-pN-XFu" eventType="touchUpInside" id="SYG-1p-p3j"/>
                                 </connections>
                             </button>
                         </subviews>

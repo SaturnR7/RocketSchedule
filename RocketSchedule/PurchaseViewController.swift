@@ -10,17 +10,18 @@ import UIKit
 import SwiftyStoreKit
 
 class PurchaseViewController: UIViewController {
+
+    private let productIdentifiers : [String] = ["RocketMilo_tip_01"]
     
     @IBOutlet weak var labelAboutTip: UILabel!
     
-    @IBAction func buttonPurchase_1(_ sender: UIButton) {
-        
-        purchaseProduct(productId: "RocketMilo_tip_01")
-        
+    @IBAction func buttonPurchase_1(_ sender: Any) {
+
+        // SwiftyStorekit
+        purchaseProduct(productId: productIdentifiers[0])
+
     }
     
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -30,20 +31,22 @@ class PurchaseViewController: UIViewController {
         labelAboutTip.text =
         "ロケットミロは、どんなロケットがいつ打ち上がるか、\n画像・映像を交えてロケットを知ってもらいたい\nという"
         
+        // SwiftyStorekit
         // プロダクト情報を取得する
-        getProductsInfo(productId: "RocketMilo_tip_01")
+        getProductsInfo(productId: productIdentifiers[0])
         
     }
     
+    // SwiftyStorekit
     func getProductsInfo(productId: String){
-        
+
         // プロダクト情報（価格情報）を取得する
         // 価格情報は、itunes connectのapp内課金で登録した内容をAppleから受信している
         SwiftyStoreKit.retrieveProductsInfo([productId]) { result in
             if let product = result.retrievedProducts.first {
-                
+
                 print("Product: \(product.localizedDescription), price: \(product.price)")
-                
+
             } else if let invalidProductId = result.invalidProductIDs.first {
                 //                print("Invalid product identifier: \(invalidProductId)")
             } else {
@@ -53,8 +56,9 @@ class PurchaseViewController: UIViewController {
 
     }
     
+    // SwiftyStorekit
     func purchaseProduct(productId: String){
-        
+
         SwiftyStoreKit.purchaseProduct(productId, quantity: 1, atomically: true) { result in
             switch result {
             case .success(let purchase):
@@ -75,16 +79,5 @@ class PurchaseViewController: UIViewController {
             }
         }
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

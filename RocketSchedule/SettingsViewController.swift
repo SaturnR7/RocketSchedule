@@ -10,11 +10,8 @@ import Foundation
 import UIKit
 import UserNotifications
 import RealmSwift
-import StoreKit
 
 class SettingsViewController: UITableViewController {
-
-    
     
     @IBOutlet weak var notityTimeSlider: UISlider!
     
@@ -42,10 +39,8 @@ class SettingsViewController: UITableViewController {
         print("SettingsViewController - notifyTimerSliderSender - End")
     }
     
-    
-    
     let notifyTime = UserDefaults()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -62,7 +57,6 @@ class SettingsViewController: UITableViewController {
         
         notityTimeSlider.value = Float(value)
         print("notityTimeSlider.value: \(notityTimeSlider.value)")
-
 
         print("SettingsViewController - viewDidLoad - End")
     }
