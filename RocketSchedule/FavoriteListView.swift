@@ -59,6 +59,17 @@ class FavoriteListView: UITableViewController {
     // ロケット名日本語変換クラス
     var rocketEng2Jpn = RocketNameEng2Jpn()
     
+    // お気に入り登録0件用のUIViewを宣言
+    var resultZeroView: UIView!
+
+    // お気に入り0件用メッセージ
+    var zeroMessage = UILabel()
+    var zeroMessage_2 = UILabel()
+
+    // お気に入り0件用画像
+    var zeroImage = UIImage()
+    var zeroImageView = UIImageView()
+
     // Realm
 //    let realm = try! Realm()
     
@@ -209,9 +220,99 @@ class FavoriteListView: UITableViewController {
         tableView.separatorInset =
             UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20);
 
+        // お気に入り0件用のviewを生成
+        enableResultZeroView()
+        // 0件メッセージをを生成
+        enableMessageViewZero()
+        // 0件用画像の生成
+        enableImageForZero()
+        
         // Read Realm Data
-        launchDataLoad()
+//        launchDataLoad()
+        if launchDataLoad() == 0{
+            resultZeroView.isHidden = false
+            zeroMessage.isHidden = false
+            zeroMessage_2.isHidden = false
+            zeroImageView.isHidden = false
+        }else{
+            resultZeroView.isHidden = true
+            zeroMessage.isHidden = true
+            zeroMessage_2.isHidden = true
+            zeroImageView.isHidden = true
+        }
 
+    }
+
+    // お気に入り0件用のUIViewを生成
+    func enableResultZeroView() {
+        
+        // init Boundsで全画面にviewを表示
+        self.resultZeroView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height))
+        let bgColor = UIColor.init(red: 38/255, green: 38/255, blue: 38/255, alpha: 1)
+        self.resultZeroView.backgroundColor = bgColor
+        self.resultZeroView.isUserInteractionEnabled = true
+        self.view.addSubview(resultZeroView)
+        
+        // 検索0件の時だけこのviewを表示するため、それ以外は非表示にする。
+        self.resultZeroView.isHidden = true
+    }
+    
+    // 0件用のメッセージを表示
+    func enableMessageViewZero() {
+        
+        // 0件メッセージ
+        self.zeroMessage = UILabel.init(frame: CGRect.init(x: 0,
+                                                           y: 40,
+                                                           width: view.frame.size.width,
+                                                           height: 10))
+        self.zeroMessage.textAlignment = NSTextAlignment.center
+        self.zeroMessage.text = "お気に入りのロケット情報を登録しましょう"
+        self.zeroMessage.textColor = UIColor.white
+        self.zeroMessage.font = UIFont.init(name: "Futura-Bold", size: 15)
+        self.view.addSubview(self.zeroMessage)
+        
+        // 0件メッセージ
+        self.zeroMessage_2 =
+            UILabel.init(frame: CGRect.init(x: 0,
+                                            y: 375,
+                                            width: view.frame.size.width,
+                                            height: 10)
+                        )
+        self.zeroMessage_2.textAlignment = NSTextAlignment.center
+        self.zeroMessage_2.text = "打ち上げ結果画面のスターをタップ"
+        self.zeroMessage_2.textColor = UIColor.white
+        self.zeroMessage_2.font = UIFont.init(name: "Futura-Bold", size: 15)
+        self.view.addSubview(self.zeroMessage_2)
+    }
+
+    // 0件用のメッセージを表示
+    func enableImageForZero() {
+        
+        zeroImage = UIImage(named: "01_ResultView")!
+        zeroImageView = UIImageView(image: zeroImage)
+
+        // スクリーンの縦横サイズを取得
+        let screenWidth:CGFloat = view.frame.size.width
+        let screenHeight:CGFloat = view.frame.size.height
+        
+        // 画像の縦横サイズを取得
+        let imgWidth:CGFloat = zeroImage.size.width
+        let imgHeight:CGFloat = zeroImage.size.height
+        
+        // 画像サイズをスクリーン幅に合わせる
+        let scale:CGFloat = screenWidth / imgWidth
+        let rect:CGRect =
+            CGRect(x:0, y:0, width:imgWidth * scale, height:imgHeight * scale)
+        
+        // ImageView frame をCGRectで作った矩形に合わせる
+        zeroImageView.frame = rect
+        
+        // 画像の中心を画面の中心に設定
+        zeroImageView.center = CGPoint(x:screenWidth/2, y:screenHeight/4)
+        
+        // UIImageViewのインスタンスをビューに追加
+        self.view.addSubview(zeroImageView)
+        
     }
 
     //リフレッシュ処理
@@ -232,7 +333,18 @@ class FavoriteListView: UITableViewController {
         super.viewDidAppear(animated)
         
         // Read Realm Data
-        launchDataLoad()
+//        launchDataLoad()
+        if launchDataLoad() == 0{
+            resultZeroView.isHidden = false
+            zeroMessage.isHidden = false
+            zeroMessage_2.isHidden = false
+            zeroImageView.isHidden = false
+        }else{
+            resultZeroView.isHidden = true
+            zeroMessage.isHidden = true
+            zeroMessage_2.isHidden = true
+            zeroImageView.isHidden = true
+        }
         
         tableView.reloadData()
         
@@ -269,7 +381,7 @@ class FavoriteListView: UITableViewController {
 //    }
     
     
-    func launchDataLoad(){
+    func launchDataLoad() -> Int {
         
         // Realm
         let realm = try! Realm()
@@ -280,6 +392,12 @@ class FavoriteListView: UITableViewController {
         // Get From Realm
 //        let getAllDataRealm = realm.objects(FavoriteObject.self)
         let getAllDataRealm = realm.objects(FavoriteObject.self).sorted(byKeyPath: "addedDate", ascending: true)
+        
+        print("getAllDataRealm.count:\(getAllDataRealm.count)")
+        
+        if getAllDataRealm.count == 0{
+            return getAllDataRealm.count
+        }
 
         // RealmData input to Array Struct
         for data in getAllDataRealm{
@@ -310,7 +428,7 @@ class FavoriteListView: UITableViewController {
         print("FavoriteListView - launchDataLoad - arrayFavoriteLaunches.count: \(arrayFavoriteLaunches.count)")
 //        print("FavoriteListView - launchDataLoad - arrayFavoriteLaunches[0].id: \(arrayFavoriteLaunches[0].id)")
 
-        
+        return arrayFavoriteLaunches.count
     }
     
     func launchJsonDownload(){

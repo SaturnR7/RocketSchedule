@@ -6,5 +6,6 @@ target 'RocketSchedule' do
   use_frameworks!
 
   # Pods for RocketSchedule
-pod 'RealmSwift'
+  pod 'RealmSwift'
+  pod 'SwiftyStoreKit'
 end

@@ -229,8 +229,10 @@ class ResultListViewController: UITableViewController {
         
         // インジケーター用のviewを生成
         enableIndicatorView()
+        
         // 0件用のviewを生成
         enableResultZeroView()
+        
         // 0件メッセージの表示
         enableIndicatorViewZero()
 

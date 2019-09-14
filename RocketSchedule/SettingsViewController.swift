@@ -134,7 +134,7 @@ class SettingsViewController: UITableViewController {
         case 0:
             return 1
         case 1:
-            return 2
+            return 3
         default:
             return 0
         }
@@ -145,10 +145,11 @@ class SettingsViewController: UITableViewController {
         
         switch indexPath {
             
+        // Launch Libraryの輪作先を開く
         // 「データ提供元」タップ時の動作（Launch Libraryのリンク先を開く）
-        case [1,0]:
-//        case [1,0]: //「おひねり」項目を追加した場合は当コメントに置き換える
-            print("indexPath : 1,1")
+//        case [1,0]:
+        case [1,1]: //「おひねり」項目を追加した場合は当コメントに置き換える
+            print("indexPath : \(indexPath)")
             UIApplication.shared.open(URL(string: "https://launchlibrary.net/")! as URL,options: [:],completionHandler: nil)
             
         default:
