@@ -301,14 +301,16 @@ class FavoriteListView: UITableViewController {
         
         // 画像サイズをスクリーン幅に合わせる
         let scale:CGFloat = screenWidth / imgWidth
+        let scaleHeight:CGFloat = screenHeight / imgHeight
         let rect:CGRect =
+//            CGRect(x:0, y:0, width:imgWidth * scale, height:imgHeight * scaleHeight)
             CGRect(x:0, y:0, width:imgWidth * scale, height:imgHeight * scale)
         
         // ImageView frame をCGRectで作った矩形に合わせる
         zeroImageView.frame = rect
         
         // 画像の中心を画面の中心に設定
-        zeroImageView.center = CGPoint(x:screenWidth/2, y:screenHeight/4)
+        zeroImageView.center = CGPoint(x:screenWidth/2, y:screenHeight/3.5)
         
         // UIImageViewのインスタンスをビューに追加
         self.view.addSubview(zeroImageView)

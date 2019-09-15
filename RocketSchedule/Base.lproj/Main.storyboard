@@ -740,10 +740,10 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="このアプリについて" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KAK-2b-b6D">
-                                                    <rect key="frame" x="20" y="11.666666666666666" width="153" height="20.333333333333336"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ロケットミロについて" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KAK-2b-b6D">
+                                                    <rect key="frame" x="20" y="11.666666666666666" width="170" height="20.333333333333336"/>
                                                     <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="textColor" red="1" green="0.32656864806382024" blue="0.80621587619021051" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -771,10 +771,10 @@
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Launch Library" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rat-il-rIn">
-                                                    <rect key="frame" x="263" y="11" width="131" height="22"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Launch Library(外部サイト)" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rat-il-rIn">
+                                                    <rect key="frame" x="171" y="11" width="223" height="23"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="131" id="LWN-P5-cfe"/>
+                                                        <constraint firstAttribute="width" constant="223" id="LWN-P5-cfe"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -834,6 +834,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="設定" id="emV-Fe-fey"/>
                     <connections>
+                        <outlet property="labelVersion" destination="z3t-rc-zgp" id="mbX-cp-oLn"/>
                         <outlet property="notityTimeSlider" destination="TR3-9z-6vX" id="DXh-rL-x8u"/>
                         <outlet property="settingTime" destination="T0N-Xj-BJ7" id="RU4-sT-0oO"/>
                     </connections>
@@ -860,38 +861,77 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="741-AH-jAI">
-                                <rect key="frame" x="20" y="150" width="374" height="139"/>
+                                <rect key="frame" x="20" y="150" width="374" height="321"/>
                                 <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fDR-HT-shl">
-                                <rect key="frame" x="290" y="297" width="104" height="39"/>
-                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="20"/>
+                                <rect key="frame" x="49" y="515" width="100" height="38"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="eJl-R2-3hM"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
                                 <state key="normal" title="¥120"/>
                                 <connections>
                                     <action selector="buttonPurchase_1:" destination="zn3-pN-XFu" eventType="touchUpInside" id="SYG-1p-p3j"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nnF-wP-kwF">
+                                <rect key="frame" x="157" y="515" width="100" height="38"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
+                                <state key="normal" title="¥240"/>
+                                <connections>
+                                    <action selector="buttonPurchase_2:" destination="zn3-pN-XFu" eventType="touchUpInside" id="tHT-iX-OVx"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OmJ-vy-xsZ">
+                                <rect key="frame" x="265" y="515" width="100" height="38"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
+                                <state key="normal" title="¥480"/>
+                                <connections>
+                                    <action selector="buttonPurchase_3:" destination="zn3-pN-XFu" eventType="touchUpInside" id="VxG-YP-rRc"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🚀ありがとうございます🚀" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dL1-X4-TvD">
+                                <rect key="frame" x="33" y="629" width="348" height="57"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="57" id="n03-xo-GqZ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
+                                <color key="textColor" red="0.78783679511232874" green="0.56470588239999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="fDR-HT-shl" firstAttribute="leading" secondItem="PiZ-Uq-3x0" secondAttribute="leading" constant="49" id="3po-5K-PIP"/>
+                            <constraint firstItem="fDR-HT-shl" firstAttribute="baseline" secondItem="nnF-wP-kwF" secondAttribute="baseline" id="4Hs-Jd-fBp"/>
                             <constraint firstItem="FeF-Vd-a0k" firstAttribute="leading" secondItem="Ain-2n-fty" secondAttribute="leadingMargin" id="5de-uA-59W"/>
+                            <constraint firstItem="PiZ-Uq-3x0" firstAttribute="trailing" secondItem="OmJ-vy-xsZ" secondAttribute="trailing" constant="49" id="6L2-12-6m5"/>
+                            <constraint firstItem="OmJ-vy-xsZ" firstAttribute="leading" secondItem="nnF-wP-kwF" secondAttribute="trailing" constant="8" symbolic="YES" id="A64-RD-dCd"/>
                             <constraint firstItem="FeF-Vd-a0k" firstAttribute="trailing" secondItem="Ain-2n-fty" secondAttribute="trailingMargin" id="ByV-Yy-xdt"/>
                             <constraint firstItem="FeF-Vd-a0k" firstAttribute="leading" secondItem="741-AH-jAI" secondAttribute="leading" id="JT4-UF-sO4"/>
-                            <constraint firstItem="PiZ-Uq-3x0" firstAttribute="bottom" secondItem="fDR-HT-shl" secondAttribute="bottom" constant="477" id="S3h-rE-4Vb"/>
-                            <constraint firstItem="fDR-HT-shl" firstAttribute="trailing" secondItem="741-AH-jAI" secondAttribute="trailing" id="d1B-6P-zbT"/>
-                            <constraint firstItem="fDR-HT-shl" firstAttribute="leading" secondItem="PiZ-Uq-3x0" secondAttribute="leading" constant="290" id="dAN-Xm-ZdY"/>
+                            <constraint firstItem="nnF-wP-kwF" firstAttribute="centerX" secondItem="741-AH-jAI" secondAttribute="centerX" id="MZq-6E-OxY"/>
+                            <constraint firstItem="fDR-HT-shl" firstAttribute="top" secondItem="741-AH-jAI" secondAttribute="bottom" constant="44" id="ZYx-md-HFA"/>
+                            <constraint firstItem="nnF-wP-kwF" firstAttribute="leading" secondItem="fDR-HT-shl" secondAttribute="trailing" constant="8" symbolic="YES" id="dfK-HI-bfG"/>
+                            <constraint firstItem="dL1-X4-TvD" firstAttribute="top" secondItem="fDR-HT-shl" secondAttribute="bottom" constant="76" id="hgE-TU-FsM"/>
+                            <constraint firstItem="dL1-X4-TvD" firstAttribute="leading" secondItem="PiZ-Uq-3x0" secondAttribute="leading" constant="33" id="jNf-0w-mwI"/>
                             <constraint firstItem="741-AH-jAI" firstAttribute="top" secondItem="FeF-Vd-a0k" secondAttribute="bottom" constant="8" symbolic="YES" id="jpD-Df-AGS"/>
                             <constraint firstItem="FeF-Vd-a0k" firstAttribute="top" secondItem="PiZ-Uq-3x0" secondAttribute="top" constant="14" id="ldS-rD-uNO"/>
-                            <constraint firstItem="PiZ-Uq-3x0" firstAttribute="bottom" secondItem="741-AH-jAI" secondAttribute="bottom" constant="524" id="pG0-qz-o91"/>
-                            <constraint firstItem="fDR-HT-shl" firstAttribute="top" secondItem="741-AH-jAI" secondAttribute="bottom" constant="8" symbolic="YES" id="rhE-43-TPa"/>
+                            <constraint firstItem="PiZ-Uq-3x0" firstAttribute="bottom" secondItem="741-AH-jAI" secondAttribute="bottom" constant="342" id="pG0-qz-o91"/>
+                            <constraint firstItem="nnF-wP-kwF" firstAttribute="baseline" secondItem="OmJ-vy-xsZ" secondAttribute="baseline" id="xYd-4A-neW"/>
+                            <constraint firstItem="dL1-X4-TvD" firstAttribute="centerX" secondItem="nnF-wP-kwF" secondAttribute="centerX" id="yTw-wK-FpJ"/>
                             <constraint firstItem="FeF-Vd-a0k" firstAttribute="trailing" secondItem="741-AH-jAI" secondAttribute="trailing" id="z9d-6W-FTc"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PiZ-Uq-3x0"/>
                     </view>
                     <connections>
+                        <outlet property="buttonPurchase_1_outlet" destination="fDR-HT-shl" id="bgy-pl-Dqv"/>
+                        <outlet property="buttonPurchase_2_outlet" destination="nnF-wP-kwF" id="tIZ-Pa-UWs"/>
+                        <outlet property="buttonPurchase_3_outlet" destination="OmJ-vy-xsZ" id="eW1-hz-80Y"/>
                         <outlet property="labelAboutTip" destination="741-AH-jAI" id="sw1-8X-a2K"/>
+                        <outlet property="purchasedMessage" destination="dL1-X4-TvD" id="hXb-Gj-7Fc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iSB-wN-n1B" userLabel="First Responder" sceneMemberID="firstResponder"/>

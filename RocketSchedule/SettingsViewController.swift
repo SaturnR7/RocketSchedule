@@ -17,6 +17,8 @@ class SettingsViewController: UITableViewController {
     
     @IBOutlet weak var settingTime: UILabel!
     
+    @IBOutlet weak var labelVersion: UILabel!
+    
     @IBAction func notifyTimerSliderSender(_ sender: UISlider) {
         
         print("SettingsViewController - notifyTimerSliderSender - Start")
@@ -49,15 +51,22 @@ class SettingsViewController: UITableViewController {
 //        //ディクショナリ形式で初期値を指定できる
 //        notifyTime.register(defaults: ["ChangeTime" : 10])
         
+        labelVersion.text? =
+            Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+        
+        // バックボタンのタイトルを設定
+        // 遷移先のバックボタンにタイトルを設定する場合は、title: に文字を設定する。
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+
         notityTimeSlider.isContinuous = true
         
+        // 通知時間の値をUserdefaultsから取得してテキストに表示、
+        // スライダーに通知時間の値を設定
         let value = notifyTime.integer(forKey: "ChangeTime")
-
         settingTime.text = String(format:"%5d", value)
-        
         notityTimeSlider.value = Float(value)
+        
         print("notityTimeSlider.value: \(notityTimeSlider.value)")
-
         print("SettingsViewController - viewDidLoad - End")
     }
 
