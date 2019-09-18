@@ -29,12 +29,20 @@ class PurchaseViewController: UIViewController {
     // 課金ボタン：Action
     @IBAction func buttonPurchase_1(_ sender: Any) {
         
+        // ナビゲーションバーの戻るボタン ＜ を一時的に非表示にする（誤操作を防ぐため）
+        self.navigationItem.hidesBackButton = true
+
         // ボタンの状態を処理中に変更する
         buttonPurchase_1_outlet.setTitle("処理中", for: .normal)
+        
+//        buttonPurchase_1_outlet.tintColor =
+//            UIColor.init(red: 31/255, green: 144/255, blue: 255/255, alpha: 1)
 
-        // 他の課金ボタンを無効にする（ボタンを誤タップさせないため）
+        // 課金ボタンを無効にする（ボタンを誤タップさせないため）
+        buttonPurchase_1_outlet.isEnabled = false
         buttonPurchase_2_outlet.isEnabled = false
         buttonPurchase_3_outlet.isEnabled = false
+        
         
         // SwiftyStorekit
         purchaseProduct(productId: productIdentifiers[0])
@@ -42,11 +50,15 @@ class PurchaseViewController: UIViewController {
     }
     @IBAction func buttonPurchase_2(_ sender: Any) {
         
+        // ナビゲーションバーの戻るボタン ＜ を一時的に非表示にする（誤操作を防ぐため）
+        self.navigationItem.hidesBackButton = true
+
         // ボタンの状態を処理中に変更する
         buttonPurchase_2_outlet.setTitle("処理中", for: .normal)
         
-        // 他の課金ボタンを無効にする（ボタンを誤タップさせないため）
+        // 課金ボタンを無効にする（ボタンを誤タップさせないため）
         buttonPurchase_1_outlet.isEnabled = false
+        buttonPurchase_2_outlet.isEnabled = false
         buttonPurchase_3_outlet.isEnabled = false
         
         // SwiftyStorekit
@@ -55,13 +67,17 @@ class PurchaseViewController: UIViewController {
     }
     @IBAction func buttonPurchase_3(_ sender: Any) {
         
+        // ナビゲーションバーの戻るボタン ＜ を一時的に非表示にする（誤操作を防ぐため）
+        self.navigationItem.hidesBackButton = true
+        
         // ボタンの状態を処理中に変更する
         buttonPurchase_3_outlet.setTitle("処理中", for: .normal)
         
-        // 他の課金ボタンを無効にする（ボタンを誤タップさせないため）
+        // 課金ボタンを無効にする（ボタンを誤タップさせないため）
         buttonPurchase_1_outlet.isEnabled = false
         buttonPurchase_2_outlet.isEnabled = false
-        
+        buttonPurchase_3_outlet.isEnabled = false
+
         // SwiftyStorekit
         purchaseProduct(productId: productIdentifiers[2])
 
@@ -126,20 +142,44 @@ class PurchaseViewController: UIViewController {
             case .success(let purchase):
                 print("Purchase Success: \(purchase.productId)")
                 
-                // ボタン名を処理中から元に戻す
-                if self.buttonPurchase_1_outlet.state == .selected{
-                    self.buttonPurchase_1_outlet.setTitle("¥120", for: .normal)
-                    // 他の課金ボタンを有効にする（元に戻す）
-                    self.buttonPurchase_2_outlet.isEnabled = false
-                    self.buttonPurchase_3_outlet.isEnabled = false
-                    
-                }else if self.buttonPurchase_2_outlet.state == .selected{
-                    self.buttonPurchase_2_outlet.setTitle("¥240", for: .normal)
-                    
-                }else if self.buttonPurchase_3_outlet.state == .selected{
-                    self.buttonPurchase_3_outlet.setTitle("¥480", for: .normal)
-                    
-                }
+                print(self.buttonPurchase_1_outlet.state)
+                print(self.buttonPurchase_2_outlet.state)
+                print(self.buttonPurchase_3_outlet.state)
+
+                // ナビゲーションバーの戻るボタン ＜ を表示にする
+                // （課金ボタンタップ時に一時的に非表示にしていたため、非表示を解除する）
+                self.navigationItem.hidesBackButton = false
+
+                self.buttonPurchase_1_outlet.setTitle("¥120", for: .normal)
+                self.buttonPurchase_2_outlet.setTitle("¥240", for: .normal)
+                self.buttonPurchase_3_outlet.setTitle("¥480", for: .normal)
+                self.buttonPurchase_1_outlet.isEnabled = true
+                self.buttonPurchase_2_outlet.isEnabled = true
+                self.buttonPurchase_3_outlet.isEnabled = true
+
+//                // ボタン名を処理中から元に戻す
+//                if self.buttonPurchase_1_outlet.state == .normal{
+//                    self.buttonPurchase_1_outlet.setTitle("¥120", for: .normal)
+//                    // 他の課金ボタンを有効にする（元に戻す）
+//                    self.buttonPurchase_1_outlet.isEnabled = true
+//                    self.buttonPurchase_2_outlet.isEnabled = true
+//                    self.buttonPurchase_3_outlet.isEnabled = true
+//
+//                }else if self.buttonPurchase_2_outlet.state == .normal{
+//                    self.buttonPurchase_2_outlet.setTitle("¥240", for: .normal)
+//                    // 他の課金ボタンを有効にする（元に戻す）
+//                    self.buttonPurchase_1_outlet.isEnabled = true
+//                    self.buttonPurchase_2_outlet.isEnabled = true
+//                    self.buttonPurchase_3_outlet.isEnabled = true
+//
+//                }else if self.buttonPurchase_3_outlet.state == .normal{
+//                    self.buttonPurchase_3_outlet.setTitle("¥480", for: .normal)
+//                    // 他の課金ボタンを有効にする（元に戻す）
+//                    self.buttonPurchase_1_outlet.isEnabled = true
+//                    self.buttonPurchase_2_outlet.isEnabled = true
+//                    self.buttonPurchase_3_outlet.isEnabled = true
+//
+//                }
                 
                 // 課金後メッセージを表示する
                 self.purchasedMessage.isHidden = false
@@ -149,20 +189,41 @@ class PurchaseViewController: UIViewController {
                 case .unknown: print("Unknown error. Please contact support")
                 case .clientInvalid: print("Not allowed to make the payment")
                 case .paymentCancelled:
-                   
-                        // ボタン名を処理中から元に戻す
-                        if self.buttonPurchase_1_outlet.state == .selected{
-                            self.buttonPurchase_1_outlet.setTitle("¥120", for: .normal)
-                            // 他の課金ボタンを有効にする（元に戻す）
-                            self.buttonPurchase_2_outlet.isEnabled = false
-                            self.buttonPurchase_3_outlet.isEnabled = false
-                            
-                        }else if self.buttonPurchase_2_outlet.state == .selected{
-                            self.buttonPurchase_2_outlet.setTitle("¥240", for: .normal)
-                            
-                        }else if self.buttonPurchase_3_outlet.state == .selected{
-                            self.buttonPurchase_3_outlet.setTitle("¥480", for: .normal)
-                        }
+
+                    // ナビゲーションバーの戻るボタン ＜ を表示にする
+                    // （課金ボタンタップ時に一時的に非表示にしていたため、非表示を解除する）
+                    self.navigationItem.hidesBackButton = false
+
+                    self.buttonPurchase_1_outlet.setTitle("¥120", for: .normal)
+                    self.buttonPurchase_2_outlet.setTitle("¥240", for: .normal)
+                    self.buttonPurchase_3_outlet.setTitle("¥480", for: .normal)
+                    self.buttonPurchase_1_outlet.isEnabled = true
+                    self.buttonPurchase_2_outlet.isEnabled = true
+                    self.buttonPurchase_3_outlet.isEnabled = true
+
+//                        // ボタン名を処理中から元に戻す
+//                        if self.buttonPurchase_1_outlet.state == .normal{
+//                            self.buttonPurchase_1_outlet.setTitle("¥120", for: .normal)
+//                            // 他の課金ボタンを有効にする（元に戻す）
+//                            self.buttonPurchase_1_outlet.isEnabled = true
+//                            self.buttonPurchase_2_outlet.isEnabled = true
+//                            self.buttonPurchase_3_outlet.isEnabled = true
+//
+//                        }else if self.buttonPurchase_2_outlet.state == .normal{
+//                            self.buttonPurchase_2_outlet.setTitle("¥240", for: .normal)
+//                            // 他の課金ボタンを有効にする（元に戻す）
+//                            self.buttonPurchase_1_outlet.isEnabled = true
+//                            self.buttonPurchase_2_outlet.isEnabled = true
+//                            self.buttonPurchase_3_outlet.isEnabled = true
+//
+//                        }else if self.buttonPurchase_3_outlet.state == .normal{
+//                            self.buttonPurchase_3_outlet.setTitle("¥480", for: .normal)
+//                            // 他の課金ボタンを有効にする（元に戻す）
+//                            self.buttonPurchase_1_outlet.isEnabled = true
+//                            self.buttonPurchase_2_outlet.isEnabled = true
+//                            self.buttonPurchase_3_outlet.isEnabled = true
+//
+//                        }
                     
                 case .paymentInvalid: print("The purchase identifier was invalid")
                 case .paymentNotAllowed: print("The device is not allowed to make the payment")

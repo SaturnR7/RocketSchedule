@@ -846,7 +846,7 @@
         <!--Purchase View Controller-->
         <scene sceneID="7Dc-yu-V4l">
             <objects>
-                <viewController id="zn3-pN-XFu" customClass="PurchaseViewController" customModule="RocketSchedule" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="zn3-pN-XFu" customClass="PurchaseViewController" customModule="RocketSchedule" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ain-2n-fty">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -861,40 +861,43 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="741-AH-jAI">
-                                <rect key="frame" x="20" y="150" width="374" height="321"/>
+                                <rect key="frame" x="20" y="150" width="374" height="370"/>
                                 <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fDR-HT-shl">
-                                <rect key="frame" x="49" y="515" width="100" height="38"/>
+                                <rect key="frame" x="49" y="564" width="100" height="38"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="eJl-R2-3hM"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
+                                <color key="tintColor" red="0.12246329340000001" green="0.56470588239999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="¥120"/>
                                 <connections>
                                     <action selector="buttonPurchase_1:" destination="zn3-pN-XFu" eventType="touchUpInside" id="SYG-1p-p3j"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nnF-wP-kwF">
-                                <rect key="frame" x="157" y="515" width="100" height="38"/>
+                                <rect key="frame" x="157" y="564" width="100" height="38"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
+                                <color key="tintColor" red="0.12246329340000001" green="0.56470588239999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="¥240"/>
                                 <connections>
                                     <action selector="buttonPurchase_2:" destination="zn3-pN-XFu" eventType="touchUpInside" id="tHT-iX-OVx"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OmJ-vy-xsZ">
-                                <rect key="frame" x="265" y="515" width="100" height="38"/>
+                                <rect key="frame" x="265" y="564" width="100" height="38"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
+                                <color key="tintColor" red="0.12246329340000001" green="0.56470588239999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="¥480"/>
                                 <connections>
                                     <action selector="buttonPurchase_3:" destination="zn3-pN-XFu" eventType="touchUpInside" id="VxG-YP-rRc"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🚀ありがとうございます🚀" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dL1-X4-TvD">
-                                <rect key="frame" x="33" y="629" width="348" height="57"/>
+                                <rect key="frame" x="33" y="678" width="348" height="57"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="57" id="n03-xo-GqZ"/>
                                 </constraints>
@@ -1387,7 +1390,7 @@
         <image name="Icon_View_03_search" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ijh-DV-O7p"/>
+        <segue reference="UGO-km-a3d"/>
         <segue reference="xmU-u5-zN0"/>
     </inferredMetricsTieBreakers>
 </document>
