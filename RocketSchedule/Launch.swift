@@ -11,6 +11,7 @@ import Foundation
 // Using URL: https://launchlibrary.net/1.4/launch?mode=verbose&next=100
 
 struct Launch: Codable {
+    
     var launches: [Content]
     var total: Int
     var offset: Int
@@ -30,6 +31,7 @@ struct Launch: Codable {
         var changed: String?
         var location: Location
         var rocket: RocketContent
+        var missions: [MissionContent]?
         var lsp: LspContent?
         
         struct Location: Codable{
@@ -64,9 +66,8 @@ struct Launch: Codable {
             var infoURL: String?
             var changed: String?
             var infoURLs: [String]?
-            var imageURL: String?
             var imageSizes: [Int]?
-            var missions: [MissionContent]?
+            var imageURL: String?
             
             struct AgenciesContent: Codable{
                 var id: Int
@@ -80,29 +81,29 @@ struct Launch: Codable {
                 var infoURLs: [String]?
                 
             }
+        }
 
-            struct MissionContent: Codable{
+        struct MissionContent: Codable{
+            var id: Int
+            var name: String
+            var description: String
+            var type: Int
+            var wikiURL: String
+            var typeName: String
+            var agencies: [AgenciesContent]?
+            var payloads: [String]?
+            
+            struct AgenciesContent: Codable{
                 var id: Int
                 var name: String
-                var description: String
+                var abbrev: String
+                var countryCode: String
                 var type: Int
-                var wikiURL: String
-                var typeName: String
-                var agencies: [AgenciesContent]?
-                var payloads: [String]?
-
-                struct AgenciesContent: Codable{
-                    var id: Int
-                    var name: String
-                    var abbrev: String
-                    var countryCode: String
-                    var type: Int
-                    var infoURL: String?
-                    var wikiURL: String?
-                    var changed: String?
-                    var infoURLs: [String]
-                    
-                }
+                var infoURL: String?
+                var wikiURL: String?
+                var changed: String?
+                var infoURLs: [String]?
+                
             }
         }
 

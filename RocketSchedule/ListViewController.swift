@@ -351,7 +351,7 @@ class ListViewController: UITableViewController {
                     
 //                    let testdata = String(data: data, encoding: .utf8)!
 //                    print("data:\(testdata)")
-//                    print("data: \(data)")
+                    print("data: \(String(data: data, encoding: .utf8)!)")
 
                     // JSON decode to Struct-Launch
                     let json = try! JSONDecoder().decode(Launch.self, from: data)
@@ -635,25 +635,28 @@ class ListViewController: UITableViewController {
             // 詳細画面にDate型の日付を渡す
             // 詳細画面での日付・時刻分け表示に都合がよいため
             controller.launchDate = viewRocketPlanData[indexPath.row].launchDate
-//            controller.videoURL = launch.vidURLs?[0]
+            //            controller.videoURL = launch.vidURLs?[0]
             controller.videoURL = launch.vidURLs
             
             
             // Agency name send to DetailView
-            if launch.location.pads[0].agencies != nil{
-                if launch.location.pads[0].agencies!.count != 0{
-                    if let agency = launch.location.pads[0].agencies{
-                        print("ListViewController - prepare - agency : \(agency[0].abbrev)")
-                        controller.agency = agency[0].abbrev
-                    }
-                }else{
-                    controller.agency = "ー"
-                }
-            }else{
-                controller.agency = "ー"
-            }
-//            controller.agency = launch.agencies.abbrev
-            
+//            if launch.location.pads[0].agencies != nil{
+//                if launch.location.pads[0].agencies!.count != 0{
+//                    if let agency = launch.location.pads[0].agencies{
+//                        print("ListViewController - prepare - agency : \(agency[0].abbrev)")
+//                        controller.agency = agency[0].abbrev
+//                    }
+//                }else{
+//                    controller.agency = "ー"
+//                }
+//            }else{
+//                controller.agency = "ー"
+//            }
+////            controller.agency = launch.agencies.abbrev
+            let getAgency = GetAgencyName()
+            controller.agency = getAgency.getAgencyNameInSingleLaunch(launchData: launch)
+            print("ListViewController - prepare - controller.agency : \(controller.agency)")
+
             // 発射する国（コード）
 //            if let agency = launch.location.pads[0].agencies{
 //                controller.countryCode = agency[0].countryCode
@@ -663,7 +666,7 @@ class ListViewController: UITableViewController {
 
              
             forNotificationId = launch.id
-            print("ListViewController - prepare : \(forNotificationId)")
+            print("ListViewController - prepare - forNotificationId : \(forNotificationId)")
             
             // ロケット情報を通知登録してるか確認する
             // 登録している場合は、詳細画面のUISwitchをオンにする情報を渡す
