@@ -191,6 +191,11 @@ class FavoriteListView: UITableViewController {
         cell.labelRocketName?.text =
             rocketEng2Jpn.checkStringSpecifyRocketName(name: arrayFavoriteLaunches[indexPath.row].rocketName)
         
+        // ミッション名を表示する
+        cell.labelMissionName?.numberOfLines = 0
+        cell.labelMissionName?.text =
+            rocketEng2Jpn.checkStringSpecifyRocketName(name: arrayFavoriteLaunches[indexPath.row].missionName)
+
         
         // ロケット画像の表示
         print("tableView - Before ImageURL: \(self.arrayFavoriteLaunches[indexPath.row].rocketImageURL)")
@@ -421,7 +426,9 @@ class FavoriteListView: UITableViewController {
                     launchDate:     data.launchDate,
                     agency:         data.agency,
                     rocketImageURL: data.rocketImageURL,
-                    rocketImageUrlForCell:  data.rocketImageUrlForCell
+                    rocketImageUrlForCell:  data.rocketImageUrlForCell,
+                    missionName:    data.missionName,
+                    agencyInfoUrl:  data.agencyInfoUrl
                 )
             )
             
@@ -515,6 +522,8 @@ class FavoriteListView: UITableViewController {
             controller.launchDate = launch.launchDate
             
             controller.rocketImageURL = launch.rocketImageURL
+            controller.agencyURL = launch.agencyInfoUrl
+            
             
             // 自身のクラス名を設定（遷移先のクラスがどのクラスから遷移されたクラスか判別するため
             print("FavoriteListView - viewDidLoad - Classname: \(className)")

@@ -37,10 +37,12 @@ class RocketNameEng2Jpn {
         }
     }
     
+    // JSONのロケット項目「ロケット名＋ミッション名」からミッション名だけ取り出して返却する
     func getMissionName(name: String) -> String {
         
         let result = separateString(originalName: name, separateString: "|")
         
+        // 文字列の前後にすページが入っている場合は取り除く
         if result[1] != ""{
             return result[1].trimmingCharacters(in: .whitespaces)
         }else{
@@ -48,7 +50,8 @@ class RocketNameEng2Jpn {
         }
     }
     
-    
+    // 文字列を分割
+    // 文字列を特定の文字で区切って返却する
     func separateString (originalName name: String, separateString target: String) -> [String]{
         
         return name.components(separatedBy: target)

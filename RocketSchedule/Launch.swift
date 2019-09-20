@@ -91,7 +91,7 @@ struct Launch: Codable {
             var wikiURL: String
             var typeName: String
             var agencies: [AgenciesContent]?
-            var payloads: [String]?
+            var payloads: [PayloadsContent]?
             
             struct AgenciesContent: Codable{
                 var id: Int
@@ -104,6 +104,11 @@ struct Launch: Codable {
                 var changed: String?
                 var infoURLs: [String]?
                 
+            }
+            
+            struct PayloadsContent: Codable {
+                var id: Int
+                var name: String
             }
         }
 

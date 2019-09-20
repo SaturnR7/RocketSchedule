@@ -46,6 +46,15 @@ class DetailViewController : UIViewController {
     
     @IBOutlet weak var labelAgency: UILabel!
     
+    @IBAction func tapLabelAgency(_ sender: Any) {
+        
+        if self.agencyURL != ""{
+            UIApplication.shared.open(URL(string: self.agencyURL )! as URL,options: [:],completionHandler: nil)
+        }
+
+    }
+    
+    
     var id: Int = 0
     var name: String = ""
     var launchDate: Date!
@@ -55,6 +64,10 @@ class DetailViewController : UIViewController {
     var videoURL: [String]?
     var notifySwitch: Bool!
     var agency: String = ""
+    var agencyFormalName: String = ""
+    var agencyURL: String = ""
+    var missionName: String = ""
+
     // Class Name: 遷移元のクラス名
     var previousClassName: String = ""
 
@@ -356,8 +369,8 @@ class DetailViewController : UIViewController {
         // 機関名をラベル表示用にするため、Dictionaryから日本語表記名を取得して登録する
         let dicAgencies = DicAgencies()
         let agency = dicAgencies.getAgencyOfJapanese(key: self.agency)
-        print("DetailRocketViewController - viewDidLoad - agency: \(agency)")
-        author.agency = agency
+        print("DetailRocketViewController - addafavorite - agency: \(self.agency)")
+        author.agency = self.agency
         
         // URL of RocketImage save to
         if let rocketImageURL = self.rocketImageURL{
@@ -366,6 +379,12 @@ class DetailViewController : UIViewController {
 
         // URL for Cell of RocketImage save to
         author.rocketImageUrlForCell = self.rocketImageUrlForCell
+        
+        // Mission Name
+        author.missionName = self.missionName
+        
+        // Agency Info URL
+        author.agencyInfoUrl = self.agencyURL
 
         let realm = try! Realm()
         try! realm.write {

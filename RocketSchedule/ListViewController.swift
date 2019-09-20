@@ -351,7 +351,7 @@ class ListViewController: UITableViewController {
                     
 //                    let testdata = String(data: data, encoding: .utf8)!
 //                    print("data:\(testdata)")
-                    print("data: \(String(data: data, encoding: .utf8)!)")
+//                    print("data: \(String(data: data, encoding: .utf8)!)")
 
                     // JSON decode to Struct-Launch
                     let json = try! JSONDecoder().decode(Launch.self, from: data)
@@ -360,7 +360,7 @@ class ListViewController: UITableViewController {
                     
                     self.jsonLaunches = json
                     
-                    print("JSON Data: \(json)")
+//                    print("JSON Data: \(json)")
                     
                     for launch in json.launches {
 //                        print("name:\(launch.name)")
@@ -653,9 +653,15 @@ class ListViewController: UITableViewController {
 //                controller.agency = "ー"
 //            }
 ////            controller.agency = launch.agencies.abbrev
-            let getAgency = GetAgencyName()
-            controller.agency = getAgency.getAgencyNameInSingleLaunch(launchData: launch)
+            // Launchの全項目から機関を取得する
+            let getAgency = GetElementLaunch()
+            let result:[String] = getAgency.getAgencyNameInSingleLaunch(launchData: launch)
+            controller.agency = result[0]
+            controller.agencyFormalName = result[1]
+            controller.agencyURL = result[2]
             print("ListViewController - prepare - controller.agency : \(controller.agency)")
+            print("ListViewController - prepare - controller.agencyFormalName : \(controller.agencyFormalName)")
+            print("ListViewController - prepare - controller.agencyURL : \(controller.agencyURL)")
 
             // 発射する国（コード）
 //            if let agency = launch.location.pads[0].agencies{

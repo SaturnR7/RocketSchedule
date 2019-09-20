@@ -21,7 +21,9 @@ class FavoriteObject: Object {
     @objc dynamic var agency = ""
     @objc dynamic var rocketImageURL = ""
     @objc dynamic var rocketImageUrlForCell = ""
-    
+    @objc dynamic var missionName = ""
+    @objc dynamic var agencyInfoUrl = ""
+
     let videoUrls = List<VideoUrlList>()
 }
 

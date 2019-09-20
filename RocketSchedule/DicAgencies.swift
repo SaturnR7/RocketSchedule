@@ -13,6 +13,10 @@ struct DicAgencies {
     private let agencies: [String:String]
         = [
            "VKO":"VKO(ロシア)",
+           "RFSA":"RFSA(ロシア)",
+           "CASC":"CASC(中国)",
+           "ISRO":"ISRO(インド)",
+           "USAF":"USAF(アメリカ)",
            "NASA":"NASA(アメリカ)",
            "JAXA":"JAXA(日本)",
            "SpX":"SPACEX(アメリカ)",

@@ -457,6 +457,8 @@ class ResultListViewController: UITableViewController {
                         
                     } else {
                         
+                        print("data: \(String(data: data, encoding: .utf8)!)")
+                        
                         let json = try! JSONDecoder().decode(Launch.self, from: data)
                         
                         self.count = json.count
@@ -575,18 +577,32 @@ class ResultListViewController: UITableViewController {
 //            }
 
             // Agency name send to DetailView
-            if launch.location.pads[0].agencies != nil{
-                if launch.location.pads[0].agencies!.count != 0{
-                    if let agency = launch.location.pads[0].agencies{
-                        print("ResultListViewController - prepare - agency : \(agency[0].abbrev)")
-                        controller.agency = agency[0].abbrev
-                    }
-                }else{
-                    controller.agency = "ー"
-                }
-            }else{
-                controller.agency = "ー"
-            }
+//            if launch.location.pads[0].agencies != nil{
+//                if launch.location.pads[0].agencies!.count != 0{
+//                    if let agency = launch.location.pads[0].agencies{
+//                        print("ResultListViewController - prepare - agency : \(agency[0].abbrev)")
+//                        controller.agency = agency[0].abbrev
+//                    }
+//                }else{
+//                    controller.agency = "ー"
+//                }
+//            }else{
+//                controller.agency = "ー"
+//            }
+            // Launchの全項目から機関名を取得する
+            let getAgency = GetElementLaunch()
+            let result:[String] = getAgency.getAgencyNameInSingleLaunch(launchData: launch)
+            controller.agency = result[0]
+            controller.agencyFormalName = result[1]
+            controller.agencyURL = result[2]
+            print("ResultListViewController - prepare - controller.agency : \(controller.agency)")
+            print("ResultListViewController - prepare - controller.agencyFormalName : \(controller.agencyFormalName)")
+            print("ResultListViewController - prepare - controller.agencyURL : \(controller.agencyURL)")
+            
+            // ミッション名を渡す
+            controller.missionName = rocketEng2Jpn.getMissionName(name: launch.name)
+
+
             
             let replacedImageURL = self.viewRocketPlanData[indexPath.row].rocketImageURL.replacingOccurrences(of: "_1920.png", with: "_640.png")
             controller.rocketImageUrlForCell = replacedImageURL

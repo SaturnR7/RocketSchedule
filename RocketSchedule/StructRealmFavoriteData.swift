@@ -19,6 +19,8 @@ struct StructRealmFavoriteData {
     var agency: String
     var rocketImageURL: String
     var rocketImageUrlForCell: String
+    var missionName: String
+    var agencyInfoUrl: String
 
 //    var id: Int = 0
 //    var rocketName: String = ""
@@ -34,7 +36,9 @@ struct StructRealmFavoriteData {
          launchDate: Date,
          agency: String,
          rocketImageURL: String,
-         rocketImageUrlForCell: String){
+         rocketImageUrlForCell: String,
+         missionName: String,
+         agencyInfoUrl: String){
         
         self.id = id
         self.rocketName = rocketName
@@ -45,6 +49,9 @@ struct StructRealmFavoriteData {
         self.agency = agency
         self.rocketImageURL = rocketImageURL
         self.rocketImageUrlForCell = rocketImageUrlForCell
+        self.missionName = missionName
+        self.agencyInfoUrl = agencyInfoUrl
+        
     }
 
 //    var favoriteData: [Content]

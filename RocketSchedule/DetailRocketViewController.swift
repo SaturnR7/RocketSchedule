@@ -18,6 +18,8 @@ class DetailRocketViewController : UIViewController {
     var launchDate: Date!
     var videoURL:[String]?
     var agency: String = ""
+    var agencyFormalName: String = ""
+    var agencyURL: String = ""
     var notifySwitch:Bool!
 //    var countryCode: String = ""
     var rocketImageURL: String?
@@ -36,6 +38,11 @@ class DetailRocketViewController : UIViewController {
     @IBOutlet weak var labelLaunchTime: UILabel!
     
     @IBOutlet weak var notifyOutletSwitch: UISwitch!
+    
+    @IBAction func buttonAgencyLink(_ sender: UIButton) {
+        UIApplication.shared.open(URL(string: self.agencyURL )! as URL,options: [:],completionHandler: nil)
+    }
+    
     
     @IBAction func notifyActionSwitch(_ sender: UISwitch) {
         
@@ -61,6 +68,14 @@ class DetailRocketViewController : UIViewController {
     @IBOutlet weak var imageNotify: UIImageView!
     
     @IBOutlet weak var labelAgency: UILabel!
+    
+    @IBAction func tapLabelAgency(_ sender: Any) {
+        
+        if self.agencyURL != ""{
+            UIApplication.shared.open(URL(string: self.agencyURL )! as URL,options: [:],completionHandler: nil)
+        }
+    }
+    
     
     @IBOutlet weak var imageRocket: UIImageView!
     

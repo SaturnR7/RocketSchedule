@@ -28,7 +28,7 @@
 		B6474C1D227C111900E811CD /* StructNotificationId.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6474C1C227C111900E811CD /* StructNotificationId.swift */; };
 		B6527D8321F874F300D40241 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6527D8221F874F300D40241 /* CustomTableViewCell.swift */; };
 		B65E043822E844B5007C8E3D /* AsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65E043722E844B5007C8E3D /* AsyncImageView.swift */; };
-		B667F64423332278007B4C52 /* GetAgencyName.swift in Sources */ = {isa = PBXBuildFile; fileRef = B667F64323332278007B4C52 /* GetAgencyName.swift */; };
+		B667F64423332278007B4C52 /* GetElementLaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = B667F64323332278007B4C52 /* GetElementLaunch.swift */; };
 		B6686E4C222E54C100B6CC75 /* SearchRoketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6686E4B222E54C100B6CC75 /* SearchRoketViewController.swift */; };
 		B6686E4E222F896100B6CC75 /* SearchLaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6686E4D222F896100B6CC75 /* SearchLaunch.swift */; };
 		B66E3DFE22BC99FE00B91A7A /* StructViewSearchAgency.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66E3DFD22BC99FE00B91A7A /* StructViewSearchAgency.swift */; };
@@ -91,7 +91,7 @@
 		B6474C1C227C111900E811CD /* StructNotificationId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructNotificationId.swift; sourceTree = "<group>"; };
 		B6527D8221F874F300D40241 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		B65E043722E844B5007C8E3D /* AsyncImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImageView.swift; sourceTree = "<group>"; };
-		B667F64323332278007B4C52 /* GetAgencyName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAgencyName.swift; sourceTree = "<group>"; };
+		B667F64323332278007B4C52 /* GetElementLaunch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetElementLaunch.swift; sourceTree = "<group>"; };
 		B6686E4B222E54C100B6CC75 /* SearchRoketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRoketViewController.swift; sourceTree = "<group>"; };
 		B6686E4D222F896100B6CC75 /* SearchLaunch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLaunch.swift; sourceTree = "<group>"; };
 		B66E3DFD22BC99FE00B91A7A /* StructViewSearchAgency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructViewSearchAgency.swift; sourceTree = "<group>"; };
@@ -175,7 +175,7 @@
 				B6D9B464232A22EC002D5319 /* PurchaseViewController.swift */,
 				B6D9446822C5EEF800B4B968 /* FavoriteObject.swift */,
 				B614F61422E5853F000F0AFC /* RealmNotifyObject.swift */,
-				B667F64323332278007B4C52 /* GetAgencyName.swift */,
+				B667F64323332278007B4C52 /* GetElementLaunch.swift */,
 				B6B867BA22E43D2F005C15D5 /* StateSelectFavorite.swift */,
 				B6C23E8822C4AB610041B9D8 /* StateNotFavorite.swift */,
 				B6427C5821EDFA3E00999575 /* Launch.swift */,
@@ -347,7 +347,7 @@
 				B61B517823209BB60091D95F /* SettingsViewController.swift in Sources */,
 				B692B4322317A629001717E2 /* DicCountryCode.swift in Sources */,
 				B6B867BB22E43D30005C15D5 /* StateSelectFavorite.swift in Sources */,
-				B667F64423332278007B4C52 /* GetAgencyName.swift in Sources */,
+				B667F64423332278007B4C52 /* GetElementLaunch.swift in Sources */,
 				B61B8C0622F6A4F900F3CFE5 /* RocketNameEng2Jpn.swift in Sources */,
 				B6D9B465232A22EC002D5319 /* PurchaseViewController.swift in Sources */,
 				B614F61522E5853F000F0AFC /* RealmNotifyObject.swift in Sources */,

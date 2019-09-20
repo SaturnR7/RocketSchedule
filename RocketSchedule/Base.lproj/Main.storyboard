@@ -155,8 +155,9 @@
                                                         <color key="textColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Agency" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rbo-nI-LtT">
+                                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Agency" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rbo-nI-LtT">
                                                         <rect key="frame" x="18" y="328.33333333333331" width="257" height="28"/>
+                                                        <gestureRecognizers/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="257" id="Cww-uS-n3l"/>
                                                             <constraint firstAttribute="height" constant="28" id="pAI-bE-CgU"/>
@@ -164,6 +165,9 @@
                                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
+                                                        <connections>
+                                                            <outletCollection property="gestureRecognizers" destination="poy-YN-eP4" appends="YES" id="j9I-fu-thL"/>
+                                                        </connections>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rocket Name Eng" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Iw-sd-eBq" customClass="CopyUILabel" customModule="RocketSchedule" customModuleProvider="target">
                                                         <rect key="frame" x="18" y="72" width="375" height="40"/>
@@ -333,6 +337,11 @@
                 <tapGestureRecognizer id="sMc-pf-xdF">
                     <connections>
                         <segue destination="oFM-bU-BBD" kind="show" identifier="imageSendToView" id="ijh-DV-O7p"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="poy-YN-eP4" userLabel="Tap Label Agency">
+                    <connections>
+                        <action selector="tapLabelAgency:" destination="w2z-Ga-Xtt" id="FZd-GB-bxX"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -598,55 +607,66 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="240"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Launch Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oU2-7R-bIj">
-                                            <rect key="frame" x="12" y="25" width="390" height="61"/>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hBO-Tz-G3X">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="240"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Launch Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oU2-7R-bIj">
+                                            <rect key="frame" x="13" y="20" width="389" height="61"/>
                                             <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="35"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Launch Time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IO7-Sx-h4j">
-                                            <rect key="frame" x="60" y="94" width="294" height="56"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="56" id="Tf1-Qe-ODU"/>
-                                            </constraints>
+                                            <rect key="frame" x="61" y="80" width="292" height="56"/>
                                             <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="35"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rocket Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GdU-Nj-fcq">
-                                            <rect key="frame" x="54" y="172" width="306" height="41"/>
+                                            <rect key="frame" x="55" y="150" width="304" height="41"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="41" id="BdB-k5-FAu"/>
+                                                <constraint firstAttribute="height" constant="41" id="P95-W3-qQW"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="35"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hBO-Tz-G3X">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="240"/>
-                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mission Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7jx-aB-SpT">
+                                            <rect key="frame" x="58" y="200" width="298" height="23"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="23" id="Ez1-1i-YEX"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="15"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="oU2-7R-bIj" firstAttribute="centerX" secondItem="s1w-sU-twi" secondAttribute="centerX" id="6xE-Id-eIb"/>
-                                        <constraint firstItem="oU2-7R-bIj" firstAttribute="leading" secondItem="s1w-sU-twi" secondAttribute="leadingMargin" constant="-8" id="AaL-jR-Hrv"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="GdU-Nj-fcq" secondAttribute="bottom" constant="16" id="KtH-t0-gIS"/>
-                                        <constraint firstItem="oU2-7R-bIj" firstAttribute="centerX" secondItem="IO7-Sx-h4j" secondAttribute="centerX" id="NS7-QF-PsL"/>
-                                        <constraint firstItem="GdU-Nj-fcq" firstAttribute="leading" secondItem="s1w-sU-twi" secondAttribute="leadingMargin" constant="34" id="OKB-uv-93I"/>
+                                        <constraint firstItem="GdU-Nj-fcq" firstAttribute="top" secondItem="IO7-Sx-h4j" secondAttribute="bottom" constant="14" id="1Wg-qg-6cS"/>
+                                        <constraint firstItem="oU2-7R-bIj" firstAttribute="leading" secondItem="s1w-sU-twi" secondAttribute="leadingMargin" constant="-7" id="57O-vb-HyR"/>
+                                        <constraint firstItem="7jx-aB-SpT" firstAttribute="top" secondItem="GdU-Nj-fcq" secondAttribute="bottom" constant="9" id="7yv-Kh-zjf"/>
+                                        <constraint firstItem="7jx-aB-SpT" firstAttribute="leading" secondItem="s1w-sU-twi" secondAttribute="leadingMargin" constant="38" id="8eZ-jM-wq3"/>
+                                        <constraint firstItem="IO7-Sx-h4j" firstAttribute="top" secondItem="s1w-sU-twi" secondAttribute="topMargin" constant="69" id="AZc-r8-cg2"/>
+                                        <constraint firstItem="oU2-7R-bIj" firstAttribute="top" secondItem="s1w-sU-twi" secondAttribute="topMargin" constant="9" id="F0g-wO-UGf"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="7jx-aB-SpT" secondAttribute="bottom" constant="6" id="LRV-z8-bOG"/>
+                                        <constraint firstItem="GdU-Nj-fcq" firstAttribute="centerX" secondItem="7jx-aB-SpT" secondAttribute="centerX" id="TDc-8i-Ocb"/>
                                         <constraint firstItem="hBO-Tz-G3X" firstAttribute="leading" secondItem="s1w-sU-twi" secondAttribute="leading" id="UMQ-Ry-WC9"/>
+                                        <constraint firstItem="IO7-Sx-h4j" firstAttribute="centerX" secondItem="GdU-Nj-fcq" secondAttribute="centerX" id="V9G-1g-Yli"/>
                                         <constraint firstItem="hBO-Tz-G3X" firstAttribute="top" secondItem="s1w-sU-twi" secondAttribute="top" id="Vda-AN-XIj"/>
-                                        <constraint firstItem="IO7-Sx-h4j" firstAttribute="leading" secondItem="s1w-sU-twi" secondAttribute="leadingMargin" constant="40" id="aks-Kc-Qbm"/>
-                                        <constraint firstItem="hBO-Tz-G3X" firstAttribute="centerX" secondItem="oU2-7R-bIj" secondAttribute="centerX" id="b6K-e4-uEX"/>
-                                        <constraint firstItem="IO7-Sx-h4j" firstAttribute="top" secondItem="oU2-7R-bIj" secondAttribute="bottom" constant="8" symbolic="YES" id="c15-iS-KRA"/>
-                                        <constraint firstItem="GdU-Nj-fcq" firstAttribute="top" secondItem="IO7-Sx-h4j" secondAttribute="bottom" constant="22" id="hcc-jy-2Mv"/>
+                                        <constraint firstItem="oU2-7R-bIj" firstAttribute="centerX" secondItem="hBO-Tz-G3X" secondAttribute="centerX" id="VnD-rZ-fTU"/>
+                                        <constraint firstItem="GdU-Nj-fcq" firstAttribute="leading" secondItem="s1w-sU-twi" secondAttribute="leadingMargin" constant="35" id="XdR-JA-zSZ"/>
+                                        <constraint firstItem="oU2-7R-bIj" firstAttribute="centerX" secondItem="IO7-Sx-h4j" secondAttribute="centerX" id="hP5-Hz-vsa"/>
                                         <constraint firstItem="hBO-Tz-G3X" firstAttribute="centerY" secondItem="s1w-sU-twi" secondAttribute="centerY" id="ihf-fP-o2h"/>
-                                        <constraint firstItem="IO7-Sx-h4j" firstAttribute="centerX" secondItem="GdU-Nj-fcq" secondAttribute="centerX" id="uAc-7F-Lzt"/>
-                                        <constraint firstItem="oU2-7R-bIj" firstAttribute="top" secondItem="s1w-sU-twi" secondAttribute="topMargin" constant="14" id="v5f-fe-wIa"/>
+                                        <constraint firstItem="oU2-7R-bIj" firstAttribute="centerX" secondItem="s1w-sU-twi" secondAttribute="centerX" id="lgI-Kh-LjA"/>
+                                        <constraint firstItem="GdU-Nj-fcq" firstAttribute="top" secondItem="oU2-7R-bIj" secondAttribute="bottom" constant="69" id="oHV-1n-CZT"/>
+                                        <constraint firstItem="IO7-Sx-h4j" firstAttribute="leading" secondItem="s1w-sU-twi" secondAttribute="leadingMargin" constant="41" id="wUl-Ab-kHR"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.1954500440140845" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="labelLaunchDate" destination="oU2-7R-bIj" id="Vur-gR-ezc"/>
                                     <outlet property="labelLaunchTime" destination="IO7-Sx-h4j" id="fWr-cr-d0U"/>
+                                    <outlet property="labelMissionName" destination="7jx-aB-SpT" id="HZ8-Bx-X0l"/>
                                     <outlet property="labelRocketName" destination="GdU-Nj-fcq" id="jI6-Fs-gub"/>
                                     <outlet property="rocketImageViewCell" destination="hBO-Tz-G3X" id="Gff-73-s9s"/>
                                     <segue destination="w2z-Ga-Xtt" kind="show" id="Oqf-je-Qsf"/>
@@ -1233,8 +1253,9 @@
                                                         <color key="textColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Agency" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A7Y-W4-Shz">
+                                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Agency" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A7Y-W4-Shz">
                                                         <rect key="frame" x="18" y="322.33333333333331" width="257" height="28"/>
+                                                        <gestureRecognizers/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="257" id="NCw-QR-OeI"/>
                                                             <constraint firstAttribute="height" constant="28" id="Wsq-IS-IXH"/>
@@ -1242,6 +1263,9 @@
                                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
+                                                        <connections>
+                                                            <outletCollection property="gestureRecognizers" destination="Fcx-2c-M05" appends="YES" id="Xnq-Q9-hd4"/>
+                                                        </connections>
                                                     </label>
                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="O9v-8V-Z0w">
                                                         <rect key="frame" x="338" y="170" width="51" height="31"/>
@@ -1377,6 +1401,11 @@
                         <segue destination="oFM-bU-BBD" kind="show" id="UGO-km-a3d"/>
                     </connections>
                 </tapGestureRecognizer>
+                <tapGestureRecognizer id="Fcx-2c-M05" userLabel="Label Agency Tap">
+                    <connections>
+                        <action selector="tapLabelAgency:" destination="ggL-0m-ZsG" id="WWp-Ej-s6H"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="3485.507246376812" y="1051.3392857142858"/>
         </scene>
@@ -1390,7 +1419,7 @@
         <image name="Icon_View_03_search" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="UGO-km-a3d"/>
-        <segue reference="xmU-u5-zN0"/>
+        <segue reference="ijh-DV-O7p"/>
+        <segue reference="Oqf-je-Qsf"/>
     </inferredMetricsTieBreakers>
 </document>
