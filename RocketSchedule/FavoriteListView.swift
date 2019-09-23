@@ -265,61 +265,90 @@ class FavoriteListView: UITableViewController {
     // 0件用のメッセージを表示
     func enableMessageViewZero() {
         
-        // 0件メッセージ
-        self.zeroMessage = UILabel.init(frame: CGRect.init(x: 0,
-                                                           y: 40,
-                                                           width: view.frame.size.width,
-                                                           height: 10))
-        self.zeroMessage.textAlignment = NSTextAlignment.center
-        self.zeroMessage.text = "お気に入りのロケット情報を登録しましょう"
-        self.zeroMessage.textColor = UIColor.white
-        self.zeroMessage.font = UIFont.init(name: "Futura-Bold", size: 15)
+        // 0件メッセージ_1
+        // 制約を設定するためレイアウトの矛盾を防ぐ
+        zeroMessage.translatesAutoresizingMaskIntoConstraints = false
+
+//        zeroMessage = UILabel.init(frame: CGRect.init(x: 0,
+//                                                      y: 40,
+//                                                      width: view.frame.size.width,
+//                                                      height: 10))
+        zeroMessage.textAlignment = NSTextAlignment.center
+        zeroMessage.text = "お気に入りのロケット情報を登録しましょう"
+        zeroMessage.textColor = UIColor.white
+        zeroMessage.font = UIFont.init(name: "Futura-Bold", size: 15)
         self.view.addSubview(self.zeroMessage)
         
-        // 0件メッセージ
-        self.zeroMessage_2 =
-            UILabel.init(frame: CGRect.init(x: 0,
-                                            y: 375,
-                                            width: view.frame.size.width,
-                                            height: 10)
-                        )
-        self.zeroMessage_2.textAlignment = NSTextAlignment.center
-        self.zeroMessage_2.text = "打ち上げ結果画面のスターをタップ"
-        self.zeroMessage_2.textColor = UIColor.white
-        self.zeroMessage_2.font = UIFont.init(name: "Futura-Bold", size: 15)
-        self.view.addSubview(self.zeroMessage_2)
+        // 0件用のビューに対して上端から何ポイントと離すか定義する
+        zeroMessage.topAnchor.constraint(equalTo: resultZeroView.topAnchor, constant: 30).isActive = true
+        // X座標軸の中心を親Viewと合わせる制約を有効にする
+        zeroMessage.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+
+        
+        // 0件メッセージ_2
+        // 制約を設定するためレイアウトの矛盾を防ぐ
+        zeroMessage_2.translatesAutoresizingMaskIntoConstraints = false
+
+//        zeroMessage_2 = UILabel.init(frame: CGRect.init(x: 0,
+//                                                        y: 375,
+//                                                        width: view.frame.size.width,
+//                                                        height: 10))
+        zeroMessage_2.textAlignment = NSTextAlignment.center
+        zeroMessage_2.text = "打ち上げ結果画面のスターをタップ"
+        zeroMessage_2.textColor = UIColor.white
+        zeroMessage_2.font = UIFont.init(name: "Futura-Bold", size: 15)
+        view.addSubview(self.zeroMessage_2)
+        
+        // 0件用のビューに対して上端から何ポイントと離すか定義する
+        zeroMessage_2.topAnchor.constraint(equalTo: resultZeroView.topAnchor, constant: 350).isActive = true
+        // X座標軸の中心を親Viewと合わせる制約を有効にする
+        zeroMessage_2.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+
     }
 
-    // 0件用のメッセージを表示
+    // 0件用の画像を表示
     func enableImageForZero() {
         
         zeroImage = UIImage(named: "01_ResultView")!
         zeroImageView = UIImageView(image: zeroImage)
+        
+        // 制約を設定するためレイアウトの矛盾を防ぐ
+        zeroImageView.translatesAutoresizingMaskIntoConstraints = false
 
         // スクリーンの縦横サイズを取得
-        let screenWidth:CGFloat = view.frame.size.width
-        let screenHeight:CGFloat = view.frame.size.height
-        
+//        let screenWidth: CGFloat = view.frame.size.width
+//        let screenHeight: CGFloat = view.frame.size.height
+
         // 画像の縦横サイズを取得
-        let imgWidth:CGFloat = zeroImage.size.width
-        let imgHeight:CGFloat = zeroImage.size.height
+        let imgWidth: CGFloat = zeroImage.size.width
+        let imgHeight: CGFloat = zeroImage.size.height
         
         // 画像サイズをスクリーン幅に合わせる
-        let scale:CGFloat = screenWidth / imgWidth
-        let scaleHeight:CGFloat = screenHeight / imgHeight
-        let rect:CGRect =
-//            CGRect(x:0, y:0, width:imgWidth * scale, height:imgHeight * scaleHeight)
-            CGRect(x:0, y:0, width:imgWidth * scale, height:imgHeight * scale)
-        
-        // ImageView frame をCGRectで作った矩形に合わせる
-        zeroImageView.frame = rect
-        
+//        let scale:CGFloat = screenWidth / imgWidth
+//        let scale: CGFloat = screenWidth / imgWidth
+//        let scaleHeight: CGFloat = screenHeight / imgHeight
+//        let rect: CGRect =
+////            CGRect(x:0, y:0, width:imgWidth * scale, height:imgHeight * scaleHeight)
+//            CGRect(x:0, y:0, width:imgWidth * scale, height:imgHeight * scale)
+//        // ImageView frame をCGRectで作った矩形に合わせる
+//        zeroImageView.frame = rect
         // 画像の中心を画面の中心に設定
-        zeroImageView.center = CGPoint(x:screenWidth/2, y:screenHeight/3.5)
+//        zeroImageView.center = CGPoint(x:screenWidth/2, y:screenHeight/3.5)
         
         // UIImageViewのインスタンスをビューに追加
         self.view.addSubview(zeroImageView)
         
+        // 画像ビューの制約を設定する
+        // 画像の幅に対して任意の数値に設定、制約を有効にする
+        zeroImageView.widthAnchor.constraint(equalToConstant: imgWidth * 0.7).isActive = true
+        // 画像の高さに対して任意の数値に設定、制約を有効にする
+        zeroImageView.heightAnchor.constraint(equalToConstant: imgHeight * 0.7).isActive = true
+        // X座標軸の中心を親Viewと合わせる制約を有効にする
+        zeroImageView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+//        // Y座標軸の中人を親Viewと合わせる制約を有効にする
+//        zeroImageView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+        // 0件用のビューに対して上端から何ポイントと離すか定義する
+        zeroImageView.topAnchor.constraint(equalTo: resultZeroView.topAnchor, constant: 45).isActive = true
     }
 
     //リフレッシュ処理
