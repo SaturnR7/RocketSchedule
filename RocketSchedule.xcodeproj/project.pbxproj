@@ -18,6 +18,7 @@
 		B61B8C0622F6A4F900F3CFE5 /* RocketNameEng2Jpn.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61B8C0522F6A4F900F3CFE5 /* RocketNameEng2Jpn.swift */; };
 		B61C200022EFF2910003A297 /* DicAgencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61C1FFF22EFF2910003A297 /* DicAgencies.swift */; };
 		B621076B22708D2200CA76E8 /* StructViewPlans.swift in Sources */ = {isa = PBXBuildFile; fileRef = B621076A22708D2200CA76E8 /* StructViewPlans.swift */; };
+		B62833A0233B29D300D78321 /* DicTimeZone.swift in Sources */ = {isa = PBXBuildFile; fileRef = B628339F233B29D300D78321 /* DicTimeZone.swift */; };
 		B628F4D822F1488600BA6C0E /* StructClassName.swift in Sources */ = {isa = PBXBuildFile; fileRef = B628F4D722F1488600BA6C0E /* StructClassName.swift */; };
 		B62A7C11232A0DFF00E80156 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B62A7C10232A0DFE00E80156 /* StoreKit.framework */; };
 		B6427C4121EAD5B800999575 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6427C4021EAD5B800999575 /* AppDelegate.swift */; };
@@ -79,6 +80,7 @@
 		B61B8C0522F6A4F900F3CFE5 /* RocketNameEng2Jpn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketNameEng2Jpn.swift; sourceTree = "<group>"; };
 		B61C1FFF22EFF2910003A297 /* DicAgencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DicAgencies.swift; sourceTree = "<group>"; };
 		B621076A22708D2200CA76E8 /* StructViewPlans.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructViewPlans.swift; sourceTree = "<group>"; };
+		B628339F233B29D300D78321 /* DicTimeZone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DicTimeZone.swift; sourceTree = "<group>"; };
 		B628F4D722F1488600BA6C0E /* StructClassName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructClassName.swift; sourceTree = "<group>"; };
 		B62A7C10232A0DFE00E80156 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		B6427C3D21EAD5B800999575 /* RocketSchedule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RocketSchedule.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -192,6 +194,7 @@
 				B628F4D722F1488600BA6C0E /* StructClassName.swift */,
 				B61C1FFF22EFF2910003A297 /* DicAgencies.swift */,
 				B692B4312317A629001717E2 /* DicCountryCode.swift */,
+				B628339F233B29D300D78321 /* DicTimeZone.swift */,
 				B692B4352317C38F001717E2 /* CopyUILabel.swift */,
 				B6157F1522F96FA800475AD4 /* TimeRelated.swift */,
 				B61B8C0522F6A4F900F3CFE5 /* RocketNameEng2Jpn.swift */,
@@ -348,6 +351,7 @@
 				B692B4322317A629001717E2 /* DicCountryCode.swift in Sources */,
 				B6B867BB22E43D30005C15D5 /* StateSelectFavorite.swift in Sources */,
 				B667F64423332278007B4C52 /* GetElementLaunch.swift in Sources */,
+				B62833A0233B29D300D78321 /* DicTimeZone.swift in Sources */,
 				B61B8C0622F6A4F900F3CFE5 /* RocketNameEng2Jpn.swift in Sources */,
 				B6D9B465232A22EC002D5319 /* PurchaseViewController.swift in Sources */,
 				B614F61522E5853F000F0AFC /* RealmNotifyObject.swift in Sources */,

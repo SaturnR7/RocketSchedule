@@ -16,6 +16,7 @@ class PurchaseViewController: UIViewController {
          "RocketMilo_tip_consumable_02",
          "RocketMilo_tip_consumable_03"]
     
+    // チップについて
     @IBOutlet weak var labelAboutTip: UILabel!
     
     // 課金ボタン：Outlet
@@ -96,12 +97,18 @@ class PurchaseViewController: UIViewController {
 
         // ナビゲーションバーのアイテムの色　（戻る　＜）
         self.navigationController?.navigationBar.tintColor = .white
-
-        labelAboutTip.numberOfLines = 0
-        labelAboutTip.sizeToFit()
-        labelAboutTip.text = "ロケットミロは、ロケットの魅力をたくさんの\n人に知ってもらいたいという思いから開発しま\nした。\n\n今後もこのアプリをより良くしていきます。\n\nもし、チップをいただけたら泣いて喜びます😊"
-//        "ロケットミロは、ロケットの魅力をたくさんの人\nに知ってもらいたいという思いから開発しま\nした。\n\n本アプリは、広告・有料化する予定はありません\n。\n\n今後もこのアプリをより良くしていきます。\n\nもし、チップをいただけたら泣いて喜びます。そ\nしてモチベーションを更に上げてより良いもの\nを作っていけます😊"
         
+        // StoryBoard上に直接テキストを挿入したので以下の処理はコメント化
+//        labelAboutTip.numberOfLines = 0
+//        labelAboutTip.text = "ロケットミロは、ロケットの魅力をたくさんの\n人に知ってもらいたいという思いから開発しま\nした。\n\n今後もこのアプリをより良くしていきます。\n\nもし、チップをいただけたら泣いて喜びます😊"
+////        "ロケットミロは、ロケットの魅力をたくさんの人\nに知ってもらいたいという思いから開発しま\nした。\n\n本アプリは、広告・有料化する予定はありません\n。\n\n今後もこのアプリをより良くしていきます。\n\nもし、チップをいただけたら泣いて喜びます。そ\nしてモチベーションを更に上げてより良いもの\nを作っていけます😊"
+//
+//        var fixedFrame = labelAboutTip.frame
+//        labelAboutTip.sizeToFit()
+//        fixedFrame.size.height = labelAboutTip.frame.size.height
+//        labelAboutTip.frame = fixedFrame
+
+
         // 課金ボタン名を設定する
         buttonPurchase_1_outlet.setTitle("¥120", for: .normal)
         buttonPurchase_2_outlet.setTitle("¥240", for: .normal)

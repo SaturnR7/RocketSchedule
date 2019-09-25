@@ -296,7 +296,7 @@ class ResultListViewController: UITableViewController {
                 // do something
                 
                 // 暫定対応
-                url = "https://launchlibrary.net/1.4/launch?mode=verbose&startdate=2017-07-23&enddate=2018-09-01&agency=JAXA&limit=999999"
+                url = "https://launchlibrary.net/1.4/launch?mode=verbose&startdate=1967-01-01&enddate=1972-12-07&agency=NASA&limit=999999"
                 
             }
             // URL検索

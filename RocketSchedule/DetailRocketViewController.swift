@@ -37,6 +37,8 @@ class DetailRocketViewController : UIViewController {
     
     @IBOutlet weak var labelLaunchTime: UILabel!
     
+    @IBOutlet weak var labelTimezone: UILabel!
+    
     @IBOutlet weak var notifyOutletSwitch: UISwitch!
     
     @IBAction func buttonAgencyLink(_ sender: UIButton) {
@@ -61,7 +63,7 @@ class DetailRocketViewController : UIViewController {
             notificationCenter.post(name: .myNotificationRocketRemove, object: nil)
             
             imageNotify.image = UIImage.init(named: "Icon_View_01_notify_off")
-
+            
         }
     }
     
@@ -128,6 +130,12 @@ class DetailRocketViewController : UIViewController {
         formatterLaunchTime.timeStyle = .medium
         labelLaunchTime.text? = "\(formatterLaunchTime.string(from: launchDate))"
         
+        // ユーザーのタイムゾーンの略語を設定する
+        let getTimezoneAbb = DicTimeZone()
+        labelTimezone.text? =
+        "(\( getTimezoneAbb.getTimezoneAbbreviation(key: TimeZone.current.identifier)))"
+//        labelTimezone.text? = "(\(TimeZone.current.identifier))"
+
         //打ち上げ画面から渡ってきた通知スイッチのboolを判定して
         //スイッチの状態を設定する。
         if (notifySwitch){
@@ -245,23 +253,35 @@ class DetailRocketViewController : UIViewController {
     
     func loadImage(urlString: String) {
         
-        let url = URL(string: urlString)!
-        
-        URLSession.shared.dataTask(with: url) {(data, response, error) in
+        // ロケット画像なしの場合は共通のロケット画像を使用するので、
+        // ダウンロードせずローカル画像を使用する。
+        if urlString == "https://s3.amazonaws.com/launchlibrary/RocketImages/placeholder_1920.png"{
             
-            if error != nil {
-                print(error!)
-                return
-            }
+            self.imageRocket.image = UIImage(named: "RocketNoImage_1920")
+            // UIImageViewのサイズに収まるようにサイズを調整
+            self.imageRocket.contentMode = .scaleAspectFill
+
+        }else{
             
-            DispatchQueue.main.async {
-                self.imageRocket.image = UIImage(data: data!)
-                // UIImageViewのサイズに収まるようにサイズを調整
-                self.imageRocket.contentMode = .scaleAspectFill
+            let url = URL(string: urlString)!
+            
+            URLSession.shared.dataTask(with: url) {(data, response, error) in
+                
+                if error != nil {
+                    print(error!)
+                    return
+                }
+                
+                DispatchQueue.main.async {
+                    self.imageRocket.image = UIImage(data: data!)
+                    // UIImageViewのサイズに収まるようにサイズを調整
+                    self.imageRocket.contentMode = .scaleAspectFill
 //                print(response!)
-            }
-            
+                }
+                
             }.resume()
+        }
+        
         
     }
     

@@ -266,6 +266,8 @@ class FavoriteListView: UITableViewController {
     func enableMessageViewZero() {
         
         // 0件メッセージ_1
+        
+        // 制約設定時は必須の処理
         // 制約を設定するためレイアウトの矛盾を防ぐ
         zeroMessage.translatesAutoresizingMaskIntoConstraints = false
 
@@ -286,6 +288,8 @@ class FavoriteListView: UITableViewController {
 
         
         // 0件メッセージ_2
+        
+        // 制約設定時は必須の処理
         // 制約を設定するためレイアウトの矛盾を防ぐ
         zeroMessage_2.translatesAutoresizingMaskIntoConstraints = false
 

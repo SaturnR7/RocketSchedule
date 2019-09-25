@@ -241,6 +241,8 @@ class SearchRoketViewController: UIViewController {
             UIColor.init(red: 38/255, green: 38/255, blue: 38/255, alpha: 1)
         // DatePicker Text Color
         dateStartPicker.setValue(UIColor.white, forKey: "textColor")
+        // Today Hightlight is turn Off
+        dateStartPicker.setValue(false, forKey: "highlightsToday")
         // Toolbar Background Color
         toolbar.barTintColor =
             UIColor.init(red: 38/255, green: 38/255, blue: 38/255, alpha: 1)
@@ -296,6 +298,8 @@ class SearchRoketViewController: UIViewController {
             UIColor.init(red: 38/255, green: 38/255, blue: 38/255, alpha: 1)
         // DatePicker Text Color
         dateEndPicker.setValue(UIColor.white, forKey: "textColor")
+        // Today Hightlight is turn Off
+        dateEndPicker.setValue(false, forKey: "highlightsToday")
         // Toolbar Background Color
         toolbar.barTintColor =
             UIColor.init(red: 38/255, green: 38/255, blue: 38/255, alpha: 1)

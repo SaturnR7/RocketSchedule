@@ -23,6 +23,8 @@ class DetailViewController : UIViewController {
     
     @IBOutlet weak var labelLaunchTime: UILabel!
     
+    @IBOutlet weak var labelTimezone: UILabel!
+    
     @IBOutlet weak var buttonFavorite: UIButton!
     
     @IBAction func buttonFavoriteTapped() {
@@ -130,6 +132,12 @@ class DetailViewController : UIViewController {
         formatterLaunchTime.timeStyle = .medium
         labelLaunchTime.text? = "\(formatterLaunchTime.string(from: self.launchDate))"
         
+        // ユーザーのタイムゾーンの略語を設定する
+        let getTimezoneAbb = DicTimeZone()
+        labelTimezone.text? =
+        "(\( getTimezoneAbb.getTimezoneAbbreviation(key: TimeZone.current.identifier)))"
+//        labelTimezone.text? = "(\(TimeZone.current.identifier))"
+
         // ロケットの動画をアイコンにセットする処理
         // vidURLs配列は動画URLが登録されている
         // 動画URLが0件の場合は、動画アイコンを表示しない
@@ -459,24 +467,34 @@ class DetailViewController : UIViewController {
     
     func loadImage(urlString: String) {
         
-        let url = URL(string: urlString)!
-        
-        URLSession.shared.dataTask(with: url) {(data, response, error) in
+        // ロケット画像なしの場合は共通のロケット画像を使用するので、
+        // ダウンロードせずローカル画像を使用する。
+        if urlString == "https://s3.amazonaws.com/launchlibrary/RocketImages/placeholder_1920.png"{
             
-            if error != nil {
-                print(error!)
-                return
-            }
+            self.imageRocket.image = UIImage(named: "RocketNoImage_1920")
+            // UIImageViewのサイズに収まるようにサイズを調整
+            self.imageRocket.contentMode = .scaleAspectFill
+
+        }else{
             
-            DispatchQueue.main.async {
-                self.imageRocket.image = UIImage(data: data!)
-                // UIImageViewのサイズに収まるようにサイズを調整
-                self.imageRocket.contentMode = .scaleAspectFill
+            let url = URL(string: urlString)!
+            
+            URLSession.shared.dataTask(with: url) {(data, response, error) in
+                
+                if error != nil {
+                    print(error!)
+                    return
+                }
+                
+                DispatchQueue.main.async {
+                    self.imageRocket.image = UIImage(data: data!)
+                    // UIImageViewのサイズに収まるようにサイズを調整
+                    self.imageRocket.contentMode = .scaleAspectFill
 //                print(response!)
-            }
-            
+                }
+                
             }.resume()
-        
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

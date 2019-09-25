@@ -27,24 +27,27 @@ class GetElementLaunch {
 
         // ２．Rocket - Agencies の項目を取得
         // 機関名が格納されていたらAgencyのabbrevを返却
-        if let element = launch.rocket.agencies{
-            if !element.isEmpty{
-                var element = element[0]
-                
-                // element.infoURLsの空チェック
-                // 空の場合は配列を作る
-                if element.infoURLs!.isEmpty{
-                    element.infoURLs!.append("")
+        if launch.rocket.agencies != nil{
+            if let element = launch.rocket.agencies{
+                if !element.isEmpty{
+                    var element = element[0]
+                    
+                    // element.infoURLsの空チェック
+                    // 空の場合は配列を作る
+                    if element.infoURLs!.isEmpty{
+                        element.infoURLs!.append("")
+                    }
+                    
+                    print("Rocket - Agencies - abbrev: \(element.abbrev)")
+                    print("Rocket - Agencies - infoURLs[0]: \(element.infoURLs?[0])")
+                    print("GetAgencyName - getAgencyNameInSingleLaunch End")
+                    return [element.abbrev,
+                            element.name,
+                            element.infoURLs?[0] ?? ""]
                 }
-                
-                print("Rocket - Agencies - abbrev: \(element.abbrev)")
-                print("Rocket - Agencies - infoURLs[0]: \(element.infoURLs?[0])")
-                print("GetAgencyName - getAgencyNameInSingleLaunch End")
-                return [element.abbrev,
-                        element.name,
-                        element.infoURLs?[0] ?? ""]
             }
         }
+            
 
         // １．Location - Pads - Agencies の項目を確認
         // 機関名が格納されていたらAgencyのabbrevを返却
@@ -69,25 +72,27 @@ class GetElementLaunch {
         
         // ３． Missionss - Agencies の項目を取得
         // 機関名が格納されていたらAgencyのabbrevを返却
-        if let element = launch.missions?[0].agencies{
-            if !element.isEmpty{
-                var element = element[0]
-                
-                // element.infoURLsの空チェック
-                // 空の場合は配列を作る
-                if element.infoURLs!.isEmpty{
-                    element.infoURLs!.append("")
+        if !(launch.missions!.isEmpty){
+            if let element = launch.missions?[0].agencies{
+                if !element.isEmpty{
+                    var element = element[0]
+                    
+                    // element.infoURLsの空チェック
+                    // 空の場合は配列を作る
+                    if element.infoURLs!.isEmpty{
+                        element.infoURLs!.append("")
+                    }
+                    
+                    print("Missionss - Agencies - abbrev: \(element.abbrev)")
+                    print("Missionss - Agencies - infoURLs[0]: \(element.infoURLs?[0])")
+                    print("GetAgencyName - getAgencyNameInSingleLaunch End")
+                    return [element.abbrev,
+                            element.name,
+                            element.infoURLs?[0] ?? ""]
                 }
-                
-                print("Missionss - Agencies - abbrev: \(element.abbrev)")
-                print("Missionss - Agencies - infoURLs[0]: \(element.infoURLs?[0])")
-                print("GetAgencyName - getAgencyNameInSingleLaunch End")
-                return [element.abbrev,
-                        element.name,
-                        element.infoURLs?[0] ?? ""]
             }
         }
-        
+
         print("GetAgencyName - getAgencyNameInSingleLaunch End")
         // 機関名が格納されていなかったら”ー”を返却
         return ["ー",
