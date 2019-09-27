@@ -41,11 +41,6 @@ class DetailRocketViewController : UIViewController {
     
     @IBOutlet weak var notifyOutletSwitch: UISwitch!
     
-    @IBAction func buttonAgencyLink(_ sender: UIButton) {
-        UIApplication.shared.open(URL(string: self.agencyURL )! as URL,options: [:],completionHandler: nil)
-    }
-    
-    
     @IBAction func notifyActionSwitch(_ sender: UISwitch) {
         
         if(sender.isOn){

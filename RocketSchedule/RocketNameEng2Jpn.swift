@@ -33,10 +33,24 @@ class RocketNameEng2Jpn {
         
         // いずれのロケット名に一致しない場合は、引数name（英語名）をそのまま返却する。
         if isRocketMatch == false{
-            return name
+            // 「ロケット名＋ミッション名」からロケット名（英語）を取り出して返却
+            return getRocketName(name: name)
         }
     }
     
+    // JSONのロケット項目「ロケット名＋ミッション名」からロケット名だけ取り出して返却する
+    func getRocketName(name: String) -> String {
+        
+        let result = separateString(originalName: name, separateString: "|")
+        
+        // 文字列の前後にすページが入っている場合は取り除く
+        if result[0] != ""{
+            return result[0].trimmingCharacters(in: .whitespaces)
+        }else{
+            return name
+        }
+    }
+
     // JSONのロケット項目「ロケット名＋ミッション名」からミッション名だけ取り出して返却する
     func getMissionName(name: String) -> String {
         
@@ -61,7 +75,7 @@ class RocketNameEng2Jpn {
     // この処理のデメリットは、ロケット名が増えるたびに英語ロケットをrocketNamesと
     // rocketNameEng2Jpnの二つに二重で登録しなければいけない。
     
-    // ロケット名を追加する場合は、小文字で英語文字列を配列の最後に地下する。
+    // ロケット名を追加する場合は、小文字で英語文字列を配列の最後に追加する。
     private let rocketNames
         = [
             "soyuz",
@@ -95,7 +109,8 @@ class RocketNameEng2Jpn {
             "smartdragon",
             "gemini",
             "vostok",
-            "voskhod"
+            "voskhod",
+            "pegasus"
         ]
     
     // ロケット名を追加する場合は、小文字で英語文字列と日本語名を配列の最後に地下する。
@@ -132,7 +147,8 @@ class RocketNameEng2Jpn {
             "smartdragon":"捷竜(ジェロン)",
             "gemini":"ジェミニ",
             "vostok":"ボストーク",
-            "voskhod":"ボスホート"
+            "voskhod":"ボスホート",
+            "pegasus":"ペガサスXL"
         ]
     
 }

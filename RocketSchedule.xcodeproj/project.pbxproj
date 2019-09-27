@@ -19,6 +19,7 @@
 		B61C200022EFF2910003A297 /* DicAgencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61C1FFF22EFF2910003A297 /* DicAgencies.swift */; };
 		B621076B22708D2200CA76E8 /* StructViewPlans.swift in Sources */ = {isa = PBXBuildFile; fileRef = B621076A22708D2200CA76E8 /* StructViewPlans.swift */; };
 		B62833A0233B29D300D78321 /* DicTimeZone.swift in Sources */ = {isa = PBXBuildFile; fileRef = B628339F233B29D300D78321 /* DicTimeZone.swift */; };
+		B62833A2233C8E8400D78321 /* IndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62833A1233C8E8400D78321 /* IndicatorView.swift */; };
 		B628F4D822F1488600BA6C0E /* StructClassName.swift in Sources */ = {isa = PBXBuildFile; fileRef = B628F4D722F1488600BA6C0E /* StructClassName.swift */; };
 		B62A7C11232A0DFF00E80156 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B62A7C10232A0DFE00E80156 /* StoreKit.framework */; };
 		B6427C4121EAD5B800999575 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6427C4021EAD5B800999575 /* AppDelegate.swift */; };
@@ -81,6 +82,7 @@
 		B61C1FFF22EFF2910003A297 /* DicAgencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DicAgencies.swift; sourceTree = "<group>"; };
 		B621076A22708D2200CA76E8 /* StructViewPlans.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructViewPlans.swift; sourceTree = "<group>"; };
 		B628339F233B29D300D78321 /* DicTimeZone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DicTimeZone.swift; sourceTree = "<group>"; };
+		B62833A1233C8E8400D78321 /* IndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndicatorView.swift; sourceTree = "<group>"; };
 		B628F4D722F1488600BA6C0E /* StructClassName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructClassName.swift; sourceTree = "<group>"; };
 		B62A7C10232A0DFE00E80156 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		B6427C3D21EAD5B800999575 /* RocketSchedule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RocketSchedule.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -181,6 +183,7 @@
 				B6B867BA22E43D2F005C15D5 /* StateSelectFavorite.swift */,
 				B6C23E8822C4AB610041B9D8 /* StateNotFavorite.swift */,
 				B6427C5821EDFA3E00999575 /* Launch.swift */,
+				B62833A1233C8E8400D78321 /* IndicatorView.swift */,
 				B6686E4D222F896100B6CC75 /* SearchLaunch.swift */,
 				B6527D8221F874F300D40241 /* CustomTableViewCell.swift */,
 				B60B3B1E22045EDC00ADC711 /* CustomTableViewCellDetail.swift */,
@@ -362,6 +365,7 @@
 				B692B4362317C38F001717E2 /* CopyUILabel.swift in Sources */,
 				B65E043822E844B5007C8E3D /* AsyncImageView.swift in Sources */,
 				B6686E4E222F896100B6CC75 /* SearchLaunch.swift in Sources */,
+				B62833A2233C8E8400D78321 /* IndicatorView.swift in Sources */,
 				B6527D8321F874F300D40241 /* CustomTableViewCell.swift in Sources */,
 				B66E3DFE22BC99FE00B91A7A /* StructViewSearchAgency.swift in Sources */,
 				B621076B22708D2200CA76E8 /* StructViewPlans.swift in Sources */,
