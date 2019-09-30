@@ -49,7 +49,7 @@ class SettingsViewController: UITableViewController {
         print("SettingsViewController - viewDidLoad - Start")
         
         // 項目間の区切り線の色を変更する
-        self.tableView.separatorColor = .white
+        self.tableView.separatorColor = .gray
 
 //        //ディクショナリ形式で初期値を指定できる
 //        notifyTime.register(defaults: ["ChangeTime" : 10])

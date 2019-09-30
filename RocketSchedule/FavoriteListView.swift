@@ -298,9 +298,9 @@ class FavoriteListView: UITableViewController {
 //                                                        width: view.frame.size.width,
 //                                                        height: 10))
         zeroMessage_2.textAlignment = NSTextAlignment.center
-        zeroMessage_2.text = "打ち上げ結果画面のスターをタップ"
+        zeroMessage_2.text = "過去の打ち上げ画面のスターをタップ"
         zeroMessage_2.textColor = UIColor.white
-        zeroMessage_2.font = UIFont.init(name: "Futura-Bold", size: 15)
+        zeroMessage_2.font = UIFont.init(name: "Futura-Bold", size: 13)
         view.addSubview(self.zeroMessage_2)
         
         // 0件用のビューに対して上端から何ポイントと離すか定義する
