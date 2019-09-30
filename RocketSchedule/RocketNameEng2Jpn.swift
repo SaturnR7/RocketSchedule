@@ -110,7 +110,16 @@ class RocketNameEng2Jpn {
             "gemini",
             "vostok",
             "voskhod",
-            "pegasus"
+            "pegasus",
+            "space shuttle enterprise",
+            "space shuttle columbia",
+            "space shuttle challenger",
+            "space shuttle discovery",
+            "space shuttle atlantis",
+            "space shuttle endeavour",
+            "space shuttle",
+            "spaceshuttle"
+            
         ]
     
     // ロケット名を追加する場合は、小文字で英語文字列と日本語名を配列の最後に地下する。
@@ -148,7 +157,16 @@ class RocketNameEng2Jpn {
             "gemini":"ジェミニ",
             "vostok":"ボストーク",
             "voskhod":"ボスホート",
-            "pegasus":"ペガサスXL"
+            "pegasus":"ペガサスXL",
+            "space shuttle enterprise":"スペースシャトル エンタープライズ号",
+            "space shuttle columbia":"スペースシャトル コロンビア号",
+            "space shuttle challenger":"スペースシャトル チャレンジャー号",
+            "space shuttle discovery":"スペースシャトル ディスカバリー号",
+            "space shuttle atlantis":"スペースシャトル アトランティス号",
+            "space shuttle endeavour":"スペースシャトル エンデバー号",
+            "space shuttle":"スペースシャトル",
+            "spaceshuttle":"スペースシャトル"
+
         ]
     
 }

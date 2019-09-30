@@ -84,11 +84,13 @@ class SearchRoketViewController: UIViewController {
     // Agency Datasource
     private let dataSource = [
         "すべて",
-        "JAXA(日本)",
-        "NASA(アメリカ)",
-        "RFSA(ロシア)",
+        "JAXA",
+        "NASA",
+        "ロスコスモス(ロシア)",
         "SPACEX",
-        "アリアンスペース(欧州)"
+        "アリアンスペース(欧州)",
+        "中国航天科技集団",
+        "インド宇宙研究機関"
     ]
     
     // Agencies Dictinary
@@ -455,21 +457,20 @@ class SearchRoketViewController: UIViewController {
         self.view.endEditing(true)
     }
 
+    // 機関名を検索URL用パラメタのディクショナリを作成する
+    // 機関名を追加した場合は、「DicAgencies.swift」の
+    // 機関名配列も同様に追加する。
     func makeAgenciesDictionary(){
         
         agenciesDictionary["すべて"] = "すべて"
-        agenciesDictionary["JAXA(日本)"] = "JAXA"
-        agenciesDictionary["NASA(アメリカ)"] = "NASA"
-        agenciesDictionary["RFSA(ロシア)"] = "RFSA"
+        agenciesDictionary["JAXA"] = "JAXA"
+        agenciesDictionary["NASA"] = "NASA"
+        agenciesDictionary["ロスコスモス(ロシア)"] = "RFSA"
         agenciesDictionary["SPACEX"] = "SpX"
         agenciesDictionary["アリアンスペース(欧州)"] = "ASA"
+        agenciesDictionary["中国航天科技集団"] = "CASC"
+        agenciesDictionary["インド宇宙研究機関"] = "ISRO"
 
-        // Test
-        let test = agenciesDictionary["NASA(アメリカ)"]
-        let test2 = agenciesDictionary["SPACEX"]
-        print("SearchRoketViewController - AgenciesDictionary: \(test)")
-        print("SearchRoketViewController - AgenciesDictionary2: \(test2)")
-        
     }
     
     func lastSelectValueSet(){

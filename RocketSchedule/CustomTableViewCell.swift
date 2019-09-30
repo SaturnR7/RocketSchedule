@@ -22,7 +22,7 @@ class CustomTableViewCell: UITableViewCell {
     // ミッション名
     @IBOutlet weak var labelMissionName: UILabel!
     
-    // テスト用：ロケット画像表示
+    // ロケット画像表示
     @IBOutlet weak var rocketImageViewCell: UIImageView!
     
     // 通知ありなし確認
@@ -41,39 +41,91 @@ class CustomTableViewCell: UITableViewCell {
 
     func rocketImageSetCell(imageUrl: String) {
         
-        if imageUrl == "https://s3.amazonaws.com/launchlibrary/RocketImages/placeholder_480.png"{
+        // ローカル画像を使用したパターン
+        // ！！問題あり！！
+        // リスト表示のセルとセルの間に余白ができてしまう
+        // 原因不明：現時点では不明なため、httpダウンロード版に戻す
+        //
+//        if imageUrl == "https://s3.amazonaws.com/launchlibrary/RocketImages/placeholder_480.png"{
+//
+//            // ローカル画像を使用する。
+//            // ロケット画像なしの場合は共通の画像を使用するため、
+//            // 毎回ダウンロードせずローカルに保存している画像を使用する。
+//            let rocketNoImage = UIImage(named: "RocketNoImage_480")
+//
+//            self.rocketImageViewCell.image =
+//                rocketNoImage?.cropping(to: CGRect(
+//                    x:      Int(30),
+//                    y:      Int(30),
+//                    width:  Int(self.rocketImageViewCell.frame.maxX),
+//                    height: Int(self.rocketImageViewCell.frame.maxY)))
+//
+//            // 透過する
+//            self.rocketImageViewCell.alpha = 0.2
+//
+//        }else{
+//
+//            let url = URL(string: imageUrl)!
+//
+//            URLSession.shared.dataTask(with: url) {(data, response, error) in
+//
+//                if error != nil {
+//                    print(error!)
+//                    return
+//                }
+//
+//                DispatchQueue.main.async {
+//                    print("loadImage data: \(data)")
+//    //                print(response!)
+//
+//                    let original = UIImage(data: data!)
+//
+//                    self.rocketImageViewCell.image =
+//                        original?.cropping(to: CGRect(
+//                            x:      Int(original!.size.width/3),
+//                            y:      Int(original!.size.height/3),
+//                            width:  Int(self.rocketImageViewCell.frame.maxX),
+//                            height: Int(self.rocketImageViewCell.frame.maxY)))
+//
+//                    // 透過する
+//                    self.rocketImageViewCell.alpha = 0.2
+//
+//                }
+//
+//            }.resume()
+//
+//        }
+        
+        
+        // httpからダウンロードするパターン
+        let url = URL(string: imageUrl)!
+        URLSession.shared.dataTask(with: url) {(data, response, error) in
             
-            // ローカル画像を使用する。
-            // ロケット画像なしの場合は共通の画像を使用するため、
-            // 毎回ダウンロードせずローカルに保存している画像を使用する。
-            let rocketNoImage = UIImage(named: "RocketNoImage_480")
+            if error != nil {
+                print(error!)
+                return
+            }
             
-            self.rocketImageViewCell.image =
-                rocketNoImage?.cropping(to: CGRect(
-                    x:      Int(30),
-                    y:      Int(30),
-                    width:  Int(self.rocketImageViewCell.frame.maxX),
-                    height: Int(self.rocketImageViewCell.frame.maxY)))
+            DispatchQueue.main.async {
+                print("loadImage data: \(data)")
 
-            // 透過する
-            self.rocketImageViewCell.alpha = 0.2
+//                print(response!)
+                
+                let original = UIImage(data: data!)
+                
+                // こういう荒業は使ってはいけない！！
+                // 該当のロケット画像なしの場合は、共通の画像が使用されている、
+                // しかし、フレームサイズでクロップすると画像以外の余白がセルに表示されてしまい
+                // 見栄えがひどい、共通の画像のURLが渡ってきたときは、固定値でクロップして当現象を回避する
+                if imageUrl == "https://s3.amazonaws.com/launchlibrary/RocketImages/placeholder_480.png"{
 
-        }else{
-            
-            let url = URL(string: imageUrl)!
-            
-            URLSession.shared.dataTask(with: url) {(data, response, error) in
-                
-                if error != nil {
-                    print(error!)
-                    return
-                }
-                
-                DispatchQueue.main.async {
-                    print("loadImage data: \(data)")
-    //                print(response!)
-                    
-                    let original = UIImage(data: data!)
+                    self.rocketImageViewCell.image =
+                        original?.cropping(to: CGRect(
+                            x:      Int(30),
+                            y:      Int(30),
+                            width:  Int(self.rocketImageViewCell.frame.maxX),
+                            height: Int(self.rocketImageViewCell.frame.maxY)))
+                }else{
                     
                     self.rocketImageViewCell.image =
                         original?.cropping(to: CGRect(
@@ -81,15 +133,13 @@ class CustomTableViewCell: UITableViewCell {
                             y:      Int(original!.size.height/3),
                             width:  Int(self.rocketImageViewCell.frame.maxX),
                             height: Int(self.rocketImageViewCell.frame.maxY)))
-                    
-                    // 透過する
-                    self.rocketImageViewCell.alpha = 0.2
-                    
                 }
                 
-            }.resume()
-
-        }
+                // 透過する
+                self.rocketImageViewCell.alpha = 0.2
+                
+            }
+        }.resume()
     }
 }
 
