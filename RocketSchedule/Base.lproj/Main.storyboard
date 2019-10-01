@@ -893,64 +893,80 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fDR-HT-shl">
-                                <rect key="frame" x="49" y="350" width="100" height="38"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="GHr-px-L8g"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
-                                <color key="tintColor" red="0.12246329340000001" green="0.56470588239999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="¥120"/>
-                                <connections>
-                                    <action selector="buttonPurchase_1:" destination="zn3-pN-XFu" eventType="touchUpInside" id="SYG-1p-p3j"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nnF-wP-kwF">
-                                <rect key="frame" x="157" y="350" width="102" height="38"/>
+                                <rect key="frame" x="147" y="347" width="120" height="38"/>
+                                <color key="backgroundColor" white="0.25421125856164384" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
                                 <color key="tintColor" red="0.12246329340000001" green="0.56470588239999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="¥240"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="buttonPurchase_2:" destination="zn3-pN-XFu" eventType="touchUpInside" id="tHT-iX-OVx"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OmJ-vy-xsZ">
-                                <rect key="frame" x="267" y="350" width="98" height="38"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="98" id="bZl-t3-ouG"/>
-                                </constraints>
+                                <rect key="frame" x="275" y="347" width="80" height="38"/>
+                                <color key="backgroundColor" white="0.25421125856164384" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
                                 <color key="tintColor" red="0.12246329340000001" green="0.56470588239999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="¥480"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="buttonPurchase_3:" destination="zn3-pN-XFu" eventType="touchUpInside" id="VxG-YP-rRc"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="ありがとうございます！" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dL1-X4-TvD">
-                                <rect key="frame" x="64" y="419" width="289" height="26"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ありがとうございます！" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dL1-X4-TvD">
+                                <rect key="frame" x="20" y="419" width="374" height="26"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
                                 <color key="textColor" red="0.78783679511232874" green="0.56470588239999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fDR-HT-shl">
+                                <rect key="frame" x="59" y="347" width="80" height="38"/>
+                                <color key="backgroundColor" white="0.25421125856164384" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="X1X-kj-ycs"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
+                                <color key="tintColor" red="0.12246329340000001" green="0.56470588239999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="¥120"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="buttonPurchase_1:" destination="zn3-pN-XFu" eventType="touchUpInside" id="SYG-1p-p3j"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="fDR-HT-shl" firstAttribute="leading" secondItem="PiZ-Uq-3x0" secondAttribute="leading" constant="49" id="9Hi-Ec-4t9"/>
+                            <constraint firstItem="nnF-wP-kwF" firstAttribute="leading" secondItem="fDR-HT-shl" secondAttribute="trailing" constant="8" id="4qw-OZ-b5G"/>
+                            <constraint firstItem="dL1-X4-TvD" firstAttribute="leading" secondItem="741-AH-jAI" secondAttribute="leading" id="7u8-Iv-ohd"/>
                             <constraint firstItem="FeF-Vd-a0k" firstAttribute="trailing" secondItem="741-AH-jAI" secondAttribute="trailing" id="Dia-3Z-870"/>
-                            <constraint firstItem="PiZ-Uq-3x0" firstAttribute="trailing" secondItem="OmJ-vy-xsZ" secondAttribute="trailing" constant="49" id="EWE-HC-0cy"/>
-                            <constraint firstItem="fDR-HT-shl" firstAttribute="baseline" secondItem="nnF-wP-kwF" secondAttribute="baseline" id="EpZ-ua-onz"/>
-                            <constraint firstItem="dL1-X4-TvD" firstAttribute="top" secondItem="fDR-HT-shl" secondAttribute="bottom" constant="31" id="P7N-kW-P2c"/>
+                            <constraint firstItem="nnF-wP-kwF" firstAttribute="baseline" secondItem="OmJ-vy-xsZ" secondAttribute="baseline" id="Jem-Mp-IwW"/>
+                            <constraint firstItem="fDR-HT-shl" firstAttribute="baseline" secondItem="nnF-wP-kwF" secondAttribute="baseline" id="Jlx-sk-1Fk"/>
                             <constraint firstItem="FeF-Vd-a0k" firstAttribute="top" secondItem="PiZ-Uq-3x0" secondAttribute="top" constant="20" id="R7V-bJ-Ct3"/>
-                            <constraint firstItem="fDR-HT-shl" firstAttribute="top" secondItem="741-AH-jAI" secondAttribute="bottom" constant="68" id="UNc-GH-Asg"/>
+                            <constraint firstItem="OmJ-vy-xsZ" firstAttribute="leading" secondItem="nnF-wP-kwF" secondAttribute="trailing" constant="8" id="Sb4-Sc-d02"/>
+                            <constraint firstItem="fDR-HT-shl" firstAttribute="top" secondItem="741-AH-jAI" secondAttribute="bottom" constant="65" id="SxM-TR-egd"/>
                             <constraint firstItem="741-AH-jAI" firstAttribute="top" secondItem="FeF-Vd-a0k" secondAttribute="bottom" constant="11" id="X2m-gI-Txv"/>
-                            <constraint firstItem="OmJ-vy-xsZ" firstAttribute="leading" secondItem="nnF-wP-kwF" secondAttribute="trailing" constant="8" id="apI-Re-Jis"/>
+                            <constraint firstItem="PiZ-Uq-3x0" firstAttribute="trailing" secondItem="OmJ-vy-xsZ" secondAttribute="trailing" constant="59" id="Yn8-1Y-leU"/>
+                            <constraint firstItem="fDR-HT-shl" firstAttribute="leading" secondItem="PiZ-Uq-3x0" secondAttribute="leading" constant="59" id="bXI-9S-Fz8"/>
+                            <constraint firstItem="dL1-X4-TvD" firstAttribute="trailing" secondItem="741-AH-jAI" secondAttribute="trailing" id="cg2-uX-Nlg"/>
                             <constraint firstItem="FeF-Vd-a0k" firstAttribute="trailing" secondItem="Ain-2n-fty" secondAttribute="trailingMargin" id="elX-HK-k7f"/>
-                            <constraint firstItem="nnF-wP-kwF" firstAttribute="leading" secondItem="fDR-HT-shl" secondAttribute="trailing" constant="8" id="hwz-8Q-YZY"/>
-                            <constraint firstItem="dL1-X4-TvD" firstAttribute="leading" secondItem="PiZ-Uq-3x0" secondAttribute="leading" constant="64" id="lcc-VQ-sII"/>
+                            <constraint firstItem="dL1-X4-TvD" firstAttribute="top" secondItem="fDR-HT-shl" secondAttribute="bottom" constant="34" id="gc0-e1-dGY"/>
                             <constraint firstItem="FeF-Vd-a0k" firstAttribute="leading" secondItem="Ain-2n-fty" secondAttribute="leadingMargin" id="ltC-J9-Ahv"/>
-                            <constraint firstItem="nnF-wP-kwF" firstAttribute="baseline" secondItem="OmJ-vy-xsZ" secondAttribute="baseline" id="mGf-lt-qUy"/>
                             <constraint firstItem="FeF-Vd-a0k" firstAttribute="leading" secondItem="741-AH-jAI" secondAttribute="leading" id="nIn-Fq-RKZ"/>
-                            <constraint firstItem="dL1-X4-TvD" firstAttribute="centerX" secondItem="nnF-wP-kwF" secondAttribute="centerX" id="roG-7j-DkP"/>
+                            <constraint firstItem="nnF-wP-kwF" firstAttribute="centerX" secondItem="dL1-X4-TvD" secondAttribute="centerX" id="rG3-NC-Hz2"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PiZ-Uq-3x0"/>
                     </view>
@@ -1431,7 +1447,7 @@
         <image name="Icon_View_03_search" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ijh-DV-O7p"/>
+        <segue reference="UGO-km-a3d"/>
         <segue reference="Oqf-je-Qsf"/>
     </inferredMetricsTieBreakers>
 </document>
