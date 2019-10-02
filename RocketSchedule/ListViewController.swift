@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import UserNotifications
 import RealmSwift
+//import UserNotifications
 
 class ListViewController: UITableViewController {
     
@@ -47,6 +48,11 @@ class ListViewController: UITableViewController {
     
     // セルに表示するロケット画像
     var imageForRocketCell: UIImage!
+    
+//    // 詳細画面の通知スイッチを有効・無効にするための情報
+//    // iOSの通知設定がオンの場合：false
+//    // オフの場合：true
+//    var notifySwitchForSetting: Bool = true
     
 
     override func tableView(_ tableView: UITableView,
@@ -304,7 +310,31 @@ class ListViewController: UITableViewController {
                 print("Pending Notify ID: \(request.identifier)")
             }
         }
-        
+
+//        // iOSの通知設定情報を取得
+//        // 通知設定がオンの場合：通知スイッチを有効にする
+//        UNUserNotificationCenter.current().getNotificationSettings { (settings) in
+//
+//            switch settings.authorizationStatus {
+//            case .authorized:
+//                print("Notification Status: authorized")
+//                self.notifySwitchForSetting = true
+//                print("notifySwitchForSetting: \(self.notifySwitchForSetting)")
+//                break
+//            case .denied:
+//                print("Notification Status: denied")
+//                self.notifySwitchForSetting = false
+//                print("notifySwitchForSetting: \(self.notifySwitchForSetting)")
+//                break
+//            case .notDetermined:
+//                print("Notification Status: notDetermined")
+//                break
+//            case .provisional:
+//                print("Notification Status: provisional")
+//                break
+//            }
+//        }
+
 //        print("ListViewController - ==jsonLaunches==\(notificationDate)")
 //
 //        print("ListViewController - forNotificationId - \(forNotificationId)")
@@ -691,6 +721,8 @@ class ListViewController: UITableViewController {
                 controller.notifySwitch = false
             }
 
+//            // iOS通知設定のオンオフ情報
+//            controller.notifySwitchForSetting = self.notifySwitchForSetting
             
         }
         

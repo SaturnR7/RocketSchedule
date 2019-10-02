@@ -32,9 +32,9 @@
             timestampString = "590730159.8127429"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "547"
-            endingLineNumber = "547"
-            landmarkName = "notificationRocketRemove()"
+            startingLineNumber = "550"
+            endingLineNumber = "550"
+            landmarkName = "notificationRocketAdd()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -66,9 +66,9 @@
             timestampString = "590730159.814139"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "350"
-            endingLineNumber = "350"
-            landmarkName = "addafavorite()"
+            startingLineNumber = "351"
+            endingLineNumber = "351"
+            landmarkName = "checkExistFavorite()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -83,8 +83,8 @@
             timestampString = "590730159.816375"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "404"
-            endingLineNumber = "404"
+            startingLineNumber = "405"
+            endingLineNumber = "405"
             landmarkName = "addafavorite()"
             landmarkType = "7">
          </BreakpointContent>
@@ -100,10 +100,10 @@
             timestampString = "590730159.817292"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "595"
-            endingLineNumber = "595"
-            landmarkName = "ListViewController"
-            landmarkType = "3">
+            startingLineNumber = "598"
+            endingLineNumber = "598"
+            landmarkName = "loadImage(urlString:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -136,23 +136,6 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "618"
             endingLineNumber = "618">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "FBFE2FFB-DB62-4CC9-ABC2-FBA23271866B"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "RocketSchedule/DetailRocketViewController.swift"
-            timestampString = "590730159.8195699"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "165"
-            endingLineNumber = "165"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -284,9 +267,9 @@
             timestampString = "590730159.821786"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "345"
-            endingLineNumber = "345"
-            landmarkName = "launchJsonDownload()"
+            startingLineNumber = "348"
+            endingLineNumber = "348"
+            landmarkName = "viewDidAppear(_:)"
             landmarkType = "7">
             <Locations>
                <Location
@@ -337,8 +320,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "68"
             endingLineNumber = "68"
-            landmarkName = "tableView(_:cellForRowAt:)"
-            landmarkType = "7">
+            landmarkName = "ListViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -418,9 +401,9 @@
             filePath = "RocketSchedule/DetailRocketViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "253"
-            endingLineNumber = "253"
-            landmarkName = "loadImage(urlString:)"
+            startingLineNumber = "296"
+            endingLineNumber = "296"
+            landmarkName = "videoButtonControll(videoCount:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

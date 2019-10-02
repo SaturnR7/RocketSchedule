@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import RealmSwift
+import UserNotifications
 
 class DetailRocketViewController : UIViewController {
     
@@ -25,6 +26,8 @@ class DetailRocketViewController : UIViewController {
     var rocketImageURL: String?
     
     let notificationCenter = NotificationCenter.default
+    
+    var notifySwitchForSetting: Bool = false
     
     // ロケット名日本語変換クラス
     var rocketEng2Jpn = RocketNameEng2Jpn()
@@ -141,6 +144,52 @@ class DetailRocketViewController : UIViewController {
             notifyOutletSwitch.isOn = false
         }
         
+        // iOSの通知設定情報を取得
+        // 通知設定がオンの場合：通知スイッチを有効にする
+        UNUserNotificationCenter.current().getNotificationSettings { (settings) in
+            
+            switch settings.authorizationStatus {
+            case .authorized:
+                print("Notification Status: authorized")
+                self.notifySwitchForSetting = true
+                print("notifySwitchForSetting: \(self.notifySwitchForSetting)")
+                break
+            case .denied:
+                print("Notification Status: denied")
+                self.notifySwitchForSetting = false
+                print("notifySwitchForSetting: \(self.notifySwitchForSetting)")
+                break
+            case .notDetermined:
+                print("Notification Status: notDetermined")
+                break
+            case .provisional:
+                print("Notification Status: provisional")
+                break
+            }
+            
+            DispatchQueue.main.async {
+                
+                // iOSの通知設定
+                // オフ(false)の場合：通知スイッチを無効にする・通知アイコンを非表示にする
+                // オン(true)の場合：通知スイッチを有効にする・通知アイコンを表示する
+                print("UNUserNotificationCenter - DispatchQueue - notifySwitchForSetting: \(self.notifySwitchForSetting)")
+
+                if !self.notifySwitchForSetting {
+                    
+                    self.notifyOutletSwitch.isEnabled = false
+                    self.imageNotify.isHidden = true
+                    
+                }else{
+                    
+                    self.notifyOutletSwitch.isEnabled = true
+                    self.imageNotify.isHidden = false
+                    
+                }
+
+            }
+        }
+
+
         // ロケットの動画をアイコンにセットする処理
         // vidURLs配列は動画URLが登録されている
         // 動画URLが0件の場合は、動画アイコンを表示しない
@@ -174,10 +223,25 @@ class DetailRocketViewController : UIViewController {
         }
         //        let asyncImageView = AsyncImageView()
         //        imageRocket.image = asyncImageView.loadImage(urlString: rocketImageURL ?? "")
+        
 
         print("DetailRocketViewController - viewDidLoad End")
         
         
+    }
+    
+    // viewが表示される直前に読み込まれる
+    override func viewWillAppear(_ animated: Bool) {
+        
+    }
+    
+    // viewに完全に表示されたあとに呼ばれる
+    override func viewDidAppear(_ animated: Bool) {
+        
+    }
+    
+    func disableNotifyOutletSwitch(){
+        notifyOutletSwitch.isEnabled = false
     }
     
     // COPYメニューが表示されないので不採用

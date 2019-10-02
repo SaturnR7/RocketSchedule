@@ -196,6 +196,7 @@ class DetailViewController : UIViewController {
     func videoButtonSetTitle(videoCount: Int){
         
         for target in 1...videoCount {
+            print("Video Count: \(target)")
             switch target{
             case 1:
 //                    videoLinkOutlet.setTitle("📹", for: .normal)
@@ -214,6 +215,46 @@ class DetailViewController : UIViewController {
                     videoLinkOutlet.setImage(UIImage.init(named: "Icon_View_02_video"), for: .normal)
                     videoLinkOutlet2.setImage(UIImage.init(named: "Icon_View_02_video"), for: .normal)
                     videoLinkOutlet3.setImage(UIImage.init(named: "Icon_View_02_video"), for: .normal)
+
+            case 4:
+                    videoLinkOutlet.setImage(UIImage.init(named: "Icon_View_02_video"), for: .normal)
+                    videoLinkOutlet2.setImage(UIImage.init(named: "Icon_View_02_video"), for: .normal)
+                    videoLinkOutlet3.setImage(UIImage.init(named: "Icon_View_02_video"), for: .normal)
+                    videoLinkOutlet4.setImage(UIImage.init(named: "Icon_View_02_video"), for: .normal)
+
+            case 5:
+                    videoLinkOutlet.setImage(UIImage.init(named: "Icon_View_02_video"), for: .normal)
+                    videoLinkOutlet2.setImage(UIImage.init(named: "Icon_View_02_video"), for: .normal)
+                    videoLinkOutlet3.setImage(UIImage.init(named: "Icon_View_02_video"), for: .normal)
+                    videoLinkOutlet4.setImage(UIImage.init(named: "Icon_View_02_video"), for: .normal)
+                    videoLinkOutlet5.setImage(UIImage.init(named: "Icon_View_02_video"), for: .normal)
+
+            case 6:
+                    videoLinkOutlet.setImage(UIImage.init(named: "Icon_View_02_video"), for: .normal)
+                    videoLinkOutlet2.setImage(UIImage.init(named: "Icon_View_02_video"), for: .normal)
+                    videoLinkOutlet3.setImage(UIImage.init(named: "Icon_View_02_video"), for: .normal)
+                    videoLinkOutlet4.setImage(UIImage.init(named: "Icon_View_02_video"), for: .normal)
+                    videoLinkOutlet5.setImage(UIImage.init(named: "Icon_View_02_video"), for: .normal)
+                    videoLinkOutlet6.setImage(UIImage.init(named: "Icon_View_02_video"), for: .normal)
+
+            case 7:
+                    videoLinkOutlet.setImage(UIImage.init(named: "Icon_View_02_video"), for: .normal)
+                    videoLinkOutlet2.setImage(UIImage.init(named: "Icon_View_02_video"), for: .normal)
+                    videoLinkOutlet3.setImage(UIImage.init(named: "Icon_View_02_video"), for: .normal)
+                    videoLinkOutlet4.setImage(UIImage.init(named: "Icon_View_02_video"), for: .normal)
+                    videoLinkOutlet5.setImage(UIImage.init(named: "Icon_View_02_video"), for: .normal)
+                    videoLinkOutlet6.setImage(UIImage.init(named: "Icon_View_02_video"), for: .normal)
+                    videoLinkOutlet7.setImage(UIImage.init(named: "Icon_View_02_video"), for: .normal)
+
+            case 8:
+                    videoLinkOutlet.setImage(UIImage.init(named: "Icon_View_02_video"), for: .normal)
+                    videoLinkOutlet2.setImage(UIImage.init(named: "Icon_View_02_video"), for: .normal)
+                    videoLinkOutlet3.setImage(UIImage.init(named: "Icon_View_02_video"), for: .normal)
+                    videoLinkOutlet4.setImage(UIImage.init(named: "Icon_View_02_video"), for: .normal)
+                    videoLinkOutlet5.setImage(UIImage.init(named: "Icon_View_02_video"), for: .normal)
+                    videoLinkOutlet6.setImage(UIImage.init(named: "Icon_View_02_video"), for: .normal)
+                    videoLinkOutlet7.setImage(UIImage.init(named: "Icon_View_02_video"), for: .normal)
+                    videoLinkOutlet8.setImage(UIImage.init(named: "Icon_View_02_video"), for: .normal)
 
             default:
                 print("default")
@@ -457,13 +498,40 @@ class DetailViewController : UIViewController {
     @IBOutlet weak var videoLinkOutlet2: UIButton!
     
     @IBAction func videoLink3(_ sender: Any) {
-        
         UIApplication.shared.open(URL(string: self.videoURL?[2] ?? "")! as URL,options: [:],completionHandler: nil)
-        
     }
     
     @IBOutlet weak var videoLinkOutlet3: UIButton!
     
+    @IBAction func videoLink4(_ sender: Any) {
+        UIApplication.shared.open(URL(string: self.videoURL?[3] ?? "")! as URL,options: [:],completionHandler: nil)
+    }
+    
+    @IBOutlet weak var videoLinkOutlet4: UIButton!
+    
+    @IBAction func videoLink5(_ sender: Any) {
+        UIApplication.shared.open(URL(string: self.videoURL?[4] ?? "")! as URL,options: [:],completionHandler: nil)
+    }
+    
+    @IBOutlet weak var videoLinkOutlet5: UIButton!
+    
+    @IBAction func videoLink6(_ sender: Any) {
+        UIApplication.shared.open(URL(string: self.videoURL?[5] ?? "")! as URL,options: [:],completionHandler: nil)
+    }
+    
+    @IBOutlet weak var videoLinkOutlet6: UIButton!
+    
+    @IBAction func videoLink7(_ sender: Any) {
+        UIApplication.shared.open(URL(string: self.videoURL?[6] ?? "")! as URL,options: [:],completionHandler: nil)
+    }
+    
+    @IBOutlet weak var videoLinkOutlet7: UIButton!
+    
+    @IBAction func videoLink8(_ sender: Any) {
+        UIApplication.shared.open(URL(string: self.videoURL?[7] ?? "")! as URL,options: [:],completionHandler: nil)
+    }
+    
+    @IBOutlet weak var videoLinkOutlet8: UIButton!
     
     func loadImage(urlString: String) {
         

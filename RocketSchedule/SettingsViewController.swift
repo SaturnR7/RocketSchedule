@@ -13,6 +13,10 @@ import RealmSwift
 
 class SettingsViewController: UITableViewController {
     
+    var notifySetting: Bool = false
+    
+    @IBOutlet weak var noSettingMessage: UILabel!
+    
     @IBOutlet weak var notityTimeSlider: UISlider!
     
     @IBOutlet weak var settingTime: UILabel!
@@ -48,6 +52,17 @@ class SettingsViewController: UITableViewController {
         
         print("SettingsViewController - viewDidLoad - Start")
         
+        // アプリ起動時・フォアグラウンド復帰時の通知を設定する
+        NotificationCenter.default.addObserver(
+          self,
+          selector: #selector(SettingsViewController.onDidBecomeActive(_:)),
+          name: UIApplication.didBecomeActiveNotification,
+          object: nil
+        )
+        
+        //  iOSの通知設定を確認する
+        checkNotificationSetting()
+        
         // 項目間の区切り線の色を変更する
         self.tableView.separatorColor = .gray
 
@@ -59,7 +74,10 @@ class SettingsViewController: UITableViewController {
         
         // バックボタンのタイトルを設定
         // 遷移先のバックボタンにタイトルを設定する場合は、title: に文字を設定する。
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem =
+            UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        // 戻るボタンの色を変更する
+        self.navigationController?.navigationBar.tintColor = .white
 
         notityTimeSlider.isContinuous = true
         
@@ -71,6 +89,68 @@ class SettingsViewController: UITableViewController {
         
         print("notityTimeSlider.value: \(notityTimeSlider.value)")
         print("SettingsViewController - viewDidLoad - End")
+    }
+    
+    // アプリ起動時・フォアグラウンド復帰時に行う処理
+    @objc func onDidBecomeActive(_ notification: Notification?) {
+        
+        // do something
+        print("フォアグラウンド復帰")
+        
+        checkNotificationSetting()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+//        checkNotificationSetting()
+
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+
+//        checkNotificationSetting()
+
+    }
+    
+    func checkNotificationSetting() {
+        
+        // iOSの通知設定情報を取得
+        // 通知設定がオンの場合：通知スイッチを有効にする
+        UNUserNotificationCenter.current().getNotificationSettings { (settings) in
+            
+            switch settings.authorizationStatus {
+            case .authorized:
+                print("Notification Status: authorized")
+                self.notifySetting = true
+                print("notifySwitchForSetting: \(self.notifySetting)")
+                break
+            case .denied:
+                print("Notification Status: denied")
+                self.notifySetting = false
+                print("notifySwitchForSetting: \(self.notifySetting)")
+                break
+            case .notDetermined:
+                print("Notification Status: notDetermined")
+                self.notifySetting = false
+                print("notifySwitchForSetting: \(self.notifySetting)")
+                break
+            case .provisional:
+                print("Notification Status: provisional")
+                break
+            }
+            
+            DispatchQueue.main.async {
+
+                if !self.notifySetting {
+                    self.noSettingMessage.isHidden = false
+                }else{
+                    self.noSettingMessage.isHidden = true
+                }
+                
+            }
+        }
+        
     }
 
     func notifyDateChange(changeTime: Int){
@@ -157,6 +237,60 @@ class SettingsViewController: UITableViewController {
         case [1,1]: //「おひねり」項目を追加した場合は当コメントに置き換える
             print("indexPath : \(indexPath)")
             UIApplication.shared.open(URL(string: "https://launchlibrary.net/")! as URL,options: [:],completionHandler: nil)
+            
+        case [0,0]: // 通知設定をタップした場合の処理
+            print("通知設定タップ")
+            
+            print("didSelectRowAt - 通知設定タップ - notifySetting: \(notifySetting)")
+            
+            // false: 通知設定がオフの場合、メッセージ画面を表示してiOSの通知設定画面を開く
+            if !notifySetting {
+                
+                // ① UIAlertControllerクラスのインスタンスを生成
+                // タイトル, メッセージ, Alertのスタイルを指定する
+                // 第3引数のpreferredStyleでアラートの表示スタイルを指定する
+                let alert: UIAlertController = UIAlertController(title: "通知機能を有効にする場合は「設定」で許可してください", message: "", preferredStyle:  UIAlertController.Style.alert)
+
+                // ② Actionの設定
+                // Action初期化時にタイトル, スタイル, 押された時に実行されるハンドラを指定する
+                // 第3引数のUIAlertActionStyleでボタンのスタイルを指定する
+                // OKボタン
+                let defaultAction: UIAlertAction = UIAlertAction(title: "設定", style: UIAlertAction.Style.default, handler:{
+                    // ボタンが押された時の処理を書く（クロージャ実装）
+                    (action: UIAlertAction!) -> Void in
+                    print("「設定」タップ")
+                    
+                    // iOSの通知設定画面へ遷移
+                    if let url = URL(string:"App-Prefs:root=NOTIFICATIONS_ID&path=com.gmail.hidemasa.kobayashi.RocketSchedule") {
+                        if #available(iOS 10.0, *) {
+                            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                        } else {
+                            UIApplication.shared.openURL(url)
+                        }
+                    }
+                })
+                // キャンセルボタン
+                let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertAction.Style.cancel, handler:{
+                    // ボタンが押された時の処理を書く（クロージャ実装）
+                    (action: UIAlertAction!) -> Void in
+                    print("「キャンセル」タップ")
+                })
+
+                // ③ UIAlertControllerにActionを追加
+                alert.addAction(cancelAction)
+                alert.addAction(defaultAction)
+
+                // ④ Alertを表示
+                present(alert, animated: true, completion: nil)
+                
+            } else {
+                
+                // 通知設定画面へプッシュ遷移
+                let storyboard = self.storyboard!
+                let settingNotifyView = storyboard.instantiateViewController(withIdentifier: "settingNotifyView")
+//                navigationController?.title = "通知設定"
+                navigationController?.pushViewController(settingNotifyView, animated: true)
+            }
             
         default:
             return

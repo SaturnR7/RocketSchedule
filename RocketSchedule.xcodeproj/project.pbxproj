@@ -28,6 +28,7 @@
 		B6427C5321EAD67800999575 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6427C5221EAD67800999575 /* ListViewController.swift */; };
 		B6427C5921EDFA3E00999575 /* Launch.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6427C5821EDFA3E00999575 /* Launch.swift */; };
 		B6474C1D227C111900E811CD /* StructNotificationId.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6474C1C227C111900E811CD /* StructNotificationId.swift */; };
+		B64B9B8423445F6C008265F9 /* SettingsNotifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64B9B8323445F6C008265F9 /* SettingsNotifyViewController.swift */; };
 		B6527D8321F874F300D40241 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6527D8221F874F300D40241 /* CustomTableViewCell.swift */; };
 		B65E043822E844B5007C8E3D /* AsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65E043722E844B5007C8E3D /* AsyncImageView.swift */; };
 		B667F64423332278007B4C52 /* GetElementLaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = B667F64323332278007B4C52 /* GetElementLaunch.swift */; };
@@ -93,6 +94,7 @@
 		B6427C5221EAD67800999575 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		B6427C5821EDFA3E00999575 /* Launch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Launch.swift; sourceTree = "<group>"; };
 		B6474C1C227C111900E811CD /* StructNotificationId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructNotificationId.swift; sourceTree = "<group>"; };
+		B64B9B8323445F6C008265F9 /* SettingsNotifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNotifyViewController.swift; sourceTree = "<group>"; };
 		B6527D8221F874F300D40241 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		B65E043722E844B5007C8E3D /* AsyncImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImageView.swift; sourceTree = "<group>"; };
 		B667F64323332278007B4C52 /* GetElementLaunch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetElementLaunch.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 				B69B6AEE22BB61F500C691BD /* SearchAgencyViewController.swift */,
 				B6B8C40F22C5BF4300EFEB2F /* FavoriteListView.swift */,
 				B61B517723209BB60091D95F /* SettingsViewController.swift */,
+				B64B9B8323445F6C008265F9 /* SettingsNotifyViewController.swift */,
 				B6D9B464232A22EC002D5319 /* PurchaseViewController.swift */,
 				B6D9446822C5EEF800B4B968 /* FavoriteObject.swift */,
 				B614F61422E5853F000F0AFC /* RealmNotifyObject.swift */,
@@ -359,6 +362,7 @@
 				B6D9B465232A22EC002D5319 /* PurchaseViewController.swift in Sources */,
 				B614F61522E5853F000F0AFC /* RealmNotifyObject.swift in Sources */,
 				B61C200022EFF2910003A297 /* DicAgencies.swift in Sources */,
+				B64B9B8423445F6C008265F9 /* SettingsNotifyViewController.swift in Sources */,
 				B6157F1622F96FA800475AD4 /* TimeRelated.swift in Sources */,
 				B6686E4C222E54C100B6CC75 /* SearchRoketViewController.swift in Sources */,
 				B61AE943226184E9001034CD /* StructNotificationDate.swift in Sources */,
