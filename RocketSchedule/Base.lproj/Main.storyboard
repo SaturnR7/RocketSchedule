@@ -729,13 +729,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <sections>
-                            <tableViewSection headerTitle="　通知" id="EBX-hf-czt">
+                            <tableViewSection headerTitle="通知" id="EBX-hf-czt">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="btV-gQ-doF">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" id="btV-gQ-doF">
                                         <rect key="frame" x="0.0" y="55.333332061767578" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="btV-gQ-doF" id="bE1-gj-DTO">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="382.66666666666669" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="通知設定" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Yc-Hn-7vb">
@@ -765,70 +765,21 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.30244006849999999" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="wbb-c1-DIJ">
-                                        <rect key="frame" x="0.0" y="99.333332061767578" width="414" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wbb-c1-DIJ" id="umh-qL-57x">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="5" maxValue="60" translatesAutoresizingMaskIntoConstraints="NO" id="TR3-9z-6vX">
-                                                    <rect key="frame" x="250" y="8" width="144" height="29"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="140" id="ixO-am-Cms"/>
-                                                    </constraints>
-                                                    <connections>
-                                                        <action selector="notifyTimerSliderSender:" destination="px1-Sc-FWT" eventType="valueChanged" id="VwH-on-xMO"/>
-                                                    </connections>
-                                                </slider>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="打ち上げ通知" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eyw-eZ-JMc">
-                                                    <rect key="frame" x="20" y="10" width="102" height="22"/>
-                                                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="分前" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wQs-SI-Sh5">
-                                                    <rect key="frame" x="171" y="11" width="34" height="22"/>
-                                                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T0N-Xj-BJ7">
-                                                    <rect key="frame" x="130" y="7" width="37" height="30"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="37" id="LhC-Bp-utz"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.30244006849315069" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="TR3-9z-6vX" secondAttribute="trailing" constant="2" id="01g-Dx-ZQr"/>
-                                                <constraint firstItem="T0N-Xj-BJ7" firstAttribute="centerY" secondItem="wQs-SI-Sh5" secondAttribute="centerY" id="6SA-Ee-D23"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="Eyw-eZ-JMc" secondAttribute="bottom" constant="1" id="NKM-6I-ZoZ"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="T0N-Xj-BJ7" secondAttribute="bottom" constant="-4" id="Nci-2R-uQ3"/>
-                                                <constraint firstItem="Eyw-eZ-JMc" firstAttribute="leading" secondItem="umh-qL-57x" secondAttribute="leadingMargin" id="NjP-OY-LHl"/>
-                                                <constraint firstItem="wQs-SI-Sh5" firstAttribute="leading" secondItem="T0N-Xj-BJ7" secondAttribute="trailing" constant="4" id="Pgl-RE-smX"/>
-                                                <constraint firstItem="T0N-Xj-BJ7" firstAttribute="leading" secondItem="Eyw-eZ-JMc" secondAttribute="trailing" constant="8" symbolic="YES" id="QBU-lJ-ff5"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="TR3-9z-6vX" secondAttribute="bottom" constant="-3" id="SJI-aY-9sW"/>
-                                                <constraint firstItem="wQs-SI-Sh5" firstAttribute="centerY" secondItem="TR3-9z-6vX" secondAttribute="centerY" id="Wal-W0-uuP"/>
-                                                <constraint firstItem="TR3-9z-6vX" firstAttribute="centerY" secondItem="umh-qL-57x" secondAttribute="centerY" id="epO-cT-ZE2"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                        <gestureRecognizers/>
+                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="z6S-dt-wRg" appends="YES" id="sN3-fq-1iQ"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="　サポート" id="a1E-ru-Xp9">
+                            <tableViewSection headerTitle="サポート" id="a1E-ru-Xp9">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="ZVX-6k-gnM">
-                                        <rect key="frame" x="0.0" y="199.33333206176758" width="414" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" id="ZVX-6k-gnM">
+                                        <rect key="frame" x="0.0" y="155.33333206176758" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZVX-6k-gnM" id="yXX-Jy-ijU">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="382.66666666666669" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ロケットミロについて" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KAK-2b-b6D">
@@ -845,12 +796,14 @@
                                                 <constraint firstItem="KAK-2b-b6D" firstAttribute="centerY" secondItem="yXX-Jy-ijU" secondAttribute="centerY" id="P1e-zy-hCx"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.30244006849999999" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <connections>
                                             <segue destination="zn3-pN-XFu" kind="show" id="kW5-cN-h6p"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="OfH-Ou-nAd">
-                                        <rect key="frame" x="0.0" y="243.33333206176758" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="199.33333206176758" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OfH-Ou-nAd" id="obV-Ho-Pnp">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -881,9 +834,10 @@
                                                 <constraint firstAttribute="bottomMargin" secondItem="8VS-XI-H5L" secondAttribute="bottom" constant="1" id="sdq-fh-1Cb"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="1hd-ic-MpE">
-                                        <rect key="frame" x="0.0" y="287.33333206176758" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="243.33333206176758" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1hd-ic-MpE" id="LqK-dl-L78">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -914,6 +868,7 @@
                                                 <constraint firstItem="z3t-rc-zgp" firstAttribute="trailing" secondItem="LqK-dl-L78" secondAttribute="trailingMargin" id="v4t-tq-oXb"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -927,11 +882,14 @@
                     <connections>
                         <outlet property="labelVersion" destination="z3t-rc-zgp" id="mbX-cp-oLn"/>
                         <outlet property="noSettingMessage" destination="SL4-mb-eri" id="Snl-To-keT"/>
-                        <outlet property="notityTimeSlider" destination="TR3-9z-6vX" id="DXh-rL-x8u"/>
-                        <outlet property="settingTime" destination="T0N-Xj-BJ7" id="RU4-sT-0oO"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LHk-Yy-Eoa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="z6S-dt-wRg">
+                    <connections>
+                        <action selector="tapCellNotifySetting:" destination="px1-Sc-FWT" id="dae-k6-wo7"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1924.6376811594205" y="2258.0357142857142"/>
         </scene>
@@ -1064,7 +1022,7 @@
                         <sections>
                             <tableViewSection headerTitle="　" id="HyT-fN-faZ">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="CmE-lt-Of0">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="44" id="CmE-lt-Of0">
                                         <rect key="frame" x="0.0" y="55.333332061767578" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CmE-lt-Of0" id="iGo-fl-QHI">
@@ -1080,12 +1038,6 @@
                                                         <action selector="notifyTimerSliderSender:" destination="SZk-bX-2vg" eventType="valueChanged" id="WD3-NA-nPq"/>
                                                     </connections>
                                                 </slider>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="打ち上げ通知" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bff-Sk-av4">
-                                                    <rect key="frame" x="20" y="10" width="102" height="22"/>
-                                                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="分前" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="urf-9N-uKn">
                                                     <rect key="frame" x="171" y="11" width="34" height="22"/>
                                                     <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
@@ -1101,6 +1053,12 @@
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="打ち上げ通知" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bff-Sk-av4">
+                                                    <rect key="frame" x="20" y="12" width="102" height="22"/>
+                                                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" white="0.30244006849999999" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
@@ -1109,7 +1067,7 @@
                                                 <constraint firstItem="urf-9N-uKn" firstAttribute="centerY" secondItem="2nK-R3-eFp" secondAttribute="centerY" id="G6O-r1-grs"/>
                                                 <constraint firstItem="urf-9N-uKn" firstAttribute="leading" secondItem="Zmm-hK-qFx" secondAttribute="trailing" constant="4" id="Qc0-31-OGO"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="2nK-R3-eFp" secondAttribute="trailing" constant="2" id="QrG-rW-QcS"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="bff-Sk-av4" secondAttribute="bottom" constant="1" id="Tlf-zc-P5w"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="bff-Sk-av4" secondAttribute="bottom" constant="-1" id="Tlf-zc-P5w"/>
                                                 <constraint firstItem="2nK-R3-eFp" firstAttribute="centerY" secondItem="iGo-fl-QHI" secondAttribute="centerY" id="ZNV-2e-oQi"/>
                                                 <constraint firstItem="Zmm-hK-qFx" firstAttribute="centerY" secondItem="urf-9N-uKn" secondAttribute="centerY" id="gX0-L8-8bP"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="2nK-R3-eFp" secondAttribute="bottom" constant="-3" id="kWA-4f-bt8"/>
@@ -1134,7 +1092,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nlK-zO-yFK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2699" y="2967"/>
+            <point key="canvasLocation" x="2698.5507246376815" y="2966.5178571428569"/>
         </scene>
         <!--絞り込み-->
         <scene sceneID="LrS-25-L0L">

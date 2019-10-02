@@ -181,7 +181,7 @@ class ListViewController: UITableViewController {
 //        print("Timezone List: \(TimeZone.abbreviationDictionary)")
 //        print("TimeZone Identifiers: \(TimeZone.knownTimeZoneIdentifiers)")
         
-        // ディクショナリ形式で初期値を指定できる
+        // ディクショナリ形式で初期値を指定
         let notifyTime = UserDefaults()
         notifyTime.register(defaults: ["ChangeTime" : 10])
         
