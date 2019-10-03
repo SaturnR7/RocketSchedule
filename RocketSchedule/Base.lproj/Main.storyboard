@@ -731,11 +731,11 @@
                         <sections>
                             <tableViewSection headerTitle="通知" id="EBX-hf-czt">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" id="btV-gQ-doF">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="btV-gQ-doF">
                                         <rect key="frame" x="0.0" y="55.333332061767578" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="btV-gQ-doF" id="bE1-gj-DTO">
-                                            <rect key="frame" x="0.0" y="0.0" width="382.66666666666669" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="通知設定" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Yc-Hn-7vb">
@@ -745,7 +745,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="通知が未許可です" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SL4-mb-eri">
-                                                    <rect key="frame" x="218" y="11" width="149" height="23"/>
+                                                    <rect key="frame" x="228" y="11" width="149" height="23"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="149" id="gJD-2p-NOJ"/>
                                                     </constraints>
@@ -759,7 +759,7 @@
                                                 <constraint firstItem="0Yc-Hn-7vb" firstAttribute="top" secondItem="bE1-gj-DTO" secondAttribute="topMargin" id="2T3-Qk-1aB"/>
                                                 <constraint firstItem="SL4-mb-eri" firstAttribute="top" secondItem="bE1-gj-DTO" secondAttribute="topMargin" id="PMS-UJ-Bg1"/>
                                                 <constraint firstItem="0Yc-Hn-7vb" firstAttribute="centerY" secondItem="bE1-gj-DTO" secondAttribute="centerY" id="TOI-k5-4Lh"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="SL4-mb-eri" secondAttribute="trailing" constant="27" id="cxI-2I-CrZ"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="SL4-mb-eri" secondAttribute="trailing" constant="17" id="cxI-2I-CrZ"/>
                                                 <constraint firstItem="SL4-mb-eri" firstAttribute="bottom" secondItem="0Yc-Hn-7vb" secondAttribute="bottom" id="ozw-qj-Rci"/>
                                                 <constraint firstItem="0Yc-Hn-7vb" firstAttribute="leading" secondItem="bE1-gj-DTO" secondAttribute="leadingMargin" id="tf2-cL-v4N"/>
                                             </constraints>
@@ -775,11 +775,11 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="サポート" id="a1E-ru-Xp9">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" id="ZVX-6k-gnM">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="ZVX-6k-gnM">
                                         <rect key="frame" x="0.0" y="155.33333206176758" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZVX-6k-gnM" id="yXX-Jy-ijU">
-                                            <rect key="frame" x="0.0" y="0.0" width="382.66666666666669" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ロケットミロについて" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KAK-2b-b6D">
@@ -1559,7 +1559,7 @@
         <image name="Icon_View_03_search" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ijh-DV-O7p"/>
+        <segue reference="UGO-km-a3d"/>
         <segue reference="Oqf-je-Qsf"/>
     </inferredMetricsTieBreakers>
 </document>

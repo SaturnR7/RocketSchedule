@@ -45,14 +45,11 @@ class SettingsViewController: UITableViewController {
                     (action: UIAlertAction!) -> Void in
                     print("「設定」タップ")
                     
-                    // iOSの通知設定画面へ遷移
-                    if let url = URL(string:"App-Prefs:root=NOTIFICATIONS_ID&path=com.gmail.hidemasa.kobayashi.RocketSchedule") {
-                        if #available(iOS 10.0, *) {
-                            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                        } else {
-                            UIApplication.shared.openURL(url)
-                        }
+                    // iOSの設定画面へ遷移
+                    if let url = URL(string: UIApplication.openSettingsURLString), UIApplication.shared.canOpenURL(url) {
+                       UIApplication.shared.open(url, options: [:], completionHandler: nil)
                     }
+                    
                 })
                 // キャンセルボタン
                 let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertAction.Style.cancel, handler:{
@@ -180,7 +177,7 @@ class SettingsViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of sections
         return 2
     }
-
+    
     // セルを増やす場合は、対応したsection数を増やす
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
@@ -195,6 +192,27 @@ class SettingsViewController: UITableViewController {
         default:
             return 0
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        // super 呼び出しでセルを取得
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
+
+        switch indexPath {
+        case [0,0]:
+            cell.accessoryView = UIImageView(image: UIImage(named: "Disclosure-Original_01.png"))
+        case [1,0]:
+            cell.accessoryView = UIImageView(image: UIImage(named: "Disclosure-Original_01.png"))
+        default:
+            break
+        }
+
+//        if indexPath == [0,0] {
+//            cell.accessoryView = UIImageView(image: UIImage(named: "Disclosure-forward-24.png"))
+//        }
+        
+        return cell
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -212,61 +230,7 @@ class SettingsViewController: UITableViewController {
         // selection=none の場合、処理遅延（アラート表示が遅れる）ため、
         // tapRecognizerを利用してタップ時の動作を実装したので、以下はコメント化する
 //        case [0,0]: // 通知設定をタップした場合の処理
-//            print("通知設定タップ")
-//
-//            // 項目間の区切り線の色を変更する
-////            self.tableView.separatorColor = .gray
-//
-//            print("didSelectRowAt - 通知設定タップ - notifySetting: \(notifySetting)")
-//
-//            // false: 通知設定がオフの場合、メッセージ画面を表示してiOSの通知設定画面を開く
-//            if !notifySetting {
-//
-//                // ① UIAlertControllerクラスのインスタンスを生成
-//                // タイトル, メッセージ, Alertのスタイルを指定する
-//                // 第3引数のpreferredStyleでアラートの表示スタイルを指定する
-//                let alert: UIAlertController = UIAlertController(title: "通知設定を有効にする場合は\n「設定」で許可してください", message: "", preferredStyle:  UIAlertController.Style.alert)
-//
-//                // ② Actionの設定
-//                // Action初期化時にタイトル, スタイル, 押された時に実行されるハンドラを指定する
-//                // 第3引数のUIAlertActionStyleでボタンのスタイルを指定する
-//                // OKボタン
-//                let defaultAction: UIAlertAction = UIAlertAction(title: "設定", style: UIAlertAction.Style.default, handler:{
-//                    // ボタンが押された時の処理を書く（クロージャ実装）
-//                    (action: UIAlertAction!) -> Void in
-//                    print("「設定」タップ")
-//
-//                    // iOSの通知設定画面へ遷移
-//                    if let url = URL(string:"App-Prefs:root=NOTIFICATIONS_ID&path=com.gmail.hidemasa.kobayashi.RocketSchedule") {
-//                        if #available(iOS 10.0, *) {
-//                            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-//                        } else {
-//                            UIApplication.shared.openURL(url)
-//                        }
-//                    }
-//                })
-//                // キャンセルボタン
-//                let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertAction.Style.cancel, handler:{
-//                    // ボタンが押された時の処理を書く（クロージャ実装）
-//                    (action: UIAlertAction!) -> Void in
-//                    print("「キャンセル」タップ")
-//                })
-//
-//                // ③ UIAlertControllerにActionを追加
-//                alert.addAction(cancelAction)
-//                alert.addAction(defaultAction)
-//
-//                // ④ Alertを表示
-//                present(alert, animated: true, completion: nil)
-//
-//            } else {
-//
-//                // 通知設定画面へプッシュ遷移
-//                let storyboard = self.storyboard!
-//                let settingNotifyView = storyboard.instantiateViewController(withIdentifier: "settingNotifyView")
-////                navigationController?.title = "通知設定"
-//                navigationController?.pushViewController(settingNotifyView, animated: true)
-//            }
+//        処理はtapRecognizerへ移動
             
         default:
             return
