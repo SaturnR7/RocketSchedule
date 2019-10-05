@@ -902,100 +902,131 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ロケットミロについて" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FeF-Vd-a0k">
-                                <rect key="frame" x="20" y="108" width="374" height="46"/>
+                                <rect key="frame" x="19" y="117" width="375" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="46" id="5Gq-9n-a9P"/>
+                                    <constraint firstAttribute="height" constant="30" id="Chj-DV-X48"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="741-AH-jAI">
-                                <rect key="frame" x="20" y="165" width="374" height="117"/>
-                                <string key="text">ロケットミロは、ロケットの魅力をたくさんの
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pol-Rl-pUC">
+                                <rect key="frame" x="16" y="158" width="382" height="133"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="741-AH-jAI">
+                                        <rect key="frame" x="16" y="10.999999999999993" width="350" height="109.33333333333331"/>
+                                        <string key="text">ロケットミロは、ロケットの魅力をたくさんの
 人に知ってもらいたいという思いから開発しました。
 
 今後もこのアプリをより良くしていきます。
 
 もし、チップをいただけたら泣いて喜びます😊</string>
-                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="15"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nnF-wP-kwF">
-                                <rect key="frame" x="147" y="347" width="120" height="38"/>
-                                <color key="backgroundColor" white="0.25421125856164384" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
-                                <color key="tintColor" red="0.12246329340000001" green="0.56470588239999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="¥240"/>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="14"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.30244006849999999" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="741-AH-jAI" firstAttribute="leading" secondItem="Pol-Rl-pUC" secondAttribute="leading" constant="16" id="Pbu-L1-9iF"/>
+                                    <constraint firstAttribute="trailing" secondItem="741-AH-jAI" secondAttribute="trailing" constant="16" id="bjj-b1-PTw"/>
+                                    <constraint firstItem="741-AH-jAI" firstAttribute="top" secondItem="Pol-Rl-pUC" secondAttribute="top" constant="11" id="i8y-S2-nVg"/>
+                                    <constraint firstAttribute="bottom" secondItem="741-AH-jAI" secondAttribute="bottom" constant="12.666666666666671" id="sPG-zn-mC1"/>
+                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="buttonPurchase_2:" destination="zn3-pN-XFu" eventType="touchUpInside" id="tHT-iX-OVx"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OmJ-vy-xsZ">
-                                <rect key="frame" x="275" y="347" width="80" height="38"/>
-                                <color key="backgroundColor" white="0.25421125856164384" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
-                                <color key="tintColor" red="0.12246329340000001" green="0.56470588239999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="¥480"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="10"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="buttonPurchase_3:" destination="zn3-pN-XFu" eventType="touchUpInside" id="VxG-YP-rRc"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ありがとうございます！" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dL1-X4-TvD">
-                                <rect key="frame" x="20" y="419" width="374" height="26"/>
+                            </view>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ありがとうございます！" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dL1-X4-TvD">
+                                <rect key="frame" x="75" y="366" width="264" height="38"/>
+                                <color key="backgroundColor" white="0.30244006849999999" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="38" id="qVc-u3-PKN"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
                                 <color key="textColor" red="0.78783679511232874" green="0.56470588239999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fDR-HT-shl">
-                                <rect key="frame" x="59" y="347" width="80" height="38"/>
-                                <color key="backgroundColor" white="0.25421125856164384" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="X1X-kj-ycs"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
-                                <color key="tintColor" red="0.12246329340000001" green="0.56470588239999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="¥120"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="buttonPurchase_1:" destination="zn3-pN-XFu" eventType="touchUpInside" id="SYG-1p-p3j"/>
-                                </connections>
-                            </button>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="URp-m1-PUi">
+                                <rect key="frame" x="55.666666666666657" y="310" width="303" height="38"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fDR-HT-shl">
+                                        <rect key="frame" x="0.0" y="0.0" width="85" height="38"/>
+                                        <color key="backgroundColor" white="0.25421125856164384" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="85" id="Qvf-VI-slY"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
+                                        <color key="tintColor" red="0.12246329340000001" green="0.56470588239999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="¥120"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="buttonPurchase_1:" destination="zn3-pN-XFu" eventType="touchUpInside" id="SYG-1p-p3j"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nnF-wP-kwF">
+                                        <rect key="frame" x="109" y="0.0" width="85" height="38"/>
+                                        <color key="backgroundColor" white="0.25421125856164384" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="85" id="fon-aa-Ali"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
+                                        <color key="tintColor" red="0.12246329340000001" green="0.56470588239999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="¥240"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="buttonPurchase_2:" destination="zn3-pN-XFu" eventType="touchUpInside" id="tHT-iX-OVx"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OmJ-vy-xsZ">
+                                        <rect key="frame" x="218" y="0.0" width="85" height="38"/>
+                                        <color key="backgroundColor" white="0.25421125856164384" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="85" id="frg-Du-Ql4"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
+                                        <color key="tintColor" red="0.12246329340000001" green="0.56470588239999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="¥480"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="buttonPurchase_3:" destination="zn3-pN-XFu" eventType="touchUpInside" id="VxG-YP-rRc"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="nnF-wP-kwF" firstAttribute="leading" secondItem="fDR-HT-shl" secondAttribute="trailing" constant="8" id="4qw-OZ-b5G"/>
-                            <constraint firstItem="dL1-X4-TvD" firstAttribute="leading" secondItem="741-AH-jAI" secondAttribute="leading" id="7u8-Iv-ohd"/>
-                            <constraint firstItem="FeF-Vd-a0k" firstAttribute="trailing" secondItem="741-AH-jAI" secondAttribute="trailing" id="Dia-3Z-870"/>
-                            <constraint firstItem="nnF-wP-kwF" firstAttribute="baseline" secondItem="OmJ-vy-xsZ" secondAttribute="baseline" id="Jem-Mp-IwW"/>
-                            <constraint firstItem="fDR-HT-shl" firstAttribute="baseline" secondItem="nnF-wP-kwF" secondAttribute="baseline" id="Jlx-sk-1Fk"/>
-                            <constraint firstItem="FeF-Vd-a0k" firstAttribute="top" secondItem="PiZ-Uq-3x0" secondAttribute="top" constant="20" id="R7V-bJ-Ct3"/>
-                            <constraint firstItem="OmJ-vy-xsZ" firstAttribute="leading" secondItem="nnF-wP-kwF" secondAttribute="trailing" constant="8" id="Sb4-Sc-d02"/>
-                            <constraint firstItem="fDR-HT-shl" firstAttribute="top" secondItem="741-AH-jAI" secondAttribute="bottom" constant="65" id="SxM-TR-egd"/>
-                            <constraint firstItem="741-AH-jAI" firstAttribute="top" secondItem="FeF-Vd-a0k" secondAttribute="bottom" constant="11" id="X2m-gI-Txv"/>
-                            <constraint firstItem="PiZ-Uq-3x0" firstAttribute="trailing" secondItem="OmJ-vy-xsZ" secondAttribute="trailing" constant="59" id="Yn8-1Y-leU"/>
-                            <constraint firstItem="fDR-HT-shl" firstAttribute="leading" secondItem="PiZ-Uq-3x0" secondAttribute="leading" constant="59" id="bXI-9S-Fz8"/>
-                            <constraint firstItem="dL1-X4-TvD" firstAttribute="trailing" secondItem="741-AH-jAI" secondAttribute="trailing" id="cg2-uX-Nlg"/>
-                            <constraint firstItem="FeF-Vd-a0k" firstAttribute="trailing" secondItem="Ain-2n-fty" secondAttribute="trailingMargin" id="elX-HK-k7f"/>
-                            <constraint firstItem="dL1-X4-TvD" firstAttribute="top" secondItem="fDR-HT-shl" secondAttribute="bottom" constant="34" id="gc0-e1-dGY"/>
-                            <constraint firstItem="FeF-Vd-a0k" firstAttribute="leading" secondItem="Ain-2n-fty" secondAttribute="leadingMargin" id="ltC-J9-Ahv"/>
-                            <constraint firstItem="FeF-Vd-a0k" firstAttribute="leading" secondItem="741-AH-jAI" secondAttribute="leading" id="nIn-Fq-RKZ"/>
-                            <constraint firstItem="nnF-wP-kwF" firstAttribute="centerX" secondItem="dL1-X4-TvD" secondAttribute="centerX" id="rG3-NC-Hz2"/>
+                            <constraint firstItem="Pol-Rl-pUC" firstAttribute="leading" secondItem="PiZ-Uq-3x0" secondAttribute="leading" constant="16" id="07y-eX-h3R"/>
+                            <constraint firstItem="dL1-X4-TvD" firstAttribute="leading" secondItem="PiZ-Uq-3x0" secondAttribute="leading" constant="75" id="45Y-ZK-DjF"/>
+                            <constraint firstItem="URp-m1-PUi" firstAttribute="centerX" secondItem="Pol-Rl-pUC" secondAttribute="centerX" id="87B-hl-Hdt"/>
+                            <constraint firstItem="dL1-X4-TvD" firstAttribute="centerX" secondItem="URp-m1-PUi" secondAttribute="centerX" id="Gw6-Q6-fsh"/>
+                            <constraint firstItem="PiZ-Uq-3x0" firstAttribute="trailing" secondItem="Pol-Rl-pUC" secondAttribute="trailing" constant="16" id="Ng6-YK-ZYi"/>
+                            <constraint firstItem="URp-m1-PUi" firstAttribute="top" secondItem="Pol-Rl-pUC" secondAttribute="bottom" constant="19" id="QFr-WI-ryS"/>
+                            <constraint firstItem="PiZ-Uq-3x0" firstAttribute="trailing" secondItem="FeF-Vd-a0k" secondAttribute="trailing" constant="20" id="Z3b-7z-Ihf"/>
+                            <constraint firstItem="FeF-Vd-a0k" firstAttribute="top" secondItem="PiZ-Uq-3x0" secondAttribute="top" constant="29" id="ZHw-Jh-SSM"/>
+                            <constraint firstItem="Pol-Rl-pUC" firstAttribute="top" secondItem="FeF-Vd-a0k" secondAttribute="bottom" constant="11" id="dMR-2Y-kEj"/>
+                            <constraint firstItem="FeF-Vd-a0k" firstAttribute="leading" secondItem="PiZ-Uq-3x0" secondAttribute="leading" constant="19" id="jNr-oo-yaJ"/>
+                            <constraint firstItem="dL1-X4-TvD" firstAttribute="top" secondItem="URp-m1-PUi" secondAttribute="bottom" constant="18" id="w8y-gL-i5x"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PiZ-Uq-3x0"/>
                     </view>
