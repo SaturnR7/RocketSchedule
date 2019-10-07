@@ -73,6 +73,9 @@ class SearchRoketViewController: UIViewController {
     
     @IBOutlet weak var labelAgency: UILabel!
     
+    @IBOutlet weak var labelAgencyBackground: UIView!
+    
+    
     //各種Pickerを生成
     let dateStartPicker = UIDatePicker()
     let dateEndPicker = UIDatePicker()
@@ -148,8 +151,12 @@ class SearchRoketViewController: UIViewController {
         // 現在から１週間前の日付を取得
         let pastDateString = getStringDay1weekAgo()
         
+//        labelAgencyBackground.backgroundColor = UIColor.init(red: 50/255, green: 50/255, blue: 50/255, alpha: 1)
+        
         dateStartLaunch.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
+//        dateStartLaunch.backgroundColor = UIColor.init(red: 50/255, green: 50/255, blue: 50/255, alpha: 1)
         dateEndLaunch.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
+//        dateEndLaunch.backgroundColor = UIColor.init(red: 50/255, green: 50/255, blue: 50/255, alpha: 1)
 
         // 設定値（前回検索履歴情報があった場合は、検索画面に値を設定
         if let settingStartDate = searchValueSettings.string(forKey: "settingStartDate"){

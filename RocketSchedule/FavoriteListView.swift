@@ -60,7 +60,11 @@ class FavoriteListView: UITableViewController {
     var rocketEng2Jpn = RocketNameEng2Jpn()
     
     // お気に入り登録0件用のUIViewを宣言
-    var resultZeroView: UIView!
+//    var resultZeroView: UIView!
+    var resultZeroView = UIView()
+
+    // お気に入り登録0件用のUIView（装飾用）を宣言
+    var resultZeroBackgroundView = UIView()
 
     // お気に入り0件用メッセージ
     var zeroMessage = UILabel()
@@ -227,6 +231,8 @@ class FavoriteListView: UITableViewController {
 
         // お気に入り0件用のviewを生成
         enableResultZeroView()
+        // お気に入り0件用のview(装飾用)を生成
+        enableBackgroundView()
         // 0件メッセージをを生成
         enableMessageViewZero()
         // 0件用画像の生成
@@ -236,30 +242,74 @@ class FavoriteListView: UITableViewController {
 //        launchDataLoad()
         if launchDataLoad() == 0{
             resultZeroView.isHidden = false
+            resultZeroBackgroundView.isHidden = false
             zeroMessage.isHidden = false
             zeroMessage_2.isHidden = false
             zeroImageView.isHidden = false
         }else{
             resultZeroView.isHidden = true
+            resultZeroBackgroundView.isHidden = true
             zeroMessage.isHidden = true
             zeroMessage_2.isHidden = true
             zeroImageView.isHidden = true
         }
 
     }
+    
+    // Vibration
+//    func shortVibrate() {
+//        AudioServicesPlaySystemSound(1003);
+//        AudioServicesDisposeSystemSoundID(1003);
+//    }
 
     // お気に入り0件用のUIViewを生成
     func enableResultZeroView() {
         
         // init Boundsで全画面にviewを表示
-        self.resultZeroView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height))
+        resultZeroView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height))
         let bgColor = UIColor.init(red: 38/255, green: 38/255, blue: 38/255, alpha: 1)
-        self.resultZeroView.backgroundColor = bgColor
-        self.resultZeroView.isUserInteractionEnabled = true
+        resultZeroView.backgroundColor = bgColor
+        resultZeroView.isUserInteractionEnabled = true
         self.view.addSubview(resultZeroView)
         
         // 検索0件の時だけこのviewを表示するため、それ以外は非表示にする。
         self.resultZeroView.isHidden = true
+    }
+    
+    // お気に入り0件用のUIViewを生成（装飾用）
+    func enableBackgroundView(){
+        
+        // 制約設定時は必須の処理
+        // 制約を設定するためレイアウトの矛盾を防ぐ
+        resultZeroBackgroundView.translatesAutoresizingMaskIntoConstraints = false
+        
+//        resultZeroBackgroundView =
+//            UIView.init(frame: CGRect.init(x: 0, y: 0, width: 50, height: 50))
+
+        // Color
+        resultZeroBackgroundView.backgroundColor = UIColor(red: 60/255, green: 60/255, blue: 60/255, alpha: 1)
+        // 角丸を有効にする
+        resultZeroBackgroundView.clipsToBounds = true
+        resultZeroBackgroundView.layer.cornerRadius = 10
+
+
+        self.view.addSubview(self.resultZeroBackgroundView)
+
+//        // 0件用のビューに対して上端から何ポイントと離すか定義する
+//        resultZeroBackgroundView.topAnchor.constraint(equalTo: resultZeroBackgroundView.topAnchor, constant: 100).isActive = true
+//        // X座標軸の中心を親Viewと合わせる制約を有効にする
+//        resultZeroBackgroundView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        
+        // 画像の幅に対して任意の数値に設定、制約を有効にする
+        resultZeroBackgroundView.widthAnchor.constraint(equalToConstant: 350).isActive = true
+        // 画像の高さに対して任意の数値に設定、制約を有効にする
+        resultZeroBackgroundView.heightAnchor.constraint(equalToConstant: 370).isActive = true
+        // X座標軸の中心を親Viewと合わせる制約を有効にする
+        resultZeroBackgroundView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        // 0件用のビューに対して上端から何ポイントと離すか定義する
+        resultZeroBackgroundView.topAnchor.constraint(equalTo: resultZeroView.topAnchor, constant: 15).isActive = true
+
+        
     }
     
     // 0件用のメッセージを表示
