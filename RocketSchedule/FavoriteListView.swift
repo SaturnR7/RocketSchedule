@@ -309,7 +309,9 @@ class FavoriteListView: UITableViewController {
         // 0件用のビューに対して上端から何ポイントと離すか定義する
         resultZeroBackgroundView.topAnchor.constraint(equalTo: resultZeroView.topAnchor, constant: 15).isActive = true
 
-        
+        // 検索0件の時だけこのviewを表示するため、それ以外は非表示にする。
+        resultZeroBackgroundView.isHidden = true
+
     }
     
     // 0件用のメッセージを表示

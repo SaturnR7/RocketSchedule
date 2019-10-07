@@ -151,10 +151,12 @@ class SearchRoketViewController: UIViewController {
         // 現在から１週間前の日付を取得
         let pastDateString = getStringDay1weekAgo()
         
+        // 機関項目の背景色を設定
         labelAgencyBackground.backgroundColor = UIColor.init(red: 60/255, green: 60/255, blue: 60/255, alpha: 1)
-        
+        // 打ち上げ期間の開始日項目の設定
         dateStartLaunch.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
         dateStartLaunch.backgroundColor = UIColor.init(red: 60/255, green: 60/255, blue: 60/255, alpha: 1)
+        // 打ち上げ期間の開始日項目の設定
         dateEndLaunch.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
         dateEndLaunch.backgroundColor = UIColor.init(red: 60/255, green: 60/255, blue: 60/255, alpha: 1)
 
