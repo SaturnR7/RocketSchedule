@@ -1218,12 +1218,12 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="piH-fb-ixK">
-                                <rect key="frame" x="35" y="382" width="355" height="65"/>
+                                <rect key="frame" x="35" y="382" width="350" height="65"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="65" id="sbb-mJ-s7R"/>
                                 </constraints>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="45"/>
+                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="40"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -1292,14 +1292,14 @@
                             <constraint firstItem="cBj-7Q-JqH" firstAttribute="baseline" secondItem="xId-bQ-BLV" secondAttribute="baseline" id="h7m-Sp-iYc"/>
                             <constraint firstItem="6JW-nB-ViX" firstAttribute="leading" secondItem="piH-fb-ixK" secondAttribute="leading" constant="-15" id="hMy-NV-bhq"/>
                             <constraint firstItem="piH-fb-ixK" firstAttribute="top" secondItem="6JW-nB-ViX" secondAttribute="bottom" constant="7" id="inH-x6-fA7"/>
-                            <constraint firstItem="KSL-BI-RiG" firstAttribute="trailing" secondItem="piH-fb-ixK" secondAttribute="trailing" id="jKs-uI-G70"/>
+                            <constraint firstItem="KSL-BI-RiG" firstAttribute="trailing" secondItem="piH-fb-ixK" secondAttribute="trailing" constant="5" id="jKs-uI-G70"/>
                             <constraint firstItem="Fgq-Zq-1pd" firstAttribute="top" secondItem="0qA-jH-f7h" secondAttribute="bottom" constant="8" symbolic="YES" id="klh-Fp-h8b"/>
                             <constraint firstItem="KSL-BI-RiG" firstAttribute="bottom" secondItem="piH-fb-ixK" secondAttribute="bottom" id="nLA-bi-0NI"/>
                             <constraint firstItem="0qA-jH-f7h" firstAttribute="top" secondItem="cBj-7Q-JqH" secondAttribute="bottom" constant="15" id="nPu-vY-iXm"/>
                             <constraint firstItem="6JW-nB-ViX" firstAttribute="top" secondItem="rTW-lr-kop" secondAttribute="bottom" constant="22" id="qbh-qr-L3R"/>
                             <constraint firstItem="cBj-7Q-JqH" firstAttribute="trailing" secondItem="1Ja-Vp-ags" secondAttribute="trailingMargin" id="sX5-HR-fPF"/>
                             <constraint firstItem="0qA-jH-f7h" firstAttribute="trailing" secondItem="Fgq-Zq-1pd" secondAttribute="trailing" constant="50" id="tLL-JD-lSj"/>
-                            <constraint firstItem="6JW-nB-ViX" firstAttribute="trailing" secondItem="piH-fb-ixK" secondAttribute="trailing" id="w69-1x-DNV"/>
+                            <constraint firstItem="6JW-nB-ViX" firstAttribute="trailing" secondItem="piH-fb-ixK" secondAttribute="trailing" constant="5" id="w69-1x-DNV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="qMX-xi-erU"/>
                     </view>
