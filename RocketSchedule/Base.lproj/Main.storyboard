@@ -1162,7 +1162,6 @@
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Fgq-Zq-1pd">
                                 <rect key="frame" x="20" y="139" width="320" height="60"/>
-                                <color key="backgroundColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="Iew-oJ-R5G"/>
                                 </constraints>
@@ -1189,7 +1188,6 @@
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rTW-lr-kop">
                                 <rect key="frame" x="20" y="263" width="320" height="60"/>
-                                <color key="backgroundColor" white="0.2537992295" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="KTC-XW-yUN"/>
                                 </constraints>
@@ -1213,7 +1211,6 @@
                             </label>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KSL-BI-RiG">
                                 <rect key="frame" x="20" y="378" width="370" height="65"/>
-                                <color key="backgroundColor" white="0.2537992295" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="10"/>
@@ -1311,6 +1308,7 @@
                         <outlet property="dateEndLaunch" destination="rTW-lr-kop" id="2Fy-R8-obS"/>
                         <outlet property="dateStartLaunch" destination="Fgq-Zq-1pd" id="ry8-Jr-TAU"/>
                         <outlet property="labelAgency" destination="6JW-nB-ViX" id="DWk-Ke-MMe"/>
+                        <outlet property="labelAgencyBackground" destination="KSL-BI-RiG" id="ctN-81-fLF"/>
                         <outlet property="labelLaunch" destination="0qA-jH-f7h" id="wPE-kD-63v"/>
                         <outlet property="searchLabel" destination="BwW-d1-7jd" id="KbE-Il-ubT"/>
                     </connections>
