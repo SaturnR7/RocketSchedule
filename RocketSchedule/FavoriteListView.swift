@@ -288,6 +288,7 @@ class FavoriteListView: UITableViewController {
 
         // Color
         resultZeroBackgroundView.backgroundColor = UIColor(red: 60/255, green: 60/255, blue: 60/255, alpha: 1)
+//        resultZeroBackgroundView.isUserInteractionEnabled = true
         // 角丸を有効にする
         resultZeroBackgroundView.clipsToBounds = true
         resultZeroBackgroundView.layer.cornerRadius = 10
@@ -426,11 +427,13 @@ class FavoriteListView: UITableViewController {
 //        launchDataLoad()
         if launchDataLoad() == 0{
             resultZeroView.isHidden = false
+            resultZeroBackgroundView.isHidden = false
             zeroMessage.isHidden = false
             zeroMessage_2.isHidden = false
             zeroImageView.isHidden = false
         }else{
             resultZeroView.isHidden = true
+            resultZeroBackgroundView.isHidden = true
             zeroMessage.isHidden = true
             zeroMessage_2.isHidden = true
             zeroImageView.isHidden = true

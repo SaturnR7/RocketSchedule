@@ -64,8 +64,15 @@ class ResultListViewController: UITableViewController {
     var indicatorView: UIView!
     // 0件用のUIViewを宣言
     var resultZeroView: UIView!
-
     
+    // 0件用メッセージ
+    var zeroMessage = UILabel()
+    var zeroMessage2 = UILabel()
+
+    // 検索結果0件用画像
+    var zeroImage = UIImage()
+    var zeroImageView = UIImageView()
+
     @IBOutlet weak var buttonSearch: UIBarButtonItem!
     
     @IBAction func searchRocket(_ sender: Any) {
@@ -189,7 +196,7 @@ class ResultListViewController: UITableViewController {
     func enableResultZeroView() {
         
         // init Boundsで全画面にviewを表示
-        self.resultZeroView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height))
+        self.resultZeroView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.bounds.width, height: 1200))
         let bgColor = UIColor.init(red: 38/255, green: 38/255, blue: 38/255, alpha: 1)
         self.resultZeroView.backgroundColor = bgColor
         self.resultZeroView.isUserInteractionEnabled = true
@@ -198,17 +205,80 @@ class ResultListViewController: UITableViewController {
         // 検索0件の時だけこのviewを表示するため、それ以外は非表示にする。
         self.resultZeroView.isHidden = true
     }
-    var zeroMessage = UILabel()
-    
+
     // 0件用のUIViewを表示
-    func enableIndicatorViewZero() {
+//    func enableIndicatorViewZero() {
+//
+//        // 0件メッセージ
+//        self.zeroMessage = UILabel.init(frame: CGRect.init(x: 20, y: 20, width: 200, height: 10))
+//        self.zeroMessage.text = "該当なし"
+//        self.zeroMessage.textColor = UIColor.white
+//        self.zeroMessage.font = UIFont.init(name: "Futura", size: 20)
+//        self.view.addSubview(self.zeroMessage)
+//
+//    }
+
+    // 0件用の画像を表示
+    func enableImageForZero() {
+        
+        zeroImage = UIImage(named: "For_No_result_300")!
+        zeroImageView = UIImageView(image: zeroImage)
+        
+        // 制約を設定するためレイアウトの矛盾を防ぐ
+        zeroImageView.translatesAutoresizingMaskIntoConstraints = false
+
+        // 画像の縦横サイズを取得
+        let imgWidth: CGFloat = zeroImage.size.width
+        let imgHeight: CGFloat = zeroImage.size.height
+        
+        // UIImageViewのインスタンスをビューに追加
+        self.view.addSubview(zeroImageView)
+        
+        // 画像ビューの制約を設定する
+        // 画像の幅に対して任意の数値に設定、制約を有効にする
+        zeroImageView.widthAnchor.constraint(equalToConstant: imgWidth * 0.7).isActive = true
+        // 画像の高さに対して任意の数値に設定、制約を有効にする
+        zeroImageView.heightAnchor.constraint(equalToConstant: imgHeight * 0.7).isActive = true
+        // X座標軸の中心を親Viewと合わせる制約を有効にする
+        zeroImageView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        // 0件用のビューに対して上端から何ポイントと離すか定義する
+        zeroImageView.topAnchor.constraint(equalTo: resultZeroView.topAnchor, constant: 45).isActive = true
+    }
+    
+    // 0件用のメッセージを表示
+    func enableMessageViewZero() {
         
         // 0件メッセージ
-        self.zeroMessage = UILabel.init(frame: CGRect.init(x: 20, y: 20, width: 200, height: 10))
-        self.zeroMessage.text = "該当なし"
-        self.zeroMessage.textColor = UIColor.white
-        self.zeroMessage.font = UIFont.init(name: "Futura", size: 20)
-        self.view.addSubview(self.zeroMessage)
+        // 制約設定時は必須の処理
+        // 制約を設定するためレイアウトの矛盾を防ぐ
+        zeroMessage.translatesAutoresizingMaskIntoConstraints = false
+
+        zeroMessage.textAlignment = NSTextAlignment.center
+        zeroMessage.text = "一致するロケット情報はありませんでした"
+        zeroMessage.textColor = UIColor.white
+        zeroMessage.font = UIFont.init(name: "Futura-Bold", size: 17)
+        view.addSubview(self.zeroMessage)
+        
+        // 0件用のビューに対して上端から何ポイントと離すか定義する
+        zeroMessage.topAnchor.constraint(equalTo: resultZeroView.topAnchor, constant: 270).isActive = true
+        // X座標軸の中心を親Viewと合わせる制約を有効にする
+        zeroMessage.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+
+        // 0件メッセージ2
+        // 制約設定時は必須の処理
+        // 制約を設定するためレイアウトの矛盾を防ぐ
+        zeroMessage2.translatesAutoresizingMaskIntoConstraints = false
+
+        zeroMessage2.textAlignment = NSTextAlignment.center
+        zeroMessage2.text = "検索条件を変えてみてください"
+        zeroMessage2.textColor = UIColor.gray
+        zeroMessage2.font = UIFont.init(name: "Futura", size: 13)
+        view.addSubview(self.zeroMessage2)
+        
+        // 0件用のビューに対して上端から何ポイントと離すか定義する
+        zeroMessage2.topAnchor.constraint(equalTo: resultZeroView.topAnchor, constant: 300).isActive = true
+        // X座標軸の中心を親Viewと合わせる制約を有効にする
+        zeroMessage2.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
 
     }
 
@@ -233,9 +303,13 @@ class ResultListViewController: UITableViewController {
         // 0件用のviewを生成
         enableResultZeroView()
         
-        // 0件メッセージの表示
-        enableIndicatorViewZero()
-
+        // 0件メッセージの生成
+//        enableIndicatorViewZero()
+        enableMessageViewZero()
+        
+        // 0件用画像の生成
+        enableImageForZero()
+        
         // インジケーターアイコンの生成
         activityIndicator()
         
@@ -263,8 +337,10 @@ class ResultListViewController: UITableViewController {
         print("searchEndLaunch: \(searchEndLaunch)")
         
         // 0件用のUIを初期化（非表示）
-        self.zeroMessage.isHidden = true
-        self.resultZeroView.isHidden = true
+        zeroMessage.isHidden = true
+        zeroMessage2.isHidden = true
+        resultZeroView.isHidden = true
+        zeroImageView.isHidden = true
 
         // インジケーターの表示・JSONロードの判定
         // 呼び出し元によって、以下switch-caseの処理を実行する。
@@ -385,8 +461,10 @@ class ResultListViewController: UITableViewController {
             if resultZero {
                 // インジケーター用のViewを最前面に表示
 //                self.view.bringSubviewToFront(self.resultZeroView)
-                self.resultZeroView.isHidden = false
-                self.zeroMessage.isHidden = false
+                resultZeroView.isHidden = false
+                zeroMessage.isHidden = false
+                zeroMessage2.isHidden = false
+                zeroImageView.isHidden = false
             }
             print("OUT - default")
         }
@@ -432,18 +510,21 @@ class ResultListViewController: UITableViewController {
                             
                             // 0件用viewの表示
                             self.resultZeroView.isHidden = false
+                            
                             // インジケーターviewの非表示
                             self.indicatorView.isHidden = true
-
                             // インジケーター用のViewを最前面に表示
 //                            self.view.bringSubviewToFront(self.indicatorZeroView)
-
                             // インジケーターアイコンを非表示
                             self.indicator.stopAnimating()
                             
                             // 0件メッセージの表示
 //                            self.enableIndicatorViewZero()
                             self.zeroMessage.isHidden = false
+                            self.zeroMessage2.isHidden = false
+
+                            // 0件用画像の表示
+                            self.zeroImageView.isHidden = false
                             
                             // 検索後は検索ボタンを有効化
                             self.buttonSearch.isEnabled = true
