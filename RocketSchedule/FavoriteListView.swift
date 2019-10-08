@@ -266,7 +266,7 @@ class FavoriteListView: UITableViewController {
     func enableResultZeroView() {
         
         // init Boundsで全画面にviewを表示
-        resultZeroView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height))
+        resultZeroView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.bounds.width, height: 1200))
         let bgColor = UIColor.init(red: 38/255, green: 38/255, blue: 38/255, alpha: 1)
         resultZeroView.backgroundColor = bgColor
         resultZeroView.isUserInteractionEnabled = true
@@ -288,6 +288,7 @@ class FavoriteListView: UITableViewController {
 
         // Color
         resultZeroBackgroundView.backgroundColor = UIColor(red: 60/255, green: 60/255, blue: 60/255, alpha: 1)
+//        resultZeroBackgroundView.backgroundColor = UIColor(red: 91/255, green: 91/255, blue: 91/255, alpha: 1)
 //        resultZeroBackgroundView.isUserInteractionEnabled = true
         // 角丸を有効にする
         resultZeroBackgroundView.clipsToBounds = true
@@ -304,11 +305,11 @@ class FavoriteListView: UITableViewController {
         // 画像の幅に対して任意の数値に設定、制約を有効にする
         resultZeroBackgroundView.widthAnchor.constraint(equalToConstant: 350).isActive = true
         // 画像の高さに対して任意の数値に設定、制約を有効にする
-        resultZeroBackgroundView.heightAnchor.constraint(equalToConstant: 370).isActive = true
+        resultZeroBackgroundView.heightAnchor.constraint(equalToConstant: 330).isActive = true
         // X座標軸の中心を親Viewと合わせる制約を有効にする
         resultZeroBackgroundView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         // 0件用のビューに対して上端から何ポイントと離すか定義する
-        resultZeroBackgroundView.topAnchor.constraint(equalTo: resultZeroView.topAnchor, constant: 15).isActive = true
+        resultZeroBackgroundView.topAnchor.constraint(equalTo: resultZeroView.topAnchor, constant: 70).isActive = true
 
         // 検索0件の時だけこのviewを表示するため、それ以外は非表示にする。
         resultZeroBackgroundView.isHidden = true
@@ -334,7 +335,7 @@ class FavoriteListView: UITableViewController {
         self.view.addSubview(self.zeroMessage)
         
         // 0件用のビューに対して上端から何ポイントと離すか定義する
-        zeroMessage.topAnchor.constraint(equalTo: resultZeroView.topAnchor, constant: 30).isActive = true
+        zeroMessage.topAnchor.constraint(equalTo: resultZeroView.topAnchor, constant: 35).isActive = true
         // X座標軸の中心を親Viewと合わせる制約を有効にする
         zeroMessage.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
 
@@ -355,7 +356,7 @@ class FavoriteListView: UITableViewController {
         view.addSubview(self.zeroMessage_2)
         
         // 0件用のビューに対して上端から何ポイントと離すか定義する
-        zeroMessage_2.topAnchor.constraint(equalTo: resultZeroView.topAnchor, constant: 350).isActive = true
+        zeroMessage_2.topAnchor.constraint(equalTo: resultZeroView.topAnchor, constant: 370).isActive = true
         // X座標軸の中心を親Viewと合わせる制約を有効にする
         zeroMessage_2.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
 
@@ -403,7 +404,7 @@ class FavoriteListView: UITableViewController {
 //        // Y座標軸の中人を親Viewと合わせる制約を有効にする
 //        zeroImageView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
         // 0件用のビューに対して上端から何ポイントと離すか定義する
-        zeroImageView.topAnchor.constraint(equalTo: resultZeroView.topAnchor, constant: 45).isActive = true
+        zeroImageView.topAnchor.constraint(equalTo: resultZeroView.topAnchor, constant: 70).isActive = true
     }
 
     //リフレッシュ処理
