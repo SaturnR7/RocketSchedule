@@ -45,7 +45,7 @@ class SettingNotifyViewController: UITableViewController {
         print("SettingsNotifyViewController - viewDidLoad - Start")
         
         // 項目間の区切り線の色を変更する
-        self.tableView.separatorColor = .gray
+//        self.tableView.separatorColor = .gray
         
         // ナビゲーションバーのタイトルを設定
         self.navigationItem.title = "通知設定"

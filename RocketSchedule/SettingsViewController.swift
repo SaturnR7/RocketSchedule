@@ -93,8 +93,10 @@ class SettingsViewController: UITableViewController {
         checkNotificationSetting()
         
         // 項目間の区切り線の色を変更する
-        self.tableView.separatorColor = .gray
-
+//        self.tableView.separatorColor = .gray
+        
+        self.tableView.layer.cornerRadius = 15
+        
 //        //ディクショナリ形式で初期値を指定できる
 //        notifyTime.register(defaults: ["ChangeTime" : 10])
         
@@ -201,9 +203,17 @@ class SettingsViewController: UITableViewController {
 
         switch indexPath {
         case [0,0]:
+//            cell.layer.cornerRadius = 15
+//            cell.separatorInset =
+//                UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
+//            cell.frame = CGRect.init(x: 0, y: 0, width: 50, height: 50)
+            //         indicator.layer.cornerRadius = 10
             cell.accessoryView = UIImageView(image: UIImage(named: "Disclosure-Original_01.png"))
         case [1,0]:
+//            cell.layer.cornerRadius = 15
             cell.accessoryView = UIImageView(image: UIImage(named: "Disclosure-Original_01.png"))
+//        case [1,1]:
+//        case [1,2]:
         default:
             break
         }

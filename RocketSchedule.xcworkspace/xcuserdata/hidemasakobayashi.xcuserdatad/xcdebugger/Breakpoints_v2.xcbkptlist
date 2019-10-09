@@ -102,7 +102,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "598"
             endingLineNumber = "598"
-            landmarkName = "loadImage(urlString:)"
+            landmarkName = "rocketImageDownload()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

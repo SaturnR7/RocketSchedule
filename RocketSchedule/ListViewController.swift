@@ -149,6 +149,8 @@ class ListViewController: UITableViewController {
 //            cell.imageNotify.isHidden = true
 //        }
 
+//        cell.layer.cornerRadius = 20
+        
         print("ListViewController - tableView cellForRowAt end")
 
         return cell
