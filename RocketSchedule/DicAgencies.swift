@@ -13,6 +13,7 @@ struct DicAgencies {
     
     // 機関名を追加した場合は、「SearchRoketViewController.swift」-
     // 「func makeAgenciesDictionary」の機関名配列も同様に追加する。
+    // [String(abbrev),String(表示用名称)]
     private let agencies: [String:String]
         = [
            "VKO":"ロシア宇宙軍",
@@ -23,7 +24,10 @@ struct DicAgencies {
            "NASA":"NASA(アメリカ航空宇宙局)",
            "JAXA":"JAXA(宇宙航空研究開発機構)",
            "SpX":"SPACEX(アメリカ)",
-           "ASA":"アリアンスペース(欧州)"
+           "ASA":"アリアンスペース(欧州)",
+           "NASDA":"NASDA(宇宙開発事業団[現JAXA])",
+           "RL":"Rocket Lab(アメリカ)",
+           "NRO":"NRO(アメリカ国家偵察局)"
           ]
     
     func getAgencyOfJapanese(key: String) -> String{

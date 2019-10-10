@@ -72,6 +72,9 @@ class ResultListViewController: UITableViewController {
     // 検索結果0件用画像
     var zeroImage = UIImage()
     var zeroImageView = UIImageView()
+    
+    // ImageURL解像度変更クラス
+    var replaceImageSizeURL = ReplaceImageSizeURL()
 
     @IBOutlet weak var buttonSearch: UIBarButtonItem!
     
@@ -141,7 +144,11 @@ class ResultListViewController: UITableViewController {
         print("tableView - Before ImageURL: \(self.viewRocketPlanData[indexPath.row].rocketImageURL)")
         //        // 画像の設定.
         //        let myImage:UIImage = UIImage(named:"Atlas+V+551_480")!
-        let replacedImageURL = self.viewRocketPlanData[indexPath.row].rocketImageURL.replacingOccurrences(of: "_1920.png", with: "_480.png")
+//        let replacedImageURL = self.viewRocketPlanData[indexPath.row].rocketImageURL.replacingOccurrences(of: "_1920", with: "_480")
+        
+        // ImageURLの解像度を480に置き換える
+        let replacedImageURL = replaceImageSizeURL.replacingValue(value: self.viewRocketPlanData[indexPath.row].rocketImageURL)
+
         print("tableView - After ImageURL: \(replacedImageURL)")
         //        loadImage(urlString: replacedImageURL)
         cell.rocketImageSetCell(imageUrl: replacedImageURL)
@@ -162,6 +169,12 @@ class ResultListViewController: UITableViewController {
         
     }
     
+    // Cell Heght
+    // セルの高さを指定
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 225
+    }
+
     func activityIndicator() {
         
         indicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 70, height: 70))

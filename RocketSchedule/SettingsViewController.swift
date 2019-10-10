@@ -75,6 +75,43 @@ class SettingsViewController: UITableViewController {
             }
     }
     
+    @IBAction func tapUrlLink(_ sender: Any) {
+        
+        // ① UIAlertControllerクラスのインスタンスを生成
+        // タイトル, メッセージ, Alertのスタイルを指定する
+        // 第3引数のpreferredStyleでアラートの表示スタイルを指定する
+        let alert: UIAlertController = UIAlertController(title: "リンク先をブラウザで開きます", message: "", preferredStyle:  UIAlertController.Style.alert)
+
+        // ② Actionの設定
+        // Action初期化時にタイトル, スタイル, 押された時に実行されるハンドラを指定する
+        // 第3引数のUIAlertActionStyleでボタンのスタイルを指定する
+        // OKボタン
+        let defaultAction: UIAlertAction = UIAlertAction(title: "開く", style: UIAlertAction.Style.default, handler:{
+            // ボタンが押された時の処理を書く（クロージャ実装）
+            (action: UIAlertAction!) -> Void in
+            print("「設定」タップ")
+            
+            // iOSの設定画面へ遷移
+            UIApplication.shared.open(URL(string: "https://launchlibrary.net/")! as URL,options: [:],completionHandler: nil)
+
+        })
+        // キャンセルボタン
+        let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertAction.Style.cancel, handler:{
+            // ボタンが押された時の処理を書く（クロージャ実装）
+            (action: UIAlertAction!) -> Void in
+            print("「キャンセル」タップ")
+        })
+
+        // ③ UIAlertControllerにActionを追加
+        alert.addAction(cancelAction)
+        alert.addAction(defaultAction)
+
+        // ④ Alertを表示
+        present(alert, animated: true, completion: nil)
+
+        
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -203,17 +240,21 @@ class SettingsViewController: UITableViewController {
 
         switch indexPath {
         case [0,0]:
-//            cell.layer.cornerRadius = 15
-//            cell.separatorInset =
-//                UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
+            cell.layer.cornerRadius = 15
 //            cell.frame = CGRect.init(x: 0, y: 0, width: 50, height: 50)
             //         indicator.layer.cornerRadius = 10
             cell.accessoryView = UIImageView(image: UIImage(named: "Disclosure-Original_01.png"))
+//            cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
         case [1,0]:
-//            cell.layer.cornerRadius = 15
+            cell.layer.cornerRadius = 15
+            cell.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
             cell.accessoryView = UIImageView(image: UIImage(named: "Disclosure-Original_01.png"))
+//            cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
+            
 //        case [1,1]:
-//        case [1,2]:
+        case [1,2]:
+            cell.layer.cornerRadius = 15
+            cell.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         default:
             break
         }
@@ -233,9 +274,10 @@ class SettingsViewController: UITableViewController {
         // Launch Libraryの輪作先を開く
         // 「データ提供元」タップ時の動作（Launch Libraryのリンク先を開く）
 //        case [1,0]:
-        case [1,1]:
-            print("indexPath : \(indexPath)")
-            UIApplication.shared.open(URL(string: "https://launchlibrary.net/")! as URL,options: [:],completionHandler: nil)
+            
+//        case [1,1]:
+//            print("indexPath : \(indexPath)")
+//            UIApplication.shared.open(URL(string: "https://launchlibrary.net/")! as URL,options: [:],completionHandler: nil)
             
         // selection=none の場合、処理遅延（アラート表示が遅れる）ため、
         // tapRecognizerを利用してタップ時の動作を実装したので、以下はコメント化する

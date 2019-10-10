@@ -96,7 +96,8 @@ class CustomTableViewCell: UITableViewCell {
 //
 //        }
         
-        
+        print("self.rocketImageViewCell.frame.maxY: \(self.rocketImageViewCell.frame.maxY)")
+
         // httpからダウンロードするパターン
         let url = URL(string: imageUrl)!
         URLSession.shared.dataTask(with: url) {(data, response, error) in
@@ -129,8 +130,8 @@ class CustomTableViewCell: UITableViewCell {
                     
                     self.rocketImageViewCell.image =
                         original?.cropping(to: CGRect(
-                            x:      Int(original!.size.width/3),
-                            y:      Int(original!.size.height/3),
+                            x:      Int(original!.size.width/13),
+                            y:      Int(original!.size.height/6),
                             width:  Int(self.rocketImageViewCell.frame.maxX),
                             height: Int(self.rocketImageViewCell.frame.maxY)))
                 }
@@ -150,6 +151,7 @@ extension UIImage {
         var opaque = false
         
         if let cgImage = cgImage {
+            
             switch cgImage.alphaInfo {
             case .noneSkipLast, .noneSkipFirst:
                 opaque = true
@@ -161,8 +163,11 @@ extension UIImage {
         UIGraphicsBeginImageContextWithOptions(to.size, opaque, scale)
         
         draw(at: CGPoint(x: -to.origin.x, y: -to.origin.y))
+        
         let result = UIGraphicsGetImageFromCurrentImageContext()
+        
         UIGraphicsEndImageContext()
+        
         return result
     }
 }

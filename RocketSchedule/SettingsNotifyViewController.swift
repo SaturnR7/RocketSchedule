@@ -119,14 +119,18 @@ class SettingNotifyViewController: UITableViewController {
     }
     
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        // super 呼び出しでセルを取得
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
+
+        switch indexPath {
+        case [0,0]:
+            cell.layer.cornerRadius = 15
+        default:
+            break
+        }
         
+        return cell
     }
-    
-    
-    
-    
-    
-    
 }

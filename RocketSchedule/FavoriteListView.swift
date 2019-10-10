@@ -77,6 +77,9 @@ class FavoriteListView: UITableViewController {
     // Realm
 //    let realm = try! Realm()
     
+    // ImageURL解像度変更クラス
+    var replaceImageSizeURL = ReplaceImageSizeURL()
+    
     // Select cell swipe to the left
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
@@ -200,11 +203,16 @@ class FavoriteListView: UITableViewController {
         cell.labelMissionName?.text =
             rocketEng2Jpn.checkStringSpecifyRocketName(name: arrayFavoriteLaunches[indexPath.row].missionName)
 
-        
+        print("tableView before loadImage - cell.rocketImageViewCell.frame.maxY: \(cell.rocketImageViewCell.frame.maxY)")
+
         // ロケット画像の表示
         print("tableView - Before ImageURL: \(self.arrayFavoriteLaunches[indexPath.row].rocketImageURL)")
-        let replacedImageURL = self.arrayFavoriteLaunches[indexPath.row].rocketImageURL.replacingOccurrences(of: "_1920.png", with: "_480.png")
+        
+//        let replacedImageURL = self.arrayFavoriteLaunches[indexPath.row].rocketImageURL.replacingOccurrences(of: "_1920", with: "_480")
+        let replacedImageURL = replaceImageSizeURL.replacingValue(value: self.arrayFavoriteLaunches[indexPath.row].rocketImageURL)
+        
         print("tableView - After ImageURL: \(replacedImageURL)")
+        
         cell.rocketImageSetCell(imageUrl: replacedImageURL)
         
         
@@ -212,6 +220,12 @@ class FavoriteListView: UITableViewController {
         
 
         return cell
+    }
+    
+    // Cell Heght
+    // セルの高さを指定
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 225
     }
     
     override func viewDidLoad() {
@@ -228,6 +242,8 @@ class FavoriteListView: UITableViewController {
         // cell borderline size
         tableView.separatorInset =
             UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20);
+        
+        tableView.separatorColor = .white
 
         // お気に入り0件用のviewを生成
         enableResultZeroView()
@@ -420,12 +436,9 @@ class FavoriteListView: UITableViewController {
         print("In refresh End")
     }
     
-
-    override func viewDidAppear(_ animated: Bool){
-        super.viewDidAppear(animated)
+    // viewが表示される直前に呼ばれる
+    override func viewWillAppear(_ animated: Bool) {
         
-        // Read Realm Data
-//        launchDataLoad()
         if launchDataLoad() == 0{
             resultZeroView.isHidden = false
             resultZeroBackgroundView.isHidden = false
@@ -439,8 +452,36 @@ class FavoriteListView: UITableViewController {
             zeroMessage_2.isHidden = true
             zeroImageView.isHidden = true
         }
-        
+
         tableView.reloadData()
+
+    }
+
+    override func viewDidAppear(_ animated: Bool){
+        super.viewDidAppear(animated)
+        
+//        if launchDataLoad() == 0{
+//            resultZeroView.isHidden = false
+//            resultZeroBackgroundView.isHidden = false
+//            zeroMessage.isHidden = false
+//            zeroMessage_2.isHidden = false
+//            zeroImageView.isHidden = false
+//        }else{
+//            resultZeroView.isHidden = true
+//            resultZeroBackgroundView.isHidden = true
+//            zeroMessage.isHidden = true
+//            zeroMessage_2.isHidden = true
+//            zeroImageView.isHidden = true
+//        }
+//
+//        tableView.reloadData()
+        
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        
+        print("called viewDidDisappear")
+        
         
     }
 

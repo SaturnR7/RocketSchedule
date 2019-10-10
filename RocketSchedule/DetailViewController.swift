@@ -67,6 +67,7 @@ class DetailViewController : UIViewController {
     var notifySwitch: Bool!
     var agency: String = ""
     var agencyFormalName: String = ""
+    var agencyForFavorite: String = ""
     var agencyURL: String = ""
     var missionName: String = ""
 
@@ -165,7 +166,25 @@ class DetailViewController : UIViewController {
         
         // 機関名をラベル表示用にするため、Dictionaryから日本語表記名を取得する
         let dicAgencies = DicAgencies()
-        let agency = dicAgencies.getAgencyOfJapanese(key: self.agency)
+        var agency = dicAgencies.getAgencyOfJapanese(key: self.agency)
+
+        if agency == "ー" {
+            print("DetailRocketViewController - viewDidLoad - agency No exist")
+            
+            if self.agencyFormalName == ""{
+                agency = self.agency
+            }else{
+                agency = self.agencyFormalName
+            }
+        }
+        
+        // お気に入り登録用にagencyを設定する
+        self.agencyForFavorite = agency
+        
+        print("DetailRocketViewController - viewDidLoad - agency: \(agency)")
+        print("DetailRocketViewController - viewDidLoad - agencyFormalName: \(self.agencyFormalName)")
+
+
         print("DetailRocketViewController - viewDidLoad - agency: \(agency)")
         labelAgency.text = agency
 
@@ -416,10 +435,10 @@ class DetailViewController : UIViewController {
         author.launchDate = self.launchDate
         
         // 機関名をラベル表示用にするため、Dictionaryから日本語表記名を取得して登録する
-        let dicAgencies = DicAgencies()
-        let agency = dicAgencies.getAgencyOfJapanese(key: self.agency)
-        print("DetailRocketViewController - addafavorite - agency: \(self.agency)")
-        author.agency = self.agency
+//        let dicAgencies = DicAgencies()
+//        let agency = dicAgencies.getAgencyOfJapanese(key: self.agency)
+        print("DetailRocketViewController - addafavorite - agency: \(self.agencyForFavorite)")
+        author.agency = self.agencyForFavorite
         
         // URL of RocketImage save to
         if let rocketImageURL = self.rocketImageURL{

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B6044E6E234DDC340035D8D0 /* ReplaceImageSizeURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6044E6D234DDC330035D8D0 /* ReplaceImageSizeURL.swift */; };
 		B60B3B1B2201C97000ADC711 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60B3B1A2201C97000ADC711 /* DetailViewController.swift */; };
 		B60B3B1F22045EDC00ADC711 /* CustomTableViewCellDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60B3B1E22045EDC00ADC711 /* CustomTableViewCellDetail.swift */; };
 		B6107ED322CDAA4D00932B1B /* StructRealmFavoriteData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6107ED222CDAA4D00932B1B /* StructRealmFavoriteData.swift */; };
@@ -71,6 +72,7 @@
 		1845EC9FEA8BD028B22707C7 /* Pods-RocketSchedule.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RocketSchedule.debug.xcconfig"; path = "Target Support Files/Pods-RocketSchedule/Pods-RocketSchedule.debug.xcconfig"; sourceTree = "<group>"; };
 		30F5A9B96ECE5CD5E58DECCB /* Pods-RocketSchedule.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RocketSchedule.release.xcconfig"; path = "Target Support Files/Pods-RocketSchedule/Pods-RocketSchedule.release.xcconfig"; sourceTree = "<group>"; };
 		5E504C709F181CBCABF35098 /* Pods_RocketSchedule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RocketSchedule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B6044E6D234DDC330035D8D0 /* ReplaceImageSizeURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceImageSizeURL.swift; sourceTree = "<group>"; };
 		B60B3B1A2201C97000ADC711 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		B60B3B1E22045EDC00ADC711 /* CustomTableViewCellDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCellDetail.swift; sourceTree = "<group>"; };
 		B6107ED222CDAA4D00932B1B /* StructRealmFavoriteData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructRealmFavoriteData.swift; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 				B6686E4B222E54C100B6CC75 /* SearchRoketViewController.swift */,
 				B69B6AEE22BB61F500C691BD /* SearchAgencyViewController.swift */,
 				B6B8C40F22C5BF4300EFEB2F /* FavoriteListView.swift */,
+				B6044E6D234DDC330035D8D0 /* ReplaceImageSizeURL.swift */,
 				B61B517723209BB60091D95F /* SettingsViewController.swift */,
 				B64B9B8323445F6C008265F9 /* SettingsNotifyViewController.swift */,
 				B6D9B464232A22EC002D5319 /* PurchaseViewController.swift */,
@@ -375,6 +378,7 @@
 				B621076B22708D2200CA76E8 /* StructViewPlans.swift in Sources */,
 				B6B8C41022C5BF4300EFEB2F /* FavoriteListView.swift in Sources */,
 				B692B4382318EFDF001717E2 /* RocketImageViewController.swift in Sources */,
+				B6044E6E234DDC340035D8D0 /* ReplaceImageSizeURL.swift in Sources */,
 				B6A66F7422A4F8D2003CDA1B /* DetailRocketViewController.swift in Sources */,
 				B6D8BC292229F61D000B590E /* ResultListViewController.swift in Sources */,
 				B6D9446922C5EEF800B4B968 /* FavoriteObject.swift in Sources */,

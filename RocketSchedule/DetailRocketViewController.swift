@@ -212,9 +212,20 @@ class DetailRocketViewController : UIViewController {
         
         // Agency Name
         // 機関名をラベル表示用にするため、Dictionaryから日本語表記名を取得する
+        // ラベル表示用の機関名が取得できなかった場合は、英語の機関名を表示する
         let dicAgencies = DicAgencies()
-        let agency = dicAgencies.getAgencyOfJapanese(key: self.agency)
+        var agency = dicAgencies.getAgencyOfJapanese(key: self.agency)
+        if agency == "ー" {
+            print("DetailRocketViewController - viewDidLoad - agency No exist")
+            
+            if self.agencyFormalName == ""{
+                agency = self.agency
+            }else{
+                agency = self.agencyFormalName
+            }
+        }
         print("DetailRocketViewController - viewDidLoad - agency: \(agency)")
+        print("DetailRocketViewController - viewDidLoad - agencyFormalName: \(self.agencyFormalName)")
         labelAgency.text = agency
 
         // Rocket Image Load

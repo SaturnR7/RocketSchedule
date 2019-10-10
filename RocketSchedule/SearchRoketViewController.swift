@@ -94,6 +94,7 @@ class SearchRoketViewController: UIViewController {
         "アリアンスペース(欧州)",
         "中国航天科技集団",
         "インド宇宙研究機関"
+//        "NASDA(現JAXA)"
     ]
     
     // Agencies Dictinary
@@ -479,6 +480,7 @@ class SearchRoketViewController: UIViewController {
         agenciesDictionary["アリアンスペース(欧州)"] = "ASA"
         agenciesDictionary["中国航天科技集団"] = "CASC"
         agenciesDictionary["インド宇宙研究機関"] = "ISRO"
+//        agenciesDictionary["NASDA(現JAXA)"] = "NASDA"
 
     }
     
