@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import AudioToolbox
 
 // Using State Pettern
 
@@ -30,6 +31,15 @@ class RocketNotAddedAsFavorite: NSObject, RocketFavoriteState{
     func buttonFavoriteTapped(detailViewController: DetailViewController){
         detailViewController.addafavorite()
         detailViewController.setState(state: RocketAddedAsFavorite())
+        
+        // 登録時は弱いバイブレーションを鳴らす
+        shortVibrate()
+    }
+
+    // Vibration
+    func shortVibrate() {
+        AudioServicesPlaySystemSound(1519);
+        AudioServicesDisposeSystemSoundID(1519);
     }
 }
 

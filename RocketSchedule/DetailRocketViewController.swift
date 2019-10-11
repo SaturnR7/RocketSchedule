@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import RealmSwift
 import UserNotifications
+import AudioToolbox
 
 class DetailRocketViewController : UIViewController {
     
@@ -48,6 +49,9 @@ class DetailRocketViewController : UIViewController {
         
         if(sender.isOn){
             
+            // 振動
+            shortVibrate()
+            
             //ロケット情報の通知登録
             // Notification通知を送る（通知を送りたい箇所に書く。例えば何らかのボタンを押した際の処理の中等）
             notificationCenter.post(name: .myNotificationRocketAdd, object: nil)
@@ -78,6 +82,13 @@ class DetailRocketViewController : UIViewController {
     
     
     @IBOutlet weak var imageRocket: UIImageView!
+    
+    // Vibration
+    func shortVibrate() {
+        
+        AudioServicesPlaySystemSound(1102);
+        AudioServicesDisposeSystemSoundID(1102);
+    }
     
     override func viewDidLoad(){
         super.viewDidLoad()
@@ -176,11 +187,13 @@ class DetailRocketViewController : UIViewController {
 
                 if !self.notifySwitchForSetting {
                     
+//                    self.notifyOutletSwitch.isOn = false
                     self.notifyOutletSwitch.isEnabled = false
-                    self.imageNotify.isHidden = true
+//                    self.imageNotify.isHidden = true
                     
                 }else{
                     
+//                    self.notifyOutletSwitch.isOn = true
                     self.notifyOutletSwitch.isEnabled = true
                     self.imageNotify.isHidden = false
                     
@@ -224,6 +237,12 @@ class DetailRocketViewController : UIViewController {
                 agency = self.agencyFormalName
             }
         }
+        
+        // 遷移元の機関名がもともと"ー"の場合は、リンク先がまいため、機関名の色は白に設定
+        if self.agency == "ー"{
+            labelAgency.textColor = UIColor.white
+        }
+
         print("DetailRocketViewController - viewDidLoad - agency: \(agency)")
         print("DetailRocketViewController - viewDidLoad - agencyFormalName: \(self.agencyFormalName)")
         labelAgency.text = agency

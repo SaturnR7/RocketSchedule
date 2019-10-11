@@ -88,7 +88,6 @@ class DetailViewController : UIViewController {
     // ロケット名日本語変換クラス
     var rocketEng2Jpn = RocketNameEng2Jpn()
 
-    
     override func viewDidLoad(){
         super.viewDidLoad()
         
@@ -165,9 +164,11 @@ class DetailViewController : UIViewController {
         
         
         // 機関名をラベル表示用にするため、Dictionaryから日本語表記名を取得する
+        labelAgency.textColor = UIColor.init(red: 31/255, green: 144/255, blue: 255/255, alpha: 1)
         let dicAgencies = DicAgencies()
         var agency = dicAgencies.getAgencyOfJapanese(key: self.agency)
 
+        // 機関名取得クラスから機関名が取得できなかった場合「ー」→機関名の略語か、英語の正式名をagencyに設定する
         if agency == "ー" {
             print("DetailRocketViewController - viewDidLoad - agency No exist")
             
@@ -176,8 +177,14 @@ class DetailViewController : UIViewController {
             }else{
                 agency = self.agencyFormalName
             }
+
         }
         
+        // 遷移元の機関名がもともと"ー"の場合は、リンク先がまいため、機関名の色は白に設定
+        if self.agency == "ー"{
+            labelAgency.textColor = UIColor.white
+        }
+
         // お気に入り登録用にagencyを設定する
         self.agencyForFavorite = agency
         

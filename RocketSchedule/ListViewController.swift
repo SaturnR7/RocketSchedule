@@ -161,6 +161,12 @@ class ListViewController: UITableViewController {
 
 //        cell.layer.cornerRadius = 20
         
+        // ２件目以降のロケット情報の時刻を非表示
+//        if indexPath != [0,0]{
+//            cell.labelLaunchTime.isHidden = true
+//
+//        }
+        
         print("ListViewController - tableView cellForRowAt end")
 
         return cell
