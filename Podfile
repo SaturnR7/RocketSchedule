@@ -8,4 +8,5 @@ target 'RocketSchedule' do
   # Pods for RocketSchedule
   pod 'RealmSwift'
   pod 'SwiftyStoreKit'
+  pod 'SkeletonView'
 end

@@ -11,6 +11,7 @@ import UIKit
 import RealmSwift
 import UserNotifications
 import AudioToolbox
+import SkeletonView
 
 class DetailRocketViewController : UIViewController {
     
@@ -342,6 +343,18 @@ class DetailRocketViewController : UIViewController {
     
     func loadImage(urlString: String) {
         
+        // Rocket Image View Skeleton
+        imageRocket.isSkeletonable = true
+        let gradient =
+            SkeletonGradient(baseColor: UIColor.init(red: 50/255, green: 50/255, blue: 50/255, alpha: 1))
+//        imageRocket.showGradientSkeleton()
+//        imageRocket.showAnimatedGradientSkeleton(usingGradient: gradient)
+//        imageRocket.showAnimatedSkeleton()
+        
+        // Skeleton:上から下へ・流れる速度は0.25秒
+        let animation = SkeletonAnimationBuilder().makeSlidingAnimation(withDirection: .topBottom)
+        imageRocket.showAnimatedGradientSkeleton(usingGradient: gradient, animation: animation, transition: .crossDissolve(0.25))
+
         // ロケット画像なしの場合は共通のロケット画像を使用するので、
         // ダウンロードせずローカル画像を使用する。
         if urlString == "https://s3.amazonaws.com/launchlibrary/RocketImages/placeholder_1920.png"{
@@ -349,6 +362,9 @@ class DetailRocketViewController : UIViewController {
             self.imageRocket.image = UIImage(named: "RocketNoImage_1920")
             // UIImageViewのサイズに収まるようにサイズを調整
             self.imageRocket.contentMode = .scaleAspectFill
+            
+            // Skeletonを非表示
+            self.imageRocket.hideSkeleton(transition: .crossDissolve(0.25))
 
         }else{
             
@@ -362,9 +378,27 @@ class DetailRocketViewController : UIViewController {
                 }
                 
                 DispatchQueue.main.async {
+                    
+                    // 擬似的に3秒遅延させる
+//                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(3)) {
+//
+//                        // UIImageにダウンロード画像をセット
+//                        self.imageRocket.image = UIImage(data: data!)
+//                        // UIImageViewのサイズに収まるようにサイズを調整
+//                        self.imageRocket.contentMode = .scaleAspectFill
+//
+//                        self.imageRocket.hideSkeleton()
+//                        self.imageRocket.hideSkeleton(transition: .crossDissolve(0.25))
+//                    }
+                    
+                    // UIImageにダウンロード画像をセット
                     self.imageRocket.image = UIImage(data: data!)
                     // UIImageViewのサイズに収まるようにサイズを調整
                     self.imageRocket.contentMode = .scaleAspectFill
+                    // Skeletonを非表示
+                    self.imageRocket.hideSkeleton(transition: .crossDissolve(0.25))
+
+                    
 //                print(response!)
                 }
                 

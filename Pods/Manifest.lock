@@ -1,26 +1,30 @@
 PODS:
-  - Realm (3.16.2):
-    - Realm/Headers (= 3.16.2)
-  - Realm/Headers (3.16.2)
-  - RealmSwift (3.16.2):
-    - Realm (= 3.16.2)
+  - Realm (3.19.0):
+    - Realm/Headers (= 3.19.0)
+  - Realm/Headers (3.19.0)
+  - RealmSwift (3.19.0):
+    - Realm (= 3.19.0)
+  - SkeletonView (1.8.2)
   - SwiftyStoreKit (0.15.0)
 
 DEPENDENCIES:
   - RealmSwift
+  - SkeletonView
   - SwiftyStoreKit
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - Realm
     - RealmSwift
+    - SkeletonView
     - SwiftyStoreKit
 
 SPEC CHECKSUMS:
-  Realm: 0e73b4edeb5b6a90da3d83206883b2e34e00eb38
-  RealmSwift: a81e650171ef0a5f999df1ed8d39ba8d6fce88a4
+  Realm: 995d585bcf699aaff226715886c849a29dd3d07f
+  RealmSwift: 35f284a537989f2187b413e5917091948cb87a3f
+  SkeletonView: bb27c39857e5492136f02ee8a3aa78de55d12ecd
   SwiftyStoreKit: 033d06b6f87955405d3f844a18a7687c2438592a
 
-PODFILE CHECKSUM: d1d131e7bd4ac8fb0905a0eb97773a702156a076
+PODFILE CHECKSUM: 6bc5620c6c201e95c1d6ef6147e8b2b5bda4de0c
 
-COCOAPODS: 1.7.2
+COCOAPODS: 1.8.3
