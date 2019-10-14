@@ -20,9 +20,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        // splash view Time
-//        sleep(5)
+        //ナビゲーションバーの背景を変更
+        UINavigationBar.appearance().barTintColor =
+            UIColor.init(red: 20/255, green: 20/255, blue: 20/255, alpha: 1)
         
+        UITabBar.appearance().backgroundColor =
+            UIColor.init(red: 20/255, green: 20/255, blue: 20/255, alpha: 1)
+
         // 通知許可の取得
         UNUserNotificationCenter.current().requestAuthorization(
         options: [.alert, .sound, .badge]){
@@ -64,6 +68,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             }
         }
+
+        // splash view Time
+        sleep(1)
+                
+
         
         return true
     }

@@ -188,6 +188,7 @@ class DetailViewController : UIViewController {
         
         if self.agencyURL == ""{
             labelAgency.textColor = UIColor.white
+
         }
 
         // お気に入り登録用にagencyを設定する
