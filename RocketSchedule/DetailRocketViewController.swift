@@ -237,6 +237,8 @@ class DetailRocketViewController : UIViewController {
         // ラベル表示用の機関名が取得できなかった場合は、英語の機関名を表示する
         let dicAgencies = DicAgencies()
         var agency = dicAgencies.getAgencyOfJapanese(key: self.agency)
+        
+        // 機関名取得クラスから機関名が取得できなかった場合、→機関名の略語か、英語の正式名をagencyに設定する
         if agency == "ー" {
             print("DetailRocketViewController - viewDidLoad - agency No exist")
             
@@ -247,8 +249,13 @@ class DetailRocketViewController : UIViewController {
             }
         }
         
-        // 遷移元の機関名がもともと"ー"の場合は、リンク先がまいため、機関名の色は白に設定
-        if self.agency == "ー"{
+        // 機関名が""の場合は、リンク先がないため、機関名の色は白、「ー」を設定
+        if agency == ""{
+            labelAgency.textColor = UIColor.white
+            agency = "ー"
+        }
+        
+        if self.agencyURL == ""{
             labelAgency.textColor = UIColor.white
         }
 

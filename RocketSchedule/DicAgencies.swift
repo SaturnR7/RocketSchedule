@@ -34,6 +34,7 @@ struct DicAgencies {
         
         let value = agencies[key]
         
-        return value ?? "ー"
+//        return value ?? "ー"
+        return value ?? ""
     }
 }

@@ -181,7 +181,7 @@
                                                         <color key="textColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Agency" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rbo-nI-LtT">
+                                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Agency" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="rbo-nI-LtT">
                                                         <rect key="frame" x="18" y="318.33333333333331" width="373" height="28"/>
                                                         <gestureRecognizers/>
                                                         <constraints>
@@ -1541,7 +1541,7 @@ n+OBoOOBkeOBn+OCieWkp+WkieWKseOBv+OBq+OBquOCiuOBvuOBmfCfmIo
                                                         <color key="textColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Agency" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A7Y-W4-Shz">
+                                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Agency" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="A7Y-W4-Shz">
                                                         <rect key="frame" x="18" y="324.33333333333331" width="374" height="28"/>
                                                         <gestureRecognizers/>
                                                         <constraints>
@@ -1722,7 +1722,7 @@ n+OBoOOBkeOBn+OCieWkp+WkieWKseOBv+OBq+OBquOCiuOBvuOBmfCfmIo
         <image name="Tab_1_x1" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ijh-DV-O7p"/>
+        <segue reference="UGO-km-a3d"/>
         <segue reference="Oqf-je-Qsf"/>
     </inferredMetricsTieBreakers>
 </document>

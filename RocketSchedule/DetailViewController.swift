@@ -169,21 +169,24 @@ class DetailViewController : UIViewController {
         let dicAgencies = DicAgencies()
         var agency = dicAgencies.getAgencyOfJapanese(key: self.agency)
 
-        // 機関名取得クラスから機関名が取得できなかった場合「ー」→機関名の略語か、英語の正式名をagencyに設定する
-        if agency == "ー" {
+        // 機関名取得クラスから機関名が取得できなかった場合、→機関名の略語か、英語の正式名をagencyに設定する
+        if agency == "" {
             print("DetailRocketViewController - viewDidLoad - agency No exist")
             
             if self.agencyFormalName == ""{
                 agency = self.agency
-
-
-
+            }else{
+                agency = self.agencyFormalName
             }
-
         }
         
         // 遷移元の機関名がもともと"ー"の場合は、リンク先がまいため、機関名の色は白に設定
-        if self.agency == "ー"{
+        if agency == ""{
+            labelAgency.textColor = UIColor.white
+            agency = "ー"
+        }
+        
+        if self.agencyURL == ""{
             labelAgency.textColor = UIColor.white
         }
 
