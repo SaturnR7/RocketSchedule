@@ -186,17 +186,25 @@ class DetailRocketViewController : UIViewController {
                 // オン(true)の場合：通知スイッチを有効にする・通知アイコンを表示する
                 print("UNUserNotificationCenter - DispatchQueue - notifySwitchForSetting: \(self.notifySwitchForSetting)")
 
+                // iOS側の通知設定が
+                // オフ：通知スイッチを無効・通知アイコンを「通知なし」アイコンに変更
+                // オン：通知スイッチを有効・
                 if !self.notifySwitchForSetting {
                     
-//                    self.notifyOutletSwitch.isOn = false
                     self.notifyOutletSwitch.isEnabled = false
 //                    self.imageNotify.isHidden = true
-                    
+                    self.imageNotify.image = UIImage.init(named: "Icon_View_01_notify_off")
+
                 }else{
                     
-//                    self.notifyOutletSwitch.isOn = true
+                    if self.notifyOutletSwitch.isOn == true{
+                        self.imageNotify.image = UIImage.init(named: "Icon_View_01_notify")
+                    }else{
+                        self.imageNotify.image = UIImage.init(named: "Icon_View_01_notify_off")
+                    }
+                    
                     self.notifyOutletSwitch.isEnabled = true
-                    self.imageNotify.isHidden = false
+//                    self.imageNotify.isHidden = false
                     
                 }
 

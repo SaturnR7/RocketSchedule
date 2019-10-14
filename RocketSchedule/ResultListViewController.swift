@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import SkeletonView
 
 class ResultListViewController: UITableViewController {
     
@@ -106,6 +107,19 @@ class ResultListViewController: UITableViewController {
         //        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! CustomTableViewCell
         
+        
+        // Rocket Image View Skeleton
+//        cell.isSkeletonable = true
+//        let gradient =
+//            SkeletonGradient(baseColor: UIColor.init(red: 50/255, green: 50/255, blue: 50/255, alpha: 1))
+////        imageRocket.showGradientSkeleton()
+////        imageRocket.showAnimatedGradientSkeleton(usingGradient: gradient)
+////        imageRocket.showAnimatedSkeleton()
+//        // Skeleton:上から下へ・流れる速度は0.25秒
+//        let animation = SkeletonAnimationBuilder().makeSlidingAnimation(withDirection: .topBottom)
+//        cell.showAnimatedGradientSkeleton(usingGradient: gradient, animation: animation, transition: .crossDissolve(0.25))
+        
+
         //TimeZoneはUTCにしなければならない。
         //理由は、UTCに指定していないと、DateFormatter.date関数はcurrentのゾーンで
         //日付を返してしまうため。
@@ -152,6 +166,11 @@ class ResultListViewController: UITableViewController {
         print("tableView - After ImageURL: \(replacedImageURL)")
         //        loadImage(urlString: replacedImageURL)
         cell.rocketImageSetCell(imageUrl: replacedImageURL)
+
+        
+        // Skeletonを非表示
+//        cell.hideSkeleton(transition: .crossDissolve(0.25))
+
 
         
         print("ResultListViewController - tableview - end")

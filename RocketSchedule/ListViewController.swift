@@ -11,6 +11,8 @@ import UIKit
 import UserNotifications
 import RealmSwift
 //import UserNotifications
+import SkeletonView
+
 
 class ListViewController: UITableViewController {
     
@@ -83,6 +85,18 @@ class ListViewController: UITableViewController {
 //        var testDate = viewRocketPlanData[indexPath.row].launchDate
 //        testDate.
         
+        // Rocket Image View Skeleton
+//        cell.isSkeletonable = true
+//        let gradient =
+//            SkeletonGradient(baseColor: UIColor.init(red: 50/255, green: 50/255, blue: 50/255, alpha: 1))
+////        imageRocket.showGradientSkeleton()
+////        imageRocket.showAnimatedGradientSkeleton(usingGradient: gradient)
+////        imageRocket.showAnimatedSkeleton()
+//        // Skeleton:上から下へ・流れる速度は0.25秒
+//        let animation = SkeletonAnimationBuilder().makeSlidingAnimation(withDirection: .topBottom)
+//        cell.showAnimatedGradientSkeleton(usingGradient: gradient, animation: animation, transition: .crossDissolve(0.25))
+
+        
         //TimeZoneはUTCにしなければならない。
         //理由は、UTCに指定していないと、DateFormatter.date関数はcurrentのゾーンで
         //日付を返してしまうため。
@@ -134,13 +148,18 @@ class ListViewController: UITableViewController {
 //        let myImage:UIImage = UIImage(named:"Atlas+V+551_480")!
 
 //        let replacedImageURL = self.viewRocketPlanData[indexPath.row].rocketImageURL.replacingOccurrences(of: "_1920", with: "_480")
-        
+            
         // ImageURLの解像度を480に置き換える
         let replacedImageURL = replaceImageSizeURL.replacingValue(value: self.viewRocketPlanData[indexPath.row].rocketImageURL)
         
         print("tableView - After ImageURL: \(replacedImageURL)")
 //        loadImage(urlString: replacedImageURL)
+        
+        
         cell.rocketImageSetCell(imageUrl: replacedImageURL)
+
+        // Skeletonを非表示
+//        cell.hideSkeleton(transition: .crossDissolve(0.25))
 
 
         // テスト：通知アイコン表示

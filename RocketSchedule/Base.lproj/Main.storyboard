@@ -494,11 +494,11 @@
             </objects>
             <point key="canvasLocation" x="4421.739130434783" y="369.29347826086962"/>
         </scene>
-        <!--打ち上げ予定-->
+        <!--Navigation Controller-->
         <scene sceneID="nyT-2y-38B">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="QUH-gt-1qI" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="打ち上げ予定" image="Icon_Tab_01_plan" id="DQw-UP-G3m"/>
+                    <tabBarItem key="tabBarItem" title="" image="Tab_1_x1" id="DQw-UP-G3m"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="KiZ-94-AUk">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -538,11 +538,11 @@
             </objects>
             <point key="canvasLocation" x="111.59420289855073" y="98.641304347826093"/>
         </scene>
-        <!--過去の打ち上げ-->
+        <!--Navigation Controller-->
         <scene sceneID="pFY-0N-RGK">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bzy-fg-jDe" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="過去の打ち上げ" image="Icon_Tab_02_result" selectedImage="Icon_Tab_02_result" id="flC-ay-Xuf"/>
+                    <tabBarItem key="tabBarItem" title="" image="Tab 2_x1" id="flC-ay-Xuf"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="dtS-Rh-vJ6">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -1369,11 +1369,13 @@ n+OBoOOBkeOBn+OCieWkp+WkieWKseOBv+OBq+OBquOCiuOBvuOBmfCfmIo
             </objects>
             <point key="canvasLocation" x="3485.507246376812" y="2209.8214285714284"/>
         </scene>
-        <!--お気に入り-->
+        <!--Navigation Controller-->
         <scene sceneID="8VB-se-SXk">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="lHX-aD-sh4" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="お気に入り" image="Icon_Tab_03_favorite" selectedImage="Icon_Tab_03_favorite" id="TUT-hi-6ia"/>
+                    <tabBarItem key="tabBarItem" title="" image="Tab 3_x1" id="TUT-hi-6ia">
+                        <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="2"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="Hfr-6x-Y57">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -1392,11 +1394,11 @@ n+OBoOOBkeOBn+OCieWkp+WkieWKseOBv+OBq+OBquOCiuOBvuOBmfCfmIo
             </objects>
             <point key="canvasLocation" x="1019" y="1546"/>
         </scene>
-        <!--設定-->
+        <!--Navigation Controller-->
         <scene sceneID="dN7-wQ-hkW">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="T9j-jO-Cad" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="設定" image="Icon_Tab_04_setting" selectedImage="Icon_Tab_04_setting" id="R3p-7x-Edc"/>
+                    <tabBarItem key="tabBarItem" title="" image="Tab 4_x1" id="R3p-7x-Edc"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="vbv-2l-mJC">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -1712,12 +1714,12 @@ n+OBoOOBkeOBn+OCieWkp+WkieWKseOBv+OBq+OBquOCiuOBvuOBmfCfmIo
         </scene>
     </scenes>
     <resources>
-        <image name="Icon_Tab_01_plan" width="25" height="25"/>
-        <image name="Icon_Tab_02_result" width="25" height="25"/>
-        <image name="Icon_Tab_03_favorite" width="25" height="25"/>
-        <image name="Icon_Tab_04_setting" width="25" height="25"/>
         <image name="Icon_View_01_notify" width="25" height="25"/>
         <image name="Icon_View_03_search" width="25" height="25"/>
+        <image name="Tab 2_x1" width="25" height="25"/>
+        <image name="Tab 3_x1" width="25" height="25"/>
+        <image name="Tab 4_x1" width="25" height="25"/>
+        <image name="Tab_1_x1" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="UGO-km-a3d"/>
