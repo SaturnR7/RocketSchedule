@@ -865,7 +865,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.2545929651826484" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="backgroundColor" white="0.24902789668949765" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="8VS-XI-H5L" firstAttribute="leading" secondItem="obV-Ho-Pnp" secondAttribute="leadingMargin" id="WlI-GA-Gbl"/>
                                                 <constraint firstItem="Rat-il-rIn" firstAttribute="top" secondItem="obV-Ho-Pnp" secondAttribute="topMargin" id="XeJ-WC-uSp"/>

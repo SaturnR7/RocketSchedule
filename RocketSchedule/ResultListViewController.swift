@@ -229,7 +229,7 @@ class ResultListViewController: UITableViewController {
         
         // init Boundsで全画面にviewを表示
         self.resultZeroView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.bounds.width, height: 1200))
-        let bgColor = UIColor.init(red: 38/255, green: 38/255, blue: 38/255, alpha: 1)
+        let bgColor = UIColor.init(red: 44/255, green: 44/255, blue: 44/255, alpha: 1)
         self.resultZeroView.backgroundColor = bgColor
         self.resultZeroView.isUserInteractionEnabled = true
         self.view.addSubview(resultZeroView)
