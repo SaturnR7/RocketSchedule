@@ -157,6 +157,11 @@ class DetailViewController : UIViewController {
             videoLinkOutlet.isEnabled = false
             videoLinkOutlet2.isHidden = true
             videoLinkOutlet3.isHidden = true
+            videoLinkOutlet4.isHidden = true
+            videoLinkOutlet5.isHidden = true
+            videoLinkOutlet6.isHidden = true
+            videoLinkOutlet7.isHidden = true
+            videoLinkOutlet8.isHidden = true
         }
         
         // 画面起動時にロケットのIDがRealmに存在していれば、
@@ -302,15 +307,75 @@ class DetailViewController : UIViewController {
         case 1: videoLinkOutlet.isHidden = false
                 videoLinkOutlet2.isHidden = true
                 videoLinkOutlet3.isHidden = true
+                videoLinkOutlet4.isHidden = true
+                videoLinkOutlet5.isHidden = true
+                videoLinkOutlet6.isHidden = true
+                videoLinkOutlet7.isHidden = true
+                videoLinkOutlet8.isHidden = true
 
         case 2: videoLinkOutlet.isHidden = false
                 videoLinkOutlet2.isHidden = false
                 videoLinkOutlet3.isHidden = true
+                videoLinkOutlet4.isHidden = true
+                videoLinkOutlet5.isHidden = true
+                videoLinkOutlet6.isHidden = true
+                videoLinkOutlet7.isHidden = true
+                videoLinkOutlet8.isHidden = true
 
         case 3: videoLinkOutlet.isHidden = false
                 videoLinkOutlet2.isHidden = false
                 videoLinkOutlet3.isHidden = false
-            
+                videoLinkOutlet4.isHidden = true
+                videoLinkOutlet5.isHidden = true
+                videoLinkOutlet6.isHidden = true
+                videoLinkOutlet7.isHidden = true
+                videoLinkOutlet8.isHidden = true
+
+        case 4: videoLinkOutlet.isHidden = false
+                videoLinkOutlet2.isHidden = false
+                videoLinkOutlet3.isHidden = false
+                videoLinkOutlet4.isHidden = false
+                videoLinkOutlet5.isHidden = true
+                videoLinkOutlet6.isHidden = true
+                videoLinkOutlet7.isHidden = true
+                videoLinkOutlet8.isHidden = true
+
+        case 5: videoLinkOutlet.isHidden = false
+                videoLinkOutlet2.isHidden = false
+                videoLinkOutlet3.isHidden = false
+                videoLinkOutlet4.isHidden = false
+                videoLinkOutlet5.isHidden = false
+                videoLinkOutlet6.isHidden = true
+                videoLinkOutlet7.isHidden = true
+                videoLinkOutlet8.isHidden = true
+
+        case 6: videoLinkOutlet.isHidden = false
+                videoLinkOutlet2.isHidden = false
+                videoLinkOutlet3.isHidden = false
+                videoLinkOutlet4.isHidden = false
+                videoLinkOutlet5.isHidden = false
+                videoLinkOutlet6.isHidden = false
+                videoLinkOutlet7.isHidden = true
+                videoLinkOutlet8.isHidden = true
+
+        case 7: videoLinkOutlet.isHidden = false
+                videoLinkOutlet2.isHidden = false
+                videoLinkOutlet3.isHidden = false
+                videoLinkOutlet4.isHidden = false
+                videoLinkOutlet5.isHidden = false
+                videoLinkOutlet6.isHidden = false
+                videoLinkOutlet7.isHidden = false
+                videoLinkOutlet8.isHidden = true
+
+        case 8: videoLinkOutlet.isHidden = false
+                videoLinkOutlet2.isHidden = false
+                videoLinkOutlet3.isHidden = false
+                videoLinkOutlet4.isHidden = false
+                videoLinkOutlet5.isHidden = false
+                videoLinkOutlet6.isHidden = false
+                videoLinkOutlet7.isHidden = false
+                videoLinkOutlet8.isHidden = false
+
         default:
             print("switch default")
         }
