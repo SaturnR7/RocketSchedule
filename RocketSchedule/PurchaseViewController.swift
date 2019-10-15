@@ -111,8 +111,8 @@ class PurchaseViewController: UIViewController {
 
         // 課金ボタン名を設定する
         buttonPurchase_1_outlet.setTitle("¥120", for: .normal)
-        buttonPurchase_2_outlet.setTitle("¥240", for: .normal)
-        buttonPurchase_3_outlet.setTitle("¥480", for: .normal)
+        buttonPurchase_2_outlet.setTitle("¥250", for: .normal)
+        buttonPurchase_3_outlet.setTitle("¥370", for: .normal)
         
         // 課金後メッセージを表示する
         purchasedMessage.isHidden = true
@@ -158,8 +158,8 @@ class PurchaseViewController: UIViewController {
                 self.navigationItem.hidesBackButton = false
 
                 self.buttonPurchase_1_outlet.setTitle("¥120", for: .normal)
-                self.buttonPurchase_2_outlet.setTitle("¥240", for: .normal)
-                self.buttonPurchase_3_outlet.setTitle("¥480", for: .normal)
+                self.buttonPurchase_2_outlet.setTitle("¥250", for: .normal)
+                self.buttonPurchase_3_outlet.setTitle("¥370", for: .normal)
                 self.buttonPurchase_1_outlet.isEnabled = true
                 self.buttonPurchase_2_outlet.isEnabled = true
                 self.buttonPurchase_3_outlet.isEnabled = true
@@ -202,8 +202,8 @@ class PurchaseViewController: UIViewController {
                     self.navigationItem.hidesBackButton = false
 
                     self.buttonPurchase_1_outlet.setTitle("¥120", for: .normal)
-                    self.buttonPurchase_2_outlet.setTitle("¥240", for: .normal)
-                    self.buttonPurchase_3_outlet.setTitle("¥480", for: .normal)
+                    self.buttonPurchase_2_outlet.setTitle("¥250", for: .normal)
+                    self.buttonPurchase_3_outlet.setTitle("¥370", for: .normal)
                     self.buttonPurchase_1_outlet.isEnabled = true
                     self.buttonPurchase_2_outlet.isEnabled = true
                     self.buttonPurchase_3_outlet.isEnabled = true

@@ -541,12 +541,17 @@ class ListViewController: UITableViewController {
 
         // ローカル通知のの内容
         content.sound = UNNotificationSound.default
-        content.title = "まもなくロケット打ち上げ"
+        content.title = "まもなく打ち上げ"
         
-        var notifyRocketInfomation = self.notificationDate.filter({$0.id == forNotificationId})
+        let notifyRocketInfomation =
+            self.notificationDate.filter({$0.id == forNotificationId})
+        
         //        content.subtitle = "ロケット名"
         print("Notification - RocketName: \(notifyRocketInfomation[0].rocketName)")
-        content.body = "\(notifyRocketInfomation[0].rocketName)"
+//        content.body = "\(notifyRocketInfomation[0].rocketName)"
+        content.body =
+            rocketEng2Jpn.checkStringSpecifyRocketName(name: notifyRocketInfomation[0].rocketName)
+
 
         // ローカル通知実行日時をセット
         let launchDate = notifyRocketInfomation[0].launchDate
@@ -582,12 +587,15 @@ class ListViewController: UITableViewController {
         
         
         // Notify Data add to Realm
+        // 複数ロケットの通知情報を設定するため、Realmに通知を登録する
         let author = RealmNotifyObject()
         author.id = forNotificationId
         author.notifyId = identifier
         author.notifyUtcDate = launchDate
-        author.notifyTitle = "まもなくロケット打ち上げ"
-        author.notifyRocketName = notifyRocketInfomation[0].rocketName
+        author.notifyTitle = "まもなく打ち上げ"
+//        author.notifyRocketName = notifyRocketInfomation[0].rocketName
+        author.notifyRocketName = rocketEng2Jpn.checkStringSpecifyRocketName(name: notifyRocketInfomation[0].rocketName)
+
         
         let realm = try! Realm()
         try! realm.write {

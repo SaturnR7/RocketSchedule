@@ -15,7 +15,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="P4Q-kH-bLD">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="0.20057791095890409" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.17031785102739724" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="Cell" rowHeight="240" id="XzG-XE-1YQ" customClass="CustomTableViewCell" customModule="RocketSchedule" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="240"/>
@@ -568,7 +568,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="WqT-pk-pWr">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="0.1954195205479452" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.17026969178082191" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="Cell" rowHeight="240" id="B0D-JE-oEX" customClass="CustomTableViewCell" customModule="RocketSchedule" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="240"/>
@@ -969,8 +969,8 @@
                                         <string key="text" base64-UTF8="YES">
 44Ot44Kx44OD44OI44Of44Ot44Gv44CB6YGO5Y6744GL44KJ54++5Zyo44G+44Gn5LiW55WM5Lit44Gn
 44Gp44KT44GqCuODreOCseODg+ODiOOBjOaJk+OBoeS4iuOBkuOCieOCjOOBpuOBjeOBn+OBruOBi+OA
-gRERERERERERDREREeOBk+OBruOCouODl+ODquOBp+WIhuOBi+OCi+OCiOOBhuOBq+OBl+OBvuOBl+OB
-n+OAggoK44Ot44Kx44OD44OI44Of44Ot44Gv44GT44KM44GL44KJ44KC44KI44KK6Imv44GE44KC44Gu
+gRERERERERERDREREeOBk+OBruOCouODl+ODquOBp+aDheWgseOCkuOBvuOBqOOCgeOBpuOBhOOBvuOB
+meOAggoK44Ot44Kx44OD44OI44Of44Ot44Gv44GT44KM44GL44KJ44KC44KI44KK6Imv44GE44KC44Gu
 44Gr44GX44GmCuOBhOOBjeOBvuOBmeOAghERERER4oCoCuOCguOBl+OAgeODgeODg+ODl+OCkuOBhOOB
 n+OBoOOBkeOBn+OCieWkp+WkieWKseOBv+OBq+OBquOCiuOBvuOBmfCfmIo
 </string>
@@ -1036,7 +1036,7 @@ n+OBoOOBkeOBn+OCieWkp+WkieWKseOBv+OBq+OBquOCiuOBvuOBmfCfmIo
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
                                         <color key="tintColor" red="0.12246329340000001" green="0.56470588239999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="¥240"/>
+                                        <state key="normal" title="¥250"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                 <integer key="value" value="10"/>
@@ -1054,7 +1054,7 @@ n+OBoOOBkeOBn+OCieWkp+WkieWKseOBv+OBq+OBquOCiuOBvuOBmfCfmIo
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
                                         <color key="tintColor" red="0.12246329340000001" green="0.56470588239999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="¥480"/>
+                                        <state key="normal" title="¥490"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                 <integer key="value" value="10"/>
@@ -1725,6 +1725,6 @@ n+OBoOOBkeOBn+OCieWkp+WkieWKseOBv+OBq+OBquOCiuOBvuOBmfCfmIo
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="UGO-km-a3d"/>
-        <segue reference="Oqf-je-Qsf"/>
+        <segue reference="xmU-u5-zN0"/>
     </inferredMetricsTieBreakers>
 </document>
