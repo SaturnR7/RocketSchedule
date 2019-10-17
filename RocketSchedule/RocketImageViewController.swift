@@ -102,8 +102,11 @@ class RocketImageViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func shareImage(){
+        
         let activityItems = [self.rocketImageView.image]
+        
         let avc = UIActivityViewController(activityItems: activityItems as! [UIImage], applicationActivities: nil)
+        
         self.present(avc, animated: true, completion: nil)
     }
     

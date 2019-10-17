@@ -207,10 +207,8 @@ class DetailRocketViewController : UIViewController {
 //                    self.imageNotify.isHidden = false
                     
                 }
-
             }
         }
-
 
         // ロケットの動画をアイコンにセットする処理
         // vidURLs配列は動画URLが登録されている
@@ -226,7 +224,7 @@ class DetailRocketViewController : UIViewController {
             videoButtonControll(videoCount: urlsCount)
             
         }else{
-            planVideoLinkOutlet.setTitle("ライブ配信がある場合はここにビデオアイコンが表示されます", for: .normal)
+            planVideoLinkOutlet.setTitle("ライブ配信がある場合はリンク先が表示されます", for: .normal)
             planVideoLinkOutlet.isEnabled = false
             planVideoLinkOutlet2.isHidden = true
             planVideoLinkOutlet3.isHidden = true
@@ -303,19 +301,13 @@ class DetailRocketViewController : UIViewController {
         for target in 1...videoCount {
             switch target{
             case 1:
-//                    planVideoLinkOutlet.setTitle("📹", for: .normal)
                     planVideoLinkOutlet.setImage(UIImage.init(named: "Icon_View_02_video"), for: .normal)
                 
             case 2:
-//                    planVideoLinkOutlet.setTitle("📹", for: .normal)
-//                    planVideoLinkOutlet2.setTitle("📹", for: .normal)
                     planVideoLinkOutlet.setImage(UIImage.init(named: "Icon_View_02_video"), for: .normal)
                     planVideoLinkOutlet2.setImage(UIImage.init(named: "Icon_View_02_video"), for: .normal)
 
             case 3:
-//                    planVideoLinkOutlet.setTitle("📹", for: .normal)
-//                    planVideoLinkOutlet2.setTitle("📹", for: .normal)
-//                    planVideoLinkOutlet3.setTitle("📹", for: .normal)
                     planVideoLinkOutlet.setImage(UIImage.init(named: "Icon_View_02_video"), for: .normal)
                     planVideoLinkOutlet2.setImage(UIImage.init(named: "Icon_View_02_video"), for: .normal)
                     planVideoLinkOutlet3.setImage(UIImage.init(named: "Icon_View_02_video"), for: .normal)

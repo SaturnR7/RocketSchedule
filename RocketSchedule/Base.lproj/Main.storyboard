@@ -498,7 +498,7 @@
         <scene sceneID="nyT-2y-38B">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="QUH-gt-1qI" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="Tab_1_x1" id="DQw-UP-G3m"/>
+                    <tabBarItem key="tabBarItem" title="" image="Tab_5_x1" id="DQw-UP-G3m"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="KiZ-94-AUk">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -1721,7 +1721,7 @@ n+OBoOOBkeOBn+OCieWkp+WkieWKseOBv+OBq+OBquOCiuOBvuOBmfCfmIo
         <image name="Tab 2_x1" width="25" height="25"/>
         <image name="Tab 3_x1" width="25" height="25"/>
         <image name="Tab 4_x1" width="25" height="25"/>
-        <image name="Tab_1_x1" width="25" height="25"/>
+        <image name="Tab_5_x1" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="UGO-km-a3d"/>
