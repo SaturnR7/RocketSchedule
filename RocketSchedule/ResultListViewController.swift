@@ -194,6 +194,7 @@ class ResultListViewController: UITableViewController {
         return 225
     }
 
+    // インジケーターの生成
     func activityIndicator() {
         
         indicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 70, height: 70))
@@ -215,7 +216,7 @@ class ResultListViewController: UITableViewController {
         // init Boundsで全画面にviewを表示
         self.indicatorView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height))
         //        let bgColor = UIColor.gray
-        let bgColor = UIColor.init(red: 44/255, green: 44/255, blue: 44/255, alpha: 1)
+        let bgColor = UIColor.init(red: 38/255, green: 38/255, blue: 38/255, alpha: 1)
         self.indicatorView.backgroundColor = bgColor
         self.indicatorView.isUserInteractionEnabled = true
         self.view.addSubview(indicatorView)
