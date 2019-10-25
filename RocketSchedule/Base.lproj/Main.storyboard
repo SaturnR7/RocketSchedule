@@ -824,7 +824,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ロケットミロについて" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KAK-2b-b6D">
                                                     <rect key="frame" x="20" y="12" width="170" height="20"/>
                                                     <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
-                                                    <color key="textColor" red="0.78783679510000004" green="0.56470588239999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="textColor" red="0.0" green="0.47843137254901957" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -1724,7 +1724,7 @@ n+OBoOOBkeOBn+OCieWkp+WkieWKseOBv+OBq+OBquOCiuOBvuOBmfCfmIo
         <image name="Tab_5_x1" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="UGO-km-a3d"/>
+        <segue reference="ijh-DV-O7p"/>
         <segue reference="xmU-u5-zN0"/>
     </inferredMetricsTieBreakers>
 </document>

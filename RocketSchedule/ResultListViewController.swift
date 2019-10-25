@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 import SkeletonView
+import NVActivityIndicatorView
+
 
 class ResultListViewController: UITableViewController {
     
@@ -60,7 +62,10 @@ class ResultListViewController: UITableViewController {
     var resultZero = false
     
     // Indicator アイコンの定義
-    var indicator = UIActivityIndicatorView()
+//    var indicator = UIActivityIndicatorView()
+    var indicator = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 70, height: 70), type: .ballBeat, color: .white, padding: 10)
+
+    
     // インジケーター用のUIViewを宣言
     var indicatorView: UIView!
     // 0件用のUIViewを宣言
@@ -195,21 +200,31 @@ class ResultListViewController: UITableViewController {
     }
 
     // インジケーターの生成
-    func activityIndicator() {
+//    func activityIndicator() {
+//
+//        indicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 70, height: 70))
+//        // インジケーターアイコンの丸み表現
+//        indicator.layer.cornerRadius = 10
+//
+//        indicator.style = UIActivityIndicatorView.Style.whiteLarge
+//        indicator.backgroundColor =
+//            UIColor.init(red: 60/255, green: 60/255, blue: 60/255, alpha: 1)
+////        UIColor.init(red: 38/255, green: 38/255, blue: 38/255, alpha: 1)
+////        indicator.center = self.indicatorView.center
+//        indicator.center = CGPoint.init(x: self.indicatorView.bounds.width / 2, y: self.indicatorView.bounds.height / 3)
+//        self.view.addSubview(indicator)
+//    }
+    
+    // インジケータの生成
+    func activityIndicator(){
         
-        indicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 70, height: 70))
-        // インジケーターアイコンの丸み表現
-        indicator.layer.cornerRadius = 10
-        
-        indicator.style = UIActivityIndicatorView.Style.whiteLarge
-        indicator.backgroundColor =
-            UIColor.init(red: 60/255, green: 60/255, blue: 60/255, alpha: 1)
-//        UIColor.init(red: 38/255, green: 38/255, blue: 38/255, alpha: 1)
-//        indicator.center = self.indicatorView.center
+        indicator.color = UIColor.white
+        indicator.type = NVActivityIndicatorType.orbit
         indicator.center = CGPoint.init(x: self.indicatorView.bounds.width / 2, y: self.indicatorView.bounds.height / 3)
         self.view.addSubview(indicator)
     }
     
+
     // インジケーター用のUIViewを生成
     func enableIndicatorView() {
 

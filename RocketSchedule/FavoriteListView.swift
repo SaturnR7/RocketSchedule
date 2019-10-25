@@ -73,6 +73,12 @@ class FavoriteListView: UITableViewController {
     // お気に入り0件用画像
     var zeroImage = UIImage()
     var zeroImageView = UIImageView()
+    
+    // お気に入り登録方法のメッセージボタン
+    var zeroButton = UIButton()
+    
+    // 一時メッセージ表示クラス（SwiftMessageライブラリ）
+    var buttomMessage = MessageAction()
 
     // Realm
 //    let realm = try! Realm()
@@ -249,25 +255,29 @@ class FavoriteListView: UITableViewController {
         enableResultZeroView()
         // お気に入り0件用のview(装飾用)を生成
         enableBackgroundView()
-        // 0件メッセージをを生成
-        enableMessageViewZero()
-        // 0件用画像の生成
-        enableImageForZero()
+//        // 0件メッセージをを生成
+//        enableMessageViewZero()
+//        // 0件用画像の生成
+//        enableImageForZero()
         
-        // Read Realm Data
-//        launchDataLoad()
+        // お気に入り登録方法のメッセージ表示ボタン
+        infomationButton()
+        
+        
         if launchDataLoad() == 0{
             resultZeroView.isHidden = false
             resultZeroBackgroundView.isHidden = false
-            zeroMessage.isHidden = false
-            zeroMessage_2.isHidden = false
-            zeroImageView.isHidden = false
+//            zeroMessage.isHidden = false
+//            zeroMessage_2.isHidden = false
+//            zeroImageView.isHidden = false
+            zeroButton.isHidden = false
         }else{
             resultZeroView.isHidden = true
             resultZeroBackgroundView.isHidden = true
-            zeroMessage.isHidden = true
-            zeroMessage_2.isHidden = true
-            zeroImageView.isHidden = true
+//            zeroMessage.isHidden = true
+//            zeroMessage_2.isHidden = true
+//            zeroImageView.isHidden = true
+            zeroButton.isHidden = true
         }
 
     }
@@ -304,12 +314,13 @@ class FavoriteListView: UITableViewController {
 
         // Color
         resultZeroBackgroundView.backgroundColor =
-            UIColor(red: 55/255, green: 55/255, blue: 55/255, alpha: 1)
+            UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1)
+//            UIColor(red: 55/255, green: 55/255, blue: 55/255, alpha: 1)
 //        resultZeroBackgroundView.backgroundColor = UIColor(red: 91/255, green: 91/255, blue: 91/255, alpha: 1)
 //        resultZeroBackgroundView.isUserInteractionEnabled = true
         // 角丸を有効にする
         resultZeroBackgroundView.clipsToBounds = true
-        resultZeroBackgroundView.layer.cornerRadius = 10
+        resultZeroBackgroundView.layer.cornerRadius = 27
 
 
         self.view.addSubview(self.resultZeroBackgroundView)
@@ -320,13 +331,13 @@ class FavoriteListView: UITableViewController {
 //        resultZeroBackgroundView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         
         // 画像の幅に対して任意の数値に設定、制約を有効にする
-        resultZeroBackgroundView.widthAnchor.constraint(equalToConstant: 330).isActive = true
+        resultZeroBackgroundView.widthAnchor.constraint(equalToConstant: 80).isActive = true
         // 画像の高さに対して任意の数値に設定、制約を有効にする
-        resultZeroBackgroundView.heightAnchor.constraint(equalToConstant: 330).isActive = true
+        resultZeroBackgroundView.heightAnchor.constraint(equalToConstant: 80).isActive = true
         // X座標軸の中心を親Viewと合わせる制約を有効にする
         resultZeroBackgroundView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         // 0件用のビューに対して上端から何ポイントと離すか定義する
-        resultZeroBackgroundView.topAnchor.constraint(equalTo: resultZeroView.topAnchor, constant: 70).isActive = true
+        resultZeroBackgroundView.topAnchor.constraint(equalTo: resultZeroView.topAnchor, constant: 143).isActive = true
 
         // 検索0件の時だけこのviewを表示するため、それ以外は非表示にする。
         resultZeroBackgroundView.isHidden = true
@@ -423,7 +434,42 @@ class FavoriteListView: UITableViewController {
         // 0件用のビューに対して上端から何ポイントと離すか定義する
         zeroImageView.topAnchor.constraint(equalTo: resultZeroView.topAnchor, constant: 68).isActive = true
     }
+    
+    
+    // 0件用のアイコンを表示
+    func infomationButton() {
+        
+        // 制約設定時は必須の処理
+        // 制約を設定するためレイアウトの矛盾を防ぐ
+        zeroButton.translatesAutoresizingMaskIntoConstraints = false
 
+//        zeroMessage = UILabel.init(frame: CGRect.init(x: 0,
+//                                                      y: 40,
+//                                                      width: view.frame.size.width,
+//                                                      height: 10))
+        zeroButton.setImage(UIImage(named: "Icon_Info"), for: .normal)
+        zeroButton.tintColor = .white
+        zeroButton.addTarget(self, action: #selector(buttonEvent), for: .touchUpInside)
+        self.view.addSubview(self.zeroButton)
+        
+//        // 画像の幅に対して任意の数値に設定、制約を有効にする
+//        resultZeroBackgroundView.widthAnchor.constraint(equalToConstant: 30).isActive = true
+//        // 画像の高さに対して任意の数値に設定、制約を有効にする
+//        resultZeroBackgroundView.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        // 0件用のビューに対して上端から何ポイントと離すか定義する
+        zeroButton.topAnchor.constraint(equalTo: resultZeroView.topAnchor, constant: 150).isActive = true
+        // X座標軸の中心を親Viewと合わせる制約を有効にする
+        zeroButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+
+
+    }
+
+    // ボタンが押された時に呼ばれるメソッド
+    @objc func buttonEvent(_ sender: UIButton) {
+        print("ボタンの情報: \(sender)")
+        self.buttomMessage.favoriteZeroMessage()
+    }
+    
     //リフレッシュ処理
     @objc func refresh(sender: UIRefreshControl) {
         print("In refresh Start")
@@ -443,15 +489,17 @@ class FavoriteListView: UITableViewController {
         if launchDataLoad() == 0{
             resultZeroView.isHidden = false
             resultZeroBackgroundView.isHidden = false
-            zeroMessage.isHidden = false
-            zeroMessage_2.isHidden = false
-            zeroImageView.isHidden = false
+//            zeroMessage.isHidden = false
+//            zeroMessage_2.isHidden = false
+//            zeroImageView.isHidden = false
+            zeroButton.isHidden = false
         }else{
             resultZeroView.isHidden = true
             resultZeroBackgroundView.isHidden = true
-            zeroMessage.isHidden = true
-            zeroMessage_2.isHidden = true
-            zeroImageView.isHidden = true
+//            zeroMessage.isHidden = true
+//            zeroMessage_2.isHidden = true
+//            zeroImageView.isHidden = true
+            zeroButton.isHidden = true
         }
 
         tableView.reloadData()

@@ -37,8 +37,21 @@ class DetailViewController : UIViewController {
         // 登録なし：☆
         if isFavoriteDataExist(){
             self.buttonFavorite.setImage(UIImage.init(named: "Icon_Tab_03_favorite"), for: .normal)
+            
+            // 少し時間を置いてメッセージ表示
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                // メッセージ表示
+                self.buttomMessage.bottomMessage(argTitle: "お気に入り登録しました", argBody: "", argDuration: 3)
+            }
+
         }else{
             self.buttonFavorite.setImage(UIImage.init(named: "Icon_Tab_03_favorite_off"), for: .normal)
+            
+            // 少し時間を置いてメッセージ表示
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                // メッセージ表示
+                self.buttomMessage.bottomMessage(argTitle: "お気に入りから削除しました", argBody: "", argDuration: 3)
+            }
         }
 
     }
@@ -88,6 +101,9 @@ class DetailViewController : UIViewController {
     
     // ロケット名日本語変換クラス
     var rocketEng2Jpn = RocketNameEng2Jpn()
+    
+    // 一時メッセージ表示クラス（SwiftMessageライブラリ）
+    var buttomMessage = MessageAction()
 
     override func viewDidLoad(){
         super.viewDidLoad()

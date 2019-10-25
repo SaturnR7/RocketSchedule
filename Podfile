@@ -9,4 +9,9 @@ target 'RocketSchedule' do
   pod 'RealmSwift'
   pod 'SwiftyStoreKit'
   pod 'SkeletonView'
+  pod 'ReachabilitySwift'
+  pod 'ReachabilitySwift'
+  pod 'TransitionableTab'
+  pod 'SwiftMessages'
+  pod 'NVActivityIndicatorView'
 end

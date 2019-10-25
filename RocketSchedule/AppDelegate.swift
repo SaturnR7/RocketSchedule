@@ -38,6 +38,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
 
         // Realm Migration
+        // テーブルの項目を修正した場合、「schemaVersion」の値をインクリメントする
+        // 項目の修正とは、追加・修正・削除した場合のことである。
         let config = Realm.Configuration(
             
             schemaVersion: 15,

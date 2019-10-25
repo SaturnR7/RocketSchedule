@@ -31,6 +31,9 @@ class DetailRocketViewController : UIViewController {
     
     var notifySwitchForSetting: Bool = false
     
+    // 一時メッセージ表示クラス（SwiftMessageライブラリ）
+    var buttomMessage = MessageAction()
+    
     // ロケット名日本語変換クラス
     var rocketEng2Jpn = RocketNameEng2Jpn()
     
@@ -59,6 +62,12 @@ class DetailRocketViewController : UIViewController {
             
             imageNotify.image = UIImage.init(named: "Icon_View_01_notify")
             
+            // 少し時間を置いてメッセージ表示
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                // メッセージ表示
+                self.buttomMessage.bottomMessage(argTitle: "通知登録しました", argBody: "打上げ時刻は変更になる可能性がありあます", argDuration: 7)
+            }
+            
         }else{
             
             //ロケット情報の通知削除
@@ -67,6 +76,11 @@ class DetailRocketViewController : UIViewController {
             
             imageNotify.image = UIImage.init(named: "Icon_View_01_notify_off")
             
+            // 少し時間を置いてメッセージ表示
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                // メッセージ表示
+                self.buttomMessage.bottomMessage(argTitle: "通知を削除しました", argBody: "", argDuration: 3)
+            }
         }
     }
     

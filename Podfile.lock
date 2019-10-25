@@ -1,30 +1,50 @@
 PODS:
-  - Realm (3.19.0):
-    - Realm/Headers (= 3.19.0)
-  - Realm/Headers (3.19.0)
-  - RealmSwift (3.19.0):
-    - Realm (= 3.19.0)
+  - NVActivityIndicatorView (4.8.0):
+    - NVActivityIndicatorView/Presenter (= 4.8.0)
+  - NVActivityIndicatorView/Presenter (4.8.0)
+  - ReachabilitySwift (5.0.0)
+  - Realm (3.20.0):
+    - Realm/Headers (= 3.20.0)
+  - Realm/Headers (3.20.0)
+  - RealmSwift (3.20.0):
+    - Realm (= 3.20.0)
   - SkeletonView (1.8.2)
+  - SwiftMessages (7.0.1):
+    - SwiftMessages/App (= 7.0.1)
+  - SwiftMessages/App (7.0.1)
   - SwiftyStoreKit (0.15.0)
+  - TransitionableTab (0.2.0)
 
 DEPENDENCIES:
+  - NVActivityIndicatorView
+  - ReachabilitySwift
   - RealmSwift
   - SkeletonView
+  - SwiftMessages
   - SwiftyStoreKit
+  - TransitionableTab
 
 SPEC REPOS:
   trunk:
+    - NVActivityIndicatorView
+    - ReachabilitySwift
     - Realm
     - RealmSwift
     - SkeletonView
+    - SwiftMessages
     - SwiftyStoreKit
+    - TransitionableTab
 
 SPEC CHECKSUMS:
-  Realm: 995d585bcf699aaff226715886c849a29dd3d07f
-  RealmSwift: 35f284a537989f2187b413e5917091948cb87a3f
+  NVActivityIndicatorView: d24b7ebcf80af5dcd994adb650e2b6c93379270f
+  ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
+  Realm: 8b2ca5bc6479a91f379b6b42b5922e396cd5ba5a
+  RealmSwift: 1949ef26a279e1845bd51d591b9103adfcd121df
   SkeletonView: bb27c39857e5492136f02ee8a3aa78de55d12ecd
+  SwiftMessages: b577dc7043be8b299857ab35bb663dbff6483bd0
   SwiftyStoreKit: 033d06b6f87955405d3f844a18a7687c2438592a
+  TransitionableTab: 54a5d0af475033bdb83959fde4e5d6201af7e2ab
 
-PODFILE CHECKSUM: 6bc5620c6c201e95c1d6ef6147e8b2b5bda4de0c
+PODFILE CHECKSUM: 41ff7df9d0c84493d4d12404b9d3487bf453b1e1
 
 COCOAPODS: 1.8.3

@@ -19,6 +19,7 @@
 		B61B8C0622F6A4F900F3CFE5 /* RocketNameEng2Jpn.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61B8C0522F6A4F900F3CFE5 /* RocketNameEng2Jpn.swift */; };
 		B61C200022EFF2910003A297 /* DicAgencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61C1FFF22EFF2910003A297 /* DicAgencies.swift */; };
 		B621076B22708D2200CA76E8 /* StructViewPlans.swift in Sources */ = {isa = PBXBuildFile; fileRef = B621076A22708D2200CA76E8 /* StructViewPlans.swift */; };
+		B62701A923627D8700B005CC /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62701A823627D8700B005CC /* TabBarController.swift */; };
 		B62833A0233B29D300D78321 /* DicTimeZone.swift in Sources */ = {isa = PBXBuildFile; fileRef = B628339F233B29D300D78321 /* DicTimeZone.swift */; };
 		B62833A2233C8E8400D78321 /* IndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62833A1233C8E8400D78321 /* IndicatorView.swift */; };
 		B628F4D822F1488600BA6C0E /* StructClassName.swift in Sources */ = {isa = PBXBuildFile; fileRef = B628F4D722F1488600BA6C0E /* StructClassName.swift */; };
@@ -32,6 +33,7 @@
 		B64B9B8423445F6C008265F9 /* SettingsNotifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64B9B8323445F6C008265F9 /* SettingsNotifyViewController.swift */; };
 		B6527D8321F874F300D40241 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6527D8221F874F300D40241 /* CustomTableViewCell.swift */; };
 		B65E043822E844B5007C8E3D /* AsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65E043722E844B5007C8E3D /* AsyncImageView.swift */; };
+		B6647F062362C87300D63A11 /* MessageAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6647F052362C87300D63A11 /* MessageAction.swift */; };
 		B667F64423332278007B4C52 /* GetElementLaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = B667F64323332278007B4C52 /* GetElementLaunch.swift */; };
 		B6686E4C222E54C100B6CC75 /* SearchRoketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6686E4B222E54C100B6CC75 /* SearchRoketViewController.swift */; };
 		B6686E4E222F896100B6CC75 /* SearchLaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6686E4D222F896100B6CC75 /* SearchLaunch.swift */; };
@@ -84,6 +86,7 @@
 		B61B8C0522F6A4F900F3CFE5 /* RocketNameEng2Jpn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketNameEng2Jpn.swift; sourceTree = "<group>"; };
 		B61C1FFF22EFF2910003A297 /* DicAgencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DicAgencies.swift; sourceTree = "<group>"; };
 		B621076A22708D2200CA76E8 /* StructViewPlans.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructViewPlans.swift; sourceTree = "<group>"; };
+		B62701A823627D8700B005CC /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		B628339F233B29D300D78321 /* DicTimeZone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DicTimeZone.swift; sourceTree = "<group>"; };
 		B62833A1233C8E8400D78321 /* IndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndicatorView.swift; sourceTree = "<group>"; };
 		B628F4D722F1488600BA6C0E /* StructClassName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructClassName.swift; sourceTree = "<group>"; };
@@ -99,6 +102,7 @@
 		B64B9B8323445F6C008265F9 /* SettingsNotifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNotifyViewController.swift; sourceTree = "<group>"; };
 		B6527D8221F874F300D40241 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		B65E043722E844B5007C8E3D /* AsyncImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImageView.swift; sourceTree = "<group>"; };
+		B6647F052362C87300D63A11 /* MessageAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageAction.swift; sourceTree = "<group>"; };
 		B667F64323332278007B4C52 /* GetElementLaunch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetElementLaunch.swift; sourceTree = "<group>"; };
 		B6686E4B222E54C100B6CC75 /* SearchRoketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRoketViewController.swift; sourceTree = "<group>"; };
 		B6686E4D222F896100B6CC75 /* SearchLaunch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLaunch.swift; sourceTree = "<group>"; };
@@ -174,6 +178,7 @@
 				B6A66F7322A4F8D2003CDA1B /* DetailRocketViewController.swift */,
 				B6D8BC282229F61D000B590E /* ResultListViewController.swift */,
 				B60B3B1A2201C97000ADC711 /* DetailViewController.swift */,
+				B6647F052362C87300D63A11 /* MessageAction.swift */,
 				B692B4372318EFDF001717E2 /* RocketImageViewController.swift */,
 				B65E043722E844B5007C8E3D /* AsyncImageView.swift */,
 				B6686E4B222E54C100B6CC75 /* SearchRoketViewController.swift */,
@@ -189,6 +194,7 @@
 				B6B867BA22E43D2F005C15D5 /* StateSelectFavorite.swift */,
 				B6C23E8822C4AB610041B9D8 /* StateNotFavorite.swift */,
 				B6427C5821EDFA3E00999575 /* Launch.swift */,
+				B62701A823627D8700B005CC /* TabBarController.swift */,
 				B62833A1233C8E8400D78321 /* IndicatorView.swift */,
 				B6686E4D222F896100B6CC75 /* SearchLaunch.swift */,
 				B6527D8221F874F300D40241 /* CustomTableViewCell.swift */,
@@ -350,6 +356,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B6107ED322CDAA4D00932B1B /* StructRealmFavoriteData.swift in Sources */,
+				B6647F062362C87300D63A11 /* MessageAction.swift in Sources */,
 				B6427C5321EAD67800999575 /* ListViewController.swift in Sources */,
 				B6C23E8922C4AB610041B9D8 /* StateNotFavorite.swift in Sources */,
 				B6427C5921EDFA3E00999575 /* Launch.swift in Sources */,
@@ -376,6 +383,7 @@
 				B6527D8321F874F300D40241 /* CustomTableViewCell.swift in Sources */,
 				B66E3DFE22BC99FE00B91A7A /* StructViewSearchAgency.swift in Sources */,
 				B621076B22708D2200CA76E8 /* StructViewPlans.swift in Sources */,
+				B62701A923627D8700B005CC /* TabBarController.swift in Sources */,
 				B6B8C41022C5BF4300EFEB2F /* FavoriteListView.swift in Sources */,
 				B692B4382318EFDF001717E2 /* RocketImageViewController.swift in Sources */,
 				B6044E6E234DDC340035D8D0 /* ReplaceImageSizeURL.swift in Sources */,
@@ -534,7 +542,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 44UHJ8FK3A;
 				INFOPLIST_FILE = RocketSchedule/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -555,7 +563,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 44UHJ8FK3A;
 				INFOPLIST_FILE = RocketSchedule/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;

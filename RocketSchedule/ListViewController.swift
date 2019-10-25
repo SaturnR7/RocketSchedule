@@ -12,6 +12,8 @@ import UserNotifications
 import RealmSwift
 //import UserNotifications
 import SkeletonView
+import Reachability
+import NVActivityIndicatorView
 
 
 class ListViewController: UITableViewController {
@@ -60,8 +62,10 @@ class ListViewController: UITableViewController {
     var replaceImageSizeURL = ReplaceImageSizeURL()
     
     // Indicator
-    var indicator = UIActivityIndicatorView()
+//    var indicator = UIActivityIndicatorView()
+    var indicator = NVActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 70, height: 70), type: .ballBeat, color: .white, padding: 10)
     
+
     override func tableView(_ tableView: UITableView,
                             numberOfRowsInSection section: Int) -> Int {
         print("tableView numberOfRowsInSection start")
@@ -197,24 +201,51 @@ class ListViewController: UITableViewController {
         return 225
     }
 
-    func activityIndicator() {
-        indicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 70, height: 70))
-        // インジケーターアイコンの丸み表現
-        indicator.layer.cornerRadius = 10
-        
-        indicator.style = UIActivityIndicatorView.Style.whiteLarge
-        indicator.backgroundColor =
-            UIColor.init(red: 60/255, green: 60/255, blue: 60/255, alpha: 1)
-//        indicator.center = self.indicatorView.center
+//    func _activityIndicator() {
+//        indicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 70, height: 70))
+//        // インジケーターアイコンの丸み表現
+//        indicator.layer.cornerRadius = 10
+//
+//        indicator.style = UIActivityIndicatorView.Style.whiteLarge
+//        indicator.backgroundColor =
+//            UIColor.init(red: 60/255, green: 60/255, blue: 60/255, alpha: 1)
+////        indicator.center = self.indicatorView.center
+//        indicator.center = CGPoint.init(x: self.indicatorView.bounds.width / 2, y: self.indicatorView.bounds.height / 3)
+//        self.view.addSubview(indicator)
+//    }
+    
+    
+    // インジケータの生成
+    func activityIndicator(){
+
+        indicator.color = UIColor.white
+        indicator.type = NVActivityIndicatorType.orbit
         indicator.center = CGPoint.init(x: self.indicatorView.bounds.width / 2, y: self.indicatorView.bounds.height / 3)
         self.view.addSubview(indicator)
     }
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         print("ListViewController - viewDidLoad start")
         
+        // 通信状態の確認
+        let reachability = try! Reachability()
+        if reachability.connection == .wifi {
+            print("Reachable via WiFi")
+        } else if reachability.connection == .cellular {
+            print("Reachable via Cellular")
+        } else if reachability.connection == .unavailable {
+            print("Reachable via unavailable")
+        }
+        
+        // テーブルビューの pull-to-refresh
+        // 有効にする場合はコメントを解除
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl?.addTarget(self, action: #selector(self.refresh(sender:)), for: .valueChanged)
+
 //        print("Timezone: \(TimeZone.ReferenceType.local)")
 //        print("Timezone secondsFromGMT : \(Calendar.current.timeZone.secondsFromGMT())")
 //        print("TimeZone Current Abbreviation: \(TimeZone.current.abbreviation())")
@@ -233,14 +264,15 @@ class ListViewController: UITableViewController {
         // Realmの通知済み情報の存在を確認し、存在する場合はRealmのデータを削除する
 //        checkAndRemoveRealmNotify()
         
+
         // インジケーター用のUIViewを表示
         // init Boundsで全画面にviewを表示
         indicatorView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height))
-//        let bgColor = UIColor.gray
         let bgColor = UIColor.init(red: 38/255, green: 38/255, blue: 38/255, alpha: 1)
         indicatorView.backgroundColor = bgColor
         indicatorView.isUserInteractionEnabled = true
         self.view.addSubview(indicatorView)
+
         
         // Indicator
         activityIndicator()
@@ -319,17 +351,6 @@ class ListViewController: UITableViewController {
 //        }
 //        print("ListViewController - checkAndRemoveRealmNotify - End")
 //    }
-    
-    //リフレッシュ処理
-    @objc func refresh(sender: UIRefreshControl) {
-        print("ListViewController - In refresh Start")
-        //Json再取得
-        launchJsonDownload()
-        
-        sender.endRefreshing()
-        
-        print("ListViewController - In refresh End")
-    }
     
     override func viewDidAppear(_ animated: Bool){
         
@@ -526,6 +547,22 @@ class ListViewController: UITableViewController {
             }
 
         print("ListViewController - launchJsonDownload end")
+    }
+    
+    //リフレッシュ処理
+    @objc func refresh(sender: UIRefreshControl) {
+        print("ListViewController - In refresh Start")
+        //Json再取得
+        launchJsonDownload()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            // 0.5秒後に実行したい処理
+            sender.endRefreshing()
+        }
+        
+//        sender.endRefreshing()
+        
+        print("ListViewController - In refresh End")
     }
     
     //ロケット情報のローカル通知を登録する
