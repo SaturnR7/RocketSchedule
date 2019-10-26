@@ -71,6 +71,10 @@ class MessageAction {
 
         // Config
         var config = SwiftMessages.defaultConfig
+        
+        // Disable the interactive pan-to-hide gesture.
+        config.interactiveHide = false
+
         config.presentationStyle = .center
         config.duration = .forever
         config.dimMode = .blur(style: .dark, alpha: 1, interactive: true)

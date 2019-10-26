@@ -17,8 +17,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "652"
             endingLineNumber = "652"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "launchJsonDownload()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -339,8 +339,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "535"
             endingLineNumber = "535"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "viewDidDisappear(_:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -404,8 +404,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "275"
             endingLineNumber = "275"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

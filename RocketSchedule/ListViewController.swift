@@ -201,7 +201,7 @@ class ListViewController: UITableViewController {
         return 225
     }
 
-//    func _activityIndicator() {
+//    func activityIndicator() {
 //        indicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 70, height: 70))
 //        // インジケーターアイコンの丸み表現
 //        indicator.layer.cornerRadius = 10

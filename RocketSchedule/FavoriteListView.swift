@@ -457,7 +457,7 @@ class FavoriteListView: UITableViewController {
 //        // 画像の高さに対して任意の数値に設定、制約を有効にする
 //        resultZeroBackgroundView.heightAnchor.constraint(equalToConstant: 30).isActive = true
         // 0件用のビューに対して上端から何ポイントと離すか定義する
-        zeroButton.topAnchor.constraint(equalTo: resultZeroView.topAnchor, constant: 150).isActive = true
+        zeroButton.topAnchor.constraint(equalTo: resultZeroView.topAnchor, constant: 151).isActive = true
         // X座標軸の中心を親Viewと合わせる制約を有効にする
         zeroButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
 
