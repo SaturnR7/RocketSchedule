@@ -50,7 +50,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         // Do any additional setup after loading the view.
         
         // expandedで拡大可能に
-        self.extensionContext?.widgetLargestAvailableDisplayMode = .expanded
+//        self.extensionContext?.widgetLargestAvailableDisplayMode = .expanded
         
         // ロケット画像
         imageRocketSet()
@@ -73,14 +73,14 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     }
     
     // NCWidgetDisplayModeが変更されるたびに呼ばれるので、ここで拡大時の高さを設定する。
-    func widgetActiveDisplayModeDidChange(_ activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize) {
-           if case .compact = activeDisplayMode {
+//    func widgetActiveDisplayModeDidChange(_ activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize) {
+//           if case .compact = activeDisplayMode {
+////               preferredContentSize = maxSize
 //               preferredContentSize = maxSize
-               preferredContentSize = maxSize
-           } else {
-               preferredContentSize.height = 300
-           }
-    }
+//           } else {
+//               preferredContentSize.height = 300
+//           }
+//    }
         
     
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
@@ -100,27 +100,26 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         // 制約を設定するためレイアウトの矛盾を防ぐ
         rocketNameLabel.translatesAutoresizingMaskIntoConstraints = false
 
-//        rocketNameLabel = UILabel.init(frame: CGRect.init(x: 115,
-//                                                          y: 17,
-//                                                          width: 200,
-//                                                          height: 5))
-        
-        rocketNameLabel.textAlignment = .left
+        // 左寄せ
+        rocketNameLabel.textAlignment = .right
 //        rocketNameLabel.textColor = UIColor.white
-        rocketNameLabel.font = UIFont.init(name: "Futura", size: 20)
+        // フォント・サイズ指定
+        rocketNameLabel.font = UIFont.init(name: "Futura", size: 22)
 //        rocketNameLabel.font = UIFont.monospacedDigitSystemFont(ofSize: 26, weight: UIFont.Weight.black)
         // 文字の大きさを自動で変える
         rocketNameLabel.adjustsFontSizeToFitWidth = true
+        
         self.view.addSubview(self.rocketNameLabel)
         
         // 画像の幅に対して任意の数値に設定、制約を有効にする
         rocketNameLabel.widthAnchor.constraint(equalToConstant: 200).isActive = true
         // 画像の高さに対して任意の数値に設定、制約を有効にする
-        rocketNameLabel.heightAnchor.constraint(equalToConstant: 13).isActive = true
+        rocketNameLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
         // ビューに対して上端から何ポイントと離すか定義する
-        rocketNameLabel.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 17).isActive = true
+        rocketNameLabel.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 13).isActive = true
         // X座標軸の中心を親Viewと合わせる制約を有効にする
-        rocketNameLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 110).isActive = true
+//        rocketNameLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 110).isActive = true
+        rocketNameLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -15).isActive = true
 
     }
 
@@ -131,24 +130,21 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         // 制約を設定するためレイアウトの矛盾を防ぐ
         label_01.translatesAutoresizingMaskIntoConstraints = false
 
-//        label_01 = UILabel.init(frame: CGRect.init(x: 115,
-//                                                   y: 45,
-//                                                   width: 200,
-//                                                   height: 5))
-        
+        // 右寄せ
         label_01.textAlignment = .right
 //        label_01.textColor = UIColor.white
-        
+        // フォント・サイズ指定
         label_01.font = UIFont.init(name: "Futura", size: 13)
 //        label_01.font = UIFont.monospacedDigitSystemFont(ofSize: 13, weight: UIFont.Weight.black)
+        
         self.view.addSubview(self.label_01)
         
         // 画像の幅に対して任意の数値に設定、制約を有効にする
         label_01.widthAnchor.constraint(equalToConstant: 250).isActive = true
         // 画像の高さに対して任意の数値に設定、制約を有効にする
-        label_01.heightAnchor.constraint(equalToConstant: 7).isActive = true
+        label_01.heightAnchor.constraint(equalToConstant: 6).isActive = true
         // ビューに対して上端から何ポイントと離すか定義する
-        label_01.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 50).isActive = true
+        label_01.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 48).isActive = true
         // X座標軸の中心を親Viewと合わせる制約を有効にする
 //        label_01.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 110
 //        ).isActive = true
@@ -164,17 +160,15 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         // 制約を設定するためレイアウトの矛盾を防ぐ
         launchTimeRemainingLabel.translatesAutoresizingMaskIntoConstraints = false
 
-//        launchTimeRemainingLabel = UILabel.init(frame: CGRect.init(x: 115,
-//                                                          y: 73,
-//                                                          width: 250,
-//                                                          height: 10))
-        
+        // 右寄せ
         launchTimeRemainingLabel.textAlignment = .right
 //        launchTimeRemainingLabel.textColor = UIColor.white
+        
+        // フォント・サイズ指定
 //        launchTimeLabel.font = UIFont.init(name: "Futura-Bold", size: 30)
         launchTimeRemainingLabel.font = UIFont.monospacedDigitSystemFont(ofSize: 30, weight: UIFont.Weight.black)
-        self.view.addSubview(self.launchTimeRemainingLabel)
         
+        self.view.addSubview(self.launchTimeRemainingLabel)
         
         // 画像の幅に対して任意の数値に設定、制約を有効にする
         launchTimeRemainingLabel.widthAnchor.constraint(equalToConstant: 300).isActive = true
@@ -199,6 +193,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 //                                                          y: 130,
 //                                                          width: 150,
 //                                                          height: 30))
+        
+        // 右寄せ
         launchDayLabel.textAlignment = .right
         launchDayLabel.textColor = UIColor.white
 //        rocketNameLabel.font = UIFont.init(name: "Futura-Bold", size: 30)
@@ -244,6 +240,9 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         // 制約を設定するためレイアウトの矛盾を防ぐ
         rocketImage.translatesAutoresizingMaskIntoConstraints = false
         
+        // アスペクト比の維持
+        rocketImage.contentMode = UIView.ContentMode.scaleAspectFit
+        
         // UIImageViewのインスタンスをビューに追加
         self.view.addSubview(rocketImage)
 
@@ -256,7 +255,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         rocketImage.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 7).isActive = true
         // X座標軸の中心を親Viewと合わせる制約を有効にする
 //        rocketImage.centerXAnchor.constraint(equalTo: self.view.leftAnchor, constant: 60).isActive = true
-        rocketImage.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 10).isActive = true
+        rocketImage.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20).isActive = true
 
     }
 
@@ -265,11 +264,11 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         
         print("TodayViewController - launchJsonDownload start")
 
-//        string: "https://launchlibrary.net/1.4/launch?mode=verbose&next=1"){
-//        string: "https://launchlibrary.net/1.4/launch?mode=verbose&id=1652"){
         if let url = URL(
             string: "https://launchlibrary.net/1.4/launch?mode=verbose&next=1"){
 //            string: "https://launchlibrary.net/1.4/launch?mode=verbose&id=1652"){
+//            string: "https://launchlibrary.net/1.4/launch?mode=verbose&id=1961"){
+//            string: "https://launchlibrary.net/1.4/launch?mode=verbose&id=1603"){
 
             print("launchJsonDownload start inside URL")
 
@@ -404,6 +403,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         formatterSecond.unitsStyle = .positional
         formatterSecond.allowedUnits = [.day, .hour, .minute, .second]
         label_01.text = "打ち上げまであと"
+//        label_01.isHidden = false
 
         let intervalDate = self.workLaunchDate.timeIntervalSince(Date(timeInterval: Double(Calendar.current.timeZone.secondsFromGMT()), since: Date()))
         print("timerFunc - intervalDate", intervalDate)
@@ -443,6 +443,9 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 //            labelLaunchTime_01.isHidden = true
 
             sender.invalidate()
+            
+//            label_01.isHidden = true
+//            launchTimeRemainingLabel.text = "Launch"
 
         }
         
@@ -501,37 +504,14 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             
             DispatchQueue.main.async {
                 print("loadImage data: \(data)")
-
 //                print(response!)
                 
-                let original = UIImage(data: data!)
-                
-                self.rocketImage.image =
-                    self.resize(image: original!, width: Double(original!.size.width))
+//                let original = UIImage(data: data!)
+                self.rocketImage.image = UIImage(data: data!)
 
-                
-//                // こういう荒業は使ってはいけない！！
-//                // 該当のロケット画像なしの場合は、共通の画像が使用されている、
-//                // しかし、フレームサイズでクロップすると画像以外の余白がセルに表示されてしまい
-//                // 見栄えがひどい、共通の画像のURLが渡ってきたときは、固定値でクロップして当現象を回避する
-//                if imageUrl == "https://s3.amazonaws.com/launchlibrary/RocketImages/placeholder_480.png"{
-//
-//                    self.rocketImage.image =
-//                        original?.cropping(to: CGRect(
-//                            x:      Int(30),
-//                            y:      Int(30),
-//                            width:  Int(self.rocketImage.frame.maxX),
-//                            height: Int(self.rocketImage.frame.maxY)))
-//                }else{
-//
-//                    self.rocketImage.image =
-//                        original?.cropping(to: CGRect(
-//                            x:      Int(original!.size.width/13),
-//                            y:      Int(original!.size.height/6),
-//                            width:  Int(self.rocketImage.frame.maxX),
-//                            height: Int(self.rocketImage.frame.maxY)))
-//                }
-                
+//                self.rocketImage.image =
+////                    self.resize(image: original!, width: Double(original!.size.width))
+//                    self.resize(image: original!, width: 90)
             }
             
         }.resume()
