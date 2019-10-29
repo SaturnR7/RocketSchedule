@@ -220,6 +220,7 @@ class ListViewController: UITableViewController {
 
         indicator.color = UIColor.white
         indicator.type = NVActivityIndicatorType.orbit
+
         indicator.center = CGPoint.init(x: self.indicatorView.bounds.width / 2, y: self.indicatorView.bounds.height / 3)
         self.view.addSubview(indicator)
     }

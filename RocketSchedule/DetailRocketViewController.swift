@@ -65,7 +65,7 @@ class DetailRocketViewController : UIViewController {
             // 少し時間を置いてメッセージ表示
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
                 // メッセージ表示
-                self.buttomMessage.bottomMessage(argTitle: "通知登録しました", argBody: "打上げ時刻は変更になる可能性がありあます", argDuration: 7)
+                self.buttomMessage.bottomMessage(argTitle: "通知登録しました", argBody: "打上げ時刻は変更になる可能性があります", argDuration: 7)
             }
             
         }else{

@@ -24,6 +24,8 @@
 		B62833A2233C8E8400D78321 /* IndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B62833A1233C8E8400D78321 /* IndicatorView.swift */; };
 		B628F4D822F1488600BA6C0E /* StructClassName.swift in Sources */ = {isa = PBXBuildFile; fileRef = B628F4D722F1488600BA6C0E /* StructClassName.swift */; };
 		B62A7C11232A0DFF00E80156 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B62A7C10232A0DFE00E80156 /* StoreKit.framework */; };
+		B630EBDD2366A58100F27A5D /* RocketNameEng2Jpn.swift in Sources */ = {isa = PBXBuildFile; fileRef = B630EBDC2366A58100F27A5D /* RocketNameEng2Jpn.swift */; };
+		B630EBDF2366B01600F27A5D /* ReplaceImageSizeURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = B630EBDE2366B01600F27A5D /* ReplaceImageSizeURL.swift */; };
 		B6427C4121EAD5B800999575 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6427C4021EAD5B800999575 /* AppDelegate.swift */; };
 		B6427C4621EAD5B800999575 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6427C4421EAD5B800999575 /* Main.storyboard */; };
 		B6427C4B21EAD5BD00999575 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6427C4921EAD5BD00999575 /* LaunchScreen.storyboard */; };
@@ -32,6 +34,11 @@
 		B6474C1D227C111900E811CD /* StructNotificationId.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6474C1C227C111900E811CD /* StructNotificationId.swift */; };
 		B64B9B8423445F6C008265F9 /* SettingsNotifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64B9B8323445F6C008265F9 /* SettingsNotifyViewController.swift */; };
 		B6527D8321F874F300D40241 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6527D8221F874F300D40241 /* CustomTableViewCell.swift */; };
+		B655145A2363F90300FCFC49 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B65514592363F90300FCFC49 /* NotificationCenter.framework */; };
+		B655145D2363F90300FCFC49 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B655145C2363F90300FCFC49 /* TodayViewController.swift */; };
+		B65514602363F90300FCFC49 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B655145E2363F90300FCFC49 /* MainInterface.storyboard */; };
+		B65514642363F90300FCFC49 /* RocketLaunchInfo.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B65514582363F90300FCFC49 /* RocketLaunchInfo.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		B655146C236468AD00FCFC49 /* Launch.swift in Sources */ = {isa = PBXBuildFile; fileRef = B655146B236468AD00FCFC49 /* Launch.swift */; };
 		B65E043822E844B5007C8E3D /* AsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65E043722E844B5007C8E3D /* AsyncImageView.swift */; };
 		B6647F062362C87300D63A11 /* MessageAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6647F052362C87300D63A11 /* MessageAction.swift */; };
 		B667F64423332278007B4C52 /* GetElementLaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = B667F64323332278007B4C52 /* GetElementLaunch.swift */; };
@@ -58,7 +65,28 @@
 		CC771E829FC0C52BF160E277 /* Pods_RocketSchedule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E504C709F181CBCABF35098 /* Pods_RocketSchedule.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		B65514622363F90300FCFC49 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B6427C3521EAD5B800999575 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B65514572363F90300FCFC49;
+			remoteInfo = RocketLaunchInfo;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
+		B65514652363F90300FCFC49 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				B65514642363F90300FCFC49 /* RocketLaunchInfo.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B68A439622C5EAE20053A620 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -91,6 +119,8 @@
 		B62833A1233C8E8400D78321 /* IndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndicatorView.swift; sourceTree = "<group>"; };
 		B628F4D722F1488600BA6C0E /* StructClassName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructClassName.swift; sourceTree = "<group>"; };
 		B62A7C10232A0DFE00E80156 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		B630EBDC2366A58100F27A5D /* RocketNameEng2Jpn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RocketNameEng2Jpn.swift; sourceTree = "<group>"; };
+		B630EBDE2366B01600F27A5D /* ReplaceImageSizeURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceImageSizeURL.swift; sourceTree = "<group>"; };
 		B6427C3D21EAD5B800999575 /* RocketSchedule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RocketSchedule.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6427C4021EAD5B800999575 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B6427C4521EAD5B800999575 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -101,6 +131,14 @@
 		B6474C1C227C111900E811CD /* StructNotificationId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructNotificationId.swift; sourceTree = "<group>"; };
 		B64B9B8323445F6C008265F9 /* SettingsNotifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNotifyViewController.swift; sourceTree = "<group>"; };
 		B6527D8221F874F300D40241 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		B65514582363F90300FCFC49 /* RocketLaunchInfo.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = RocketLaunchInfo.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		B65514592363F90300FCFC49 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		B655145C2363F90300FCFC49 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		B655145F2363F90300FCFC49 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		B65514612363F90300FCFC49 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B6551469236411F100FCFC49 /* RocketSchedule.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RocketSchedule.entitlements; sourceTree = "<group>"; };
+		B655146A2364121500FCFC49 /* RocketLaunchInfo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RocketLaunchInfo.entitlements; sourceTree = "<group>"; };
+		B655146B236468AD00FCFC49 /* Launch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Launch.swift; sourceTree = "<group>"; };
 		B65E043722E844B5007C8E3D /* AsyncImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImageView.swift; sourceTree = "<group>"; };
 		B6647F052362C87300D63A11 /* MessageAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageAction.swift; sourceTree = "<group>"; };
 		B667F64323332278007B4C52 /* GetElementLaunch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetElementLaunch.swift; sourceTree = "<group>"; };
@@ -140,6 +178,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B65514552363F90300FCFC49 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B655145A2363F90300FCFC49 /* NotificationCenter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -156,6 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				B6427C3F21EAD5B800999575 /* RocketSchedule */,
+				B655145B2363F90300FCFC49 /* RocketLaunchInfo */,
 				B6427C3E21EAD5B800999575 /* Products */,
 				3426622B66FC966A336823D6 /* Pods */,
 				BBA7955D2F1F70A4E36E773A /* Frameworks */,
@@ -166,6 +213,7 @@
 			isa = PBXGroup;
 			children = (
 				B6427C3D21EAD5B800999575 /* RocketSchedule.app */,
+				B65514582363F90300FCFC49 /* RocketLaunchInfo.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -173,6 +221,7 @@
 		B6427C3F21EAD5B800999575 /* RocketSchedule */ = {
 			isa = PBXGroup;
 			children = (
+				B6551469236411F100FCFC49 /* RocketSchedule.entitlements */,
 				B6427C4021EAD5B800999575 /* AppDelegate.swift */,
 				B6427C5221EAD67800999575 /* ListViewController.swift */,
 				B6A66F7322A4F8D2003CDA1B /* DetailRocketViewController.swift */,
@@ -221,6 +270,20 @@
 			path = RocketSchedule;
 			sourceTree = "<group>";
 		};
+		B655145B2363F90300FCFC49 /* RocketLaunchInfo */ = {
+			isa = PBXGroup;
+			children = (
+				B655146A2364121500FCFC49 /* RocketLaunchInfo.entitlements */,
+				B655145C2363F90300FCFC49 /* TodayViewController.swift */,
+				B630EBDC2366A58100F27A5D /* RocketNameEng2Jpn.swift */,
+				B630EBDE2366B01600F27A5D /* ReplaceImageSizeURL.swift */,
+				B655146B236468AD00FCFC49 /* Launch.swift */,
+				B655145E2363F90300FCFC49 /* MainInterface.storyboard */,
+				B65514612363F90300FCFC49 /* Info.plist */,
+			);
+			path = RocketLaunchInfo;
+			sourceTree = "<group>";
+		};
 		BBA7955D2F1F70A4E36E773A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -230,6 +293,7 @@
 				B6D9446C22C5EFAB00B4B968 /* RealmSwift.framework */,
 				B6D9446A22C5EFA400B4B968 /* Realm.framework */,
 				5E504C709F181CBCABF35098 /* Pods_RocketSchedule.framework */,
+				B65514592363F90300FCFC49 /* NotificationCenter.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -247,15 +311,34 @@
 				B6427C3B21EAD5B800999575 /* Resources */,
 				1AF4762101080825F9671157 /* [CP] Embed Pods Frameworks */,
 				B68A439622C5EAE20053A620 /* CopyFiles */,
+				B65514652363F90300FCFC49 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				B65514632363F90300FCFC49 /* PBXTargetDependency */,
 			);
 			name = RocketSchedule;
 			productName = RocketSchedule;
 			productReference = B6427C3D21EAD5B800999575 /* RocketSchedule.app */;
 			productType = "com.apple.product-type.application";
+		};
+		B65514572363F90300FCFC49 /* RocketLaunchInfo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B65514682363F90300FCFC49 /* Build configuration list for PBXNativeTarget "RocketLaunchInfo" */;
+			buildPhases = (
+				B65514542363F90300FCFC49 /* Sources */,
+				B65514552363F90300FCFC49 /* Frameworks */,
+				B65514562363F90300FCFC49 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RocketLaunchInfo;
+			productName = RocketLaunchInfo;
+			productReference = B65514582363F90300FCFC49 /* RocketLaunchInfo.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -263,7 +346,7 @@
 		B6427C3521EAD5B800999575 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1010;
+				LastSwiftUpdateCheck = 1100;
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = zilch;
 				TargetAttributes = {
@@ -274,6 +357,9 @@
 								enabled = 1;
 							};
 						};
+					};
+					B65514572363F90300FCFC49 = {
+						CreatedOnToolsVersion = 11.0;
 					};
 				};
 			};
@@ -291,6 +377,7 @@
 			projectRoot = "";
 			targets = (
 				B6427C3C21EAD5B800999575 /* RocketSchedule */,
+				B65514572363F90300FCFC49 /* RocketLaunchInfo */,
 			);
 		};
 /* End PBXProject section */
@@ -303,6 +390,14 @@
 				B6427C4B21EAD5BD00999575 /* LaunchScreen.storyboard in Resources */,
 				B6E0BE4C22FD1117003D9A36 /* Assets.xcassets in Resources */,
 				B6427C4621EAD5B800999575 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B65514562363F90300FCFC49 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B65514602363F90300FCFC49 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,7 +493,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B65514542363F90300FCFC49 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B655146C236468AD00FCFC49 /* Launch.swift in Sources */,
+				B630EBDF2366B01600F27A5D /* ReplaceImageSizeURL.swift in Sources */,
+				B655145D2363F90300FCFC49 /* TodayViewController.swift in Sources */,
+				B630EBDD2366A58100F27A5D /* RocketNameEng2Jpn.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B65514632363F90300FCFC49 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B65514572363F90300FCFC49 /* RocketLaunchInfo */;
+			targetProxy = B65514622363F90300FCFC49 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		B6427C4421EAD5B800999575 /* Main.storyboard */ = {
@@ -415,6 +529,14 @@
 				B6427C4A21EAD5BD00999575 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		B655145E2363F90300FCFC49 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B655145F2363F90300FCFC49 /* Base */,
+			);
+			name = MainInterface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -540,7 +662,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1845EC9FEA8BD028B22707C7 /* Pods-RocketSchedule.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = RocketSchedule/RocketSchedule.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 44UHJ8FK3A;
@@ -562,7 +686,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 30F5A9B96ECE5CD5E58DECCB /* Pods-RocketSchedule.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = RocketSchedule/RocketSchedule.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 44UHJ8FK3A;
@@ -577,6 +703,48 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		B65514662363F90300FCFC49 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = RocketLaunchInfo/RocketLaunchInfo.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 44UHJ8FK3A;
+				INFOPLIST_FILE = RocketLaunchInfo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.gmail.hidemasa.kobayashi.RocketSchedule.RocketLaunchInfo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B65514672363F90300FCFC49 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = RocketLaunchInfo/RocketLaunchInfo.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 44UHJ8FK3A;
+				INFOPLIST_FILE = RocketLaunchInfo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.gmail.hidemasa.kobayashi.RocketSchedule.RocketLaunchInfo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -597,6 +765,15 @@
 			buildConfigurations = (
 				B6427C5021EAD5BD00999575 /* Debug */,
 				B6427C5121EAD5BD00999575 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B65514682363F90300FCFC49 /* Build configuration list for PBXNativeTarget "RocketLaunchInfo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B65514662363F90300FCFC49 /* Debug */,
+				B65514672363F90300FCFC49 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
