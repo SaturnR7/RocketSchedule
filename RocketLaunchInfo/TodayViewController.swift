@@ -52,6 +52,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         // expandedで拡大可能に
 //        self.extensionContext?.widgetLargestAvailableDisplayMode = .expanded
         
+        // Viewの生成
         // ロケット画像
         imageRocketSet()
         // ロケット名
