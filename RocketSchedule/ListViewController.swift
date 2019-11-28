@@ -232,6 +232,8 @@ class ListViewController: UITableViewController {
 
         print("ListViewController - viewDidLoad start")
         
+        // test
+        
         // 通信状態の確認
         let reachability = try! Reachability()
         if reachability.connection == .wifi {
